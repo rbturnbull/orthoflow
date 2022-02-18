@@ -19,19 +19,45 @@ Workflow
         phy1 [label="Phylogeny 1"];
         genetrees [label="Gene Trees\n(AA &/or NT)"];
         phy2 [label="Phylogeny 2"];
+        
+        subgraph cluster_1 {
+            node [style=filled];
+            exome -> cds;
+            transcriptome -> cds;
+            addotated -> cds;
+            label = "Data Intake";
+            color=purple
+        }
+        subgraph cluster_2 {
+            node [style=filled];
+            gene -> scog;
+            gene -> snap;
+            label = "Orthologs Module";
+            color=green
+        }
+        subgraph clusteralignment {
+            node [style=filled];
+            unaligned -> genealignments;
+            genealignments -> filtered;
+            label = "Alignment Module";
+            color=blue
+        }
+        subgraph clustersupermatrix {
+            node [style=filled];
+            supermatrix -> phy1;
+            label = "Supermatrix Module";
+            color=orange
+        }
+        subgraph clustergenetree {
+            node [style=filled];
+            genetrees -> phy2;
+            label = "Genetree and Reconciliation Module";
+            color=red
+        }
 
-        exome -> cds;
-        transcriptome -> cds;
-        addotated -> cds;
         cds -> gene;
-        gene -> scog;
-        gene -> snap;
         scog -> unaligned;
         snap -> unaligned;
-        unaligned -> genealignments;
-        genealignments -> filtered;
         filtered -> supermatrix;
-        supermatrix -> phy1;
         filtered -> genetrees;
-        genetrees -> phy2;
     }
