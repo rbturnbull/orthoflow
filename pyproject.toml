@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "phylogenomic-workflow"
+version = "0.1.0"
+description = "A phylogenomic workflow developed in collaboration with Jo Birch from the University of Melbourne Herbarium"
+authors = ["Robert Turnbull <robert.turnbull@unimelb.edu.au>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+Sphinx = "^4.4.0"
+nbsphinx = "^0.8.7"
+sphinx-rtd-theme = "^1.0.0"
+sphinx-autobuild = "^2021.3.14"
+sphinx-copybutton = "^0.4.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
