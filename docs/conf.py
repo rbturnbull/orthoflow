@@ -39,7 +39,16 @@ extensions = [
     "sphinx.ext.coverage",
     "sphinx.ext.napoleon",
     "sphinx_copybutton",
+    "sphinx.ext.graphviz",
+    # 'sphinxcontrib.mermaid',
 ]
+
+graphviz_output_format = "svg"
+
+# mermaid_output_format = 'svg'
+# mermaid_js = "https://unpkg.com/mermaid@8.12.1/dist/mermaid.min.js"
+# mermaid_version = "8.12.1"
+# mermaid_init_js = ""
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

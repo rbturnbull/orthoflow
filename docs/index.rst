@@ -10,7 +10,8 @@ Welcome to phylogenomic-workflow's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   workflow
+   
 
 Indices and tables
 ==================

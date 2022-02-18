@@ -14,6 +14,7 @@ nbsphinx = "^0.8.7"
 sphinx-rtd-theme = "^1.0.0"
 sphinx-autobuild = "^2021.3.14"
 sphinx-copybutton = "^0.4.0"
+sphinxcontrib-mermaid = "^0.7.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
