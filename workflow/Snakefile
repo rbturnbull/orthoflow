@@ -1,0 +1,11 @@
+
+##### load rules #####
+include: "intake.smk"
+include: "orthologs.smk"
+include: "alignment.smk"
+include: "supermatrix.smk"
+include: "genetree.smk"
+include: "reconciliation.smk"
+
+
+
