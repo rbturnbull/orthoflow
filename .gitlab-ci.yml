@@ -1,8 +1,9 @@
 stages:
+  - build
   - deploy
 
 docs:
-  stage: deploy
+  stage: build
   image: python:3.8-slim-buster
   before_script:
     - apt-get update && apt-get install -y build-essential && apt-get install -y git && apt-get install -y pandoc
