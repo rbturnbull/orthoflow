@@ -8,6 +8,7 @@ Workflow
         exome [label="Exome data"];
         transcriptome [label="Transcriptome data\n(pre-assembled)"];
         addotated [label="Annotated genomes\n(.gb)"];
+        ddRAD [label="ddRAD reads"];
         cds [label="CDS collection"];
         gene [label="gene clusters"];
         scog [label="SC-OG"];
@@ -20,19 +21,20 @@ Workflow
         genetrees [label="Gene Trees\n(AA &/or NT)"];
         phy2 [label="Phylogeny 2"];
         
-        subgraph cluster_1 {
+        subgraph clusterdata {
             node [style=filled];
             exome -> cds;
             transcriptome -> cds;
             addotated -> cds;
+            ddRAD;
             label = "Data Intake";
             color=purple
         }
-        subgraph cluster_2 {
+        subgraph clusterortho {
             node [style=filled];
             gene -> scog;
             gene -> snap;
-            label = "Orthologs Module";
+            label = "Orthologs Module\n(de novo stream)";
             color=green
         }
         subgraph clusteralignment {
@@ -58,6 +60,7 @@ Workflow
         cds -> gene;
         scog -> unaligned;
         snap -> unaligned;
+        ddRAD -> filtered;
         filtered -> supermatrix;
         filtered -> genetrees;
     }
