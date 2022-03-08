@@ -33,6 +33,7 @@ release = '0.1.0'
 extensions = [
     "sphinx_rtd_theme",
     "nbsphinx",
+    "myst_parser",
     "sphinx.ext.mathjax",
     "sphinx.ext.githubpages",
     "sphinx.ext.autodoc",
@@ -42,6 +43,12 @@ extensions = [
     "sphinx.ext.graphviz",
     # 'sphinxcontrib.mermaid',
 ]
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'markdown',
+    '.md': 'markdown',
+}
 
 graphviz_output_format = "svg"
 
