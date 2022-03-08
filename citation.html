@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Workflow &mdash; phylogenomic-workflow 0.1.0 documentation</title>
+  <title>Citation &mdash; phylogenomic-workflow 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -23,8 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Citation" href="citation.html" />
-    <link rel="prev" title="Installation" href="installation.html" /> 
+    <link rel="prev" title="Workflow" href="workflow.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,8 +44,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Citation</a></li>
 </ul>
 
         </div>
@@ -63,9 +62,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Workflow</li>
+      <li>Citation</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/workflow.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/citation.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -97,78 +96,16 @@
     text-align: unset;
 }
 </style>
-<section id="workflow">
-<h1>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline"></a></h1>
-<p>Here is a diagram of the proposed workflow.</p>
-<div class="graphviz"><object data="_images/graphviz-0c8104651cf4c14e9fbd19ceea1c3c76f1d47351.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph workflow {
-    exome [label=&quot;Exome data&quot;];
-    transcriptome [label=&quot;Transcriptome data\n(pre-assembled)&quot;];
-    addotated [label=&quot;Annotated genomes\n(.gb)&quot;];
-    ddRAD [label=&quot;ddRAD reads&quot;];
-    cds [label=&quot;CDS collection&quot;];
-    gene [label=&quot;gene clusters&quot;];
-    scog [label=&quot;SC-OG&quot;];
-    snap [label=&quot;SNAP-OG&quot;];
-    unaligned [label=&quot;Unaligned genes\n(AA &amp; NT)&quot;];
-    genealignments [label=&quot;Gene alignments\n(AA &amp; NT)&quot;];
-    filtered [label=&quot;Filtered alignments\n(AA &amp; NT)&quot;];
-    supermatrix [label=&quot;Supermatrix\n(AA &amp; NT)&quot;];
-    phy1 [label=&quot;Phylogeny 1&quot;];
-    genetrees [label=&quot;Gene Trees\n(AA &amp;/or NT)&quot;];
-    phy2 [label=&quot;Phylogeny 2&quot;];
-
-    subgraph clusterdata {
-        node [style=filled];
-        exome -&gt; cds;
-        transcriptome -&gt; cds;
-        addotated -&gt; cds;
-        ddRAD;
-        label = &quot;Data Intake&quot;;
-        color=purple
-    }
-    subgraph clusterortho {
-        node [style=filled];
-        gene -&gt; scog;
-        gene -&gt; snap;
-        label = &quot;Orthologs Module\n(de novo stream)&quot;;
-        color=green
-    }
-    subgraph clusteralignment {
-        node [style=filled];
-        unaligned -&gt; genealignments;
-        genealignments -&gt; filtered;
-        label = &quot;Alignment Module&quot;;
-        color=blue
-    }
-    subgraph clustersupermatrix {
-        node [style=filled];
-        supermatrix -&gt; phy1;
-        label = &quot;Supermatrix Module&quot;;
-        color=orange
-    }
-    subgraph clustergenetree {
-        node [style=filled];
-        genetrees -&gt; phy2;
-        label = &quot;Genetree and Reconciliation Module&quot;;
-        color=red
-    }
-
-    cds -&gt; gene;
-    scog -&gt; unaligned;
-    snap -&gt; unaligned;
-    ddRAD -&gt; filtered;
-    filtered -&gt; supermatrix;
-    filtered -&gt; genetrees;
-}</p></object></div>
+<section id="citation">
+<h1>Citation<a class="headerlink" href="#citation" title="Permalink to this headline"></a></h1>
+<p>Citation details to come.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="citation.html" class="btn btn-neutral float-right" title="Citation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="workflow.html" class="btn btn-neutral float-left" title="Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -12,6 +12,7 @@ Welcome to phylogenomic-workflow's documentation!
 
    installation
    workflow
+   citation
    
 
 Indices and tables
