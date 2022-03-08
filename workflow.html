@@ -98,7 +98,8 @@
 <section id="workflow">
 <h1>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline"></a></h1>
 <p>Here is a diagram of the proposed workflow.</p>
-digraph workflow {
+<div class="graphviz"><object data="_images/graphviz-0c8104651cf4c14e9fbd19ceea1c3c76f1d47351.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph workflow {
     exome [label=&quot;Exome data&quot;];
     transcriptome [label=&quot;Transcriptome data\n(pre-assembled)&quot;];
     addotated [label=&quot;Annotated genomes\n(.gb)&quot;];
@@ -157,7 +158,8 @@ digraph workflow {
     ddRAD -&gt; filtered;
     filtered -&gt; supermatrix;
     filtered -&gt; genetrees;
-}</section>
+}</p></object></div>
+</section>
 
 
            </div>
