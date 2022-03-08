@@ -1,11 +1,47 @@
+from pathlib import Path
+import subprocess
+
+SNAKE_DIR = Path(workflow.basedir)
+RESULTS_DIR = SNAKE_DIR.parent / "results"
+RESOURCES_DIR = SNAKE_DIR.parent / "resources"
+CONFIG_DIR = SNAKE_DIR.parent / "config"
+LOG_DIR = SNAKE_DIR.parent / "logs"
+DATA_DIR = Path("datasets/01_chloroplast_genomes/")
+
+configfile: CONFIG_DIR / "config.yml"
 
 ##### load rules #####
-include: "intake.smk"
-include: "orthologs.smk"
-include: "alignment.smk"
-include: "supermatrix.smk"
-include: "genetree.smk"
-include: "reconciliation.smk"
+include: "rules/intake.smk"
+include: "rules/orthologs.smk"
+include: "rules/alignment.smk"
+include: "rules/supermatrix.smk"
+include: "rules/genetree.smk"
+include: "rules/reconciliation.smk"
 
+onstart:
+    # Print some environment info
+    print("Workflow directories:")
+    path_vars = (
+        'SNAKE_DIR',
+        'RESULTS_DIR',
+        'RESOURCES_DIR',
+        'CONFIG_DIR',
+        'LOG_DIR',
+    )
+    for name in path_vars:
+        print(f"\t{name:20s} ➡  {str(globals()[name])}")
 
+    print("Environment:")
+    shell = lambda cmd: subprocess.run(cmd, shell=True, stdout=subprocess.PIPE).stdout.decode().rstrip()
+    print(f"\t{shell('python --version'):20s} ➡  {shell('which python')}")
+    print(f"\t{shell('conda --version'):20s} ➡  {shell('which conda')}")
+    print(f"\t{' '.join(('snakemake', shell('snakemake --version'))):20s} ➡  {shell('which snakemake')}")
 
+    # Ensure all required directories exist
+    for name in path_vars:
+        globals()[name].mkdir(exist_ok=True)
+        assert(globals()[name].exists())
+
+rule all:
+    input:
+        "output.nwk"
