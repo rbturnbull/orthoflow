@@ -2,6 +2,8 @@
 Workflow
 ========
 
+Here is a diagram of the proposed workflow.
+
 .. graphviz::
 
     digraph workflow {

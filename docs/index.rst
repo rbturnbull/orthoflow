@@ -10,6 +10,7 @@ Welcome to phylogenomic-workflow's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   installation
    workflow
    
 
