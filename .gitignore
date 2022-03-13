@@ -2,3 +2,4 @@ docshtml
 .snakemake/*
 datasets/*
 results/*
+.vscode/*
