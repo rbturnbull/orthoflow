@@ -48,23 +48,9 @@
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Workflow development guidelines</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#diagram">Diagram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-intake-module">Data intake module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#intake-of-exome-data">Intake of exome data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#intake-of-annotated-genbank-files">Intake of annotated genbank files</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#ortholog-module-de-novo-stream">Ortholog module, de novo stream</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#orthology-inference">Orthology inference</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#filtering-sc-og">Filtering SC-OG</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#inferring-and-snap-og">Inferring and SNAP-OG</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#post-orthogroup-organisation">Post-orthogroup organisation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#alignment-module">Alignment module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#alignment">Alignment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#filtering">Filtering</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-intake-module">Data intake module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ortholog-module-de-novo-stream">Ortholog module, de novo stream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alignment-module">Alignment module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gene-tree-module">Gene tree module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reconciliation-module">Reconciliation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#supermatrix-module">Supermatrix module</a></li>
@@ -125,45 +111,36 @@
 <h1>Workflow development guidelines<a class="headerlink" href="#workflow-development-guidelines" title="Permalink to this headline"></a></h1>
 <section id="diagram">
 <h2>Diagram<a class="headerlink" href="#diagram" title="Permalink to this headline"></a></h2>
-<p>https://app.diagrams.net/#G1feeWJLnqI-_EN4x8zY2V9GChWosKFZg3</p>
+<p>Link to original on <a class="reference external" href="https://app.diagrams.net/#G1feeWJLnqI-_EN4x8zY2V9GChWosKFZg3">diagrams.net</a></p>
 <p><img alt="" src="_images/diagram.png" /></p>
 </section>
 <section id="data-intake-module">
 <h2>Data intake module<a class="headerlink" href="#data-intake-module" title="Permalink to this headline"></a></h2>
-<p>Must work from input_sources.csv file to determine which type of input the different input files represent. It produces two files for each taxon, one with CDS and one with protein sequences (translated from CDS based on genetic code).</p>
+<p>Must work from <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code> file to determine which type of input the different input files represent. It produces two files for each taxon, one with CDS and one with protein sequences (translated from CDS based on genetic code).</p>
 <ol class="arabic simple">
-<li></li>
-<li></li>
-</ol>
-<section id="intake-of-exome-data">
-<h3>Intake of exome data<a class="headerlink" href="#intake-of-exome-data" title="Permalink to this headline"></a></h3>
+<li><p>Intake of exome data</p>
 <ul class="simple">
 <li><p>this comes in fasta format</p></li>
-<li><p>add taxon_string field from input_sources.csv, keep this output</p></li>
-<li><p>translate sequences using biokit translate, specifying genetic code given in input_sources.csv, keep output</p></li>
+<li><p>add taxon_string field from <code class="docutils literal notranslate"><span class="pre">input\_sources.csv</span></code> with the <code class="docutils literal notranslate"><span class="pre">add_taxon_to_seqID.py</span></code> in <code class="docutils literal notranslate"><span class="pre">ext_scripts</span></code>, keep this output</p></li>
+<li><p>translate sequences using <code class="docutils literal notranslate"><span class="pre">biokit</span> <span class="pre">translate</span></code> (<a class="reference external" href="https://github.com/JLSteenwyk/BioKIT">github</a>), specifying the genetic code given in <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code>, keep output</p></li>
 </ul>
-</section>
-<section id="intake-of-annotated-genbank-files">
-<h3>Intake of annotated genbank files<a class="headerlink" href="#intake-of-annotated-genbank-files" title="Permalink to this headline"></a></h3>
+</li>
+<li><p>Intake of annotated genbank files</p>
 <ul class="simple">
 <li><p>this comes in genbank flatfile format</p></li>
-<li><p>extract CDS features from genbank file with gbseqextractor (https://github.com/linzhi2013/gbseqextractor)</p></li>
-<li><p>add taxon_string field from input_sources.csv, keep this output</p></li>
-<li><p>translate sequences using biokit translate, specifying genetic code given in input_sources.csv, keep output</p></li>
+<li><p>extract CDS features from genbank file with <code class="docutils literal notranslate"><span class="pre">gbseqextractor</span></code> (<a class="reference external" href="https://github.com/linzhi2013/gbseqextractor">github</a>)</p></li>
+<li><p>this essentially converts the input into the exome data from point 1, so downstream processing is identical to 1 from above</p></li>
+<li><p>add taxon_string field from <code class="docutils literal notranslate"><span class="pre">input\_sources.csv</span></code>, keep this output</p></li>
+<li><p>translate sequences using <code class="docutils literal notranslate"><span class="pre">biokit</span> <span class="pre">translate</span></code>, specifying genetic code given in <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code>, keep output</p></li>
 </ul>
-</section>
+</li>
+</ol>
 </section>
 <section id="ortholog-module-de-novo-stream">
 <h2>Ortholog module, de novo stream<a class="headerlink" href="#ortholog-module-de-novo-stream" title="Permalink to this headline"></a></h2>
 <p>Uses the translated sequences from the data intake module, clusters them into orthogroups (gene clusters) based on pairwise similarity, then filters these down to the single copy orthogroups (SC-OG) and SNAP orthogroups (SNAP-OG). This module also includes a filtering step for occupancy, i.e. how many taxa are present in the inferred orthogroup.</p>
 <ol class="arabic simple" start="3">
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ol>
-<section id="orthology-inference">
-<h3>Orthology inference<a class="headerlink" href="#orthology-inference" title="Permalink to this headline"></a></h3>
+<li><p>Orthology inference</p>
 <ul class="simple">
 <li><p>based on the translated CDSs, run an orthology inference program</p></li>
 <li><p>at this stage, I would like two algorithms to be implemented here, OrthoFinder and OrthoMCL</p></li>
@@ -171,24 +148,21 @@
 <li><p>the output differs between programs, but for orthofinder, among the many outputs are the orthogroup sequences (fasta files) and phylogenetic trees (one per orthogroup)</p></li>
 <li><p>haven’t used OrthoMCL recently, so I’m not sure about the outputs it produces, so let’s put a placeholder in the workflow but implement this later</p></li>
 </ul>
-</section>
-<section id="filtering-sc-og">
-<h3>Filtering SC-OG<a class="headerlink" href="#filtering-sc-og" title="Permalink to this headline"></a></h3>
+</li>
+<li><p>Filtering SC-OG</p>
 <ul class="simple">
 <li><p>from the output of step 3, filter out the single copy orthogroups</p></li>
 <li><p>use the occupancy threshold given by the user</p></li>
 </ul>
-</section>
-<section id="inferring-and-snap-og">
-<h3>Inferring and SNAP-OG<a class="headerlink" href="#inferring-and-snap-og" title="Permalink to this headline"></a></h3>
+</li>
+<li><p>Inferring and SNAP-OG</p>
 <ul class="simple">
 <li><p>make this step optional, as not all users will want to use this</p></li>
 <li><p>run the OGs that are not SC-OGs through OrthoSNAP</p></li>
 <li><p>use the occupancy threshold given by the user</p></li>
 </ul>
-</section>
-<section id="post-orthogroup-organisation">
-<h3>Post-orthogroup organisation<a class="headerlink" href="#post-orthogroup-organisation" title="Permalink to this headline"></a></h3>
+</li>
+<li><p>Post-orthogroup organisation</p>
 <ul class="simple">
 <li><p>produce clean output for subsequent module</p></li>
 <li><p>retain only taxon string in sequence ID</p></li>
@@ -196,30 +170,27 @@
 <li><p>use filenames that indicate they are SC or SNAP</p></li>
 <li><p>retain output files, important intermediary output</p></li>
 </ul>
-</section>
+</li>
+</ol>
 </section>
 <section id="alignment-module">
 <h2>Alignment module<a class="headerlink" href="#alignment-module" title="Permalink to this headline"></a></h2>
 <p>Uses the cleaned-up OG files from 7, where we have corresponding CDS and protein files. I denoted these NT (for CDS) and AA (amino acid, i.e. protein). In this module, the aim is to align the sequences and do quality filtering.</p>
 <ol class="arabic simple" start="7">
-<li></li>
-<li></li>
-</ol>
-<section id="alignment">
-<h3>Alignment<a class="headerlink" href="#alignment" title="Permalink to this headline"></a></h3>
+<li><p>Alignment</p>
 <ul class="simple">
 <li><p>first align the protein (amino acid) file with MAFFT</p></li>
 <li><p>then use translatorX (http://161.111.161.41/cgi-bin/translatorx_vLocal.pl) to align the CDS using the amino acid file as a template</p></li>
 <li><p>retain output files of both AA and NT, important intermediary output</p></li>
 </ul>
-</section>
-<section id="filtering">
-<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline"></a></h3>
+</li>
+<li><p>Filtering</p>
 <ul class="simple">
 <li><p>TBD</p></li>
 <li><p>the output files again exist as AA and NT, and are important intermediary output</p></li>
 </ul>
-</section>
+</li>
+</ol>
 </section>
 <section id="gene-tree-module">
 <h2>Gene tree module<a class="headerlink" href="#gene-tree-module" title="Permalink to this headline"></a></h2>
