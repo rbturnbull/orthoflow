@@ -34,16 +34,20 @@ Uses the translated sequences from the data intake module, clusters them into or
     - at this stage, I would like two algorithms to be implemented here, OrthoFinder and OrthoMCL
     - this step is where I'd like to implement some extra alternatives later for comparative analysis
     - the output differs between programs, but for orthofinder, among the many outputs are the orthogroup sequences (fasta files) and phylogenetic trees (one per orthogroup)
+    - There are too many OGs that are not phylogenetically informative (too few sequences in them – for nuclear genes many are singletons). I wrote a script `filter_OrthoFinder.py` that runs through the output directory of an OrthoFinder run and copies the OGs with more than a user-defined number of sequences to a new directory to reduce the burden of downstream processing. Ideally the minimum number of sequences is set to the occupancy threshold defined by the user.
     - haven't used OrthoMCL recently, so I'm not sure about the outputs it produces, so let's put a placeholder in the workflow but implement this later
+
 4.  Filtering SC-OG
     
     - from the output of step 3, filter out the single copy orthogroups
-    - use the occupancy threshold given by the user
+    - I wrote the `filter_SCOG.pl` script to do this. If the data input into this script are prepared with `filter_OrthoFinder.py` then it already meets the occupancy threshold given by the user.
+
 5.  Inferring and SNAP-OG
     
     - make this step optional, as not all users will want to use this
     - run the OGs that are not SC-OGs through OrthoSNAP
     - use the occupancy threshold given by the user
+
 6.  Post-orthogroup organisation
     
     - produce clean output for subsequent module
