@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workflow development guidelines &mdash; phylogenomic-workflow 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Citation" href="citation.html" />
+    <link rel="prev" title="Workflow" href="workflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> phylogenomic-workflow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Workflow development guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#diagram">Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-intake-module">Data intake module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#intake-of-exome-data">Intake of exome data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intake-of-annotated-genbank-files">Intake of annotated genbank files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ortholog-module-de-novo-stream">Ortholog module, de novo stream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#orthology-inference">Orthology inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-sc-og">Filtering SC-OG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inferring-and-snap-og">Inferring and SNAP-OG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-orthogroup-organisation">Post-orthogroup organisation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#alignment-module">Alignment module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#alignment">Alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering">Filtering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gene-tree-module">Gene tree module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reconciliation-module">Reconciliation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supermatrix-module">Supermatrix module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">phylogenomic-workflow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Workflow development guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/workflow_dev.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="workflow-development-guidelines">
+<h1>Workflow development guidelines<a class="headerlink" href="#workflow-development-guidelines" title="Permalink to this headline"></a></h1>
+<section id="diagram">
+<h2>Diagram<a class="headerlink" href="#diagram" title="Permalink to this headline"></a></h2>
+<p>https://app.diagrams.net/#G1feeWJLnqI-_EN4x8zY2V9GChWosKFZg3</p>
+<p><img alt="" src="_images/diagram.png" /></p>
+</section>
+<section id="data-intake-module">
+<h2>Data intake module<a class="headerlink" href="#data-intake-module" title="Permalink to this headline"></a></h2>
+<p>Must work from input_sources.csv file to determine which type of input the different input files represent. It produces two files for each taxon, one with CDS and one with protein sequences (translated from CDS based on genetic code).</p>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+</ol>
+<section id="intake-of-exome-data">
+<h3>Intake of exome data<a class="headerlink" href="#intake-of-exome-data" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>this comes in fasta format</p></li>
+<li><p>add taxon_string field from input_sources.csv, keep this output</p></li>
+<li><p>translate sequences using biokit translate, specifying genetic code given in input_sources.csv, keep output</p></li>
+</ul>
+</section>
+<section id="intake-of-annotated-genbank-files">
+<h3>Intake of annotated genbank files<a class="headerlink" href="#intake-of-annotated-genbank-files" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>this comes in genbank flatfile format</p></li>
+<li><p>extract CDS features from genbank file with gbseqextractor (https://github.com/linzhi2013/gbseqextractor)</p></li>
+<li><p>add taxon_string field from input_sources.csv, keep this output</p></li>
+<li><p>translate sequences using biokit translate, specifying genetic code given in input_sources.csv, keep output</p></li>
+</ul>
+</section>
+</section>
+<section id="ortholog-module-de-novo-stream">
+<h2>Ortholog module, de novo stream<a class="headerlink" href="#ortholog-module-de-novo-stream" title="Permalink to this headline"></a></h2>
+<p>Uses the translated sequences from the data intake module, clusters them into orthogroups (gene clusters) based on pairwise similarity, then filters these down to the single copy orthogroups (SC-OG) and SNAP orthogroups (SNAP-OG). This module also includes a filtering step for occupancy, i.e. how many taxa are present in the inferred orthogroup.</p>
+<ol class="arabic simple" start="3">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<section id="orthology-inference">
+<h3>Orthology inference<a class="headerlink" href="#orthology-inference" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>based on the translated CDSs, run an orthology inference program</p></li>
+<li><p>at this stage, I would like two algorithms to be implemented here, OrthoFinder and OrthoMCL</p></li>
+<li><p>this step is where I’d like to implement some extra alternatives later for comparative analysis</p></li>
+<li><p>the output differs between programs, but for orthofinder, among the many outputs are the orthogroup sequences (fasta files) and phylogenetic trees (one per orthogroup)</p></li>
+<li><p>haven’t used OrthoMCL recently, so I’m not sure about the outputs it produces, so let’s put a placeholder in the workflow but implement this later</p></li>
+</ul>
+</section>
+<section id="filtering-sc-og">
+<h3>Filtering SC-OG<a class="headerlink" href="#filtering-sc-og" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>from the output of step 3, filter out the single copy orthogroups</p></li>
+<li><p>use the occupancy threshold given by the user</p></li>
+</ul>
+</section>
+<section id="inferring-and-snap-og">
+<h3>Inferring and SNAP-OG<a class="headerlink" href="#inferring-and-snap-og" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>make this step optional, as not all users will want to use this</p></li>
+<li><p>run the OGs that are not SC-OGs through OrthoSNAP</p></li>
+<li><p>use the occupancy threshold given by the user</p></li>
+</ul>
+</section>
+<section id="post-orthogroup-organisation">
+<h3>Post-orthogroup organisation<a class="headerlink" href="#post-orthogroup-organisation" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>produce clean output for subsequent module</p></li>
+<li><p>retain only taxon string in sequence ID</p></li>
+<li><p>only protein sequences are used in ortholog module, but also need corresponding CDS</p></li>
+<li><p>use filenames that indicate they are SC or SNAP</p></li>
+<li><p>retain output files, important intermediary output</p></li>
+</ul>
+</section>
+</section>
+<section id="alignment-module">
+<h2>Alignment module<a class="headerlink" href="#alignment-module" title="Permalink to this headline"></a></h2>
+<p>Uses the cleaned-up OG files from 7, where we have corresponding CDS and protein files. I denoted these NT (for CDS) and AA (amino acid, i.e. protein). In this module, the aim is to align the sequences and do quality filtering.</p>
+<ol class="arabic simple" start="7">
+<li></li>
+<li></li>
+</ol>
+<section id="alignment">
+<h3>Alignment<a class="headerlink" href="#alignment" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>first align the protein (amino acid) file with MAFFT</p></li>
+<li><p>then use translatorX (http://161.111.161.41/cgi-bin/translatorx_vLocal.pl) to align the CDS using the amino acid file as a template</p></li>
+<li><p>retain output files of both AA and NT, important intermediary output</p></li>
+</ul>
+</section>
+<section id="filtering">
+<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>TBD</p></li>
+<li><p>the output files again exist as AA and NT, and are important intermediary output</p></li>
+</ul>
+</section>
+</section>
+<section id="gene-tree-module">
+<h2>Gene tree module<a class="headerlink" href="#gene-tree-module" title="Permalink to this headline"></a></h2>
+<p>This is an important module that serves multiple purposes. One is to produce the final gene trees, but the module will probably also need to be plugged in to produce intermediary trees as part of the orthologs module, so we need to build this with flexibility in mind. The user will need to specify whether they want trees to be inferred from NT or AA data, and this flexibility needs to be programmed into this somehow. Not sure if this flexibility sits within the module itself, as that may limit the utility of this module for other purposes.</p>
+<p>Steps TBD</p>
+</section>
+<section id="reconciliation-module">
+<h2>Reconciliation module<a class="headerlink" href="#reconciliation-module" title="Permalink to this headline"></a></h2>
+<p>TBD</p>
+</section>
+<section id="supermatrix-module">
+<h2>Supermatrix module<a class="headerlink" href="#supermatrix-module" title="Permalink to this headline"></a></h2>
+<p>TBD</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="workflow.html" class="btn btn-neutral float-left" title="Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="citation.html" class="btn btn-neutral float-right" title="Citation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 University of Melbourne.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
