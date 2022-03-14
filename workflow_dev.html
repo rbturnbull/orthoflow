@@ -146,13 +146,14 @@
 <li><p>at this stage, I would like two algorithms to be implemented here, OrthoFinder and OrthoMCL</p></li>
 <li><p>this step is where I’d like to implement some extra alternatives later for comparative analysis</p></li>
 <li><p>the output differs between programs, but for orthofinder, among the many outputs are the orthogroup sequences (fasta files) and phylogenetic trees (one per orthogroup)</p></li>
+<li><p>There are too many OGs that are not phylogenetically informative (too few sequences in them – for nuclear genes many are singletons). I wrote a script <code class="docutils literal notranslate"><span class="pre">filter_OrthoFinder.py</span></code> that runs through the output directory of an OrthoFinder run and copies the OGs with more than a user-defined number of sequences to a new directory to reduce the burden of downstream processing. Ideally the minimum number of sequences is set to the occupancy threshold defined by the user.</p></li>
 <li><p>haven’t used OrthoMCL recently, so I’m not sure about the outputs it produces, so let’s put a placeholder in the workflow but implement this later</p></li>
 </ul>
 </li>
 <li><p>Filtering SC-OG</p>
 <ul class="simple">
 <li><p>from the output of step 3, filter out the single copy orthogroups</p></li>
-<li><p>use the occupancy threshold given by the user</p></li>
+<li><p>I wrote the <code class="docutils literal notranslate"><span class="pre">filter_SCOG.pl</span></code> script to do this. If the data input into this script are prepared with <code class="docutils literal notranslate"><span class="pre">filter_OrthoFinder.py</span></code> then it already meets the occupancy threshold given by the user.</p></li>
 </ul>
 </li>
 <li><p>Inferring and SNAP-OG</p>
