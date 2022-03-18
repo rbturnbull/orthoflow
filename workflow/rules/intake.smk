@@ -1,9 +1,11 @@
 
-rule gbconvert:
+rule gbseqextractor:
     input:
-        DATA_DIR / "{i}.gb",
+        "datasets/01_chloroplast_genomes/{accession}.gb"
     output:
-        RESULTS_DIR / "{i}.fasta"
+        "results/{accession}.cds.fasta"
+    conda:
+        ENV_DIR / "gbseqextractor.yaml"
     shell:
-        "touch {output}"
+        "gbseqextractor -f {input} -types CDS -prefix results/{wildcards.accession}"
 

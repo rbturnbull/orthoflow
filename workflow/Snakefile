@@ -2,8 +2,10 @@ from pathlib import Path
 import subprocess
 
 SNAKE_DIR = Path(workflow.basedir)
+WORKFLOW_DIR = SNAKE_DIR / "workflow"
 RESULTS_DIR = SNAKE_DIR.parent / "results"
 RESOURCES_DIR = SNAKE_DIR.parent / "resources"
+ENV_DIR = WORKFLOW_DIR.parent / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = SNAKE_DIR.parent / "logs"
 DATA_DIR = Path("datasets/01_chloroplast_genomes/")
