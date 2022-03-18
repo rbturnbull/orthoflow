@@ -1,1 +1,1 @@
-poetry run sphinx-autobuild docs docshtml --open-browser --port 8181
+poetry run sphinx-autobuild docs docs/_build/html --open-browser --port 8181
