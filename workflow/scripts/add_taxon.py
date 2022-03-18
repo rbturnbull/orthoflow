@@ -15,7 +15,7 @@ def add_taxon(
         output_path (str): A path to where the output should be saved.
         delimiter (str): A string to use to seperate the taxon name with the remainder of the description. Default: '|'
     """
-    with open(input_path, 'w') as input_file, open(output_path, 'r') as output_file:
+    with open(input_path, 'r') as input_file, open(output_path, 'w') as output_file:
         for line in input_file:
             if line.startswith('>'):
                 line = f">{taxon}{delimiter}{line[1:]}"
@@ -23,7 +23,7 @@ def add_taxon(
 
 if __name__ == "__main__":
     if "snakemake" in locals():
-        add_taxon(snakemake.input[0], snakemake.input[1], snakemake.output[0])
+        add_taxon('taxon', snakemake.input.fasta, snakemake.output[0])
     else:
         typer.run(add_taxon)
 
