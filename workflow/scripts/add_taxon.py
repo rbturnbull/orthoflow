@@ -23,7 +23,7 @@ def add_taxon(
 
 if __name__ == "__main__":
     if "snakemake" in locals():
-        add_taxon('taxon', snakemake.input.fasta, snakemake.output[0])
+        add_taxon(snakemake.params.taxon, snakemake.input.fasta, snakemake.output[0])
     else:
         typer.run(add_taxon)
 

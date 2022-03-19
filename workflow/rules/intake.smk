@@ -1,3 +1,13 @@
+import pandas as pd
+from pathlib import Path
+
+def input_sources_row(fname):
+    df = pd.read_csv("input_sources.csv")
+    fname = fname.split('.')[0]
+    index = df['file'].apply(lambda x: x.split(".")[0]) == fname
+    if sum(index) != 1:
+        raise Exception(f"Cannot find unique row with file '{fname}' in input_sources.csv")
+    return df[index]
 
 rule gbseqextractor:
     input:
@@ -17,6 +27,8 @@ rule add_taxon:
         "taxon-added/{fname}.fasta"
     conda:
         ENV_DIR / "intake.yaml"
+    params:
+        taxon=lambda w: input_sources_row(w.fname)['taxon_string'].item()
     script:
         "../scripts/add_taxon.py"
 
