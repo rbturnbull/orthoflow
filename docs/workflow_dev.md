@@ -64,10 +64,16 @@ Uses the cleaned-up OG files from 7, where we have corresponding CDS and protein
     
     - first align the protein (amino acid) file with MAFFT
     - then use translatorX (http://161.111.161.41/cgi-bin/translatorx_vLocal.pl) to align the CDS using the amino acid file as a template
-    - retain output files of both AA and NT, important intermediary output
+    - I wrote a snakemake rule for the MAFFT step: mafft_aa.
+    - this will need to be updated to point to the right input and output directories
+    - TranslatorX still to be implemented
+    - At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier and produce clean output for the next stages. I wrote "ext_scripts/seqID_taxon_only.pl" to do this and added a rule for this. We probably want this running in a conda environment to be safe but I haven't done that. 
+    - Retain output files of both AA and NT, important intermediary output
+
 8.  Filtering
     
     - TBD
+    - to be considered an optional step
     - the output files again exist as AA and NT, and are important intermediary output
 
 ## Gene tree module
@@ -82,4 +88,14 @@ TBD
 
 ## Supermatrix module
 
-TBD
+11. PhyKIT
+
+    - a file needs to be produced listing all alignment files that need to be concatenated, say this is called files.txt -- I wrote a rule for this but doubt this meets proper workflow development standards
+    - I've already created a conda environment for PhyKIT (envs/phykit.yaml)
+    - Phykit command to be run from directory containing the alignments `phykit create_concat -a files.txt -p concatenated`
+    - I wrote a rule for this, which creates the 3 output files but since "concatenated" is just the prefix for those three filenames snakemake thinks it fails. Probably an easy fix but I haven't looked into it yet.
+
+12. IQtree phylogenetic inference
+
+    - TBD 
+
