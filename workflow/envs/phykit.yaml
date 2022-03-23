@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+  - jlsteenwyk
+dependencies:
+  - python=3.9
+  - phykit
