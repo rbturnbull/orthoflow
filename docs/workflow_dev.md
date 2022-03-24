@@ -7,6 +7,22 @@ Link to original on [diagrams.net](https://app.diagrams.net/#G1feeWJLnqI-_EN4x8z
 
 ![](diagram.png)
 
+
+## User input
+
+Brain dump of what we need for the user to provide other than a directory with data files. Definitely incomplete so please add your thoughts.
+- flow control
+    - use SC-OG only, SNAP-OG only, or both combined
+    - type of ortholog detection, with checks for adequate input (i.e. reference database for fishing)
+    - run trees from AA or NT, I suggest not allowing both for the same run as that also affects other settings (e.g. model types)
+    - whole series of alignment filtering options
+- program settings
+    - IQtree: model (with option to carry out model selection): could use IQtree model definition syntax
+    - IQtree: type of branch support
+
+
+
+
 ## Data intake module
 
 Must work from `input_sources.csv` file to determine which type of input the different input files represent. It produces two files for each taxon, one with CDS and one with protein sequences (translated from CDS based on genetic code).
@@ -98,4 +114,12 @@ TBD
 12. IQtree phylogenetic inference
 
     - TBD 
+
+
+## Reporting module
+
+This isn't illustrated on the workflow, but we need to provide a clean report to the user with final results, intermediate outputs, program settings etc.
+
+I feel very strongly that this also includes a list of all the papers users should cite for appropriate acknowledgement of the software that is being used under the hood. This will differ depending on the run, but should be easy to manage.
+
 
