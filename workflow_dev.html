@@ -48,12 +48,14 @@
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Workflow development guidelines</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#diagram">Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-input">User input</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#data-intake-module">Data intake module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ortholog-module-de-novo-stream">Ortholog module, de novo stream</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#alignment-module">Alignment module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gene-tree-module">Gene tree module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reconciliation-module">Reconciliation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#supermatrix-module">Supermatrix module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reporting-module">Reporting module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
@@ -113,6 +115,26 @@
 <h2>Diagram<a class="headerlink" href="#diagram" title="Permalink to this headline"></a></h2>
 <p>Link to original on <a class="reference external" href="https://app.diagrams.net/#G1feeWJLnqI-_EN4x8zY2V9GChWosKFZg3">diagrams.net</a></p>
 <p><img alt="" src="_images/diagram.png" /></p>
+</section>
+<section id="user-input">
+<h2>User input<a class="headerlink" href="#user-input" title="Permalink to this headline"></a></h2>
+<p>Brain dump of what we need for the user to provide other than a directory with data files. Definitely incomplete so please add your thoughts.</p>
+<ul class="simple">
+<li><p>flow control</p>
+<ul>
+<li><p>use SC-OG only, SNAP-OG only, or both combined</p></li>
+<li><p>type of ortholog detection, with checks for adequate input (i.e. reference database for fishing)</p></li>
+<li><p>run trees from AA or NT, I suggest not allowing both for the same run as that also affects other settings (e.g. model types)</p></li>
+<li><p>whole series of alignment filtering options</p></li>
+</ul>
+</li>
+<li><p>program settings</p>
+<ul>
+<li><p>IQtree: model (with option to carry out model selection): could use IQtree model definition syntax</p></li>
+<li><p>IQtree: type of branch support</p></li>
+</ul>
+</li>
+</ul>
 </section>
 <section id="data-intake-module">
 <h2>Data intake module<a class="headerlink" href="#data-intake-module" title="Permalink to this headline"></a></h2>
@@ -224,6 +246,11 @@
 </ul>
 </li>
 </ol>
+</section>
+<section id="reporting-module">
+<h2>Reporting module<a class="headerlink" href="#reporting-module" title="Permalink to this headline"></a></h2>
+<p>This isn’t illustrated on the workflow, but we need to provide a clean report to the user with final results, intermediate outputs, program settings etc.</p>
+<p>I feel very strongly that this also includes a list of all the papers users should cite for appropriate acknowledgement of the software that is being used under the hood. This will differ depending on the run, but should be easy to manage.</p>
 </section>
 </section>
 
