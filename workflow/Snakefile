@@ -1,5 +1,8 @@
+from snakemake.utils import min_version
 from pathlib import Path
 import subprocess
+
+min_version("6.0")
 
 SNAKE_DIR = Path(workflow.basedir)
 WORKFLOW_DIR = SNAKE_DIR / "workflow"

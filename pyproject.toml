@@ -19,7 +19,21 @@ sphinx-autobuild = "^2021.3.14"
 sphinx-copybutton = "^0.4.0"
 sphinxcontrib-mermaid = "^0.7.1"
 myst-parser = "^0.17.0"
+black = "^22.3.0"
+isort = "^5.10.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.messages_control]
+disable = "C0330, C0326"
+
+[tool.pylint.format]
+max-line-length = "120"
