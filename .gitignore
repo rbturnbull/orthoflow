@@ -3,3 +3,5 @@ docshtml
 datasets/*
 results/*
 .vscode/*
+.DS_Store
+.envrc
