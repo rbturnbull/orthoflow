@@ -36,7 +36,7 @@ rule add_taxon:
         "python scripts/add_taxon.py {params} {input.fasta} {output}"
 
 
-rule translate:
+checkpoint translate:
     input:
         "results/taxon-added/{fname}.fasta",
     output:
