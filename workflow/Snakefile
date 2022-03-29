@@ -13,7 +13,9 @@ CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = SNAKE_DIR.parent / "logs"
 DATA_DIR = Path("datasets/01_chloroplast_genomes/")
 
+
 configfile: CONFIG_DIR / "config.yml"
+
 
 ##### load rules #####
 include: "rules/intake.smk"
@@ -22,6 +24,7 @@ include: "rules/alignment.smk"
 include: "rules/supermatrix.smk"
 include: "rules/genetree.smk"
 include: "rules/reconciliation.smk"
+
 
 onstart:
     # Print some environment info
@@ -45,8 +48,9 @@ onstart:
     # Ensure all required directories exist
     for name in path_vars:
         globals()[name].mkdir(exist_ok=True)
-        assert(globals()[name].exists())
+        assert globals()[name].exists()
+
 
 rule all:
     input:
-        "output.nwk"
+        "output.nwk",
