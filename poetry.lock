@@ -869,27 +869,6 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
-name = "snakefmt"
-version = "0.6.0"
-description = "The uncompromising Snakemake code formatter"
-category = "dev"
-optional = false
-python-versions = "^3.7.0"
-develop = false
-
-[package.dependencies]
-black = "^22.1.0"
-click = "^8.0.0"
-importlib_metadata = ">=1.7.0,<5.0"
-toml = "^0.10.2"
-
-[package.source]
-type = "git"
-url = "https://github.com/smutch/snakefmt.git"
-reference = "master"
-resolved_reference = "644fa2cb73af6a51d152c51d5ec6fa634dff15f4"
-
-[[package]]
 name = "snakemake"
 version = "7.3.3"
 description = "Snakemake is a workflow management system that aims to reduce the complexity of creating workflows by providing a fast and comfortable execution environment, together with a clean and modern specification language in python style. Snakemake workflows are essentially Python scripts extended by declarative code to define rules. Rules describe how to create output files from input files."
@@ -1254,7 +1233,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e50650d1742185d4dd72add631f54516792f5c26a3d5da8dcc108c5342524a4d"
+content-hash = "4d1ad0d672a24423bd6c3b784f3463f6a9be1ecc7f280b7e9fd2fbb1487c738a"
 
 [metadata.files]
 alabaster = [
@@ -1854,7 +1833,6 @@ smmap = [
     {file = "smmap-5.0.0-py3-none-any.whl", hash = "sha256:2aba19d6a040e78d8b09de5c57e96207b09ed71d8e55ce0959eeee6c8e190d94"},
     {file = "smmap-5.0.0.tar.gz", hash = "sha256:c840e62059cd3be204b0c9c9f74be2c09d5648eddd4580d9314c3ecde0b30936"},
 ]
-snakefmt = []
 snakemake = [
     {file = "snakemake-7.3.3.tar.gz", hash = "sha256:ddb43990ec98b2155d25bc4a4bce6f28bc14aadaff607cbd4233a39a17201d62"},
 ]
