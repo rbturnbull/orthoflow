@@ -21,6 +21,7 @@ sphinxcontrib-mermaid = "^0.7.1"
 myst-parser = "^0.17.0"
 black = "^22.3.0"
 isort = "^5.10.1"
+snakefmt = { git = "https://github.com/smutch/snakefmt.git" }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -28,6 +29,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
+skip_string_normalization = true
 
 [tool.isort]
 profile = "black"
@@ -37,3 +39,7 @@ disable = "C0330, C0326"
 
 [tool.pylint.format]
 max-line-length = "120"
+
+[tool.snakefmt]
+line_length = 120
+include = '\.smk$|^Snakefile$'

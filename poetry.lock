@@ -254,18 +254,18 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 
 [[package]]
 name = "importlib-resources"
-version = "5.4.0"
+version = "5.6.0"
 description = "Read resources from Python packages"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 zipp = {version = ">=3.1.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-black (>=0.3.7)", "pytest-mypy"]
+docs = ["sphinx", "jaraco.packaging (>=9)", "rst.linker (>=1.9)"]
+testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-black (>=0.3.7)", "pytest-mypy (>=0.9.1)"]
 
 [[package]]
 name = "isort"
@@ -283,11 +283,11 @@ plugins = ["setuptools"]
 
 [[package]]
 name = "jinja2"
-version = "3.0.3"
+version = "3.1.1"
 description = "A very fast and expressive template engine."
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 MarkupSafe = ">=2.0"
@@ -480,7 +480,7 @@ test = ["ipython (<8.0.0)", "ipykernel", "ipywidgets (<8.0.0)", "pytest (>=4.1)"
 
 [[package]]
 name = "nbconvert"
-version = "6.4.4"
+version = "6.4.5"
 description = "Converting Jupyter Notebooks"
 category = "dev"
 optional = false
@@ -494,6 +494,7 @@ entrypoints = ">=0.2.2"
 jinja2 = ">=2.4"
 jupyter-core = "*"
 jupyterlab-pygments = "*"
+MarkupSafe = ">=2.0"
 mistune = ">=0.8.1,<2"
 nbclient = ">=0.5.0,<0.6.0"
 nbformat = ">=4.4"
@@ -696,7 +697,7 @@ six = ">=1.5"
 
 [[package]]
 name = "pytz"
-version = "2021.3"
+version = "2022.1"
 description = "World timezone definitions, modern and historical"
 category = "main"
 optional = false
@@ -805,8 +806,29 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "snakefmt"
+version = "0.6.0"
+description = "The uncompromising Snakemake code formatter"
+category = "dev"
+optional = false
+python-versions = "^3.7.0"
+develop = false
+
+[package.dependencies]
+black = "^22.1.0"
+click = "^8.0.0"
+importlib_metadata = ">=1.7.0,<5.0"
+toml = "^0.10.2"
+
+[package.source]
+type = "git"
+url = "https://github.com/smutch/snakefmt.git"
+reference = "master"
+resolved_reference = "644fa2cb73af6a51d152c51d5ec6fa634dff15f4"
+
+[[package]]
 name = "snakemake"
-version = "7.2.1"
+version = "7.3.3"
 description = "Snakemake is a workflow management system that aims to reduce the complexity of creating workflows by providing a fast and comfortable execution environment, together with a clean and modern specification language in python style. Snakemake workflows are essentially Python scripts extended by declarative code to define rules. Rules describe how to create output files from input files."
 category = "main"
 optional = false
@@ -859,7 +881,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "sphinx"
-version = "4.4.0"
+version = "4.5.0"
 description = "Python documentation generator"
 category = "main"
 optional = false
@@ -1045,6 +1067,14 @@ python-versions = ">= 3.5"
 test = ["pytest"]
 
 [[package]]
+name = "toml"
+version = "0.10.2"
+description = "Python Library for Tom's Obvious, Minimal Language"
+category = "dev"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -1143,7 +1173,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "5d1813015ab46b0fbfbb24cad8de009064ccc1541e12c38a231a11f41bf3fa87"
+content-hash = "f9b0b6579413f5ba7f6f28f7f6f84ac97f89e645e88bb8af060be949dd7b4ed8"
 
 [metadata.files]
 alabaster = [
@@ -1334,16 +1364,16 @@ importlib-metadata = [
     {file = "importlib_metadata-4.11.3.tar.gz", hash = "sha256:ea4c597ebf37142f827b8f39299579e31685c31d3a438b59f469406afd0f2539"},
 ]
 importlib-resources = [
-    {file = "importlib_resources-5.4.0-py3-none-any.whl", hash = "sha256:33a95faed5fc19b4bc16b29a6eeae248a3fe69dd55d4d229d2b480e23eeaad45"},
-    {file = "importlib_resources-5.4.0.tar.gz", hash = "sha256:d756e2f85dd4de2ba89be0b21dba2a3bbec2e871a42a3a16719258a11f87506b"},
+    {file = "importlib_resources-5.6.0-py3-none-any.whl", hash = "sha256:a9dd72f6cc106aeb50f6e66b86b69b454766dd6e39b69ac68450253058706bcc"},
+    {file = "importlib_resources-5.6.0.tar.gz", hash = "sha256:1b93238cbf23b4cde34240dd8321d99e9bf2eb4bc91c0c99b2886283e7baad85"},
 ]
 isort = [
     {file = "isort-5.10.1-py3-none-any.whl", hash = "sha256:6f62d78e2f89b4500b080fe3a81690850cd254227f27f75c3a0c491a1f351ba7"},
     {file = "isort-5.10.1.tar.gz", hash = "sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951"},
 ]
 jinja2 = [
-    {file = "Jinja2-3.0.3-py3-none-any.whl", hash = "sha256:077ce6014f7b40d03b47d1f1ca4b0fc8328a692bd284016f806ed0eaca390ad8"},
-    {file = "Jinja2-3.0.3.tar.gz", hash = "sha256:611bb273cd68f3b993fabdc4064fc858c5b47a973cb5aa7999ec1ba405c87cd7"},
+    {file = "Jinja2-3.1.1-py3-none-any.whl", hash = "sha256:539835f51a74a69f41b848a9645dbdc35b4f20a3b601e2d9a7e22947b15ff119"},
+    {file = "Jinja2-3.1.1.tar.gz", hash = "sha256:640bed4bb501cbd17194b3cace1dc2126f5b619cf068a726b98192a0fde74ae9"},
 ]
 jsonschema = [
     {file = "jsonschema-4.4.0-py3-none-any.whl", hash = "sha256:77281a1f71684953ee8b3d488371b162419767973789272434bbc3f29d9c8823"},
@@ -1435,8 +1465,8 @@ nbclient = [
     {file = "nbclient-0.5.13.tar.gz", hash = "sha256:40c52c9b5e3c31faecaee69f202b3f53e38d7c1c563de0fadde9d7eda0fdafe8"},
 ]
 nbconvert = [
-    {file = "nbconvert-6.4.4-py3-none-any.whl", hash = "sha256:c0c13d11378e13f72b9cd509c008383dca4051c228e4985f75023b2a5d82fc9f"},
-    {file = "nbconvert-6.4.4.tar.gz", hash = "sha256:ee0dfe34bbd1082ac9bfc750aae3c73fcbc34a70c5574c6986ff83c10a3541fd"},
+    {file = "nbconvert-6.4.5-py3-none-any.whl", hash = "sha256:e01d219f55cc79f9701c834d605e8aa3acf35725345d3942e3983937f368ce14"},
+    {file = "nbconvert-6.4.5.tar.gz", hash = "sha256:21163a8e2073c07109ca8f398836e45efdba2aacea68d6f75a8a545fef070d4e"},
 ]
 nbformat = [
     {file = "nbformat-5.2.0-py3-none-any.whl", hash = "sha256:3e30424e8291b2188347f5c3ba5273ed3766f12f8c5137c2e456a0815f36e785"},
@@ -1594,8 +1624,8 @@ python-dateutil = [
     {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
 ]
 pytz = [
-    {file = "pytz-2021.3-py2.py3-none-any.whl", hash = "sha256:3672058bc3453457b622aab7a1c3bfd5ab0bdae451512f6cf25f64ed37f5b87c"},
-    {file = "pytz-2021.3.tar.gz", hash = "sha256:acad2d8b20a1af07d4e4c9d2e9285c5ed9104354062f275f3fcd88dcef4f1326"},
+    {file = "pytz-2022.1-py2.py3-none-any.whl", hash = "sha256:e68985985296d9a66a881eb3193b0906246245294a881e7c8afe623866ac6a5c"},
+    {file = "pytz-2022.1.tar.gz", hash = "sha256:1e760e2fe6a8163bc0b3d9a19c4f84342afa0a2affebfaa84b01b978a02ecaa7"},
 ]
 pywin32 = [
     {file = "pywin32-303-cp310-cp310-win32.whl", hash = "sha256:6fed4af057039f309263fd3285d7b8042d41507343cd5fa781d98fcc5b90e8bb"},
@@ -1719,8 +1749,9 @@ smmap = [
     {file = "smmap-5.0.0-py3-none-any.whl", hash = "sha256:2aba19d6a040e78d8b09de5c57e96207b09ed71d8e55ce0959eeee6c8e190d94"},
     {file = "smmap-5.0.0.tar.gz", hash = "sha256:c840e62059cd3be204b0c9c9f74be2c09d5648eddd4580d9314c3ecde0b30936"},
 ]
+snakefmt = []
 snakemake = [
-    {file = "snakemake-7.2.1.tar.gz", hash = "sha256:63036918e4dbdf764cb53e26e136963512219bc9ab08c62f5545835e63376bdf"},
+    {file = "snakemake-7.3.3.tar.gz", hash = "sha256:ddb43990ec98b2155d25bc4a4bce6f28bc14aadaff607cbd4233a39a17201d62"},
 ]
 snowballstemmer = [
     {file = "snowballstemmer-2.2.0-py2.py3-none-any.whl", hash = "sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a"},
@@ -1731,8 +1762,8 @@ soupsieve = [
     {file = "soupsieve-2.3.1.tar.gz", hash = "sha256:b8d49b1cd4f037c7082a9683dfa1801aa2597fb11c3a1155b7a5b94829b4f1f9"},
 ]
 sphinx = [
-    {file = "Sphinx-4.4.0-py3-none-any.whl", hash = "sha256:5da895959511473857b6d0200f56865ed62c31e8f82dd338063b84ec022701fe"},
-    {file = "Sphinx-4.4.0.tar.gz", hash = "sha256:6caad9786055cb1fa22b4a365c1775816b876f91966481765d7d50e9f0dd35cc"},
+    {file = "Sphinx-4.5.0-py3-none-any.whl", hash = "sha256:ebf612653238bcc8f4359627a9b7ce44ede6fdd75d9d30f68255c7383d3a6226"},
+    {file = "Sphinx-4.5.0.tar.gz", hash = "sha256:7bf8ca9637a4ee15af412d1a1d9689fec70523a68ca9bb9127c2f3eeb344e2e6"},
 ]
 sphinx-autobuild = [
     {file = "sphinx-autobuild-2021.3.14.tar.gz", hash = "sha256:de1ca3b66e271d2b5b5140c35034c89e47f263f2cd5db302c9217065f7443f05"},
@@ -1784,6 +1815,10 @@ tabulate = [
 testpath = [
     {file = "testpath-0.6.0-py3-none-any.whl", hash = "sha256:8ada9f80a2ac6fb0391aa7cdb1a7d11cfa8429f693eda83f74dde570fe6fa639"},
     {file = "testpath-0.6.0.tar.gz", hash = "sha256:2f1b97e6442c02681ebe01bd84f531028a7caea1af3825000f52345c30285e0f"},
+]
+toml = [
+    {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
+    {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
 ]
 tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
