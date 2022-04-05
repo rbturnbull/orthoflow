@@ -240,14 +240,14 @@
 <li><p>PhyKIT</p>
 <ul class="simple">
 <li><p>a file needs to be produced listing all alignment files that need to be concatenated, say this is called files.txt – I wrote a rule for this but doubt this meets proper workflow development standards</p></li>
-<li><p>I’ve already created a conda environment for PhyKIT (envs/phykit.yaml)</p></li>
-<li><p>Phykit command to be run from directory containing the alignments <code class="docutils literal notranslate"><span class="pre">phykit</span> <span class="pre">create_concat</span> <span class="pre">-a</span> <span class="pre">files.txt</span> <span class="pre">-p</span> <span class="pre">concatenated</span></code></p></li>
-<li><p>I wrote a rule for this, which creates the 3 output files but since “concatenated” is just the prefix for those three filenames snakemake thinks it fails. Probably an easy fix but I haven’t looked into it yet.</p></li>
+<li><p>Heroen created a conda environment for PhyKIT (envs/phykit.yaml)</p></li>
+<li><p>Heroen wrote a concatenation rule that uses Phykit to create the supermatrix.</p></li>
 </ul>
 </li>
 <li><p>IQtree phylogenetic inference</p>
 <ul class="simple">
-<li><p>TBD</p></li>
+<li><p>Heroen added an iqtree environment and wrote a simple iqtree command that will do the job for now</p></li>
+<li><p>Will need updating to include user-specified parameters (at minimum: specification of model or model selection and bootstrapping params) once we know</p></li>
 </ul>
 </li>
 </ol>
