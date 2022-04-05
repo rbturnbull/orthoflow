@@ -10,10 +10,12 @@ rule concatenate_alignments:
     input:
         "output/phykit_concat/files_to_concatenate.txt"
     output:
-        "output/phykit_concat/concatenated"
+        "output/phykit_concat/concatenated.fa"
+    params:
+        prefix = lambda wildcards, output: str(output).replace(".fa", "")
     conda:
         "../envs/phykit.yaml"
     log:
         "logs/phykit_concat/concatenated.log"
     shell:
-        "phykit create_concat -a {input} -p {output}"
+        "phykit create_concat -a {input} -p {params.prefix} >> {log}"
