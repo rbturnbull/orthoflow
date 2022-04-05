@@ -1,0 +1,7 @@
+name: iqtree
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - libgcc-ng
+  - iqtree=2.2.0
