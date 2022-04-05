@@ -113,13 +113,13 @@ TBD
 11. PhyKIT
 
     - a file needs to be produced listing all alignment files that need to be concatenated, say this is called files.txt -- I wrote a rule for this but doubt this meets proper workflow development standards
-    - I've already created a conda environment for PhyKIT (envs/phykit.yaml)
-    - Phykit command to be run from directory containing the alignments `phykit create_concat -a files.txt -p concatenated`
-    - I wrote a rule for this, which creates the 3 output files but since "concatenated" is just the prefix for those three filenames snakemake thinks it fails. Probably an easy fix but I haven't looked into it yet.
+    - Heroen created a conda environment for PhyKIT (envs/phykit.yaml)
+    - Heroen wrote a concatenation rule that uses Phykit to create the supermatrix.
 
 12. IQtree phylogenetic inference
 
-    - TBD 
+    - Heroen added an iqtree environment and wrote a simple iqtree command that will do the job for now
+    - Will need updating to include user-specified parameters (at minimum: specification of model or model selection and bootstrapping params) once we know 
 
 
 ## Reporting module
