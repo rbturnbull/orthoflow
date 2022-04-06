@@ -12,11 +12,11 @@ def input_sources_row(source):
 
 rule gbseqextractor:
     input:
-        lambda wildcards: Path(config["data"]).glob(f"{wildcards.source}.(gb|txt)"),
+        lambda wildcards: Path(config["data"]).glob(f"{wildcards.source}.*"),
     output:
         "results/fasta/{source}.cds.fasta",
     conda:
-        "envs/intake.yaml"
+        ENV_DIR / "intake.yaml"
     shell:
         "gbseqextractor -f {input} -types CDS -prefix {wildcards.source}"
 
@@ -27,7 +27,7 @@ rule add_taxon:
     output:
         "results/taxon-added/{source}.cds.fasta",
     conda:
-        "envs/intake.yaml"
+        ENV_DIR / "intake.yaml"
     params:
         lambda w: input_sources_row(w.source)['taxon_string'].item(),
     shell:
@@ -40,7 +40,7 @@ rule translate:
     output:
         "results/translated/{source}.cds.fasta",
     conda:
-        "envs/intake.yaml"
+        ENV_DIR / "intake.yaml"
     shell:
         # should this have --translation_table <code>?
         "biokit translate_sequence {input} --output {output}"
