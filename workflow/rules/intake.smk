@@ -17,8 +17,11 @@ rule gbseqextractor:
         "results/fasta/{source}.cds.fasta",
     conda:
         ENV_DIR / "intake.yaml"
+    params:
+        outdir="results/fasta",
+        input_fullpath=lambda wildcards, input: Path(input[0]).absolute(),
     shell:
-        "gbseqextractor -f {input} -types CDS -prefix {wildcards.source}"
+        "cd {params.outdir} && gbseqextractor -f {params.input_fullpath} -types CDS -prefix {wildcards.source}"
 
 
 rule add_taxon:
@@ -29,9 +32,9 @@ rule add_taxon:
     conda:
         ENV_DIR / "intake.yaml"
     params:
-        lambda w: input_sources_row(w.source)['taxon_string'].item(),
+        taxon=lambda w: input_sources_row(w.source)['taxon_string'].item(),
     shell:
-        "python scripts/add_taxon.py {params} {input} {output}"
+        "python {SNAKE_DIR}/scripts/add_taxon.py {params} {input} {output}"
 
 
 rule translate:
