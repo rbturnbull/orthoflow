@@ -2,6 +2,15 @@ stages:
   - build
   - deploy
 
+testing:
+  stage: build
+  image: continuumio/miniconda3:latest
+  before_script:
+    - pip install poetry
+    - poetry install
+  script:
+    - poetry run pytest
+
 docs:
   stage: build
   image: python:3.8-slim-buster

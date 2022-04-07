@@ -5,8 +5,8 @@ import subprocess
 min_version("6.0")
 
 SNAKE_DIR = Path(workflow.basedir)
+SCRIPT_DIR = SNAKE_DIR/ "scripts"
 WORKFLOW_DIR = SNAKE_DIR / "workflow"
-RESULTS_DIR = SNAKE_DIR.parent / "results"
 RESOURCES_DIR = SNAKE_DIR.parent / "resources"
 ENV_DIR = WORKFLOW_DIR.parent / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
@@ -32,7 +32,7 @@ onstart:
     print("Workflow directories:")
     path_vars = (
         'SNAKE_DIR',
-        'RESULTS_DIR',
+        'SCRIPT_DIR',
         'RESOURCES_DIR',
         'CONFIG_DIR',
         'LOG_DIR',

@@ -15,6 +15,14 @@ def input_sources_row(source):
         raise Exception(f"Cannot find unique row with filename '{source}' in 'input_sources.csv'")
     return df[index]
 
+def input_sources_item(source, column):
+    """
+    Reads a cell in `input_sources.csv` for a file and a column.
+    """
+    row = input_sources_row(source)
+    return row[column].item()
+
+
 rule gbseqextractor:
     """
     Extracts CDS features from GenBank files with gbseqextractor.
@@ -22,33 +30,43 @@ rule gbseqextractor:
     Not used if input files already at in fasta format.
     gbseqextractor is found here: https://github.com/linzhi2013/gbseqextractor
     """
-    input:
-        lambda wildcards: Path(".").glob(f"{wildcards.source}.*"),
     output:
         "results/fasta/{source}.cds.fasta",
+    input:
+        input_sources="input_sources.csv",
+        file=lambda wildcards: input_sources_item(wildcards.source, 'file'),
     conda:
         ENV_DIR / "intake.yaml"
     params:
-        outdir="results/fasta",
-        input_fullpath=lambda wildcards, input: Path(input[0]).absolute(),
+        is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower() in ["genbank", "gb"],
     shell:
-        "cd {params.outdir} && gbseqextractor -f {params.input_fullpath} -types CDS -prefix {wildcards.source}"
-
+        """
+        if [ "{params.is_genbank}" = "True" ] ; then
+            echo Using gbseqextractor to convert {input.file} to {output}
+            gbseqextractor -f {input.file} -types CDS -prefix results/fasta/{wildcards.source}
+        else
+            echo File {input.file} not of type GenBank, creating softlink at {output}
+            pwd
+            echo ln -s {input.file} {output}
+            ln -svr {input.file} {output}
+        fi
+        """
 
 rule add_taxon:
     """
     Prepends the taxon name to the description of each sequence in a fasta file.
     """
-    input:
-        "results/fasta/{source}.cds.fasta",
     output:
         "results/taxon-added/{source}.cds.fasta",
+    input:
+        input_sources="input_sources.csv",
+        fasta="results/fasta/{source}.cds.fasta",
     conda:
         ENV_DIR / "intake.yaml"
     params:
-        taxon=lambda w: input_sources_row(w.source)['taxon_string'].item(),
+        taxon=lambda wildcards: input_sources_item(wildcards.source, 'taxon_string'),
     shell:
-        "python {SNAKE_DIR}/scripts/add_taxon.py {params} {input} {output}"
+        "python {SCRIPT_DIR}/add_taxon.py {params.taxon} {input.fasta} {output}"
 
 
 rule translate:
@@ -61,13 +79,14 @@ rule translate:
     
     BioKIT is found here: https://github.com/JLSteenwyk/BioKIT
     """
-    input:
-        "results/taxon-added/{source}.cds.fasta",
     output:
         "results/translated/{source}.cds.fasta",
+    input:
+        input_sources="input_sources.csv",
+        fasta="results/taxon-added/{source}.cds.fasta",
     conda:
         ENV_DIR / "intake.yaml"
     params:
-        translation_table=lambda w: input_sources_row(w.source)['translation_table'].item(),
+        translation_table=lambda wildcards: input_sources_item(wildcards.source, 'translation_table'),
     shell:
-        "biokit translate_sequence {input} --output {output} --translation_table {params.translation_table}"
+        "biokit translate_sequence {input.fasta} --output {output} --translation_table {params.translation_table}"
