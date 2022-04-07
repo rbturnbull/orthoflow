@@ -1,1 +1,4 @@
-data: 'datasets/01_chloroplast_genomes/'
+data: 'test-data'
+
+filter_orthofinder:
+  min_sequences: 10

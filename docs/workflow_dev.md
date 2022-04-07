@@ -39,6 +39,12 @@ Must work from `input_sources.csv` file to determine which type of input the dif
     - this essentially converts the input into the exome data from point 1, so downstream processing is identical to 1 from above
     - add taxon\_string field from `input\_sources.csv`, keep this output
     - translate sequences using `biokit translate`, specifying genetic code given in `input_sources.csv`, keep output
+2b.  Index CDSs
+
+    - create samtools faidx indexed copy of all CDS combined (using files with taxon string added but before translation)
+    - first all the right fasta files need to be concatenated: `cat *.fa > all_CDS.fa`
+    - next this needs to be fed into samtools for indexing: `samtools faidx --fai-idx all_CDS.fai all_CDS.fa`
+    - note: it may be possible to pipe the cat output directly into the samtools command and save a step (and a potentially huge intermediate file that no-one would need for other purposes)
 
 ## Ortholog module, de novo stream
 
@@ -79,10 +85,10 @@ Uses the cleaned-up OG files from 7, where we have corresponding CDS and protein
 7.  Alignment
     
     - first align the protein (amino acid) file with MAFFT
-    - then use translatorX (http://161.111.161.41/cgi-bin/translatorx_vLocal.pl) to align the CDS using the amino acid file as a template
+    - Then back-translate the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.  
     - I wrote a snakemake rule for the MAFFT step: mafft_aa.
     - this will need to be updated to point to the right input and output directories
-    - TranslatorX still to be implemented
+    - Back-translation step yet to be implemented
     - At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier and produce clean output for the next stages. I wrote "ext_scripts/seqID_taxon_only.pl" to do this and added a rule for this. We probably want this running in a conda environment to be safe but I haven't done that. 
     - Retain output files of both AA and NT, important intermediary output
 
@@ -107,13 +113,13 @@ TBD
 11. PhyKIT
 
     - a file needs to be produced listing all alignment files that need to be concatenated, say this is called files.txt -- I wrote a rule for this but doubt this meets proper workflow development standards
-    - I've already created a conda environment for PhyKIT (envs/phykit.yaml)
-    - Phykit command to be run from directory containing the alignments `phykit create_concat -a files.txt -p concatenated`
-    - I wrote a rule for this, which creates the 3 output files but since "concatenated" is just the prefix for those three filenames snakemake thinks it fails. Probably an easy fix but I haven't looked into it yet.
+    - Heroen created a conda environment for PhyKIT (envs/phykit.yaml)
+    - Heroen wrote a concatenation rule that uses Phykit to create the supermatrix.
 
 12. IQtree phylogenetic inference
 
-    - TBD 
+    - Heroen added an iqtree environment and wrote a simple iqtree command that will do the job for now
+    - Will need updating to include user-specified parameters (at minimum: specification of model or model selection and bootstrapping params) once we know 
 
 
 ## Reporting module

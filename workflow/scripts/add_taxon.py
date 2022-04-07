@@ -5,8 +5,8 @@ import typer
 
 def add_taxon(
     taxon: str,
-    input_path: Path = typer.Argument(exists=True, dir_okay=False),
-    output_path: Path = typer.Argument(file_okay=False),
+    input_path: Path = typer.Argument(..., exists=True, dir_okay=False),
+    output_path: Path = typer.Argument(..., file_okay=False),
     delimiter: str = "|",
 ):
     """

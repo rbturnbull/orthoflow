@@ -11,7 +11,6 @@ RESOURCES_DIR = SNAKE_DIR.parent / "resources"
 ENV_DIR = WORKFLOW_DIR.parent / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = SNAKE_DIR.parent / "logs"
-DATA_DIR = Path("datasets/01_chloroplast_genomes/")
 
 
 configfile: CONFIG_DIR / "config.yml"
@@ -20,10 +19,12 @@ configfile: CONFIG_DIR / "config.yml"
 ##### load rules #####
 include: "rules/intake.smk"
 include: "rules/orthologs.smk"
-include: "rules/alignment.smk"
-include: "rules/supermatrix.smk"
-include: "rules/genetree.smk"
-include: "rules/reconciliation.smk"
+
+
+# include: "rules/alignment.smk"
+# include: "rules/supermatrix.smk"
+# include: "rules/genetree.smk"
+# include: "rules/reconciliation.smk"
 
 
 onstart:
@@ -53,4 +54,4 @@ onstart:
 
 rule all:
     input:
-        "output.nwk",
+        "results/orthologs",
