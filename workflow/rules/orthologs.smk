@@ -6,7 +6,7 @@ rule orthofinder:
     Runs `OrthoFinder <https://github.com/davidemms/OrthoFinder>`_ on fasta files from the intake rule.
     """
     input:
-        pd.read_csv(Path(config['data']) / "input_sources.csv")['file'].map(
+        pd.read_csv("input_sources.csv")['file'].map(
             lambda f: f"results/translated/{f.split('.')[0]}.cds.fasta"
         ),
     output:

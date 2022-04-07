@@ -2,6 +2,7 @@ docshtml
 .snakemake/*
 datasets/*
 results/*
+test-data/results/*
 .vscode/*
 .DS_Store
 .envrc
