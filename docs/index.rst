@@ -13,6 +13,7 @@ Welcome to phylogenomic-workflow's documentation!
    installation
    workflow
    workflow_dev
+   contributing
    citation
    
 

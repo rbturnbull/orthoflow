@@ -41,8 +41,11 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx_copybutton",
     "sphinx.ext.graphviz",
+    'sphinxcontrib.bibtex',
     # 'sphinxcontrib.mermaid',
 ]
+
+bibtex_bibfiles = ['references.bib']
 
 source_suffix = {
     '.rst': 'restructuredtext',
