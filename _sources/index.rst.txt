@@ -6,6 +6,10 @@
 Welcome to phylogenomic-workflow's documentation!
 =================================================
 
+.. include:: ../README.rst
+   :start-after: start-badges
+   :end-before: end-badges
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
