@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing &mdash; phylogenomic-workflow 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Citation and Attribution" href="citation.html" />
+    <link rel="prev" title="Workflow development guidelines" href="workflow_dev.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> phylogenomic-workflow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_dev.html">Workflow development guidelines</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#proposed-coding-guidelines">Proposed Coding Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">phylogenomic-workflow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Contributing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline"></a></h1>
+<p>Code in this repository will be formatted with Snakefmt (<a class="reference external" href="https://github.com/snakemake/snakefmt">https://github.com/snakemake/snakefmt</a>).</p>
+<section id="proposed-coding-guidelines">
+<h2>Proposed Coding Guidelines<a class="headerlink" href="#proposed-coding-guidelines" title="Permalink to this headline"></a></h2>
+<p>These practices are subject to change based on the decisions of the team.</p>
+<ul class="simple">
+<li><p>Structure the files according to the snakemake documentation (<a class="reference external" href="https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html">https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html</a>)</p></li>
+<li><p>Follow the Best Practices guidelines in the snakemake documentation (<a class="reference external" href="https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html">https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html</a>)</p></li>
+<li><p>Paths in <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> in rules are relative to the current working directory so that the user can specify a directory to snakemake with</p></li>
+<li><p>Use clear and explicit variable names. (e.g. <code class="docutils literal notranslate"><span class="pre">wildcards</span></code> is better than merely <code class="docutils literal notranslate"><span class="pre">w</span></code>)</p></li>
+<li><p>Reference params by keyword even if only one parameter is used in a rule (i.e. <code class="docutils literal notranslate"><span class="pre">{params.taxon}</span></code> instead of merely <code class="docutils literal notranslate"><span class="pre">{params}</span></code>).</p></li>
+<li><p>Docstrings for Python functions should use the Google docstring convention (<a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings</a>)</p></li>
+<li><p>Add docstrings should be added to each rule (conventions are still to be decided).</p></li>
+<li><p>For Python scripts, do not use the <code class="docutils literal notranslate"><span class="pre">snakemake</span></code> local variable but pass information to the script via a commandline interface using typer and call the script with a shell command (e.g. <code class="docutils literal notranslate"><span class="pre">shell(&quot;python</span> <span class="pre">SCRIPT_DIR/&lt;script</span> <span class="pre">name&gt;.py</span> <span class="pre">...&quot;</span></code>).</p></li>
+<li><p>Citations for dependencies or research used in any rule should be added in bibtex format to <code class="docutils literal notranslate"><span class="pre">docs.references.bib</span></code>.</p></li>
+<li><p>Place the <code class="docutils literal notranslate"><span class="pre">output</span></code> of a rule above the <code class="docutils literal notranslate"><span class="pre">input</span></code> because snakemake goes from output to input when creating the DAG.</p></li>
+<li><p>Tests can be autogenerated using <code class="docutils literal notranslate"><span class="pre">snakemake</span> <span class="pre">--generate-unit-tests</span></code> (<a class="reference external" href="https://snakemake.readthedocs.io/en/stable/snakefiles/testing.html">https://snakemake.readthedocs.io/en/stable/snakefiles/testing.html</a>). These tests are added to <code class="docutils literal notranslate"><span class="pre">.tests/</span></code> and are automatically included in the CI/CD pipeline.</p></li>
+<li><p>Tests must be added before merging to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="workflow_dev.html" class="btn btn-neutral float-left" title="Workflow development guidelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="citation.html" class="btn btn-neutral float-right" title="Citation and Attribution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 University of Melbourne.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
