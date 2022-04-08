@@ -24,6 +24,5 @@ def add_taxon(
                 line = f">{taxon}{delimiter}{line[1:]}"
             output_file.write(line)
 
-
 if __name__ == "__main__":
     typer.run(add_taxon)

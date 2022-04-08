@@ -16,6 +16,8 @@ Welcome to phylogenomic-workflow's documentation!
 
    installation
    workflow
+   intake
+   orthologs
    workflow_dev
    contributing
    citation

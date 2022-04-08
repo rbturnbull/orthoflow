@@ -38,7 +38,7 @@ rule gbseqextractor:
     conda:
         ENV_DIR / "intake.yaml"
     params:
-        is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower() in ["genbank", "gb"],
+        is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower() in ["genbank", "gb", "gbk"],
     shell:
         """
         if [ "{params.is_genbank}" = "True" ] ; then
@@ -46,8 +46,6 @@ rule gbseqextractor:
             gbseqextractor -f {input.file} -types CDS -prefix results/fasta/{wildcards.source}
         else
             echo File {input.file} not of type GenBank, creating softlink at {output}
-            pwd
-            echo ln -s {input.file} {output}
             ln -svr {input.file} {output}
         fi
         """
