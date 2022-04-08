@@ -18,6 +18,8 @@ Welcome to phylogenomic-workflow's documentation!
    workflow
    intake
    orthologs
+   alignment
+   supermatrix
    workflow_dev
    contributing
    citation
