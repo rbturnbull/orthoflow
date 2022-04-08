@@ -16,6 +16,10 @@ Welcome to phylogenomic-workflow's documentation!
 
    installation
    workflow
+   intake
+   orthologs
+   alignment
+   supermatrix
    workflow_dev
    contributing
    citation

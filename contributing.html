@@ -46,11 +46,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orthologs.html">Orthologs Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow_dev.html">Workflow development guidelines</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#proposed-coding-guidelines">Proposed Coding Guidelines</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -121,17 +124,6 @@
 <li><p>For Python scripts, do not use the <code class="docutils literal notranslate"><span class="pre">snakemake</span></code> local variable but pass information to the script via a commandline interface using typer and call the script with a shell command (e.g. <code class="docutils literal notranslate"><span class="pre">shell(&quot;python</span> <span class="pre">SCRIPT_DIR/&lt;script</span> <span class="pre">name&gt;.py</span> <span class="pre">...&quot;</span></code>).</p></li>
 <li><p>Place the <code class="docutils literal notranslate"><span class="pre">output</span></code> of a rule above the <code class="docutils literal notranslate"><span class="pre">input</span></code> because snakemake goes from output to input when creating the DAG.</p></li>
 </ul>
-<section id="documentation">
-<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h3>
-<ul class="simple">
-<li><p>Docstrings for Python functions should use the Google docstring convention (<a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings</a>)</p></li>
-<li><p>Add docstrings should be added to each rule (conventions are still to be decided).</p></li>
-<li><p>Citations for dependencies or research used in any rule should be added in bibtex format to <code class="docutils literal notranslate"><span class="pre">docs/references.bib</span></code>.</p></li>
-<li><p>Documentation generated using sphinx and automatically deployed as part of the CI/CD pipeline.</p></li>
-<li><p>Should each module in the workflow should have its own page in the documentation?</p></li>
-<li><p>Docs should be written in reStructuredText.</p></li>
-</ul>
-</section>
 <section id="testing">
 <h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h3>
 <ul class="simple">
@@ -142,6 +134,40 @@
 <li><p>Tests are automatically included in the CI/CD pipeline using Github actions.</p></li>
 <li><p>More info on testing with <a class="reference external" href="https://snakemake.readthedocs.io/en/stable/snakefiles/testing.html">https://snakemake.readthedocs.io/en/stable/snakefiles/testing.html</a>).</p></li>
 </ul>
+</section>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Docstrings for Python functions should use the Google docstring convention (<a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings</a>)</p></li>
+<li><p>Add docstrings should be added to each rule (conventions are still to be decided).</p></li>
+<li><p>Citations for dependencies or research used in any rule should be added in bibtex format to <code class="docutils literal notranslate"><span class="pre">docs/references.bib</span></code>.</p></li>
+<li><p>Documentation generated using sphinx and automatically deployed as part of the CI/CD pipeline.</p></li>
+<li><p>Should each module in the workflow should have its own page in the documentation?</p></li>
+<li><p>Docs should be written in reStructuredText.</p></li>
+<li><p>Each submodule corresponds to a page in the documentation and added to the table of contents tree (i.e. <code class="docutils literal notranslate"><span class="pre">toctree</span></code>) in the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file.</p></li>
+</ul>
+<p>Files need to start with a heading for the section. The convention used here is to use the equals sign above and below the heading:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">===============</span>
+<span class="n">Section</span> <span class="n">Heading</span>
+<span class="o">===============</span>
+</pre></div>
+</div>
+<p>Subsections also use an equals sign but just below the heading:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Subsection</span> <span class="n">Heading</span>
+<span class="o">==================</span>
+</pre></div>
+</div>
+<p>Subsubsections have a single dash below the heading:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Subsubsection</span> <span class="n">Heading</span>
+<span class="o">---------------------</span>
+</pre></div>
+</div>
+<p>Try not to have any other sections within this but if it is necessary, use tildas below the heading:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Further</span> <span class="n">Subsection</span> <span class="n">Headings</span>
+<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+</pre></div>
+</div>
+<p>Other information for using reStructuredText in Sphinx can be found here: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-primer">https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-primer</a> and <a class="reference external" href="https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html">https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html</a>.</p>
 </section>
 </section>
 </section>
