@@ -6,13 +6,13 @@ rule orthofinder:
     Runs `OrthoFinder <https://github.com/davidemms/OrthoFinder>`_ on fasta files from the intake rule.
     """
     input:
-        pd.read_csv("input_sources.csv")['file'].map(
-            lambda f: f"results/translated/{f.split('.')[0]}.cds.fasta"
-        ),
+        pd.read_csv("input_sources.csv")['file'].map(lambda f: f"results/translated/{f.split('.')[0]}.cds.fasta"),
     output:
         temp(directory("translated/OrthoFinder")),
     conda:
         ENV_DIR / "orthofinder.yaml"
+    log:
+        LOG_DIR / "orthofinder.txt",
     params:
         input_dir=lambda wildcards, input: Path(input[0]).parent,
     shell:
