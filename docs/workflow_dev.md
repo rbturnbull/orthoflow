@@ -69,6 +69,7 @@ Uses the translated sequences from the data intake module, clusters them into or
     - make this step optional, as not all users will want to use this
     - run the OGs that are not SC-OGs through OrthoSNAP
     - use the occupancy threshold given by the user
+    - Note: At the moment SNAP-OG works from the trees inferred in OrthoFinder. Ideally we'd implement our own tree inference including support values as that allows OrthoSNAP to take phylogenetic uncertainty into account.
 
 6.  Post-orthogroup organisation
     
@@ -87,16 +88,18 @@ Uses the cleaned-up OG files from 7, where we have corresponding CDS and protein
     - first align the protein (amino acid) file with MAFFT
     - Then back-translate the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.  
     - I wrote a snakemake rule for the MAFFT step: mafft_aa.
-    - this will need to be updated to point to the right input and output directories
-    - Back-translation step yet to be implemented
-    - At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier and produce clean output for the next stages. I wrote "ext_scripts/seqID_taxon_only.pl" to do this and added a rule for this. We probably want this running in a conda environment to be safe but I haven't done that. 
-    - Retain output files of both AA and NT, important intermediary output
+    - This will need to be updated to point to the right input and output directories
 
 8.  Filtering
     
-    - TBD
-    - to be considered an optional step
-    - the output files again exist as AA and NT, and are important intermediary output
+    - To be considered an optional step.
+    - We talked about this during our 8 April meeting. Steps to be specified in further detail.
+    
+8b. Wrapping up alignment module
+
+    - Aligned (amino acid) sequences need to be translated back to the original CDS. Two steps need to be taken to achieve this. First, the original CDSs need to be located. I wrote a prototype script (matching_CDSs.py) that does this. This needs to be updated to point to the right input files. The second step is to create a codon-based alignment of the CDSs that matches the AA alignment. Phykit implements this, with the thread_dna function.
+    - At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier and produce clean output for the next stages. I wrote "ext_scripts/seqID_taxon_only.pl" to do this and added a rule for this. We probably want this running in a conda environment to be safe but I haven't done that. 
+    - Retain output files of both AA and NT, important intermediary output
 
 ## Gene tree module
 
