@@ -15,6 +15,7 @@ def input_sources_row(source):
         raise Exception(f"Cannot find unique row with filename '{source}' in 'input_sources.csv'")
     return df[index]
 
+
 def input_sources_item(source, column):
     """
     Reads a cell in `input_sources.csv` for a file and a column.
@@ -36,11 +37,12 @@ rule extract_cds:
         "results/fasta/{source}.cds.fasta",
     input:
         input_sources="input_sources.csv",
-        file=lambda wildcards: input_sources_item(wildcards.source, 'file'),
+        file=lambda wildcards: Path(input_sources_item(wildcards.source, 'file')).resolve(),
     conda:
         ENV_DIR / "extract_cds.yaml"
     params:
-        is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower() in ["genbank", "gb", "gbk"],
+        is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower()
+        in ["genbank", "gb", "gbk"],
     shell:
         """
         if [ "{params.is_genbank}" = "True" ] ; then
@@ -49,6 +51,7 @@ rule extract_cds:
             cp {input.file} {output}
         fi
         """
+
 
 rule add_taxon:
     """
