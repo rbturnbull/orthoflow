@@ -36,7 +36,9 @@ rule gbseqextractor:
         input_sources="input_sources.csv",
         file=lambda wildcards: input_sources_item(wildcards.source, 'file'),
     conda:
-        ENV_DIR / "intake.yaml"
+        ENV_DIR / "gbseqextractor.yaml"
+    bibtex:
+        "../bibs/gbseqextractor.bib",
     params:
         is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower() in ["genbank", "gb", "gbk"],
     shell:
@@ -50,6 +52,7 @@ rule gbseqextractor:
         fi
         """
 
+
 rule add_taxon:
     """
     Prepends the taxon name to the description of each sequence in a fasta file.
@@ -60,7 +63,7 @@ rule add_taxon:
         input_sources="input_sources.csv",
         fasta="results/fasta/{source}.cds.fasta",
     conda:
-        ENV_DIR / "intake.yaml"
+        ENV_DIR / "typer.yaml"
     params:
         taxon=lambda wildcards: input_sources_item(wildcards.source, 'taxon_string'),
     shell:
@@ -82,8 +85,10 @@ rule translate:
     input:
         input_sources="input_sources.csv",
         fasta="results/taxon-added/{source}.cds.fasta",
+    bibtex:
+        "../bibs/biokit.bib"
     conda:
-        ENV_DIR / "intake.yaml"
+        ENV_DIR / "biokit.yaml"
     params:
         translation_table=lambda wildcards: input_sources_item(wildcards.source, 'translation_table'),
     shell:
