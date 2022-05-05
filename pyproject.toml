@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "phylogenomic-workflow"
+name = "phyomic"
 version = "0.1.0"
 description = "A phylogenomic workflow developed in collaboration with Jo Birch from the University of Melbourne Herbarium"
 authors = ["University of Melbourne"]
@@ -8,7 +8,7 @@ readme = "README.rst"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-snakemake = "^7.1.1"
+snakemake = { git = "https://github.com/rbturnbull/snakemake.git", branch = "bibtex" }
 pandas = "1.2.5"
 
 [tool.poetry.dev-dependencies]
@@ -45,3 +45,6 @@ max-line-length = "120"
 [tool.snakefmt]
 line_length = 120
 include = '\.smk$|^Snakefile$'
+
+[tool.poetry.scripts]
+phyomic = 'phyomic.main:run'

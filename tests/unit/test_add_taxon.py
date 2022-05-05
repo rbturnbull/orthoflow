@@ -28,9 +28,7 @@ def test_add_taxon():
 
         # Run the test job.
         sp.check_output([
-            "python",
-            "-m",
-            "snakemake", 
+            "phyomic", 
             "results/taxon-added/MH591079.cds.fasta",
             "-f", 
             "-j1",

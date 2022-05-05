@@ -28,9 +28,7 @@ def test_translate():
 
         # Run the test job.
         sp.check_output([
-            "python",
-            "-m",
-            "snakemake", 
+            "phyomic", 
             "results/translated/MH591079.cds.fasta",
             "-f", 
             "-j1",
