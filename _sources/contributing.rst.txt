@@ -27,6 +27,7 @@ Testing
 - Tests are automatically included in the CI/CD pipeline using Github actions.
 - More info on testing with https://snakemake.readthedocs.io/en/stable/snakefiles/testing.html).
 
+
 Documentation
 -------------
 
