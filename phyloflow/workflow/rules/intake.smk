@@ -21,7 +21,13 @@ def input_sources_item(source, column):
     Reads a cell in `input_sources.csv` for a file and a column.
     """
     row = input_sources_row(source)
-    return row[column].item()
+    val = row[column].item()
+
+    # sanitize the string (remove spaces and other non-alpha-numeric characters)
+    if isinstance(val, str):
+        val = "".join([c if (c.isalnum() or c in "._-") else "_" for c in val])
+
+    return val
 
 
 rule extract_cds:
