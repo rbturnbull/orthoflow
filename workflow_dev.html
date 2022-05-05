@@ -23,8 +23,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contributing" href="contributing.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="supermatrix.html" /> 
+    <link rel="next" title="Citation and Attribution" href="citation.html" />
+    <link rel="prev" title="Supermatrix Module" href="supermatrix.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="orthologs.html">Orthologs Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Workflow development guidelines</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#diagram">Diagram</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-input">User input</a></li>
@@ -61,7 +62,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#reporting-module">Reporting module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
 </ul>
 
@@ -192,6 +192,7 @@
 <li><p>make this step optional, as not all users will want to use this</p></li>
 <li><p>run the OGs that are not SC-OGs through OrthoSNAP</p></li>
 <li><p>use the occupancy threshold given by the user</p></li>
+<li><p>Note: At the moment SNAP-OG works from the trees inferred in OrthoFinder. Ideally we’d implement our own tree inference including support values as that allows OrthoSNAP to take phylogenetic uncertainty into account.</p></li>
 </ul>
 </li>
 <li><p>Post-orthogroup organisation</p>
@@ -214,20 +215,22 @@
 <li><p>first align the protein (amino acid) file with MAFFT</p></li>
 <li><p>Then back-translate the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.</p></li>
 <li><p>I wrote a snakemake rule for the MAFFT step: mafft_aa.</p></li>
-<li><p>this will need to be updated to point to the right input and output directories</p></li>
-<li><p>Back-translation step yet to be implemented</p></li>
-<li><p>At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier and produce clean output for the next stages. I wrote “ext_scripts/seqID_taxon_only.pl” to do this and added a rule for this. We probably want this running in a conda environment to be safe but I haven’t done that.</p></li>
-<li><p>Retain output files of both AA and NT, important intermediary output</p></li>
+<li><p>This will need to be updated to point to the right input and output directories</p></li>
 </ul>
 </li>
 <li><p>Filtering</p>
 <ul class="simple">
-<li><p>TBD</p></li>
-<li><p>to be considered an optional step</p></li>
-<li><p>the output files again exist as AA and NT, and are important intermediary output</p></li>
+<li><p>To be considered an optional step.</p></li>
+<li><p>We talked about this during our 8 April meeting. Steps to be specified in further detail.</p></li>
 </ul>
 </li>
 </ol>
+<p>8b. Wrapping up alignment module</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Aligned (amino acid) sequences need to be translated back to the original CDS. Two steps need to be taken to achieve this. First, the original CDSs need to be located. I wrote a prototype script (matching_CDSs.py) that does this. This needs to be updated to point to the right input files. The second step is to create a codon-based alignment of the CDSs that matches the AA alignment. Phykit implements this, with the thread_dna function.
+- At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier and produce clean output for the next stages. I wrote &quot;ext_scripts/seqID_taxon_only.pl&quot; to do this and added a rule for this. We probably want this running in a conda environment to be safe but I haven&#39;t done that. 
+- Retain output files of both AA and NT, important intermediary output
+</pre></div>
+</div>
 </section>
 <section id="gene-tree-module">
 <h2>Gene tree module<a class="headerlink" href="#gene-tree-module" title="Permalink to this headline"></a></h2>
@@ -267,8 +270,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="supermatrix.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="supermatrix.html" class="btn btn-neutral float-left" title="Supermatrix Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="citation.html" class="btn btn-neutral float-right" title="Citation and Attribution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
