@@ -21,7 +21,8 @@ def add_taxon(
         for line in input_file:
             if line.startswith(">"):
                 seq_id = line[1:]
-                line = f">{taxon}{delimiter}{seq_counter[seq_id]}{delimiter}{line[1:]}"
+                seq_counter_str = f"{seq_counter[seq_id]}{delimiter}" if unique_counter else ""
+                line = f">{taxon}{delimiter}{seq_counter_str}{line[1:]}"
                 seq_counter[seq_id] += 1
             output_file.write(line)
 
