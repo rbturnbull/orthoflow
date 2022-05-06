@@ -21,7 +21,7 @@ Welcome to phylogenomic-workflow's documentation!
    alignment
    supermatrix
    workflow_dev
-   CONTRIBUTING
+   contributing
    citation
    
 
