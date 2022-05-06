@@ -15,8 +15,9 @@ rule orthofinder:
         LOG_DIR / "orthofinder.txt",
     params:
         input_dir=lambda wildcards, input: Path(input[0]).parent,
+    threads: workflow.cores
     shell:
-        "orthofinder -d -f {params.input_dir}"
+        "orthofinder -f {params.input_dir} -t {threads} -a {threads}"
 
 
 rule filter_orthofinder:

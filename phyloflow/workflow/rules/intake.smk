@@ -73,7 +73,7 @@ rule add_taxon:
     params:
         taxon=lambda wildcards: input_sources_item(wildcards.source, 'taxon_string'),
     shell:
-        "python {SCRIPT_DIR}/add_taxon.py {params.taxon} {input.fasta} {output}"
+        "python {SCRIPT_DIR}/add_taxon.py --unique-counter {params.taxon} {input.fasta} {output}"
 
 
 rule translate:
