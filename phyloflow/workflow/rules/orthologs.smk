@@ -10,7 +10,7 @@ rule orthofinder:
     output:
         directory("results/translated/OrthoFinder/Results_phyloflow"),
     conda:
-        ENV_DIR / "orthofinder.yaml"
+        ENV_DIR / "orthologs.yaml"
     log:
         LOG_DIR / "orthofinder.txt",
     params:
@@ -37,7 +37,9 @@ rule filter_orthofinder:
         rules.orthofinder.output,
     output:
         directory("results/orthologs"),
+    conda:
+        ENV_DIR / "orthologs.yaml"
     params:
         min_seq=config["filter_orthofinder"]['min_sequences'],
     shell:
-        f"python {SCRIPT_DIR}/filter_OrthoFinder.py -i {{input}} -o {{output}} -m {{params.min_seq}}"
+        f"python {SCRIPT_DIR}/filter_OrthoFinder.py {{input}} {{output}} {{params.min_seq}}"
