@@ -8,7 +8,7 @@ rule orthofinder:
     input:
         pd.read_csv("input_sources.csv")['file'].map(lambda f: f"results/translated/{f.split('.')[0]}.cds.fasta"),
     output:
-        temp(directory("translated/OrthoFinder")),
+        directory("results/translated/OrthoFinder/Results_phyloflow"),
     conda:
         ENV_DIR / "orthofinder.yaml"
     log:
@@ -17,7 +17,9 @@ rule orthofinder:
         input_dir=lambda wildcards, input: Path(input[0]).parent,
     threads: workflow.cores
     shell:
-        "orthofinder -f {params.input_dir} -t {threads} -a {threads}"
+        """
+        orthofinder -f {params.input_dir} -t {threads} -n phyloflow
+        """
 
 
 rule filter_orthofinder:
@@ -38,4 +40,4 @@ rule filter_orthofinder:
     params:
         min_seq=config["filter_orthofinder"]['min_sequences'],
     shell:
-        "python scripts/filter_OrthoFinder.py -i {input} -o {output} -m {params.min_seq}"
+        f"python {SCRIPT_DIR}/filter_OrthoFinder.py -i {{input}} -o {{output}} -m {{params.min_seq}}"
