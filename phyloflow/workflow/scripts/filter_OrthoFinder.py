@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 import re
 import shutil
-import subprocess
 from pathlib import Path
 
 import typer
-from rich.progress import BarColumn, Progress, TextColumn
+from rich.progress import Progress, TextColumn
 
 
 def main(
@@ -30,8 +29,7 @@ def main(
 
         for fasta_file in fastaInputFiles:
             progress.update(task_files, advance=1)
-            grepout = subprocess.check_output(f"grep -c '>' {fasta_file}", shell=True)
-            nseq = int(str(grepout, 'UTF-8'))
+            nseq = fasta_file.read_text().count('>')
             if nseq >= minseq:
                 shutil.copyfile(fasta_file, outdir / fasta_file.name)
                 og = pattern.search(str(fasta_file)).group(1)
