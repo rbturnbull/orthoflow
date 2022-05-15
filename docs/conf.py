@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'phylogenomic-workflow'
+project = 'phyloflow'
 copyright = '2022 University of Melbourne'
 author = 'University of Melbourne'
 
