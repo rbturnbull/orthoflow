@@ -24,6 +24,21 @@ Testing
 - Tests are automatically included in the CI/CD pipeline using Github actions.
 - More info on testing with https://snakemake.readthedocs.io/en/stable/snakefiles/testing.html).
 
+Git Commits
+===========
+
+We use the `git3moji <https://robinpokorny.github.io/git3moji/>`_ standard for expressive git commit messages. 
+Use one of the following five short emojis at the start of your of your git commit messages:
+
+- ``:zap:`` ⚡️ – Features and primary concerns
+- ``:bug:`` 🐛 – Bugs and fixes
+- ``:tv:``  📺 – CI, tooling, and configuration
+- ``:cop:`` 👮 – Tests and linting
+- ``:abc:`` 🔤 – Documentation
+
+As far as possible, please keep your git commits granular and focussed on one thing at a time. 
+Please cite an the number of a Github issue if it relates to your commit.
+
 Documentation
 =============
 
