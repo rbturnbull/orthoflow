@@ -28,7 +28,7 @@ def test_add_taxon():
 
         # Run the test job.
         sp.check_output([
-            "phyomic", 
+            "phyloflow", 
             "results/taxon-added/MH591079.cds.fasta",
             "-f", 
             "-j1",

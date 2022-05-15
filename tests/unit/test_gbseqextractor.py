@@ -28,7 +28,7 @@ def test_gbseqextractor():
 
         # Run the test job.
         sp.check_output([
-            "phyomic", 
+            "phyloflow", 
             "results/fasta/MH591079.cds.fasta",
             "-f", 
             "-j1",

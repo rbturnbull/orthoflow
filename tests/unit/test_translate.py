@@ -28,7 +28,7 @@ def test_translate():
 
         # Run the test job.
         sp.check_output([
-            "phyomic", 
+            "phyloflow", 
             "results/translated/MH591079.cds.fasta",
             "-f", 
             "-j1",
