@@ -28,6 +28,19 @@ def run(
         callback=_print_snakemake_help,
     ),
 ):
+    """
+    \b
+     ____  _           _        __ _
+    |  _ \| |__  _   _| | ___  / _| | _____      __
+    | |_) | '_ \| | | | |/ _ \| |_| |/ _ \ \ /\ / /
+    |  __/| | | | |_| | | (_) |  _| | (_) \ V  V /
+    |_|   |_| |_|\__, |_|\___/|_| |_|\___/ \_/\_/
+                 |___/
+
+    All unrecognised arguments will be passed directly to Snakemake. Use `phyloflow --help-snakemake` to list all
+    arguments accepted by Snakemake.
+    """
+
     snakefile = Path(__file__).parent / "workflow/Snakefile"
     args = [
         f"--snakefile={snakefile}",
