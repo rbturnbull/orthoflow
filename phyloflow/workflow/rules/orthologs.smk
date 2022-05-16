@@ -25,10 +25,10 @@ rule filter_orthofinder:
 
     :config: filter_orthofinder
 
-    Notes
-    -----
+    % Notes - these are commented with a '%' character so they don't interefere with the markdown doc
+    % -----
 
-    No conda env necesary as the python script only uses the stdlib.
+    % No conda env necesary as the python script only uses the stdlib.
     """
     input:
         rules.orthofinder.output,

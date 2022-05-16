@@ -21,6 +21,7 @@ Welcome to phyloflow's documentation!
    main/alignment
    main/supermatrix
    main/workflow_dev
+   main/rules
    main/contributing
    main/citation
    

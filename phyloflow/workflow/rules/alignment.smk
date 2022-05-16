@@ -1,4 +1,5 @@
 rule mafft_aa:
+    """Mafft AA"""
     input:
         "data/{og}"
     output:
@@ -12,6 +13,7 @@ rule mafft_aa:
 
 
 rule trim_seqIDs_to_taxon:
+    """Trim sequence IDs to taxon."""
     input:
         "output/{og}.aln.fa"
     output:
