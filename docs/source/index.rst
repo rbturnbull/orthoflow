@@ -6,7 +6,7 @@
 Welcome to phyloflow's documentation!
 =================================================
 
-.. include:: ../README.rst
+.. include:: ../../README.rst
    :start-after: start-badges
    :end-before: end-badges
 
@@ -14,15 +14,15 @@ Welcome to phyloflow's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   installation
-   workflow
-   intake
-   orthologs
-   alignment
-   supermatrix
-   workflow_dev
-   CONTRIBUTING
-   citation
+   main/installation
+   main/workflow
+   main/intake
+   main/orthologs
+   main/alignment
+   main/supermatrix
+   main/workflow_dev
+   main/contributing
+   main/citation
    
 
 Indices and tables
