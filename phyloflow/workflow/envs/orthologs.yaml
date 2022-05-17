@@ -1,4 +1,7 @@
 channels:
   - bioconda
+  - conda-forge
 dependencies:
   - orthofinder==2.5.4
+  - rich==12.4.1
+  - typer==0.4.1
