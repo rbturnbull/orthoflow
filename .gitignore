@@ -1,4 +1,4 @@
-docshtml
+docs/build
 test-data/.snakemake/*
 .snakemake/*
 datasets/*
