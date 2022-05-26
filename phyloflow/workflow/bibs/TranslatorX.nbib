@@ -1,0 +1,68 @@
+PMID- 20435676
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20100927
+LR  - 20211020
+IS  - 1362-4962 (Electronic)
+IS  - 0305-1048 (Print)
+IS  - 0305-1048 (Linking)
+VI  - 38
+IP  - Web Server issue
+DP  - 2010 Jul
+TI  - TranslatorX: multiple alignment of nucleotide sequences guided by amino acid 
+      translations.
+PG  - W7-13
+LID - 10.1093/nar/gkq291 [doi]
+AB  - We present TranslatorX, a web server designed to align protein-coding nucleotide 
+      sequences based on their corresponding amino acid translations. Many comparisons 
+      between biological sequences (nucleic acids and proteins) involve the 
+      construction of multiple alignments. Alignments represent a statement regarding 
+      the homology between individual nucleotides or amino acids within homologous 
+      genes. As protein-coding DNA sequences evolve as triplets of nucleotides (codons) 
+      and it is known that sequence similarity degrades more rapidly at the DNA than at 
+      the amino acid level, alignments are generally more accurate when based on amino 
+      acids than on their corresponding nucleotides. TranslatorX novelties include: (i) 
+      use of all documented genetic codes and the possibility of assigning different 
+      genetic codes for each sequence; (ii) a battery of different multiple alignment 
+      programs; (iii) translation of ambiguous codons when possible; (iv) an innovative 
+      criterion to clean nucleotide alignments with GBlocks based on protein 
+      information; and (v) a rich output, including Jalview-powered graphical 
+      visualization of the alignments, codon-based alignments coloured according to the 
+      corresponding amino acids, measures of compositional bias and first, second and 
+      third codon position specific alignments. The TranslatorX server is freely 
+      available at http://translatorx.co.uk.
+FAU - Abascal, Federico
+AU  - Abascal F
+AD  - Departamento de Biodiversidad y Biología Evolutiva, Museo Nacional de Ciencias 
+      Naturales, CSIC, José Gutiérrez Abascal, 2, 28006 Madrid, Spain.
+FAU - Zardoya, Rafael
+AU  - Zardoya R
+FAU - Telford, Maximilian J
+AU  - Telford MJ
+LA  - eng
+PT  - Journal Article
+DEP - 20100430
+TA  - Nucleic Acids Res
+JT  - Nucleic acids research
+JID - 0411011
+SB  - IM
+MH  - Genetic Code
+MH  - Internet
+MH  - Phylogeny
+MH  - Protein Biosynthesis
+MH  - Sequence Alignment/*methods
+MH  - *Sequence Analysis, DNA
+MH  - *Sequence Analysis, Protein
+MH  - *Software
+PMC - PMC2896173
+EDAT- 2010/05/04 06:00
+MHDA- 2010/09/29 06:00
+CRDT- 2010/05/04 06:00
+PHST- 2010/05/04 06:00 [entrez]
+PHST- 2010/05/04 06:00 [pubmed]
+PHST- 2010/09/29 06:00 [medline]
+AID - gkq291 [pii]
+AID - 10.1093/nar/gkq291 [doi]
+PST - ppublish
+SO  - Nucleic Acids Res. 2010 Jul;38(Web Server issue):W7-13. doi: 10.1093/nar/gkq291. 
+      Epub 2010 Apr 30.
