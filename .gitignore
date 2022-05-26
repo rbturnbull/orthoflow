@@ -9,3 +9,4 @@ test-data/results/*
 .envrc
 tests/unit/.tests-conda/*
 logs/*
+phyloflow/logs/*

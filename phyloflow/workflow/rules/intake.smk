@@ -91,7 +91,7 @@ rule translate:
     input:
         input_sources="input_sources.csv",
         fasta="results/taxon-added/{source}.cds.fasta",
-    bibtex:
+    bibs:
         "../bibs/biokit.bib"
     conda:
         ENV_DIR / "biokit.yaml"
