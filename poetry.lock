@@ -795,6 +795,29 @@ docutils = ">=0.8"
 pybtex = ">=0.16"
 
 [[package]]
+name = "pybtexnbib"
+version = "0.1.1"
+description = "A pybtex plugin for NBIB/Medline/PubMed files"
+category = "main"
+optional = false
+python-versions = ">=3.7.1,<4.0.0"
+
+[package.dependencies]
+pybtex = ">=0.24.0,<0.25.0"
+pybtexris = ">=0.1.1,<0.2.0"
+
+[[package]]
+name = "pybtexris"
+version = "0.1.1"
+description = "A pybtex plugin for working with RIS files."
+category = "main"
+optional = false
+python-versions = ">=3.7.1,<4.0.0"
+
+[package.dependencies]
+pybtex = ">=0.24.0,<0.25.0"
+
+[[package]]
 name = "pycparser"
 version = "2.21"
 description = "C parser in Python"
@@ -973,7 +996,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "snakemake"
-version = "7.6.1+3.gcadcaaad"
+version = "7.6.1+5.g72c87492"
 description = "Snakemake is a workflow management system that aims to reduce the complexity of creating workflows by providing a fast and comfortable execution environment, together with a clean and modern specification language in python style. Snakemake workflows are essentially Python scripts extended by declarative code to define rules. Rules describe how to create output files from input files."
 category = "main"
 optional = false
@@ -992,7 +1015,8 @@ jsonschema = "*"
 nbformat = "*"
 psutil = "*"
 pulp = ">=2.0"
-pybtex = "*"
+pybtexnbib = "*"
+pybtexris = "*"
 pyyaml = "*"
 ratelimiter = "*"
 requests = "*"
@@ -1014,7 +1038,7 @@ reports = ["jinja2", "pygments"]
 type = "git"
 url = "https://github.com/rbturnbull/snakemake.git"
 reference = "bibtex"
-resolved_reference = "cadcaaad9d4ffccf88d777a488af37968f858954"
+resolved_reference = "72c87492a86ecf9de6fbf2fc5072a457d94da95b"
 
 [[package]]
 name = "snowballstemmer"
@@ -1823,6 +1847,14 @@ pybtex = [
 pybtex-docutils = [
     {file = "pybtex-docutils-1.0.1.tar.gz", hash = "sha256:d53aa0c31dc94d61fd30ea3f06c749e6f510f9ff0e78cb2765a9300f173d8626"},
     {file = "pybtex_docutils-1.0.1-py3-none-any.whl", hash = "sha256:42e379bd1d5473b9fd7be4b3a64ca291d4fdc9ae6c6854e52d1d0157c955bbfa"},
+]
+pybtexnbib = [
+    {file = "pybtexnbib-0.1.1-py3-none-any.whl", hash = "sha256:51852684e40411383b084468db4b9d92634ced8bad0be1e9de4148c38a7fad71"},
+    {file = "pybtexnbib-0.1.1.tar.gz", hash = "sha256:4be06064a78c2a06c7d0885ac362e7dab98d31fb4e1a63d780e45196f686b035"},
+]
+pybtexris = [
+    {file = "pybtexris-0.1.1-py3-none-any.whl", hash = "sha256:d6e7d98d37d558ad897b8ec6966aad4affc0b289824817d8e8f571b9f8168d72"},
+    {file = "pybtexris-0.1.1.tar.gz", hash = "sha256:41005c97f51a91298ab9cd8548e9788aca10a0543e418d7a57688d75824a1d3d"},
 ]
 pycparser = [
     {file = "pycparser-2.21-py2.py3-none-any.whl", hash = "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"},

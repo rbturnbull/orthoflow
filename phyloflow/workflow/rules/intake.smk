@@ -37,7 +37,7 @@ rule gbseqextractor:
         file=lambda wildcards: input_sources_item(wildcards.source, 'file'),
     conda:
         ENV_DIR / "gbseqextractor.yaml"
-    bibtex:
+    bibs:
         "../bibs/gbseqextractor.bib",
     params:
         is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower() in ["genbank", "gb", "gbk"],
@@ -85,7 +85,7 @@ rule translate:
     input:
         input_sources="input_sources.csv",
         fasta="results/taxon-added/{source}.cds.fasta",
-    bibtex:
+    bibs:
         "../bibs/biokit.bib"
     conda:
         ENV_DIR / "biokit.yaml"
