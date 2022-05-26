@@ -26,5 +26,6 @@ def add_taxon(
                 seq_counter[seq_id] += 1
             output_file.write(line)
 
+
 if __name__ == "__main__":
     typer.run(add_taxon)

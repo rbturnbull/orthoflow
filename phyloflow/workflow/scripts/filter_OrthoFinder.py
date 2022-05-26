@@ -1,47 +1,43 @@
 #!/usr/bin/env python3
-from argparse import ArgumentParser
-import sys
-import glob
-import os
-import subprocess
 import re
 import shutil
+from pathlib import Path
 
-# parse command line
-if len(sys.argv) == 1:
-	sys.exit("FATAL ERROR: No command line arguments were passed to the program.\nFor help and options use the -h flag")
-parser = ArgumentParser()
-parser.add_argument('-i', '--input', help='path to OrthoFinder output', required=True)
-parser.add_argument('-o', '--output',  help='output directory', required=True)
-parser.add_argument('-m', '--min_seq',  help='minimum number of sequences', required=True)
-args = parser.parse_args()
-minseq = int(args.min_seq)
+import typer
+from rich.progress import Progress, TextColumn
 
-# prepare output directory
-homedir = os.getcwd()
-outdir = args.output
-if os.path.isdir(outdir):
-    sys.exit("Output directory already exists. Quitting. Remove the directory and try again.")
-else:
-    os.mkdir(outdir)
 
-# filter OGs that have >= minseq sequences
-OGdir = args.input+"/Orthogroup_Sequences"
-GTdir = args.input+"/Gene_Trees"
-os.chdir(OGdir)
-fastaInputFiles = glob.glob('*.fa')
-os.chdir(homedir)
-counter = 0
-p = re.compile("(OG\d+)\.fa")
-for f in fastaInputFiles:
-    counter = counter + 1
-    print("file "+f)
-    grepout = subprocess.check_output("grep -c '>' "+OGdir+"/"+f, shell=True)
-    nseq = int(str(grepout, 'UTF-8'))
-    if nseq >= minseq:
-        print("  "+str(nseq)+" sequences - keeping")
-        shutil.copyfile(OGdir+"/"+f, outdir+"/"+f)
-        og = p.search(f).group(1)
-        shutil.copyfile(GTdir+"/"+og+"_tree.txt", outdir+"/"+og+".nwk")
-    else:
-        print("  "+str(nseq)+" sequences - skipping")
+def main(
+    indir: Path = typer.Argument(..., exists=True, file_okay=False, dir_okay=True),
+    outdir: Path = typer.Argument(..., exists=False, file_okay=False, dir_okay=True),
+    minseq: int = typer.Argument(...),
+):
+
+    # prepare output directory
+    outdir.mkdir()
+
+    # filter OGs that have >= minseq sequences
+    og_dir = indir / "Orthogroup_Sequences"
+    gt_dir = indir / "Gene_Trees"
+    fastaInputFiles = list(og_dir.glob('*.fa'))
+    pattern = re.compile(r"(OG\d+)\.fa")
+
+    with Progress(*Progress.get_default_columns(), TextColumn("({task.completed})")) as progress:
+        task_files = progress.add_task("Processing...", total=len(fastaInputFiles))
+        task_kept = progress.add_task("[green]Kept...", total=None)
+        task_skipped = progress.add_task("[red]Skipped...", total=None)
+
+        for fasta_file in fastaInputFiles:
+            progress.update(task_files, advance=1)
+            nseq = fasta_file.read_text().count('>')
+            if nseq >= minseq:
+                shutil.copyfile(fasta_file, outdir / fasta_file.name)
+                og = pattern.search(str(fasta_file)).group(1)
+                shutil.copyfile(gt_dir / (og + "_tree.txt"), outdir / (og + ".nwk"))
+                progress.update(task_kept, advance=1)
+            else:
+                progress.update(task_skipped, advance=1)
+
+
+if __name__ == "__main__":
+    typer.run(main)

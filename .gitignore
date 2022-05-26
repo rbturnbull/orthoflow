@@ -8,3 +8,4 @@ test-data/results/*
 .DS_Store
 .envrc
 tests/unit/.tests-conda/*
+logs/*

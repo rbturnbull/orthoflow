@@ -15,12 +15,19 @@ def input_sources_row(source):
         raise Exception(f"Cannot find unique row with filename '{source}' in 'input_sources.csv'")
     return df[index]
 
+
 def input_sources_item(source, column):
     """
     Reads a cell in `input_sources.csv` for a file and a column.
     """
     row = input_sources_row(source)
-    return row[column].item()
+    val = row[column].item()
+
+    # sanitize the string (remove spaces and other non-alpha-numeric characters)
+    if isinstance(val, str):
+        val = "".join([c if (c.isalnum() or c in "._-") else "_" for c in val])
+
+    return val
 
 
 rule extract_cds:
@@ -36,11 +43,12 @@ rule extract_cds:
         "results/fasta/{source}.cds.fasta",
     input:
         input_sources="input_sources.csv",
-        file=lambda wildcards: input_sources_item(wildcards.source, 'file'),
+        file=lambda wildcards: Path(input_sources_item(wildcards.source, 'file')).resolve(),
     conda:
         ENV_DIR / "extract_cds.yaml"
     params:
-        is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower() in ["genbank", "gb", "gbk"],
+        is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower()
+        in ["genbank", "gb", "gbk"],
     shell:
         """
         if [ "{params.is_genbank}" = "True" ] ; then
@@ -49,6 +57,7 @@ rule extract_cds:
             cp {input.file} {output}
         fi
         """
+
 
 rule add_taxon:
     """
@@ -64,7 +73,7 @@ rule add_taxon:
     params:
         taxon=lambda wildcards: input_sources_item(wildcards.source, 'taxon_string'),
     shell:
-        "python {SCRIPT_DIR}/add_taxon.py {params.taxon} {input.fasta} {output}"
+        "python {SCRIPT_DIR}/add_taxon.py --unique-counter {params.taxon} {input.fasta} {output}"
 
 
 rule translate:
