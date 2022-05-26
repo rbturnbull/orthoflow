@@ -18,7 +18,7 @@ rule orthofinder:
     threads: workflow.cores
     shell:
         """
-        orthofinder -f {params.input_dir} -t {threads} -n phyloflow
+        orthofinder -f {params.input_dir} -t {threads} -ot -n phyloflow
         """
 
 
