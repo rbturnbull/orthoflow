@@ -33,6 +33,7 @@ rule translatorx:
 
 
 rule trim_seqIDs_to_taxon:
+    """Trim sequence IDs to taxon."""
     input:
         "output/{og}.aln.fa"
     output:

@@ -23,12 +23,14 @@ def input_sources_item(source, column):
     return row[column].item()
 
 
-rule gbseqextractor:
+rule extract_cds:
     """
-    Extracts CDS features from GenBank files with gbseqextractor.
+    Extracts CDS features from GenBank files.
 
     Not used if input files already at in fasta format.
-    gbseqextractor is found here: https://github.com/linzhi2013/gbseqextractor
+
+    :note: We use ``cp`` for existing fasta files instead of ``ln`` due to
+           Snakemake having trouble identifying the creation of the symlinks.
     """
     output:
         "results/fasta/{source}.cds.fasta",
@@ -36,22 +38,17 @@ rule gbseqextractor:
         input_sources="input_sources.csv",
         file=lambda wildcards: input_sources_item(wildcards.source, 'file'),
     conda:
-        ENV_DIR / "gbseqextractor.yaml"
-    bibs:
-        "../bibs/gbseqextractor.bib",
+        ENV_DIR / "extract_cds.yaml"
     params:
         is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower() in ["genbank", "gb", "gbk"],
     shell:
         """
         if [ "{params.is_genbank}" = "True" ] ; then
-            echo Using gbseqextractor to convert {input.file} to {output}
-            gbseqextractor -f {input.file} -types CDS -prefix results/fasta/{wildcards.source}
+            python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output}
         else
-            echo File {input.file} not of type GenBank, creating softlink at {output}
-            ln -svr {input.file} {output}
+            cp {input.file} {output}
         fi
         """
-
 
 rule add_taxon:
     """
@@ -75,9 +72,9 @@ rule translate:
     Translates coding sequences to amino acid sequences using BioKIT.
 
     It relies on the `translation_table` column in `input_sources.csv`.
-    It expects a number there which corresponds with the NCBI genetic codes: 
+    It expects a number there which corresponds with the NCBI genetic codes:
     https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes
-    
+
     BioKIT is found here: https://github.com/JLSteenwyk/BioKIT
     """
     output:

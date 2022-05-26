@@ -1,4 +1,7 @@
 rule list_alignments:
+    """
+    List alignments.
+    """
     input:
         expand("output/{og}.trID.aln.fa",og=ogs)
     output:
@@ -7,6 +10,9 @@ rule list_alignments:
         "ls -1 output/*.trID.aln.fa > {output}"
 
 rule concatenate_alignments:
+    """
+    Concatenate alignments.
+    """
     input:
         "output/phykit_concat/files_to_concatenate.txt"
     output:
@@ -21,6 +27,9 @@ rule concatenate_alignments:
         "phykit create_concat -a {input} -p {params.prefix} >> {log}"
 
 rule iqtree_supermatrix:
+    """
+    IQTREE supermatrix.
+    """
     input:
         "output/phykit_concat/supermatrix.fa"
     output:

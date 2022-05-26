@@ -4,9 +4,9 @@ phyloflow
 
 .. start-badges
 
-|pipline badge| |docs badge| |black badge| |snakemake badge| |git3moji badge| |contributor covenant badge|
+|pipeline badge| |docs badge| |black badge| |snakemake badge| |git3moji badge| |contributor covenant badge|
 
-.. |pipline badge| image:: https://github.com/rbturnbull/phyloflow/actions/workflows/testing.yml/badge.svg
+.. |pipeline badge| image:: https://github.com/rbturnbull/phyloflow/actions/workflows/testing.yml/badge.svg
     :target: https://rbturnbull.github.io/phyloflow
 
 .. |docs badge| image:: https://github.com/rbturnbull/phyloflow/actions/workflows/docs.yml/badge.svg
