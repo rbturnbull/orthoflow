@@ -30,7 +30,7 @@ rule translatorx:
     Back-translates the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.
     """
     output:
-        "results/alignment/{og}.translated.out"
+        "results/alignment/alignment.translated.out"
     input:
         "results/alignment/alignment.fa"
     bibs:
