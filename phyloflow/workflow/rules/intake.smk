@@ -45,7 +45,7 @@ rule extract_cds:
         input_sources="input_sources.csv",
         file=lambda wildcards: Path(input_sources_item(wildcards.source, 'file')).resolve(),
     conda:
-        ENV_DIR / "extract_cds.yaml"
+        ENV_DIR / "biopython.yaml"
     params:
         is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower()
         in ["genbank", "gb", "gbk"],
