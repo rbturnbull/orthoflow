@@ -24,7 +24,7 @@ jobs:
     - run: poetry install
     - name: Docs
       run: |
-        poetry run sphinx-build -b html docs gh-pages
+        poetry run sphinx-build -b html docs/source gh-pages
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
