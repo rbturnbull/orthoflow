@@ -28,7 +28,7 @@ class OutputChecker:
         for path, subdirs, files in os.walk(self.workdir):
             for f in files:
                 f = (Path(path) / f).relative_to(self.workdir)
-                if str(f).startswith(".snakemake"):
+                if str(f).startswith(".snakemake") or (Path(f).suffix == '.log'):
                     continue
                 if f in expected_files:
                     self.compare_files(self.workdir / f, self.expected_path / f)
@@ -38,11 +38,8 @@ class OutputChecker:
                 else:
                     unexpected_files.add(f)
         if unexpected_files:
-            raise ValueError(
-                "Unexpected files:\n{}".format(
-                    "\n".join(sorted(map(str, unexpected_files)))
-                )
-            )
+            breakpoint()
+            raise ValueError("Unexpected files:\n{}".format("\n".join(sorted(map(str, unexpected_files)))))
 
     def compare_files(self, generated_file, expected_file):
         sp.check_output(["cmp", generated_file, expected_file])

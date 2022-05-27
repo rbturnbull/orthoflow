@@ -16,9 +16,9 @@ def test_add_taxon():
     with TemporaryDirectory() as tmpdir:
         workdir = Path(tmpdir) / "workdir"
         tests_dir = Path(__file__).parent
-        data_path = tests_dir/"add_taxon/data"
-        expected_path = tests_dir/"add_taxon/expected"
-        conda_dir = tests_dir/".tests-conda"
+        data_path = tests_dir / "add_taxon/data"
+        expected_path = tests_dir / "add_taxon/expected"
+        conda_dir = tests_dir / ".tests-conda"
 
         # Copy data to the temporary workdir.
         shutil.copytree(data_path, workdir)
@@ -27,23 +27,25 @@ def test_add_taxon():
         print("results/taxon-added/MH591079.cds.fasta", file=sys.stderr)
 
         # Run the test job.
-        sp.check_output([
-            "phyloflow", 
-            "results/taxon-added/MH591079.cds.fasta",
-            "-f", 
-            "-j1",
-            "--keep-target-files",
-            "--conda-frontend",
-            "conda",    
-            "--use-conda",
-            "--conda-prefix",
-            conda_dir,
-            "--directory",
-            workdir,
-        ])
+        sp.check_output(
+            [
+                "phyloflow",
+                data_path,
+                "-f",
+                "-j1",
+                "--keep-target-files",
+                "--conda-frontend",
+                "conda",
+                "--use-conda",
+                "--conda-prefix",
+                conda_dir,
+                "--directory",
+                workdir,
+            ]
+        )
 
         # Check the output byte by byte using cmp.
         # To modify this behavior, you can inherit from common.OutputChecker in here
-        # and overwrite the method `compare_files(generated_file, expected_file), 
+        # and overwrite the method `compare_files(generated_file, expected_file),
         # also see common.py.
         common.OutputChecker(data_path, expected_path, workdir).check()

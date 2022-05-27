@@ -29,7 +29,7 @@ def test_gbseqextractor():
         # Run the test job.
         sp.check_output([
             "phyloflow", 
-            "results/fasta/MH591079.cds.fasta",
+            data_path,
             "-f", 
             "-j1",
             "--keep-target-files",
