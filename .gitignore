@@ -10,3 +10,4 @@ test-data/results/*
 tests/unit/.tests-conda/*
 logs/*
 phyloflow/logs/*
+**/__pycache__
