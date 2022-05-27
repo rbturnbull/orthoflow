@@ -1,2 +1,2 @@
 filter_orthofinder:
-  min_sequences: 10
+  min_sequences: 5
