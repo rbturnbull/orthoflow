@@ -19,9 +19,8 @@ configfile: CONFIG_DIR / "config.yml"
 ##### load rules #####
 include: "rules/intake.smk"
 include: "rules/orthologs.smk"
+include: "rules/alignment.smk"
 
-
-# include: "rules/alignment.smk"
 # include: "rules/supermatrix.smk"
 # include: "rules/genetree.smk"
 # include: "rules/reconciliation.smk"

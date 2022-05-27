@@ -1,19 +1,28 @@
-rule mafft_aa:
+
+rule mafft:
     """
     Aligns the protein (amino acid) file with MAFFT
     """
     output:
-        "output/{og}.aln.fa"
+        "results/alignment/alignment.fa"
     input:
-        "data/{og}"
+        Path("results/orthologs/").glob('*.fa')
     bibs:
         "../bibs/mafft7.bib"
     log:
-        "logs/mafft/{og}.log"
+        "logs/mafft/mafft.log"
+    threads: 4
+    resources:
+        time="00:10:00",
+        mem="8G",
+        cpus=4,
     conda:
         "../envs/mafft.yaml"
     shell:
-        "{{ mafft {input} > {output} ; }} &> {log}"
+        """
+        cat {input} > results/alignment/sequences.fa
+        mafft --thread {threads} --auto results/alignment/sequences.fa > {output}
+        """
 
 
 rule translatorx:
@@ -21,11 +30,11 @@ rule translatorx:
     Back-translates the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.
     """
     output:
-        "output/{og}.translated.out"
+        "results/alignment/{og}.translated.out"
     input:
-        "output/{og}.aln.fa"
+        "results/alignment/alignment.fa"
     bibs:
-        "../bibs/TranslatorX.bib"
+        "../bibs/TranslatorX.nbib"
     conda:
         "../envs/perl.yaml"
     shell:

@@ -3,5 +3,4 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - libgcc-ng
   - mafft=7.490
