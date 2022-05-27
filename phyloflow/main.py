@@ -18,7 +18,7 @@ def _print_snakemake_help(value: bool):
 )
 def run(
     ctx: typer.Context,
-    directory: Path = typer.Argument(..., file_okay=False, exists=True, dir_okay=True),
+    directory: Optional[Path] = typer.Option(Path("."), file_okay=False, exists=True, dir_okay=True),
     cores: Optional[int] = typer.Option(1, "--cores", "-c", help="Number of cores to request for the workflow"),
     help_snakemake: Optional[bool] = typer.Option(
         False,
