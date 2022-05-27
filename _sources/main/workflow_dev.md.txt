@@ -5,7 +5,7 @@
 Link to original on [diagrams.net](https://app.diagrams.net/#G1feeWJLnqI-_EN4x8zY2V9GChWosKFZg3)
 
 
-![](diagram.png)
+![](../_static/diagram.png)
 
 
 ## User input
