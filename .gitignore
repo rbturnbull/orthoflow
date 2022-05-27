@@ -3,7 +3,6 @@ test-data/.snakemake/*
 .snakemake/*
 datasets/*
 results/*
-test-data/results/*
 .vscode/*
 .DS_Store
 .envrc
@@ -11,3 +10,5 @@ tests/unit/.tests-conda/*
 logs/*
 phyloflow/logs/*
 **/__pycache__
+**/.snakemake
+tests/.tests-conda
