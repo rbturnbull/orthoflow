@@ -1,0 +1,19 @@
+2022-05-05 21:30:51 : Started OrthoFinder version 2.5.4
+Command Line: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/test-data/.snakemake/conda/a9a6806962fed252dbdf335c53a471b6/bin/orthofinder -d -f results/translated
+
+WorkingDirectory_Base: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/test-data/results/translated/OrthoFinder/Results_May05_1/WorkingDirectory/
+
+Species used: 
+0: KX808497.cds.fasta
+1: KX808498.cds.fasta
+2: KY509313.cds.fasta
+3: KY819064.cds.fasta
+4: MH591079.cds.fasta
+5: MH591080.cds.fasta
+6: MH591081.cds.fasta
+7: MH591083.cds.fasta
+8: MH591084.cds.fasta
+9: MH591085.cds.fasta
+10: MH591086.cds.fasta
+11: NC_026795.cds.fasta
+
