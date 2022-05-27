@@ -59,9 +59,9 @@ final_md = """
 This is an automatically generated list of all supported rules, their docstrings, and command. At the start of each 
 workflow run a list is printed of which rules will be run. And while the workflow is running it prints which rules are
 being started and finished. This page is here to give an explanation to the user about what each rule does, and for
-developers to find what is, and isn't yet supported. Not all Metaphor rules are listed here, only the ones with a
-`shell` directive. Rules with `script` or `wrapper` directives are not included. To see all rules in Metaphor, 
-please refer to the [workflow source code](https://github.com/vinisalazar/metaphor/tree/main/workflow).
+developers to find what is, and isn't yet supported. Not all Phyloflow rules are listed here, only the ones with a
+`shell` directive. Rules with `script` or `wrapper` directives are not included. To see all rules in Phyloflow, 
+please refer to the [workflow source code](https://github.com/rbturnbull/phyloflow/tree/master/workflow).
 """
 
 path = "phyloflow/workflow/rules/"
