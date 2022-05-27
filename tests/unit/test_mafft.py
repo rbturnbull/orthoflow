@@ -28,9 +28,7 @@ def test_mafft():
 
         # Run the test job.
         sp.check_output([
-            "python",
-            "-m",
-            "snakemake", 
+            "phyloflow", 
             "results/alignment/alignment.fa",
             "-f", 
             "-j1",
@@ -39,9 +37,9 @@ def test_mafft():
             "conda",    
             "--use-conda",
             "--conda-prefix",
-            str(conda_dir),
+            conda_dir,
             "--directory",
-            str(workdir),
+            workdir,
         ])
 
         # Check the output byte by byte using cmp.
