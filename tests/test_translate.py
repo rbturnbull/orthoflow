@@ -16,21 +16,23 @@ def test_translate():
     with TemporaryDirectory() as tmpdir:
         workdir = Path(tmpdir) / "workdir"
         tests_dir = Path(__file__).parent
-        data_path = tests_dir / "translate/data"
-        expected_path = tests_dir / "translate/expected"
+        data_path = tests_dir / "test-data/results/taxon-added"
+        input_source = tests_dir / "test-data/data/input_sources.csv"
+        results_path = workdir / "results/translated"
+        expected_path = tests_dir / "test-data/results/translated"
         conda_dir = tests_dir / ".tests-conda"
 
         # Copy data to the temporary workdir.
-        shutil.copytree(data_path, workdir)
+        shutil.copytree(data_path, workdir / "results/taxon-added/")
+        shutil.copy(input_source, workdir)
 
-        # dbg
-        print("results/translated/MH591079.cds.fasta", file=sys.stderr)
+        # Target rule to run until
+        until = "translate"
 
         # Run the test job.
         sp.check_output(
             [
                 "phyloflow",
-                data_path,
                 "-f",
                 "-j1",
                 "--keep-target-files",
@@ -41,6 +43,8 @@ def test_translate():
                 conda_dir,
                 "--directory",
                 workdir,
+                "--until",
+                until,
             ]
         )
 
@@ -48,4 +52,4 @@ def test_translate():
         # To modify this behavior, you can inherit from common.OutputChecker in here
         # and overwrite the method `compare_files(generated_file, expected_file),
         # also see common.py.
-        common.OutputChecker(data_path, expected_path, workdir).check()
+        common.OutputChecker(data_path, expected_path, results_path).check()

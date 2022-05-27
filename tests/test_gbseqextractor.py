@@ -25,10 +25,7 @@ def test_gbseqextractor():
         shutil.copytree(data_path, workdir)
 
         # Target rule to run until
-        until = "add_taxon"
-
-        # dbg
-        print("results/fasta/MH591079.cds.fasta", file=sys.stderr)
+        until = "extract_cds"
 
         # Run the test job.
         sp.check_output(

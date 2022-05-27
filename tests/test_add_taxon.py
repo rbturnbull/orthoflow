@@ -27,10 +27,7 @@ def test_add_taxon():
         shutil.copy(input_source, workdir)
 
         # Target rule to run until
-        until = "translate"
-
-        # dbg
-        print("results/taxon-added/MH591079.cds.fasta", file=sys.stderr)
+        until = "add_taxon"
 
         # Run the test job.
         sp.check_output(
