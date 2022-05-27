@@ -23,8 +23,8 @@ def test_gbseqextractor():
 
         # Copy data to the temporary workdir.
         shutil.copytree(data_path, workdir)
-        # breakpoint()
 
+        # Target rule to run until
         until = "add_taxon"
 
         # dbg
@@ -44,8 +44,8 @@ def test_gbseqextractor():
                 conda_dir,
                 "--directory",
                 workdir,
-                # "--until",
-                # *until,
+                "--until",
+                until,
             ]
         )
 
