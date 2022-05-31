@@ -1,4 +1,5 @@
 from pathlib import Path
+from collections import namedtuple
 
 
 rule orthofinder:
@@ -20,11 +21,11 @@ rule orthofinder:
     threads: workflow.cores
     shell:
         """
-        orthofinder -f {params.input_dir} -t {threads} -n phyloflow -ot -M msa
+        orthofinder -f {params.input_dir} -t {threads} -n phyloflow -ot -M msa -X
         """
 
 
-rule filter_orthofinder:
+checkpoint filter_orthofinder:
     """
     Copy out OGs with more than a minimum number of sequences.
 
@@ -45,3 +46,39 @@ rule filter_orthofinder:
         min_seq=config["filter_orthofinder"]['min_sequences'],
     shell:
         f"python {SCRIPT_DIR}/filter_OrthoFinder.py {{input}} {{output}} {{params.min_seq}}"
+
+
+rule orthosnap:
+    """
+    Run Orthosnap to retrieve single-copy orthologs.
+
+    :output: A directory with an unknown number of
+    """
+    input:
+        fasta="results/orthologs/{id}.fa",
+        tree="results/orthologs/{id}.nwk"
+    output:
+        directory("results/orthologs/{id}.fa.orthosnap")
+    conda:
+        ENV_DIR / "orthologs.yaml"
+    shell:
+        """
+        mkdir {output}
+        orthosnap -f {input.fasta} -t {input.tree}
+        mv {output}.*.fa {output} || true
+        """
+
+rule combine_subgroups:
+    input:
+        lambda wildcards: [
+            fname
+            for glob in [
+                Path(f"{fasta}.orthosnap/").glob("*.fa")
+                for fasta in Path(checkpoints.filter_orthofinder.get(**wildcards).output[0]).glob("*.fa")
+            ]
+            for fname in glob
+        ]
+    output:
+        "results/combined_sc_orthologs.fa"
+    shell:
+        "cat {input} > {output}"

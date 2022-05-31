@@ -95,4 +95,3 @@ rule list_alignments:
         """
         ls -1 {input} > {output}
         """
-
