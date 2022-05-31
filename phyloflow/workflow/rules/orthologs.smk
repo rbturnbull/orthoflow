@@ -71,14 +71,10 @@ rule orthosnap:
 rule combine_subgroups:
     input:
         lambda wildcards: [
-            fname
-            for glob in [
-                Path(f"{fasta}.orthosnap/").glob("*.fa")
+                f"{fasta}.orthosnap"
                 for fasta in Path(checkpoints.filter_orthofinder.get(**wildcards).output[0]).glob("*.fa")
             ]
-            for fname in glob
-        ]
     output:
         "results/combined_sc_orthologs.fa"
     shell:
-        "cat {input} > {output}"
+        "cat results/orthologs/*.orthosnap/* > {output}"
