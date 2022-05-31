@@ -10,8 +10,8 @@ rule mafft:
         Path("results/orthologs/").glob('*.fa')
     bibs:
         "../bibs/mafft7.bib"
-    # log:
-    #     "logs/mafft/mafft.log"
+    log:
+        "logs/mafft/mafft.log"
     threads: 4
     resources:
         time="00:10:00",
@@ -31,14 +31,14 @@ rule matching_cds:
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
     """
     output:
-        "results/alignment/{source}.cds.fasta",
+        directory("results/matched_cds/")
     input:
-        cds="input_sources.csv",
-        og="results/fasta/{source}.cds.fasta",
+        cds=Path("results/taxon-added/"),
+        og=Path("results/orthologs/")
     conda:
         ENV_DIR / "biopython.yaml"
     shell:
-        "python {SCRIPT_DIR}/matching_cds.py --cds-files {input.cds} --og-files {input.og}"
+        "python {SCRIPT_DIR}/matching_cds.py --cds-dir {input.cds} --og-dir {input.og} --output-dir {output}"
 
 
 rule thread_dna:
