@@ -44,6 +44,8 @@ rule extract_cds:
     input:
         input_sources="input_sources.csv",
         file=lambda wildcards: Path(input_sources_item(wildcards.source, 'file')).resolve(),
+    bibs:
+        "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
     params:

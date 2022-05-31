@@ -23,8 +23,6 @@ def matching_cds(
     cds_files = list(cds_dir.glob("*.cds.fasta"))
     og_files = list(og_dir.glob("*.fa"))
 
-    breakpoint()
-
     # first obtaining all sequence IDs present in the orthosnap output
     target_file_dictionary = {}
     for ogfile in og_files:

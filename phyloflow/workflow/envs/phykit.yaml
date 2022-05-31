@@ -1,6 +1,7 @@
 channels:
   - conda-forge
-  - jlsteenwyk
 dependencies:
+  - coreutils
   - python=3.9
-  - phykit
+  - pip:
+    - phykit>=1.11.10

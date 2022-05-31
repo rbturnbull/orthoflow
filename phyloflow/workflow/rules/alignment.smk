@@ -35,6 +35,8 @@ rule matching_cds:
     input:
         cds=Path("results/taxon-added/"),
         og=Path("results/orthologs/")
+    bibs:
+        "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
     shell:
@@ -46,33 +48,23 @@ rule thread_dna:
     Back-translates the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.
 
     https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment
+
+    The --stop argument keeps in stop codons which are otherwise removed.
     """
     output:
-        "results/alignment/alignment.translated.out"
+        aligned_cds="results/alignment/alignment.translated.out",
     input:
-        "results/alignment/alignment.fa"
+        alignment="results/alignment/alignment.fa",
+        cds="results/matched_cds/"
     bibs:
         "../bibs/phykit.bib"
     conda:
         "../envs/phykit.yaml"
     shell:
-        "phykit thread_dna -p {input} -n <file> [-s]"
+        """
 
-
-# rule translatorx:
-#     """
-#     Back-translates the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.
-#     """
-#     output:
-#         "results/alignment/alignment.translated.out"
-#     input:
-#         "results/alignment/alignment.fa"
-#     bibs:
-#         "../bibs/TranslatorX.nbib"
-#     conda:
-#         "../envs/perl.yaml"
-#     shell:
-#         "perl {SCRIPT_DIR}/TranslatorX.pl -i {input} -o {output} -p M -t F -w 1 -c 5"
+        phykit thread_dna --protein {input.alignment} -n <file> --stop > {output}
+        """
 
 
 rule trim_seqIDs_to_taxon:

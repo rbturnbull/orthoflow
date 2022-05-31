@@ -13,6 +13,8 @@ rule orthofinder:
         ENV_DIR / "orthologs.yaml"
     log:
         LOG_DIR / "orthofinder.txt",
+    bibs:
+        "../bibs/orthofinder.ris",
     params:
         input_dir=lambda wildcards, input: Path(input[0]).parent,
     threads: workflow.cores
