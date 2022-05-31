@@ -1,0 +1,1 @@
+(NC_026795_cds_Bryopsis_plumosa_WEST4718|NC_026795.1_ftsH:0.477087,(MH591081_cds_Dichotomosiphon_tuberosus_HV03781|MH591081.1_ftsH:0.724212,(KX808498_cds_Caulerpa_cliftonii_HV03798|KX808498.1_ftsH:0.949098,KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1_ftsH:0.453591)1:0.44027)1:0.477087);

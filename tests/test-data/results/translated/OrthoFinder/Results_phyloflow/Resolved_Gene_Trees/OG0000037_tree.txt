@@ -1,0 +1,1 @@
+(((MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1_orf108:0.53952,MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1_orf157:1.13486)n2:0.948422,(KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1_psaA:0.257171,KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1_psaB:0.32406)n3:0.0360067)n1:0.314102,MH591084_cds_Flabellia_petiolata_HV01202|MH591084.1_psaA:0.246)n0;

@@ -1,0 +1,1 @@
+(NC_026795_cds_Bryopsis_plumosa_WEST4718|NC_026795.1_rpoA:0.44439,(KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1_rpoA:0.48622,(KX808498_cds_Caulerpa_cliftonii_HV03798|KX808498.1_rpoA:0.708315,KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1_rpoA:0.412134)0.881:0.147557)1:0.44439);

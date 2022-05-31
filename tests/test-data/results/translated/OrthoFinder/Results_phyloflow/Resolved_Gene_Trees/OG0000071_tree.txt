@@ -1,0 +1,1 @@
+(MH591081_cds_Dichotomosiphon_tuberosus_HV03781|MH591081.1_rps4:0.378942,(KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1_rps4:0.485781,(KX808498_cds_Caulerpa_cliftonii_HV03798|KX808498.1_rps4:0.620061,MH591086_cds_Flabellia_petiolata_HV01202|MH591086.1_rps4:0.360568)n2:0.0697684)n1:0.378942)n0;

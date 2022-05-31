@@ -1,0 +1,1 @@
+(KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1_psbA:0.134705,(KX808498_cds_Caulerpa_cliftonii_HV03798|KX808498.1_psbA:0.293112,(KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1_psbA:0.161953,MH591086_cds_Flabellia_petiolata_HV01202|MH591086.1_psbA:0.219278)0.574:0.073859)1:0.134705);

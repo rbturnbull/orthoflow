@@ -1,0 +1,1 @@
+(KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|psbI:0.0285892,(NC_026795_cds_Bryopsis_plumosa_WEST4718|NC_026795.1_psbI:5e-09,((KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1_psbI:0,MH591079_cds_Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbI:0)n3:0.0928942,KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1_psbI:0.261584)n2:0.137046)n1:0.0285892)n0;

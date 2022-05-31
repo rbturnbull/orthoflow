@@ -1,0 +1,4 @@
+HOG	OG	Gene Tree Parent Clade	KX808497.cds	KX808498.cds	KY509313.cds	KY819064.cds	MH591079.cds	MH591080.cds	MH591081.cds	MH591083.cds	MH591084.cds	MH591085.cds	MH591086.cds	NC_026795.cds
+N10.HOG0000000	OG0000010	n0								Flabellia_petiolata_HV01202|MH591083.1;ycf20				
+N10.HOG0000001	OG0000039	n0						Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;atpA						
+N10.HOG0000002	OG0000069	n0						Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;orf444		Flabellia_petiolata_HV01202|MH591083.1;orf516				

@@ -1,0 +1,1 @@
+(NC_026795_cds_Bryopsis_plumosa_WEST4718|NC_026795.1_atpI:0.235146,(KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1_atpI:0.115228,(MH591086_cds_Flabellia_petiolata_HV01202|MH591086.1_atpI:0.166017,(KX808498_cds_Caulerpa_cliftonii_HV03798|KX808498.1_atpI:0.222827,KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1_atpI:0.251858)n3:0.0771364)n2:0.0820186)n1:0.235146)n0;

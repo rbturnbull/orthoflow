@@ -1,0 +1,1 @@
+(NC_026795_cds_Bryopsis_plumosa_WEST4718|NC_026795.1_rpl32:0.460517,(KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1_rpl32:0.570876,(KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1_rpl32:0.181704,MH591079_cds_Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpl32:0.108557)n2:0.141488)n1:0.460517)n0;

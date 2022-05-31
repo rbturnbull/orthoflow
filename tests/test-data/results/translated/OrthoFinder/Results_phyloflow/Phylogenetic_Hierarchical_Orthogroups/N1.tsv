@@ -1,0 +1,109 @@
+HOG	OG	Gene Tree Parent Clade	KX808497.cds	KX808498.cds	KY509313.cds	KY819064.cds	MH591079.cds	MH591080.cds	MH591081.cds	MH591083.cds	MH591084.cds	MH591085.cds	MH591086.cds	NC_026795.cds
+N1.HOG0000000	OG0000000	n0		Caulerpa_cliftonii_HV03798|KX808498.1;petD	Avrainvillea_mazei_HV02664|KY509313.1;petD	Chlorodesmis_fastigiata_HV03865|KY819064.1;petD	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|petD					Flabellia_petiolata_HV01202|MH591085.1;petD		Bryopsis_plumosa_WEST4718|NC_026795.1;petD
+N1.HOG0000001	OG0000001	n0		Caulerpa_cliftonii_HV03798|KX808498.1;petB	Avrainvillea_mazei_HV02664|KY509313.1;petB	Chlorodesmis_fastigiata_HV03865|KY819064.1;petB	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|petB					Flabellia_petiolata_HV01202|MH591085.1;petB		Bryopsis_plumosa_WEST4718|NC_026795.1;petB
+N1.HOG0000002	OG0000002	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps14	Avrainvillea_mazei_HV02664|KY509313.1;rps14	Chlorodesmis_fastigiata_HV03865|KY819064.1;rps14	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rps14					Flabellia_petiolata_HV01202|MH591085.1;rps14		Bryopsis_plumosa_WEST4718|NC_026795.1;rps14
+N1.HOG0000003	OG0000003	n0			Avrainvillea_mazei_HV02664|KY509313.1;rpoB	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB.2, Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpoBb					Flabellia_petiolata_HV01202|MH591085.1;rpoBb, Flabellia_petiolata_HV01202|MH591085.1;rpoBa		
+N1.HOG0000004	OG0000004	n0		Caulerpa_cliftonii_HV03798|KX808498.1;orf116										Bryopsis_plumosa_WEST4718|NC_026795.1;orf1
+N1.HOG0000005	OG0000005	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps9	Avrainvillea_mazei_HV02664|KY509313.1;rps9	Chlorodesmis_fastigiata_HV03865|KY819064.1;rps9	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rps9							Bryopsis_plumosa_WEST4718|NC_026795.1;rps9
+N1.HOG0000006	OG0000006	n0			Avrainvillea_mazei_HV02664|KY509313.1;ccs1	Chlorodesmis_fastigiata_HV03865|KY819064.1;ccs1	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|ccs1					Flabellia_petiolata_HV01202|MH591085.1;ccs1		Bryopsis_plumosa_WEST4718|NC_026795.1;ccsA
+N1.HOG0000007	OG0000007	n0		Caulerpa_cliftonii_HV03798|KX808498.1;petG	Avrainvillea_mazei_HV02664|KY509313.1;petG	Chlorodesmis_fastigiata_HV03865|KY819064.1;petG	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|petG							
+N1.HOG0000008	OG0000008	n0			Avrainvillea_mazei_HV02664|KY509313.1;cysT	Chlorodesmis_fastigiata_HV03865|KY819064.1;cysT						Flabellia_petiolata_HV01202|MH591085.1;cysT		Bryopsis_plumosa_WEST4718|NC_026795.1;cysT
+N1.HOG0000009	OG0000009	n0			Avrainvillea_mazei_HV02664|KY509313.1;ycf1	Chlorodesmis_fastigiata_HV03865|KY819064.1;ycf1						Flabellia_petiolata_HV01202|MH591085.1;ycf1		Bryopsis_plumosa_WEST4718|NC_026795.1;ycf1
+N1.HOG0000010	OG0000010	n0		Caulerpa_cliftonii_HV03798|KX808498.1;ycf20		Chlorodesmis_fastigiata_HV03865|KY819064.1;ycf20			Dichotomosiphon_tuberosus_HV03781|MH591081.1;ycf20	Flabellia_petiolata_HV01202|MH591083.1;ycf20				
+N1.HOG0000011	OG0000011	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbE		Chlorodesmis_fastigiata_HV03865|KY819064.1;psbE			Dichotomosiphon_tuberosus_HV03781|MH591081.1;psbE					Bryopsis_plumosa_WEST4718|NC_026795.1;psbE
+N1.HOG0000012	OG0000012	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbF		Chlorodesmis_fastigiata_HV03865|KY819064.1;psbF			Dichotomosiphon_tuberosus_HV03781|MH591081.1;psbF					Bryopsis_plumosa_WEST4718|NC_026795.1;psbF
+N1.HOG0000013	OG0000013	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbL		Chlorodesmis_fastigiata_HV03865|KY819064.1;psbL			Dichotomosiphon_tuberosus_HV03781|MH591081.1;psbL					Bryopsis_plumosa_WEST4718|NC_026795.1;psbL
+N1.HOG0000014	OG0000014	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbJ		Chlorodesmis_fastigiata_HV03865|KY819064.1;psbJ			Dichotomosiphon_tuberosus_HV03781|MH591081.1;psbJ					Bryopsis_plumosa_WEST4718|NC_026795.1;psbJ
+N1.HOG0000015	OG0000015	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbZ		Chlorodesmis_fastigiata_HV03865|KY819064.1;psbZ	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbZ							Bryopsis_plumosa_WEST4718|NC_026795.1;psbZ
+N1.HOG0000016	OG0000016	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psaB		Chlorodesmis_fastigiata_HV03865|KY819064.1;psaB	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psaB							Bryopsis_plumosa_WEST4718|NC_026795.1;psaB
+N1.HOG0000017	OG0000017	n0		Caulerpa_cliftonii_HV03798|KX808498.1;clpP		Chlorodesmis_fastigiata_HV03865|KY819064.1;clpP			Dichotomosiphon_tuberosus_HV03781|MH591081.1;clpP					Bryopsis_plumosa_WEST4718|NC_026795.1;clpP
+N1.HOG0000018	OG0000018	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psaM	Avrainvillea_mazei_HV02664|KY509313.1;psaM		Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psaM							Bryopsis_plumosa_WEST4718|NC_026795.1;psaM
+N1.HOG0000019	OG0000019	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psb30	Avrainvillea_mazei_HV02664|KY509313.1;psb30		Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psb30							Bryopsis_plumosa_WEST4718|NC_026795.1;ycf12
+N1.HOG0000020	OG0000020	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbK	Avrainvillea_mazei_HV02664|KY509313.1;psbK		Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbK							Bryopsis_plumosa_WEST4718|NC_026795.1;psbK
+N1.HOG0000021	OG0000021	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbN	Avrainvillea_mazei_HV02664|KY509313.1;psbN		Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbN							Bryopsis_plumosa_WEST4718|NC_026795.1;psbN
+N1.HOG0000022	OG0000022	n0			Avrainvillea_mazei_HV02664|KY509313.1;psbI	Chlorodesmis_fastigiata_HV03865|KY819064.1;psbI	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbI							Bryopsis_plumosa_WEST4718|NC_026795.1;psbI
+N1.HOG0000023	OG0000023	n0			Avrainvillea_mazei_HV02664|KY509313.1;psbH	Chlorodesmis_fastigiata_HV03865|KY819064.1;psbH	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbH							Bryopsis_plumosa_WEST4718|NC_026795.1;psbH
+N1.HOG0000024	OG0000024	n0			Avrainvillea_mazei_HV02664|KY509313.1;psbB	Chlorodesmis_fastigiata_HV03865|KY819064.1;psbB	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbB							Bryopsis_plumosa_WEST4718|NC_026795.1;psbB
+N1.HOG0000025	OG0000025	n0			Avrainvillea_mazei_HV02664|KY509313.1;cysA	Chlorodesmis_fastigiata_HV03865|KY819064.1;cysA	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|cysA							Bryopsis_plumosa_WEST4718|NC_026795.1;cysA
+N1.HOG0000026	OG0000026	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpoC1	Avrainvillea_mazei_HV02664|KY509313.1;rpoC1	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoC1	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpoC1							
+N1.HOG0000027	OG0000027	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpoC2	Avrainvillea_mazei_HV02664|KY509313.1;rpoC2	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoC2	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpoC2							
+N1.HOG0000028	OG0000028	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psaJ		Chlorodesmis_fastigiata_HV03865|KY819064.1;psaJ							Flabellia_petiolata_HV01202|MH591086.1;psaJ	Bryopsis_plumosa_WEST4718|NC_026795.1;psaJ
+N1.HOG0000029	OG0000029	n0		Caulerpa_cliftonii_HV03798|KX808498.1;chlN	Avrainvillea_mazei_HV02664|KY509313.1;chlN	Chlorodesmis_fastigiata_HV03865|KY819064.1;chlN						Flabellia_petiolata_HV01202|MH591085.1;chlN		Bryopsis_plumosa_WEST4718|NC_026795.1;chlN
+N1.HOG0000030	OG0000030	n0		Caulerpa_cliftonii_HV03798|KX808498.1;chlL	Avrainvillea_mazei_HV02664|KY509313.1;chlL	Chlorodesmis_fastigiata_HV03865|KY819064.1;chlL						Flabellia_petiolata_HV01202|MH591085.1;chlL		Bryopsis_plumosa_WEST4718|NC_026795.1;chlL
+N1.HOG0000031	OG0000031	n0		Caulerpa_cliftonii_HV03798|KX808498.1;atpA	Avrainvillea_mazei_HV02664|KY509313.1;atpA	Chlorodesmis_fastigiata_HV03865|KY819064.1;atpA							Flabellia_petiolata_HV01202|MH591086.1;atpA	Bryopsis_plumosa_WEST4718|NC_026795.1;atpA
+N1.HOG0000032	OG0000032	n0		Caulerpa_cliftonii_HV03798|KX808498.1;atpF	Avrainvillea_mazei_HV02664|KY509313.1;atpF	Chlorodesmis_fastigiata_HV03865|KY819064.1;atpF							Flabellia_petiolata_HV01202|MH591086.1;atpF	Bryopsis_plumosa_WEST4718|NC_026795.1;atpF
+N1.HOG0000033	OG0000033	n0		Caulerpa_cliftonii_HV03798|KX808498.1;atpH	Avrainvillea_mazei_HV02664|KY509313.1;atpH	Chlorodesmis_fastigiata_HV03865|KY819064.1;atpH							Flabellia_petiolata_HV01202|MH591086.1;atpH	Bryopsis_plumosa_WEST4718|NC_026795.1;atpH
+N1.HOG0000034	OG0000034	n0		Caulerpa_cliftonii_HV03798|KX808498.1;atpI	Avrainvillea_mazei_HV02664|KY509313.1;atpI	Chlorodesmis_fastigiata_HV03865|KY819064.1;atpI							Flabellia_petiolata_HV01202|MH591086.1;atpI	Bryopsis_plumosa_WEST4718|NC_026795.1;atpI
+N1.HOG0000035	OG0000035	n0		Caulerpa_cliftonii_HV03798|KX808498.1;atpE	Avrainvillea_mazei_HV02664|KY509313.1;atpE	Chlorodesmis_fastigiata_HV03865|KY819064.1;atpE						Flabellia_petiolata_HV01202|MH591085.1;atpE		Bryopsis_plumosa_WEST4718|NC_026795.1;atpE
+N1.HOG0000036	OG0000036	n0		Caulerpa_cliftonii_HV03798|KX808498.1;atpB	Avrainvillea_mazei_HV02664|KY509313.1;atpB	Chlorodesmis_fastigiata_HV03865|KY819064.1;atpB						Flabellia_petiolata_HV01202|MH591085.1;atpB		Bryopsis_plumosa_WEST4718|NC_026795.1;atpB
+N1.HOG0000037	OG0000037	n0			Avrainvillea_mazei_HV02664|KY509313.1;psaA, Avrainvillea_mazei_HV02664|KY509313.1;psaB						Flabellia_petiolata_HV01202|MH591084.1;psaA	Flabellia_petiolata_HV01202|MH591085.1;orf108, Flabellia_petiolata_HV01202|MH591085.1;orf157		
+N1.HOG0000038	OG0000038	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rbcL		Chlorodesmis_fastigiata_HV03865|KY819064.1;rbcL	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rbcL							
+N1.HOG0000039	OG0000039	n0					Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|atpB	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;atpA						
+N1.HOG0000040	OG0000040	n0			Avrainvillea_mazei_HV02664|KY509313.1;rpl12		Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpl12							Bryopsis_plumosa_WEST4718|NC_026795.1;rpl12
+N1.HOG0000041	OG0000041	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psaC	Avrainvillea_mazei_HV02664|KY509313.1;psaC									Bryopsis_plumosa_WEST4718|NC_026795.1;psaC
+N1.HOG0000042	OG0000042	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpl19		Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl19	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpl19							
+N1.HOG0000043	OG0000043	n0		Caulerpa_cliftonii_HV03798|KX808498.1;tufA		Chlorodesmis_fastigiata_HV03865|KY819064.1;tufA	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|tufA							
+N1.HOG0000044	OG0000044	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;accD			Dichotomosiphon_tuberosus_HV03781|MH591081.1;accD					Bryopsis_plumosa_WEST4718|NC_026795.1;accD
+N1.HOG0000045	OG0000045	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbC			Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbC							Bryopsis_plumosa_WEST4718|NC_026795.1;psbC
+N1.HOG0000046	OG0000046	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbD			Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbD							Bryopsis_plumosa_WEST4718|NC_026795.1;psbD
+N1.HOG0000047	OG0000047	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psaA			Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psaA							Bryopsis_plumosa_WEST4718|NC_026795.1;psaA
+N1.HOG0000048	OG0000048	n0		Caulerpa_cliftonii_HV03798|KX808498.1;chlB			Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|chlB							Bryopsis_plumosa_WEST4718|NC_026795.1;chlB
+N1.HOG0000049	OG0000049	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbT	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbT							Bryopsis_plumosa_WEST4718|NC_026795.1;psbT
+N1.HOG0000050	OG0000050	n0			Avrainvillea_mazei_HV02664|KY509313.1;chlI	Chlorodesmis_fastigiata_HV03865|KY819064.1;chlI							Flabellia_petiolata_HV01202|MH591086.1;chlI	
+N1.HOG0000051	OG0000051	n0			Avrainvillea_mazei_HV02664|KY509313.1;ycf4	Chlorodesmis_fastigiata_HV03865|KY819064.1;ycf4							Flabellia_petiolata_HV01202|MH591086.1;ycf4	
+N1.HOG0000052	OG0000052	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps12	Avrainvillea_mazei_HV02664|KY509313.1;rps12	Chlorodesmis_fastigiata_HV03865|KY819064.1;rps12								
+N1.HOG0000053	OG0000053	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps7	Avrainvillea_mazei_HV02664|KY509313.1;rps7	Chlorodesmis_fastigiata_HV03865|KY819064.1;rps7								
+N1.HOG0000054	OG0000054	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpl20		Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl20	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpl20							
+N1.HOG0000055	OG0000055	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps18		Chlorodesmis_fastigiata_HV03865|KY819064.1;rps18	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rps18							
+N1.HOG0000056	OG0000056	n0		Caulerpa_cliftonii_HV03798|KX808498.1;psbA	Avrainvillea_mazei_HV02664|KY509313.1;psbA	Chlorodesmis_fastigiata_HV03865|KY819064.1;psbA							Flabellia_petiolata_HV01202|MH591086.1;psbA	
+N1.HOG0000057	OG0000057	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpoA	Avrainvillea_mazei_HV02664|KY509313.1;rpoA	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoA								Bryopsis_plumosa_WEST4718|NC_026795.1;rpoA
+N1.HOG0000058	OG0000058	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps11	Avrainvillea_mazei_HV02664|KY509313.1;rps11	Chlorodesmis_fastigiata_HV03865|KY819064.1;rps11								Bryopsis_plumosa_WEST4718|NC_026795.1;rps11
+N1.HOG0000059	OG0000059	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpl36	Avrainvillea_mazei_HV02664|KY509313.1;rpl36	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl36								Bryopsis_plumosa_WEST4718|NC_026795.1;rpl36
+N1.HOG0000060	OG0000060	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpl5	Avrainvillea_mazei_HV02664|KY509313.1;rpl5	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl5								Bryopsis_plumosa_WEST4718|NC_026795.1;rpl5
+N1.HOG0000061	OG0000061	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpl14	Avrainvillea_mazei_HV02664|KY509313.1;rpl14	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl14								Bryopsis_plumosa_WEST4718|NC_026795.1;rpl14
+N1.HOG0000062	OG0000062	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpl16	Avrainvillea_mazei_HV02664|KY509313.1;rpl16	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl16								Bryopsis_plumosa_WEST4718|NC_026795.1;rpl16
+N1.HOG0000063	OG0000063	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps3	Avrainvillea_mazei_HV02664|KY509313.1;rps3	Chlorodesmis_fastigiata_HV03865|KY819064.1;rps3								Bryopsis_plumosa_WEST4718|NC_026795.1;rps3
+N1.HOG0000064	OG0000064	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps19	Avrainvillea_mazei_HV02664|KY509313.1;rps19	Chlorodesmis_fastigiata_HV03865|KY819064.1;rps19								Bryopsis_plumosa_WEST4718|NC_026795.1;rps19
+N1.HOG0000065	OG0000065	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rpl2	Avrainvillea_mazei_HV02664|KY509313.1;rpl2	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl2								Bryopsis_plumosa_WEST4718|NC_026795.1;rpl2
+N1.HOG0000066	OG0000066	n0		Caulerpa_cliftonii_HV03798|KX808498.1;petA	Avrainvillea_mazei_HV02664|KY509313.1;petA	Chlorodesmis_fastigiata_HV03865|KY819064.1;petA								Bryopsis_plumosa_WEST4718|NC_026795.1;petA
+N1.HOG0000067	OG0000067	n0		Caulerpa_cliftonii_HV03798|KX808498.1;ftsH		Chlorodesmis_fastigiata_HV03865|KY819064.1;ftsH			Dichotomosiphon_tuberosus_HV03781|MH591081.1;ftsH					Bryopsis_plumosa_WEST4718|NC_026795.1;ftsH
+N1.HOG0000068	OG0000068	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps2		Chlorodesmis_fastigiata_HV03865|KY819064.1;rps2							Flabellia_petiolata_HV01202|MH591086.1;rps2	Bryopsis_plumosa_WEST4718|NC_026795.1;rps2
+N1.HOG0000069	OG0000069	n0		Caulerpa_cliftonii_HV03798|KX808498.1;orf347				Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;orf444		Flabellia_petiolata_HV01202|MH591083.1;orf516				Bryopsis_plumosa_WEST4718|NC_026795.1;orf7
+N1.HOG0000070	OG0000070	n0		Caulerpa_cliftonii_HV03798|KX808498.1;cemA		Chlorodesmis_fastigiata_HV03865|KY819064.1;cemA						Flabellia_petiolata_HV01202|MH591085.1;cemA		Bryopsis_plumosa_WEST4718|NC_026795.1;cemA
+N1.HOG0000071	OG0000071	n0		Caulerpa_cliftonii_HV03798|KX808498.1;rps4		Chlorodesmis_fastigiata_HV03865|KY819064.1;rps4			Dichotomosiphon_tuberosus_HV03781|MH591081.1;rps4				Flabellia_petiolata_HV01202|MH591086.1;rps4	
+N1.HOG0000072	OG0000072	n0			Avrainvillea_mazei_HV02664|KY509313.1;rpl32	Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl32	Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpl32							Bryopsis_plumosa_WEST4718|NC_026795.1;rpl32
+N1.HOG0000073	OG0000082	-		Caulerpa_cliftonii_HV03798|KX808498.1;infA	Avrainvillea_mazei_HV02664|KY509313.1;infA									Bryopsis_plumosa_WEST4718|NC_026795.1;infA
+N1.HOG0000074	OG0000083	-		Caulerpa_cliftonii_HV03798|KX808498.1;accD	Avrainvillea_mazei_HV02664|KY509313.1;accD					Flabellia_petiolata_HV01202|MH591083.1;accD				
+N1.HOG0000075	OG0000084	-		Caulerpa_cliftonii_HV03798|KX808498.1;ycf4				Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;ycf4						Bryopsis_plumosa_WEST4718|NC_026795.1;ycf4
+N1.HOG0000076	OG0000085	-		Caulerpa_cliftonii_HV03798|KX808498.1;chlI				Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;chlI						Bryopsis_plumosa_WEST4718|NC_026795.1;chlI
+N1.HOG0000077	OG0000086	-		Caulerpa_cliftonii_HV03798|KX808498.1;ycf3	Avrainvillea_mazei_HV02664|KY509313.1;ycf3									Bryopsis_plumosa_WEST4718|NC_026795.1;ycf3
+N1.HOG0000078	OG0000087	-			Avrainvillea_mazei_HV02664|KY509313.1;orf100, Avrainvillea_mazei_HV02664|KY509313.1;psbE							Flabellia_petiolata_HV01202|MH591085.1;psbE		
+N1.HOG0000079	OG0000088	-			Avrainvillea_mazei_HV02664|KY509313.1;psbC	Chlorodesmis_fastigiata_HV03865|KY819064.1;psbC				Flabellia_petiolata_HV01202|MH591083.1;psbC				
+N1.HOG0000080	OG0000089	-			Avrainvillea_mazei_HV02664|KY509313.1;psbD	Chlorodesmis_fastigiata_HV03865|KY819064.1;psbD				Flabellia_petiolata_HV01202|MH591083.1;psbD				
+N1.HOG0000081	OG0000090	-			Avrainvillea_mazei_HV02664|KY509313.1;chlB	Chlorodesmis_fastigiata_HV03865|KY819064.1;chlB							Flabellia_petiolata_HV01202|MH591086.1;chlB	
+N1.HOG0000082	OG0000091	-			Avrainvillea_mazei_HV02664|KY509313.1;tufA					Flabellia_petiolata_HV01202|MH591083.1;tufA				Bryopsis_plumosa_WEST4718|NC_026795.1;tufA
+N1.HOG0000083	OG0000092	-			Avrainvillea_mazei_HV02664|KY509313.1;rbcL					Flabellia_petiolata_HV01202|MH591083.1;rbcL				Bryopsis_plumosa_WEST4718|NC_026795.1;rbcL
+N1.HOG0000084	OG0000093	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaC			Dichotomosiphon_tuberosus_HV03781|MH591081.1;psaC	Flabellia_petiolata_HV01202|MH591083.1;psaC				
+N1.HOG0000085	OG0000094	-							Dichotomosiphon_tuberosus_HV03781|MH591081.1;rps7	Flabellia_petiolata_HV01202|MH591083.1;rps7				Bryopsis_plumosa_WEST4718|NC_026795.1;rps7
+N1.HOG0000086	OG0000095	-							Dichotomosiphon_tuberosus_HV03781|MH591081.1;rps12	Flabellia_petiolata_HV01202|MH591083.1;rps12				Bryopsis_plumosa_WEST4718|NC_026795.1;rps12
+N1.HOG0000087	OG0000118	-		Caulerpa_cliftonii_HV03798|KX808498.1;orf180										Bryopsis_plumosa_WEST4718|NC_026795.1;tilS
+N1.HOG0000088	OG0000119	-		Caulerpa_cliftonii_HV03798|KX808498.1;orf519									Flabellia_petiolata_HV01202|MH591086.1;orf518	
+N1.HOG0000089	OG0000120	-		Caulerpa_cliftonii_HV03798|KX808498.1;rps8		Chlorodesmis_fastigiata_HV03865|KY819064.1;rps8								
+N1.HOG0000090	OG0000121	-		Caulerpa_cliftonii_HV03798|KX808498.1;orf196, Caulerpa_cliftonii_HV03798|KX808498.1;orf656										
+N1.HOG0000091	OG0000122	-		Caulerpa_cliftonii_HV03798|KX808498.1;orf266, Caulerpa_cliftonii_HV03798|KX808498.1;orf273										
+N1.HOG0000092	OG0000123	-		Caulerpa_cliftonii_HV03798|KX808498.1;rpoB										Bryopsis_plumosa_WEST4718|NC_026795.1;rpoB
+N1.HOG0000093	OG0000124	-			Avrainvillea_mazei_HV02664|KY509313.1;orf275, Avrainvillea_mazei_HV02664|KY509313.1;orf244									
+N1.HOG0000094	OG0000125	-			Avrainvillea_mazei_HV02664|KY509313.1;rps18									Bryopsis_plumosa_WEST4718|NC_026795.1;rps18
+N1.HOG0000095	OG0000126	-			Avrainvillea_mazei_HV02664|KY509313.1;rpl20									Bryopsis_plumosa_WEST4718|NC_026795.1;rpl20
+N1.HOG0000096	OG0000127	-			Avrainvillea_mazei_HV02664|KY509313.1;rps8									Bryopsis_plumosa_WEST4718|NC_026795.1;rps8
+N1.HOG0000097	OG0000128	-			Avrainvillea_mazei_HV02664|KY509313.1;clpP							Flabellia_petiolata_HV01202|MH591085.1;clpP		
+N1.HOG0000098	OG0000129	-			Avrainvillea_mazei_HV02664|KY509313.1;psbJ							Flabellia_petiolata_HV01202|MH591085.1;psbJ		
+N1.HOG0000099	OG0000130	-			Avrainvillea_mazei_HV02664|KY509313.1;psbF							Flabellia_petiolata_HV01202|MH591085.1;psbF		
+N1.HOG0000100	OG0000131	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaM						Flabellia_petiolata_HV01202|MH591085.1;psaM		
+N1.HOG0000101	OG0000132	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbK						Flabellia_petiolata_HV01202|MH591085.1;psbK		
+N1.HOG0000102	OG0000133	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbN						Flabellia_petiolata_HV01202|MH591085.1;psbN		
+N1.HOG0000103	OG0000134	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;petL							Flabellia_petiolata_HV01202|MH591086.1;petL	
+N1.HOG0000104	OG0000135	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaA				Flabellia_petiolata_HV01202|MH591083.1;psaB				
+N1.HOG0000105	OG0000136	-							Dichotomosiphon_tuberosus_HV03781|MH591081.1;psbM					Bryopsis_plumosa_WEST4718|NC_026795.1;psbM
+N1.HOG0000106	OG0000137	-								Flabellia_petiolata_HV01202|MH591083.1;rpoC2				Bryopsis_plumosa_WEST4718|NC_026795.1;rpoC2
+N1.HOG0000107	OG0000138	-								Flabellia_petiolata_HV01202|MH591083.1;rpoC1				Bryopsis_plumosa_WEST4718|NC_026795.1;rpoC1

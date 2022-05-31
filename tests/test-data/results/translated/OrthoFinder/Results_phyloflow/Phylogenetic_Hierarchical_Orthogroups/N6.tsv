@@ -1,0 +1,68 @@
+HOG	OG	Gene Tree Parent Clade	KX808497.cds	KX808498.cds	KY509313.cds	KY819064.cds	MH591079.cds	MH591080.cds	MH591081.cds	MH591083.cds	MH591084.cds	MH591085.cds	MH591086.cds	NC_026795.cds
+N6.HOG0000000	OG0000000	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;petD						Flabellia_petiolata_HV01202|MH591085.1;petD		
+N6.HOG0000001	OG0000001	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;petB						Flabellia_petiolata_HV01202|MH591085.1;petB		
+N6.HOG0000002	OG0000002	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps14						Flabellia_petiolata_HV01202|MH591085.1;rps14		
+N6.HOG0000003	OG0000003	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB.2, Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB						Flabellia_petiolata_HV01202|MH591085.1;rpoBb, Flabellia_petiolata_HV01202|MH591085.1;rpoBa		
+N6.HOG0000004	OG0000005	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps9								
+N6.HOG0000005	OG0000006	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ccs1						Flabellia_petiolata_HV01202|MH591085.1;ccs1		
+N6.HOG0000006	OG0000007	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;petG								
+N6.HOG0000007	OG0000008	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;cysT						Flabellia_petiolata_HV01202|MH591085.1;cysT		
+N6.HOG0000008	OG0000009	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ycf1						Flabellia_petiolata_HV01202|MH591085.1;ycf1		
+N6.HOG0000009	OG0000010	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ycf20				Flabellia_petiolata_HV01202|MH591083.1;ycf20				
+N6.HOG0000010	OG0000011	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbE								
+N6.HOG0000011	OG0000012	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbF								
+N6.HOG0000012	OG0000013	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbL								
+N6.HOG0000013	OG0000014	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbJ								
+N6.HOG0000014	OG0000015	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbZ								
+N6.HOG0000015	OG0000016	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaB								
+N6.HOG0000016	OG0000017	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;clpP								
+N6.HOG0000017	OG0000022	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbI								
+N6.HOG0000018	OG0000023	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbH								
+N6.HOG0000019	OG0000024	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbB								
+N6.HOG0000020	OG0000025	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;cysA								
+N6.HOG0000021	OG0000026	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoC1								
+N6.HOG0000022	OG0000027	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoC2								
+N6.HOG0000023	OG0000028	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaJ							Flabellia_petiolata_HV01202|MH591086.1;psaJ	
+N6.HOG0000024	OG0000029	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;chlN						Flabellia_petiolata_HV01202|MH591085.1;chlN		
+N6.HOG0000025	OG0000030	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;chlL						Flabellia_petiolata_HV01202|MH591085.1;chlL		
+N6.HOG0000026	OG0000031	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpA							Flabellia_petiolata_HV01202|MH591086.1;atpA	
+N6.HOG0000027	OG0000032	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpF							Flabellia_petiolata_HV01202|MH591086.1;atpF	
+N6.HOG0000028	OG0000033	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpH							Flabellia_petiolata_HV01202|MH591086.1;atpH	
+N6.HOG0000029	OG0000034	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpI							Flabellia_petiolata_HV01202|MH591086.1;atpI	
+N6.HOG0000030	OG0000035	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpE						Flabellia_petiolata_HV01202|MH591085.1;atpE		
+N6.HOG0000031	OG0000036	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpB						Flabellia_petiolata_HV01202|MH591085.1;atpB		
+N6.HOG0000032	OG0000037	n0									Flabellia_petiolata_HV01202|MH591084.1;psaA	Flabellia_petiolata_HV01202|MH591085.1;orf108, Flabellia_petiolata_HV01202|MH591085.1;orf157		
+N6.HOG0000033	OG0000038	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rbcL								
+N6.HOG0000034	OG0000039	n0						Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;atpA						
+N6.HOG0000035	OG0000042	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl19								
+N6.HOG0000036	OG0000043	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;tufA								
+N6.HOG0000037	OG0000044	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;accD								
+N6.HOG0000038	OG0000049	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbT								
+N6.HOG0000039	OG0000050	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;chlI							Flabellia_petiolata_HV01202|MH591086.1;chlI	
+N6.HOG0000040	OG0000051	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ycf4							Flabellia_petiolata_HV01202|MH591086.1;ycf4	
+N6.HOG0000041	OG0000052	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps12								
+N6.HOG0000042	OG0000053	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps7								
+N6.HOG0000043	OG0000054	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl20								
+N6.HOG0000044	OG0000055	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps18								
+N6.HOG0000045	OG0000056	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbA							Flabellia_petiolata_HV01202|MH591086.1;psbA	
+N6.HOG0000046	OG0000057	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoA								
+N6.HOG0000047	OG0000058	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps11								
+N6.HOG0000048	OG0000059	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl36								
+N6.HOG0000049	OG0000060	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl5								
+N6.HOG0000050	OG0000061	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl14								
+N6.HOG0000051	OG0000062	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl16								
+N6.HOG0000052	OG0000063	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps3								
+N6.HOG0000053	OG0000064	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps19								
+N6.HOG0000054	OG0000065	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl2								
+N6.HOG0000055	OG0000066	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;petA								
+N6.HOG0000056	OG0000067	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ftsH								
+N6.HOG0000057	OG0000068	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps2							Flabellia_petiolata_HV01202|MH591086.1;rps2	
+N6.HOG0000058	OG0000069	n0						Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;orf444		Flabellia_petiolata_HV01202|MH591083.1;orf516				
+N6.HOG0000059	OG0000070	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;cemA						Flabellia_petiolata_HV01202|MH591085.1;cemA		
+N6.HOG0000060	OG0000071	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps4							Flabellia_petiolata_HV01202|MH591086.1;rps4	
+N6.HOG0000061	OG0000072	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl32								
+N6.HOG0000062	OG0000131	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaM						Flabellia_petiolata_HV01202|MH591085.1;psaM		
+N6.HOG0000063	OG0000132	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbK						Flabellia_petiolata_HV01202|MH591085.1;psbK		
+N6.HOG0000064	OG0000133	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbN						Flabellia_petiolata_HV01202|MH591085.1;psbN		
+N6.HOG0000065	OG0000134	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;petL							Flabellia_petiolata_HV01202|MH591086.1;petL	
+N6.HOG0000066	OG0000135	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaA				Flabellia_petiolata_HV01202|MH591083.1;psaB				

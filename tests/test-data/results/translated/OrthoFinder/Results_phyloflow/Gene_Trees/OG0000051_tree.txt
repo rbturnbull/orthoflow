@@ -1,0 +1,1 @@
+(KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|ycf4:0.184,(KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1_ycf4:0.349414,(KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1_ycf4:0.189957,MH591086_cds_Flabellia_petiolata_HV01202|MH591086.1_ycf4:0.0716981)0.996:0.31895)1:0.184);

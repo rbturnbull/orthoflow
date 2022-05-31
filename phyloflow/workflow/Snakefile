@@ -53,4 +53,4 @@ onstart:
 
 rule all:
     input:
-        "results/orthologs",
+        "results/alignment/alignment.fa",

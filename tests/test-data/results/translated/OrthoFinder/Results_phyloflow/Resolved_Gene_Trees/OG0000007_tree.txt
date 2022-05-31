@@ -1,0 +1,1 @@
+(KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|petG:2.5e-09,((KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1_petG:0.0853828,MH591079_cds_Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|petG:5e-09)n2:0.165579,(KX808498_cds_Caulerpa_cliftonii_HV03798|KX808498.1_petG:0.149672,KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1_petG:0.0200508)n3:0.116422)n1:2.5e-09)n0;

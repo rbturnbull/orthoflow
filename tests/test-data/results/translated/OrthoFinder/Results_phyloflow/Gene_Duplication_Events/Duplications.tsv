@@ -1,0 +1,8 @@
+Orthogroup	Species Tree Node	Gene Tree Node	Support	Type	Genes 1	Genes 2
+OG0000003	N8	n3	0.5	Non-Terminal	KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB.2, MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1;rpoBb	KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB, MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1;rpoBa
+OG0000004	KX808497.cds	n2	1.0	Terminal	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf500, KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf497, KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf476	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf422
+OG0000004	KX808497.cds	n3	1.0	Terminal	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf500	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf497, KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf476
+OG0000004	KX808497.cds	n4	1.0	Terminal	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf497	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf476
+OG0000037	MH591085.cds	n2	1.0	Terminal	MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1;orf108	MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1;orf157
+OG0000037	KY509313.cds	n3	1.0	Terminal	KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1;psaA	KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1;psaB
+OG0000039	KX808497.cds	n2	1.0	Terminal	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|atpA	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|atpB

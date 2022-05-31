@@ -1,0 +1,1 @@
+(NC_026795_cds_Bryopsis_plumosa_WEST4718|NC_026795.1_orf7:0.479285,(MH591080_cds_Dichotomosiphon_tuberosus_HV03781|0|MH591080.1_orf444:0.383236,(KX808498_cds_Caulerpa_cliftonii_HV03798|KX808498.1_orf347:1.02895,MH591083_cds_Flabellia_petiolata_HV01202|MH591083.1_orf516:0.693385)n2:0.275172)n1:0.479285)n0;
