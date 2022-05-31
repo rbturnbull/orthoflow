@@ -9,7 +9,6 @@ import typer
 def matched_cds_path(ogfile:Path, output_dir:Path):
     output_dir.mkdir(parents=True, exist_ok=True)
     suffix_length = len(ogfile.suffix)
-    breakpoint()
     return output_dir/f"{ogfile.name[:-suffix_length]}.cds.fa"
 
 def matching_cds(

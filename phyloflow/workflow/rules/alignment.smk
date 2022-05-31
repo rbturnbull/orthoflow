@@ -26,21 +26,21 @@ rule mafft:
         """
 
 
-rule matching_cds:
+rule concat_nuc:
     """
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
     """
     output:
-        directory("results/matched_cds/")
+        "results/alignment/sequences.cds.fa"
     input:
         cds=Path("results/taxon-added/"),
-        og=Path("results/orthologs/")
+        alignment="results/alignment/alignment.fa"
     bibs:
         "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
     shell:
-        "python {SCRIPT_DIR}/matching_cds.py --cds-dir {input.cds} --og-dir {input.og} --output-dir {output}"
+        "python {SCRIPT_DIR}/concat_nuc.py --cds-dir {input.cds} --alignment {input.alignment} --output-file {output}"
 
 
 rule thread_dna:
@@ -52,34 +52,32 @@ rule thread_dna:
     The --stop argument keeps in stop codons which are otherwise removed.
     """
     output:
-        aligned_cds="results/alignment/alignment.translated.out",
+        aligned_cds="results/alignment/alignment.cds.fa",
     input:
         alignment="results/alignment/alignment.fa",
-        cds="results/matched_cds/"
+        cds="results/alignment/sequences.cds.fa"
     bibs:
         "../bibs/phykit.bib"
     conda:
         "../envs/phykit.yaml"
     shell:
         """
-
-        phykit thread_dna --protein {input.alignment} -n <file> --stop > {output}
+        phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output}
         """
 
 
-rule trim_seqIDs_to_taxon:
+rule taxon_only:
     """
     Trim sequence IDs to taxon.
     
-    - At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier and produce clean output for the next stages. 
-    I wrote "ext_scripts/seqID_taxon_only.pl" to do this and added a rule for this. 
-    We probably want this running in a conda environment to be safe but I haven't done that. 
+    At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier 
+    and produce clean output for the next stages. 
     """
-    input:
-        "output/{og}.aln.fa"
     output:
-        "output/{og}.trID.aln.fa"
+        "results/alignment/alignment.no_taxon.cds.fa"
+    input:
+        rules.thread_dna.output
     conda:
-        "../envs/perl.yaml"
+        "../envs/typer.yaml"
     shell:
-        "perl {SCRIPT_DIR}/seqID_taxon_only.pl {input} {output}"
+        "python {SCRIPT_DIR}/remove_taxon.py {input} {output}"
