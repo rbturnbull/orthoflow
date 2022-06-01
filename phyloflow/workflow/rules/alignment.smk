@@ -4,14 +4,13 @@ rule mafft:
     Aligns the protein (amino acid) file with MAFFT
     """
     output:
-        combined="results/alignment/sequences.fa",
-        alignment="results/alignment/alignment.fa"
+        "results/alignment/{og}.alignment.fa"
     input:
-        Path("results/orthologs/").glob('*.fa')
+        "results/orthologs/{og}.fa"
     bibs:
         "../bibs/mafft7.bib"
     log:
-        "logs/mafft/mafft.log"
+        "logs/mafft/mafft-{og}.log"
     threads: 4
     resources:
         time="00:10:00",
@@ -21,8 +20,7 @@ rule mafft:
         "../envs/mafft.yaml"
     shell:
         """
-        cat {input} > {output.combined}
-        mafft --thread {threads} --auto {output.combined} > {output.alignment}
+        mafft --thread {threads} --auto {input} > {output}
         """
 
 
@@ -31,10 +29,10 @@ rule concat_nuc:
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
     """
     output:
-        "results/alignment/sequences.cds.fa"
+        "results/alignment/{og}.seqs.cds.fa"
     input:
         cds=Path("results/taxon-added/"),
-        alignment="results/alignment/alignment.fa"
+        alignment=rules.mafft.output
     bibs:
         "../bibs/biopython.bib"
     conda:
@@ -52,10 +50,10 @@ rule thread_dna:
     The --stop argument keeps in stop codons which are otherwise removed.
     """
     output:
-        aligned_cds="results/alignment/alignment.cds.fa",
+        "results/alignment/{og}.alignment.cds.fa"
     input:
-        alignment="results/alignment/alignment.fa",
-        cds="results/alignment/sequences.cds.fa"
+        alignment=rules.mafft.output,
+        cds=rules.concat_nuc.output
     bibs:
         "../bibs/phykit.bib"
     conda:
@@ -74,10 +72,10 @@ rule taxon_only:
     and produce clean output for the next stages. 
     """
     output:
-        "results/alignment/alignment.no_taxon.cds.fa"
+        "results/alignment/{og}.alignment.no_taxon.cds.fa"
     input:
         rules.thread_dna.output
     conda:
         "../envs/typer.yaml"
     shell:
-        "python {SCRIPT_DIR}/remove_taxon.py {input} {output}"
+        "python {SCRIPT_DIR}/taxon_only.py {input} {output}"

@@ -1,7 +1,46 @@
 from pathlib import Path
-from Bio import SeqIO, AlignIO
-
+from Bio import AlignIO
 import typer
+import pickle
+import linecache
+
+
+class MultiFastaIndex():
+    def __init__(self, files):
+        self.files = list(files)
+        self.id_refs = {}
+
+        for file_index, file in enumerate(self.files):
+            with open(file) as f:
+                for line_number, line in enumerate(f):
+                    if line.startswith(">"):
+                        seq_id = line[1:].strip()
+
+                        if seq_id in self.id_refs:
+                            print(f"duplicate seq_id {seq_id}")
+                            continue
+
+                        self.id_refs[seq_id] = (file_index, line_number+2)
+                    
+    def save(self, path):
+        with open(path, 'wb') as f:
+            pickle.dump(self, f)
+
+    @classmethod
+    def load(cls, path):
+        with open(path, 'rb') as f:
+            return pickle.load(f)
+
+    def __len__(self):
+        return len(self.id_refs)
+
+    def __getitem__(self, seq_id):
+        file_index, line_number = self.id_refs[seq_id]
+        filename = str(self.files[file_index])
+        return linecache.getline(filename, line_number).strip()
+
+    def __contains__(self, seq_id):
+        return seq_id in self.id_refs
 
 
 def concat_nuc(
@@ -12,21 +51,17 @@ def concat_nuc(
     """
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
     """
-    cds_files = list(cds_dir.glob("*.cds.fasta"))
-    cds_dict = {}
-    for cds_file in cds_files: 
-        for seq in SeqIO.parse(cds_file,"fasta"):
-            print(seq.id)
-            if seq.id in cds_dict:
-                print(f"Duplicate seq id {seq.id}")
-                continue
-            cds_dict[seq.id] = seq.seq
+
+    # HACK This should be done once per directory and saved
+    multifastaindex = MultiFastaIndex(cds_dir.glob("*.cds.fasta"))
 
     with open(output_file, 'w') as f:
         alignment = AlignIO.read(alignment, "fasta")
         for row in alignment:
-            assert row.id in cds_dict
-            f.write(f">{row.id}\n{cds_dict[row.id]}\n")
+            if row.id not in multifastaindex:
+                print(f"cannot find {row.id} in multifastaindex")
+                breakpoint()
+            f.write(f">{row.id}\n{multifastaindex[row.id]}\n")
 
 
 if __name__ == "__main__":
