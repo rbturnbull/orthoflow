@@ -47,7 +47,7 @@ def run(
     mamba_found = True
     try:
         subprocess.run(["mamba", "--version"], capture_output=True, check=True)
-    except subprocess.CalledProcessError:
+    except (subprocess.CalledProcessError, FileNotFoundError):
         mamba_found = False
 
     args = [
