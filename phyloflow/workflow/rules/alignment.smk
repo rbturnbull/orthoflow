@@ -79,3 +79,20 @@ rule taxon_only:
         "../envs/typer.yaml"
     shell:
         "python {SCRIPT_DIR}/taxon_only.py {input} {output}"
+
+
+rule list_alignments:
+    """
+    List path to alignment files into a single text file for use in PhyKIT.
+
+    NB I THINK THIS NEEDS TO USE A CHECKOUT TO GET ALL THE ALIGNMENT FILES.
+    """
+    output:
+        "results/alignment/alignments.txt",
+    input:
+        Path("results/alignment/").glob("*.alignment.no_taxon.cds.fa") # This won't get all files to be generated in the DAG
+    shell:
+        """
+        ls -1 {input} > {output}
+        """
+

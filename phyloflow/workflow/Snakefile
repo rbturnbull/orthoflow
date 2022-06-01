@@ -20,8 +20,7 @@ configfile: CONFIG_DIR / "config.yml"
 include: "rules/intake.smk"
 include: "rules/orthologs.smk"
 include: "rules/alignment.smk"
-
-# include: "rules/supermatrix.smk"
+include: "rules/supermatrix.smk"
 # include: "rules/genetree.smk"
 # include: "rules/reconciliation.smk"
 

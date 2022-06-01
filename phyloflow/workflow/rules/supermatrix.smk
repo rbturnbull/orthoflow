@@ -1,45 +1,45 @@
-rule list_alignments:
-    """
-    List alignments.
-    """
-    input:
-        expand("output/{og}.trID.aln.fa",og=ogs)
-    output:
-        "output/phykit_concat/files_to_concatenate.txt"
-    shell:
-        "ls -1 output/*.trID.aln.fa > {output}"
-
 rule concatenate_alignments:
     """
-    Concatenate alignments.
+    Concatenate alignments into a single supermatrix.
+
+    https://jlsteenwyk.com/PhyKIT/usage/index.html#create-concatenation-matrix
     """
-    input:
-        "output/phykit_concat/files_to_concatenate.txt"
     output:
-        "output/phykit_concat/supermatrix.fa"
-    params:
-        prefix = lambda wildcards, output: str(output).replace(".fa", "")
+        "results/supermatrix/supermatrix.fa",
+        "results/supermatrix/supermatrix.partition",
+        "results/supermatrix/supermatrix.occupancy",
+    input:
+        rules.list_alignments.output
     conda:
         "../envs/phykit.yaml"
+    bibs:
+        "../bibs/phykit.bib"
     log:
         "logs/phykit_concat/supermatrix.log"
     shell:
-        "phykit create_concat -a {input} -p {params.prefix} >> {log}"
+        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix"
 
-rule iqtree_supermatrix:
+
+# do we want to get an alignment_summary?
+# https://jlsteenwyk.com/tutorials/phylogenomics_made_easy.html
+
+rule iqtree:
     """
-    IQTREE supermatrix.
+    Use IQTREE on the supermatrix.
     """
-    input:
-        "output/phykit_concat/supermatrix.fa"
     output:
-        "output/iqtree_supermatrix/supermatrix.treefile"
-    params:
-        prefix = lambda wildcards, output: str(output).replace(".treefile", "")
-    threads: workflow.cores
+        "results/supermatrix/supermatrix.fa.treefile",
+    input:
+        rules.concatenate_alignments.output
+    threads: 
+        workflow.cores
     conda:
-        ""
+        "../envs/iqtree.yaml"
+    bibs:
+        "../bibs/iqtree2.bib",
+        "../bibs/ultrafast-bootstrap.bib",
+        "../bibs/modelfinder.ris",
     log:
-        "logs/iqtree_supermatrix/iqtree.log"
+        "logs/supermatrix/iqtree.log"
     shell:
-        "iqtree -s {input} --prefix {params.prefix} -T AUTO -ntmax {threads}"
+        "iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads}"
