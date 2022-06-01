@@ -1,3 +1,4 @@
+import subprocess
 import sys
 from pathlib import Path
 from typing import Optional
@@ -42,9 +43,17 @@ def run(
     """
 
     snakefile = Path(__file__).parent / "workflow/Snakefile"
+
+    mamba_found = True
+    try:
+        subprocess.run(["mamba", "--version"], capture_output=True, check=True)
+    except subprocess.CalledProcessError:
+        mamba_found = False
+
     args = [
         f"--snakefile={snakefile}",
         "--use-conda",
+        "--conda-frontend=conda" if not mamba_found else "",
         f"--cores={cores}",
         f"--directory={directory}",
         *ctx.args,
