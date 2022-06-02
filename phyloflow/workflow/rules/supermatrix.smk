@@ -28,7 +28,7 @@ rule alignment_summary:
     https://jlsteenwyk.com/tutorials/phylogenomics_made_easy.html
     """
     output:
-        "results/supermatrix/alignment_summary.txt",
+        report("results/supermatrix/alignment_summary.txt", caption="../report/alignment_summary.rst", category="Supermatrix"),
     input:
         rules.concatenate_alignments.output.fasta
     conda:
@@ -46,7 +46,7 @@ rule iqtree:
     Use IQTREE on the supermatrix.
     """
     output:
-        "results/supermatrix/supermatrix.fa.treefile",
+        treefile=report("results/supermatrix/supermatrix.fa.treefile", category="Supermatrix"),
     input:
         rules.concatenate_alignments.output.fasta
     threads: 
@@ -61,3 +61,43 @@ rule iqtree:
         "logs/supermatrix/iqtree.log"
     shell:
         "iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -redo"
+
+
+
+rule ascii_tree:
+    """
+    Displays the tree in ASCII format.
+    """
+    output:
+        report("results/supermatrix/ascii_tree.txt", category="Supermatrix"),
+    input:
+        rules.iqtree.output.treefile
+    conda:
+        "../envs/phykit.yaml"
+    bibs:
+        "../bibs/phykit.bib",
+    log:
+        "logs/supermatrix/print_ascii_tree.log"
+    shell:
+        "phykit print_tree {input} > {output}"
+
+
+rule render_tree:
+    """
+    Renders the tree in SVG format.
+    """
+    output:
+        svg=report("results/supermatrix/render_tree.svg", category="Supermatrix"),
+        html=report("results/supermatrix/render_tree.html", category="Supermatrix"),
+    input:
+        rules.iqtree.output.treefile
+    conda:
+        "../envs/toytree.yaml"
+    bibs:
+        "../bibs/ete.ris",
+    log:
+        "logs/supermatrix/render_tree.log"
+    shell:
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --html {output.html}"
+
+
