@@ -94,7 +94,7 @@ rule render_tree:
     conda:
         "../envs/toytree.yaml"
     bibs:
-        "../bibs/ete.ris",
+        "../bibs/toytree.bib",
     log:
         "logs/supermatrix/render_tree.log"
     shell:
