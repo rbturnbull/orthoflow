@@ -3,10 +3,10 @@ rule mafft:
     """
     Aligns the protein (amino acid) file with MAFFT
     """
+    input:
+        "results/orthologs/{og}.orthosnap.fa"
     output:
         "results/alignment/{og}.alignment.fa"
-    input:
-        "results/orthologs/{og}.fa"
     bibs:
         "../bibs/mafft7.bib"
     log:
@@ -67,9 +67,9 @@ rule thread_dna:
 rule taxon_only:
     """
     Trim sequence IDs to taxon.
-    
-    At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier 
-    and produce clean output for the next stages. 
+
+    At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier
+    and produce clean output for the next stages.
     """
     output:
         "results/alignment/{og}.alignment.no_taxon.cds.fa"
@@ -81,6 +81,11 @@ rule taxon_only:
         "python {SCRIPT_DIR}/taxon_only.py {input} {output}"
 
 
+def all_alignments(wildcards):
+    filtered_dir = Path(checkpoints.filter_orthofinder.get().output[0])
+    return expand(rules.taxon_only.output, og=glob_wildcards(filtered_dir / "{og}.fa").og)
+
+
 rule list_alignments:
     """
     List path to alignment files into a single text file for use in PhyKIT.
@@ -90,7 +95,7 @@ rule list_alignments:
     output:
         "results/alignment/alignments.txt",
     input:
-        Path("results/alignment/").glob("*.alignment.no_taxon.cds.fa") # This won't get all files to be generated in the DAG
+        all_alignments
     shell:
         """
         ls -1 {input} > {output}

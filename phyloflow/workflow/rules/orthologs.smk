@@ -1,5 +1,6 @@
 from pathlib import Path
 from collections import namedtuple
+import re
 
 
 rule orthofinder:
@@ -52,29 +53,25 @@ rule orthosnap:
     """
     Run Orthosnap to retrieve single-copy orthologs.
 
+    To get orthosnap to run, we had to modify the IDs in the fasta files using the filter_orthofinder script to replace ';' with  '_'.
+    Later we will want to back match these IDs against the original CDS, so we have to reverse this transformation here!
+
     :output: A directory with an unknown number of
     """
     input:
-        fasta="results/orthologs/{id}.fa",
-        tree="results/orthologs/{id}.nwk"
+        fasta="results/orthologs/{og}.fa",
+        tree="results/orthologs/{og}.nwk"
     output:
-        directory("results/orthologs/{id}.fa.orthosnap")
+        "results/orthologs/{og}.orthosnap.fa"
     conda:
         ENV_DIR / "orthologs.yaml"
     shell:
-        """
-        mkdir {output}
+        r"""
         orthosnap -f {input.fasta} -t {input.tree}
-        mv {output}.*.fa {output} || true
-        """
 
-rule combine_subgroups:
-    input:
-        lambda wildcards: [
-                f"{fasta}.orthosnap"
-                for fasta in Path(checkpoints.filter_orthofinder.get(**wildcards).output[0]).glob("*.fa")
-            ]
-    output:
-        "results/combined_sc_orthologs.fa"
-    shell:
-        "cat results/orthologs/*.orthosnap/* > {output}"
+        for f in {input.fasta}.orthosnap.*.fa; do
+            sed '/^>/s/\(.*\)_\([^|;_]*\)$/\1;\2/' $f > $f.bu && mv $f.bu $f
+        done
+
+        cat {input.fasta}.orthosnap.*.fa > {output} || true
+        """
