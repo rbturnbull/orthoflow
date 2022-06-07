@@ -29,9 +29,11 @@ def main(
 
         for fasta_file in fastaInputFiles:
             progress.update(task_files, advance=1)
-            nseq = fasta_file.read_text().count('>')
+            fasta = fasta_file.read_text()
+            fasta = fasta.replace(';', '_')
+            nseq = fasta.count('>')
             if nseq >= minseq:
-                shutil.copyfile(fasta_file, outdir / fasta_file.name)
+                (outdir / fasta_file.name).write_text(fasta)
                 og = pattern.search(str(fasta_file)).group(1)
                 shutil.copyfile(gt_dir / (og + "_tree.txt"), outdir / (og + ".nwk"))
                 progress.update(task_kept, advance=1)
