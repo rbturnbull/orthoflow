@@ -1,4 +1,6 @@
 from pathlib import Path
+from collections import namedtuple
+import re
 
 
 rule orthofinder:
@@ -20,11 +22,11 @@ rule orthofinder:
     threads: workflow.cores
     shell:
         """
-        orthofinder -f {params.input_dir} -t {threads} -n phyloflow -ot -M msa
+        orthofinder -f {params.input_dir} -t {threads} -n phyloflow -ot -M msa -X
         """
 
 
-rule filter_orthofinder:
+checkpoint filter_orthofinder:
     """
     Copy out OGs with more than a minimum number of sequences.
 
@@ -45,3 +47,31 @@ rule filter_orthofinder:
         min_seq=config["filter_orthofinder"]['min_sequences'],
     shell:
         f"python {SCRIPT_DIR}/filter_OrthoFinder.py {{input}} {{output}} {{params.min_seq}}"
+
+
+rule orthosnap:
+    """
+    Run Orthosnap to retrieve single-copy orthologs.
+
+    To get orthosnap to run, we had to modify the IDs in the fasta files using the filter_orthofinder script to replace ';' with  '_'.
+    Later we will want to back match these IDs against the original CDS, so we have to reverse this transformation here!
+
+    :output: A directory with an unknown number of
+    """
+    input:
+        fasta="results/orthologs/{og}.fa",
+        tree="results/orthologs/{og}.nwk"
+    output:
+        "results/orthologs/{og}.orthosnap.fa"
+    conda:
+        ENV_DIR / "orthologs.yaml"
+    shell:
+        r"""
+        orthosnap -f {input.fasta} -t {input.tree}
+
+        for f in {input.fasta}.orthosnap.*.fa; do
+            sed '/^>/s/\(.*\)_\([^|;_]*\)$/\1;\2/' $f > $f.bu && mv $f.bu $f
+        done
+
+        cat {input.fasta}.orthosnap.*.fa > {output} || true
+        """
