@@ -89,8 +89,6 @@ def all_alignments(wildcards):
 rule list_alignments:
     """
     List path to alignment files into a single text file for use in PhyKIT.
-
-    NB I THINK THIS NEEDS TO USE A CHECKOUT TO GET ALL THE ALIGNMENT FILES.
     """
     output:
         "results/alignment/alignments.txt",
