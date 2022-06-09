@@ -54,4 +54,4 @@ onstart:
 
 rule all:
     input:
-        "results/alignment/alignment.fa",
+        "results/alignment/alignments.txt"

@@ -58,7 +58,7 @@ def run(
 
     All unrecognised arguments will be passed directly to Snakemake. Use `phyloflow --help-snakemake` to list all
     arguments accepted by Snakemake.
-    """
+    """  # noqa: W605
 
     snakefile = Path(__file__).parent / "workflow/Snakefile"
 
@@ -71,11 +71,13 @@ def run(
     args = [
         f"--snakefile={snakefile}",
         "--use-conda",
-        "--conda-frontend=conda" if not mamba_found else "",
         f"--cores={cores}",
         f"--directory={directory}",
-        *ctx.args,
     ]
+    if not mamba_found:
+        args.append("--conda-frontend=conda")
+    if ctx.args:
+        args.extend(ctx.args)
 
     typer.secho("Running phyloflow...", fg=typer.colors.GREEN)
     typer.secho(f"snakemake {' '.join(args)}", fg=typer.colors.BLACK)

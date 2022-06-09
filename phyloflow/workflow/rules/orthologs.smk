@@ -69,9 +69,8 @@ rule orthosnap:
         r"""
         orthosnap -f {input.fasta} -t {input.tree}
 
-        for f in {input.fasta}.orthosnap.*.fa; do
-            sed '/^>/s/\(.*\)_\([^|;_]*\)$/\1;\2/' $f > $f.bu && mv $f.bu $f
+        for f in {input.fasta}.orthosnap.*.fa; do  # N.B. This for loop just checks to ensure we have any matching files
+            cat {input.fasta}.orthosnap.*.fa > {output} || true
+            break
         done
-
-        cat {input.fasta}.orthosnap.*.fa > {output} || true
         """

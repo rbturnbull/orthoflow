@@ -58,8 +58,10 @@ rule extract_cds:
         else
             cp {input.file} {output}
         fi
-        """
 
+        # Sanitize the IDs
+        sed '/^>/s/;/_/g;s/ //g' {output} > {output}.tmp && mv {output}.tmp {output}
+        """
 
 rule add_taxon:
     """
