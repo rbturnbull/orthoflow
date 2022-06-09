@@ -53,11 +53,13 @@ def run(
     args = [
         f"--snakefile={snakefile}",
         "--use-conda",
-        "--conda-frontend=conda" if not mamba_found else "",
         f"--cores={cores}",
         f"--directory={directory}",
-        *ctx.args,
     ]
+    if not mamba_found:
+        args.append("--conda-frontend=conda")
+    if ctx.args:
+        args.extend(ctx.args)
 
     typer.secho("Running phyloflow...", fg=typer.colors.GREEN)
     typer.secho(f"snakemake {' '.join(args)}", fg=typer.colors.BLACK)
