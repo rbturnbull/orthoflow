@@ -40,7 +40,7 @@ def run(
 
     All unrecognised arguments will be passed directly to Snakemake. Use `phyloflow --help-snakemake` to list all
     arguments accepted by Snakemake.
-    """
+    """  # noqa: W605
 
     snakefile = Path(__file__).parent / "workflow/Snakefile"
 
