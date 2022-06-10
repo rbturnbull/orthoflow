@@ -49,7 +49,7 @@ checkpoint filter_orthofinder:
         f"python {SCRIPT_DIR}/filter_OrthoFinder.py {{input}} {{output}} {{params.min_seq}}"
 
 
-rule orthosnap:
+checkpoint orthosnap:
     """
     Run Orthosnap to retrieve single-copy orthologs.
 
@@ -62,15 +62,16 @@ rule orthosnap:
         fasta="results/orthologs/{og}.fa",
         tree="results/orthologs/{og}.nwk"
     output:
-        "results/orthologs/{og}.orthosnap.fa"
+        touch("results/orthologs/.{og}.orthosnap.flag")
     conda:
         ENV_DIR / "orthologs.yaml"
     shell:
         r"""
         orthosnap -f {input.fasta} -t {input.tree}
 
-        for f in {input.fasta}.orthosnap.*.fa; do  # N.B. This for loop just checks to ensure we have any matching files
-            cat {input.fasta}.orthosnap.*.fa > {output} || true
-            break
+        # NOTE: We need to use a loop to ensure we do nothing if there are no glob matches
+        snapfiles=$(ls {input.fasta}.orthosnap.*.fa 2> /dev/null || true)
+        for f in $snapfiles; do
+            cat $f >> results/orthologs/{wildcards.og}.orthosnap.fa
         done
         """
