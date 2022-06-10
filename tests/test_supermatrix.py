@@ -13,7 +13,7 @@ def test_concatenate_alignments():
 #     assert_expected("results/supermatrix/supermatrix.fa.treefile")
 
 
-def test_ascii_tree():
-    assert_expected("results/supermatrix/ascii_tree.txt")
+# def test_ascii_tree():
+#     assert_expected("results/supermatrix/ascii_tree.txt")
 
 
