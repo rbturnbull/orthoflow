@@ -1,0 +1,1 @@
+(Chlorodesmis_fastigiata_HV03865|0|KY819064.1|rpl32:0.176325,(Flabellia_petiolata_HV01202|0|MH591083.1|rpl32:0.323434,(Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpl32:0.185911,(Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl32:1.10931,Avrainvillea_mazei_HV02664|0|KY509313.1|rpl32:6e-09)n3:0.114448)n2:0.428333)n1:0.176325)n0;

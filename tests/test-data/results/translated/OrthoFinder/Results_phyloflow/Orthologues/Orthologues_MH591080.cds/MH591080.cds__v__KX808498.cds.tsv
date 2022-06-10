@@ -1,4 +1,9 @@
 Orthogroup	MH591080.cds	KX808498.cds
-OG0000069	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;orf444	Caulerpa_cliftonii_HV03798|KX808498.1;orf347
-OG0000084	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;ycf4	Caulerpa_cliftonii_HV03798|KX808498.1;ycf4
-OG0000085	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;chlI	Caulerpa_cliftonii_HV03798|KX808498.1;chlI
+OG0000003	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|psbA	Caulerpa_cliftonii_HV03798|0|KX808498.1|psbA
+OG0000006	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|atpA	Caulerpa_cliftonii_HV03798|0|KX808498.1|atpA
+OG0000007	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|atpF	Caulerpa_cliftonii_HV03798|0|KX808498.1|atpF
+OG0000008	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|atpH	Caulerpa_cliftonii_HV03798|0|KX808498.1|atpH
+OG0000009	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|atpI	Caulerpa_cliftonii_HV03798|0|KX808498.1|atpI
+OG0000042	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|orf444	Caulerpa_cliftonii_HV03798|0|KX808498.1|orf347
+OG0000043	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|chlI	Caulerpa_cliftonii_HV03798|0|KX808498.1|chlI
+OG0000044	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|ycf4	Caulerpa_cliftonii_HV03798|0|KX808498.1|ycf4

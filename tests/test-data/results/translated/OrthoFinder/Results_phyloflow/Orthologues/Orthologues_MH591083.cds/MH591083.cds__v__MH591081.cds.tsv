@@ -1,6 +1,9 @@
 Orthogroup	MH591083.cds	MH591081.cds
-OG0000010	Flabellia_petiolata_HV01202|MH591083.1;ycf20	Dichotomosiphon_tuberosus_HV03781|MH591081.1;ycf20
-OG0000076	Flabellia_petiolata_HV01202|MH591083.1;psaI	Dichotomosiphon_tuberosus_HV03781|MH591081.1;psaI
-OG0000093	Flabellia_petiolata_HV01202|MH591083.1;psaC	Dichotomosiphon_tuberosus_HV03781|MH591081.1;psaC
-OG0000094	Flabellia_petiolata_HV01202|MH591083.1;rps7	Dichotomosiphon_tuberosus_HV03781|MH591081.1;rps7
-OG0000095	Flabellia_petiolata_HV01202|MH591083.1;rps12	Dichotomosiphon_tuberosus_HV03781|MH591081.1;rps12
+OG0000012	Flabellia_petiolata_HV01202|0|MH591083.1|psaI	Dichotomosiphon_tuberosus_HV03781|0|MH591081.1|psaI
+OG0000013	Flabellia_petiolata_HV01202|0|MH591083.1|psaC	Dichotomosiphon_tuberosus_HV03781|0|MH591081.1|psaC
+OG0000014	Flabellia_petiolata_HV01202|0|MH591083.1|ycf20	Dichotomosiphon_tuberosus_HV03781|0|MH591081.1|ycf20
+OG0000017	Flabellia_petiolata_HV01202|0|MH591083.1|accD	Dichotomosiphon_tuberosus_HV03781|0|MH591081.1|accD
+OG0000045	Flabellia_petiolata_HV01202|0|MH591083.1|rps12	Dichotomosiphon_tuberosus_HV03781|0|MH591081.1|rps12
+OG0000046	Flabellia_petiolata_HV01202|0|MH591083.1|rps7	Dichotomosiphon_tuberosus_HV03781|0|MH591081.1|rps7
+OG0000047	Flabellia_petiolata_HV01202|0|MH591083.1|ftsH	Dichotomosiphon_tuberosus_HV03781|0|MH591081.1|ftsH
+OG0000048	Flabellia_petiolata_HV01202|0|MH591083.1|psbM	Dichotomosiphon_tuberosus_HV03781|0|MH591081.1|psbM

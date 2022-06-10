@@ -1,68 +1,81 @@
 HOG	OG	Gene Tree Parent Clade	KX808497.cds	KX808498.cds	KY509313.cds	KY819064.cds	MH591079.cds	MH591080.cds	MH591081.cds	MH591083.cds	MH591084.cds	MH591085.cds	MH591086.cds	NC_026795.cds
-N7.HOG0000000	OG0000000	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;petD						Flabellia_petiolata_HV01202|MH591085.1;petD		
-N7.HOG0000001	OG0000001	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;petB						Flabellia_petiolata_HV01202|MH591085.1;petB		
-N7.HOG0000002	OG0000002	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps14						Flabellia_petiolata_HV01202|MH591085.1;rps14		
-N7.HOG0000003	OG0000003	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB.2, Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB						Flabellia_petiolata_HV01202|MH591085.1;rpoBb, Flabellia_petiolata_HV01202|MH591085.1;rpoBa		
-N7.HOG0000004	OG0000005	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps9								
-N7.HOG0000005	OG0000006	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ccs1						Flabellia_petiolata_HV01202|MH591085.1;ccs1		
-N7.HOG0000006	OG0000007	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;petG								
-N7.HOG0000007	OG0000008	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;cysT						Flabellia_petiolata_HV01202|MH591085.1;cysT		
-N7.HOG0000008	OG0000009	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ycf1						Flabellia_petiolata_HV01202|MH591085.1;ycf1		
-N7.HOG0000009	OG0000010	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ycf20				Flabellia_petiolata_HV01202|MH591083.1;ycf20				
-N7.HOG0000010	OG0000011	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbE								
-N7.HOG0000011	OG0000012	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbF								
-N7.HOG0000012	OG0000013	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbL								
-N7.HOG0000013	OG0000014	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbJ								
-N7.HOG0000014	OG0000015	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbZ								
-N7.HOG0000015	OG0000016	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaB								
-N7.HOG0000016	OG0000017	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;clpP								
-N7.HOG0000017	OG0000022	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbI								
-N7.HOG0000018	OG0000023	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbH								
-N7.HOG0000019	OG0000024	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbB								
-N7.HOG0000020	OG0000025	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;cysA								
-N7.HOG0000021	OG0000026	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoC1								
-N7.HOG0000022	OG0000027	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoC2								
-N7.HOG0000023	OG0000028	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaJ							Flabellia_petiolata_HV01202|MH591086.1;psaJ	
-N7.HOG0000024	OG0000029	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;chlN						Flabellia_petiolata_HV01202|MH591085.1;chlN		
-N7.HOG0000025	OG0000030	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;chlL						Flabellia_petiolata_HV01202|MH591085.1;chlL		
-N7.HOG0000026	OG0000031	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpA							Flabellia_petiolata_HV01202|MH591086.1;atpA	
-N7.HOG0000027	OG0000032	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpF							Flabellia_petiolata_HV01202|MH591086.1;atpF	
-N7.HOG0000028	OG0000033	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpH							Flabellia_petiolata_HV01202|MH591086.1;atpH	
-N7.HOG0000029	OG0000034	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpI							Flabellia_petiolata_HV01202|MH591086.1;atpI	
-N7.HOG0000030	OG0000035	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpE						Flabellia_petiolata_HV01202|MH591085.1;atpE		
-N7.HOG0000031	OG0000036	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;atpB						Flabellia_petiolata_HV01202|MH591085.1;atpB		
-N7.HOG0000032	OG0000037	n0										Flabellia_petiolata_HV01202|MH591085.1;orf108, Flabellia_petiolata_HV01202|MH591085.1;orf157		
-N7.HOG0000033	OG0000038	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rbcL								
-N7.HOG0000034	OG0000039	n0						Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;atpA						
-N7.HOG0000035	OG0000042	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl19								
-N7.HOG0000036	OG0000043	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;tufA								
-N7.HOG0000037	OG0000044	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;accD								
-N7.HOG0000038	OG0000049	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbT								
-N7.HOG0000039	OG0000050	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;chlI							Flabellia_petiolata_HV01202|MH591086.1;chlI	
-N7.HOG0000040	OG0000051	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ycf4							Flabellia_petiolata_HV01202|MH591086.1;ycf4	
-N7.HOG0000041	OG0000052	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps12								
-N7.HOG0000042	OG0000053	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps7								
-N7.HOG0000043	OG0000054	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl20								
-N7.HOG0000044	OG0000055	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps18								
-N7.HOG0000045	OG0000056	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbA							Flabellia_petiolata_HV01202|MH591086.1;psbA	
-N7.HOG0000046	OG0000057	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoA								
-N7.HOG0000047	OG0000058	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps11								
-N7.HOG0000048	OG0000059	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl36								
-N7.HOG0000049	OG0000060	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl5								
-N7.HOG0000050	OG0000061	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl14								
-N7.HOG0000051	OG0000062	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl16								
-N7.HOG0000052	OG0000063	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps3								
-N7.HOG0000053	OG0000064	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps19								
-N7.HOG0000054	OG0000065	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl2								
-N7.HOG0000055	OG0000066	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;petA								
-N7.HOG0000056	OG0000067	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;ftsH								
-N7.HOG0000057	OG0000068	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps2							Flabellia_petiolata_HV01202|MH591086.1;rps2	
-N7.HOG0000058	OG0000069	n0						Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;orf444		Flabellia_petiolata_HV01202|MH591083.1;orf516				
-N7.HOG0000059	OG0000070	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;cemA						Flabellia_petiolata_HV01202|MH591085.1;cemA		
-N7.HOG0000060	OG0000071	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rps4							Flabellia_petiolata_HV01202|MH591086.1;rps4	
-N7.HOG0000061	OG0000072	n0				Chlorodesmis_fastigiata_HV03865|KY819064.1;rpl32								
-N7.HOG0000062	OG0000131	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaM						Flabellia_petiolata_HV01202|MH591085.1;psaM		
-N7.HOG0000063	OG0000132	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbK						Flabellia_petiolata_HV01202|MH591085.1;psbK		
-N7.HOG0000064	OG0000133	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psbN						Flabellia_petiolata_HV01202|MH591085.1;psbN		
-N7.HOG0000065	OG0000134	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;petL							Flabellia_petiolata_HV01202|MH591086.1;petL	
-N7.HOG0000066	OG0000135	-				Chlorodesmis_fastigiata_HV03865|KY819064.1;psaA				Flabellia_petiolata_HV01202|MH591083.1;psaB				
+N7.HOG0000000	OG0000000	n2	Derbesia_sp_WEST4838|0|KX808497.1|rpoB											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpoB
+N7.HOG0000001	OG0000001	n3	Derbesia_sp_WEST4838|0|KX808497.1|orf500, Derbesia_sp_WEST4838|0|KX808497.1|orf422											
+N7.HOG0000002	OG0000001	n5	Derbesia_sp_WEST4838|0|KX808497.1|orf497, Derbesia_sp_WEST4838|0|KX808497.1|orf476											
+N7.HOG0000003	OG0000002	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbE											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbE
+N7.HOG0000004	OG0000003	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbA
+N7.HOG0000005	OG0000004	n0	Derbesia_sp_WEST4838|0|KX808497.1|rbcL											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rbcL
+N7.HOG0000006	OG0000005	n0	Derbesia_sp_WEST4838|0|KX808497.1|petG											Bryopsis_plumosa_WEST4718|0|NC_026795.1|petG
+N7.HOG0000007	OG0000006	n0	Derbesia_sp_WEST4838|0|KX808497.1|atpA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpA
+N7.HOG0000008	OG0000007	n0	Derbesia_sp_WEST4838|0|KX808497.1|atpF											Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpF
+N7.HOG0000009	OG0000008	n0	Derbesia_sp_WEST4838|0|KX808497.1|atpH											Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpH
+N7.HOG0000010	OG0000009	n0	Derbesia_sp_WEST4838|0|KX808497.1|atpI											Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpI
+N7.HOG0000011	OG0000010	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps9											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps9
+N7.HOG0000012	OG0000011	n0	Derbesia_sp_WEST4838|0|KX808497.1|petA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|petA
+N7.HOG0000013	OG0000012	n0	Derbesia_sp_WEST4838|0|KX808497.1|psaI											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psaI
+N7.HOG0000014	OG0000013	n0	Derbesia_sp_WEST4838|0|KX808497.1|psaC											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psaC
+N7.HOG0000015	OG0000014	n0	Derbesia_sp_WEST4838|0|KX808497.1|ycf20											Bryopsis_plumosa_WEST4718|0|NC_026795.1|ycf20
+N7.HOG0000016	OG0000015	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpl19											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl19
+N7.HOG0000017	OG0000016	n0	Derbesia_sp_WEST4838|0|KX808497.1|tufA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|tufA
+N7.HOG0000018	OG0000017	n0	Derbesia_sp_WEST4838|0|KX808497.1|accD											Bryopsis_plumosa_WEST4718|0|NC_026795.1|accD
+N7.HOG0000019	OG0000018	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbF											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbF
+N7.HOG0000020	OG0000019	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbL											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbL
+N7.HOG0000021	OG0000020	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbJ											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbJ
+N7.HOG0000022	OG0000021	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbC											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbC
+N7.HOG0000023	OG0000022	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbD											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbD
+N7.HOG0000024	OG0000023	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbZ											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbZ
+N7.HOG0000025	OG0000024	n0	Derbesia_sp_WEST4838|0|KX808497.1|psaB											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psaB
+N7.HOG0000026	OG0000025	n0	Derbesia_sp_WEST4838|0|KX808497.1|psaA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psaA
+N7.HOG0000027	OG0000026	n0	Derbesia_sp_WEST4838|0|KX808497.1|chlB											Bryopsis_plumosa_WEST4718|0|NC_026795.1|chlB
+N7.HOG0000028	OG0000027	n0	Derbesia_sp_WEST4838|0|KX808497.1|clpP											Bryopsis_plumosa_WEST4718|0|NC_026795.1|clpP
+N7.HOG0000029	OG0000028	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps4											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps4
+N7.HOG0000030	OG0000029	n0	Derbesia_sp_WEST4838|0|KX808497.1|petD											Bryopsis_plumosa_WEST4718|0|NC_026795.1|petD
+N7.HOG0000031	OG0000030	n0	Derbesia_sp_WEST4838|0|KX808497.1|petB											Bryopsis_plumosa_WEST4718|0|NC_026795.1|petB
+N7.HOG0000032	OG0000031	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps14											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps14
+N7.HOG0000033	OG0000032	n0	Derbesia_sp_WEST4838|0|KX808497.1|atpB											Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpB
+N7.HOG0000034	OG0000033	n0	Derbesia_sp_WEST4838|0|KX808497.1|atpE											Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpE
+N7.HOG0000035	OG0000034	n0	Derbesia_sp_WEST4838|0|KX808497.1|psaM											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psaM
+N7.HOG0000036	OG0000035	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbK											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbK
+N7.HOG0000037	OG0000036	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbN											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbN
+N7.HOG0000038	OG0000037	n0	Derbesia_sp_WEST4838|0|KX808497.1|ccsA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|ccsA
+N7.HOG0000039	OG0000038	n0	Derbesia_sp_WEST4838|0|KX808497.1|chlL											Bryopsis_plumosa_WEST4718|0|NC_026795.1|chlL
+N7.HOG0000040	OG0000039	n0	Derbesia_sp_WEST4838|0|KX808497.1|chlN											Bryopsis_plumosa_WEST4718|0|NC_026795.1|chlN
+N7.HOG0000041	OG0000040	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpoC1											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpoC1
+N7.HOG0000042	OG0000041	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpoC2											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpoC2
+N7.HOG0000043	OG0000042	n0	Derbesia_sp_WEST4838|0|KX808497.1|orf401											Bryopsis_plumosa_WEST4718|0|NC_026795.1|orf7
+N7.HOG0000044	OG0000043	n0	Derbesia_sp_WEST4838|0|KX808497.1|chlI											Bryopsis_plumosa_WEST4718|0|NC_026795.1|chlI
+N7.HOG0000045	OG0000044	n0	Derbesia_sp_WEST4838|0|KX808497.1|ycf4											Bryopsis_plumosa_WEST4718|0|NC_026795.1|ycf4
+N7.HOG0000046	OG0000045	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps12											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps12
+N7.HOG0000047	OG0000046	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps7											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps7
+N7.HOG0000048	OG0000047	n0	Derbesia_sp_WEST4838|0|KX808497.1|ftsH											Bryopsis_plumosa_WEST4718|0|NC_026795.1|ftsH
+N7.HOG0000049	OG0000048	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbM											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbM
+N7.HOG0000050	OG0000049	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps18											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps18
+N7.HOG0000051	OG0000050	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps2											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps2
+N7.HOG0000052	OG0000051	n0	Derbesia_sp_WEST4838|0|KX808497.1|cysT											Bryopsis_plumosa_WEST4718|0|NC_026795.1|cysT
+N7.HOG0000053	OG0000052	n0	Derbesia_sp_WEST4838|0|KX808497.1|ycf1											Bryopsis_plumosa_WEST4718|0|NC_026795.1|ycf1
+N7.HOG0000054	OG0000053	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpoA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpoA
+N7.HOG0000055	OG0000054	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps11											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps11
+N7.HOG0000056	OG0000055	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpl36											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl36
+N7.HOG0000057	OG0000056	n0	Derbesia_sp_WEST4838|0|KX808497.1|infA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|infA
+N7.HOG0000058	OG0000057	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps8											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps8
+N7.HOG0000059	OG0000058	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpl5											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl5
+N7.HOG0000060	OG0000059	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpl14											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl14
+N7.HOG0000061	OG0000060	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpl16											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl16
+N7.HOG0000062	OG0000061	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps3											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps3
+N7.HOG0000063	OG0000062	n0	Derbesia_sp_WEST4838|0|KX808497.1|rps19											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rps19
+N7.HOG0000064	OG0000063	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpl2											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl2
+N7.HOG0000065	OG0000064	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpl23											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl23
+N7.HOG0000066	OG0000065	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbI											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbI
+N7.HOG0000067	OG0000066	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbH											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbH
+N7.HOG0000068	OG0000067	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbB											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbB
+N7.HOG0000069	OG0000068	n0	Derbesia_sp_WEST4838|0|KX808497.1|cysA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|cysA
+N7.HOG0000070	OG0000069	n0	Derbesia_sp_WEST4838|0|KX808497.1|psaJ											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psaJ
+N7.HOG0000071	OG0000070	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpl20											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl20
+N7.HOG0000072	OG0000071	n0	Derbesia_sp_WEST4838|0|KX808497.1|ycf3											Bryopsis_plumosa_WEST4718|0|NC_026795.1|ycf3
+N7.HOG0000073	OG0000072	n0	Derbesia_sp_WEST4838|0|KX808497.1|cemA											Bryopsis_plumosa_WEST4718|0|NC_026795.1|cemA
+N7.HOG0000074	OG0000073	n0	Derbesia_sp_WEST4838|0|KX808497.1|psb30											Bryopsis_plumosa_WEST4718|0|NC_026795.1|ycf12
+N7.HOG0000075	OG0000074	n0	Derbesia_sp_WEST4838|0|KX808497.1|psbT											Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbT
+N7.HOG0000076	OG0000075	n0												Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl32
+N7.HOG0000077	OG0000076	n0	Derbesia_sp_WEST4838|0|KX808497.1|rpl12											Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl12
+N7.HOG0000078	OG0000080	-	Derbesia_sp_WEST4838|0|KX808497.1|petL											Bryopsis_plumosa_WEST4718|0|NC_026795.1|petL, Bryopsis_plumosa_WEST4718|1|NC_026795.1|petL
+N7.HOG0000079	OG0000082	-	Derbesia_sp_WEST4838|0|KX808497.1|orf290, Derbesia_sp_WEST4838|0|KX808497.1|orf153											

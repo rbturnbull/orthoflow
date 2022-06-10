@@ -1,5 +1,9 @@
 Orthogroup	NC_026795.cds	MH591080.cds
-OG0000069	Bryopsis_plumosa_WEST4718|NC_026795.1;orf7	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;orf444
-OG0000073	Bryopsis_plumosa_WEST4718|NC_026795.1;psbA	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;psbA
-OG0000084	Bryopsis_plumosa_WEST4718|NC_026795.1;ycf4	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;ycf4
-OG0000085	Bryopsis_plumosa_WEST4718|NC_026795.1;chlI	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1;chlI
+OG0000003	Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbA	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|psbA
+OG0000006	Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpA	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|atpA
+OG0000007	Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpF	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|atpF
+OG0000008	Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpH	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|atpH
+OG0000009	Bryopsis_plumosa_WEST4718|0|NC_026795.1|atpI	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|atpI
+OG0000042	Bryopsis_plumosa_WEST4718|0|NC_026795.1|orf7	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|orf444
+OG0000043	Bryopsis_plumosa_WEST4718|0|NC_026795.1|chlI	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|chlI
+OG0000044	Bryopsis_plumosa_WEST4718|0|NC_026795.1|ycf4	Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|ycf4

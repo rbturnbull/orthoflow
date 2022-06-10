@@ -1,0 +1,1 @@
+(Caulerpa_cliftonii_HV03798|0|KX808498.1|psb30:0.267103,((Derbesia_sp_WEST4838|0|KX808497.1|psb30:0.231301,Bryopsis_plumosa_WEST4718|0|NC_026795.1|ycf12:0.0123561)n2:0.292098,(Avrainvillea_mazei_HV02664|0|KY509313.1|psb30:0.0560312,Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psb30:0.188963)n3:0.129927)n1:0.267103)n0;

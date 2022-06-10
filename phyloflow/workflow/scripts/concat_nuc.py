@@ -57,6 +57,12 @@ def concat_nuc(
 
     with open(output_file, 'w') as f:
         alignment = AlignIO.read(alignment, "fasta")
+
+        # try:
+        # except ValueError:
+        #     print(f'Error reading alignment file: {alignment}')
+        #     return
+        
         for row in alignment:
             if row.id not in multifastaindex:
                 print(f"cannot find {row.id} in multifastaindex")

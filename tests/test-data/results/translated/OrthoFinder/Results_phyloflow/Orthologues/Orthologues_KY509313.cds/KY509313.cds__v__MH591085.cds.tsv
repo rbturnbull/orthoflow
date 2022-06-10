@@ -1,17 +1,20 @@
 Orthogroup	KY509313.cds	MH591085.cds
-OG0000000	Avrainvillea_mazei_HV02664|KY509313.1;petD	Flabellia_petiolata_HV01202|MH591085.1;petD
-OG0000001	Avrainvillea_mazei_HV02664|KY509313.1;petB	Flabellia_petiolata_HV01202|MH591085.1;petB
-OG0000002	Avrainvillea_mazei_HV02664|KY509313.1;rps14	Flabellia_petiolata_HV01202|MH591085.1;rps14
-OG0000003	Avrainvillea_mazei_HV02664|KY509313.1;rpoB	Flabellia_petiolata_HV01202|MH591085.1;rpoBb, Flabellia_petiolata_HV01202|MH591085.1;rpoBa
-OG0000006	Avrainvillea_mazei_HV02664|KY509313.1;ccs1	Flabellia_petiolata_HV01202|MH591085.1;ccs1
-OG0000008	Avrainvillea_mazei_HV02664|KY509313.1;cysT	Flabellia_petiolata_HV01202|MH591085.1;cysT
-OG0000009	Avrainvillea_mazei_HV02664|KY509313.1;ycf1	Flabellia_petiolata_HV01202|MH591085.1;ycf1
-OG0000029	Avrainvillea_mazei_HV02664|KY509313.1;chlN	Flabellia_petiolata_HV01202|MH591085.1;chlN
-OG0000030	Avrainvillea_mazei_HV02664|KY509313.1;chlL	Flabellia_petiolata_HV01202|MH591085.1;chlL
-OG0000035	Avrainvillea_mazei_HV02664|KY509313.1;atpE	Flabellia_petiolata_HV01202|MH591085.1;atpE
-OG0000036	Avrainvillea_mazei_HV02664|KY509313.1;atpB	Flabellia_petiolata_HV01202|MH591085.1;atpB
-OG0000037	Avrainvillea_mazei_HV02664|KY509313.1;psaA, Avrainvillea_mazei_HV02664|KY509313.1;psaB	Flabellia_petiolata_HV01202|MH591085.1;orf108, Flabellia_petiolata_HV01202|MH591085.1;orf157
-OG0000087	Avrainvillea_mazei_HV02664|KY509313.1;orf100, Avrainvillea_mazei_HV02664|KY509313.1;psbE	Flabellia_petiolata_HV01202|MH591085.1;psbE
-OG0000128	Avrainvillea_mazei_HV02664|KY509313.1;clpP	Flabellia_petiolata_HV01202|MH591085.1;clpP
-OG0000129	Avrainvillea_mazei_HV02664|KY509313.1;psbJ	Flabellia_petiolata_HV01202|MH591085.1;psbJ
-OG0000130	Avrainvillea_mazei_HV02664|KY509313.1;psbF	Flabellia_petiolata_HV01202|MH591085.1;psbF
+OG0000000	Avrainvillea_mazei_HV02664|0|KY509313.1|rpoB	Flabellia_petiolata_HV01202|0|MH591085.1|rpoBa, Flabellia_petiolata_HV01202|0|MH591085.1|rpoBb
+OG0000002	Avrainvillea_mazei_HV02664|0|KY509313.1|orf100, Avrainvillea_mazei_HV02664|0|KY509313.1|psbE	Flabellia_petiolata_HV01202|0|MH591085.1|psbE
+OG0000018	Avrainvillea_mazei_HV02664|0|KY509313.1|psbF	Flabellia_petiolata_HV01202|0|MH591085.1|psbF
+OG0000019	Avrainvillea_mazei_HV02664|0|KY509313.1|psbL	Flabellia_petiolata_HV01202|0|MH591085.1|psbL
+OG0000020	Avrainvillea_mazei_HV02664|0|KY509313.1|psbJ	Flabellia_petiolata_HV01202|0|MH591085.1|psbJ
+OG0000027	Avrainvillea_mazei_HV02664|0|KY509313.1|clpP	Flabellia_petiolata_HV01202|0|MH591085.1|clpP
+OG0000029	Avrainvillea_mazei_HV02664|0|KY509313.1|petD	Flabellia_petiolata_HV01202|0|MH591085.1|petD
+OG0000030	Avrainvillea_mazei_HV02664|0|KY509313.1|petB	Flabellia_petiolata_HV01202|0|MH591085.1|petB
+OG0000031	Avrainvillea_mazei_HV02664|0|KY509313.1|rps14	Flabellia_petiolata_HV01202|0|MH591085.1|rps14
+OG0000032	Avrainvillea_mazei_HV02664|0|KY509313.1|atpB	Flabellia_petiolata_HV01202|0|MH591085.1|atpB
+OG0000033	Avrainvillea_mazei_HV02664|0|KY509313.1|atpE	Flabellia_petiolata_HV01202|0|MH591085.1|atpE
+OG0000034	Avrainvillea_mazei_HV02664|0|KY509313.1|psaM	Flabellia_petiolata_HV01202|0|MH591085.1|psaM
+OG0000035	Avrainvillea_mazei_HV02664|0|KY509313.1|psbK	Flabellia_petiolata_HV01202|0|MH591085.1|psbK
+OG0000036	Avrainvillea_mazei_HV02664|0|KY509313.1|psbN	Flabellia_petiolata_HV01202|0|MH591085.1|psbN
+OG0000037	Avrainvillea_mazei_HV02664|0|KY509313.1|ccs1	Flabellia_petiolata_HV01202|0|MH591085.1|ccs1
+OG0000038	Avrainvillea_mazei_HV02664|0|KY509313.1|chlL	Flabellia_petiolata_HV01202|0|MH591085.1|chlL
+OG0000039	Avrainvillea_mazei_HV02664|0|KY509313.1|chlN	Flabellia_petiolata_HV01202|0|MH591085.1|chlN
+OG0000051	Avrainvillea_mazei_HV02664|0|KY509313.1|cysT	Flabellia_petiolata_HV01202|0|MH591085.1|cysT
+OG0000052	Avrainvillea_mazei_HV02664|0|KY509313.1|ycf1	Flabellia_petiolata_HV01202|0|MH591085.1|ycf1

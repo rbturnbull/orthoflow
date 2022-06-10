@@ -1,8 +1,10 @@
 Orthogroup	Species Tree Node	Gene Tree Node	Support	Type	Genes 1	Genes 2
-OG0000003	N8	n3	0.5	Non-Terminal	KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB.2, MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1;rpoBb	KY819064_cds_Chlorodesmis_fastigiata_HV03865|KY819064.1;rpoB, MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1;rpoBa
-OG0000004	KX808497.cds	n2	1.0	Terminal	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf500, KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf497, KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf476	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf422
-OG0000004	KX808497.cds	n3	1.0	Terminal	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf500	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf497, KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf476
-OG0000004	KX808497.cds	n4	1.0	Terminal	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf497	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|orf476
-OG0000037	MH591085.cds	n2	1.0	Terminal	MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1;orf108	MH591085_cds_Flabellia_petiolata_HV01202|MH591085.1;orf157
-OG0000037	KY509313.cds	n3	1.0	Terminal	KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1;psaA	KY509313_cds_Avrainvillea_mazei_HV02664|KY509313.1;psaB
-OG0000039	KX808497.cds	n2	1.0	Terminal	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|atpA	KX808497_cds_Derbesia_sp_WEST4838|0|KX808497.1|atpB
+OG0000000	N0	n5	0.16666666666666666	Non-Terminal	Chlorodesmis_fastigiata_HV03865|0|KY819064.1|rpoB, Flabellia_petiolata_HV01202|0|MH591085.1|rpoBa	Chlorodesmis_fastigiata_HV03865|0|KY819064.1|rpoB.2, Flabellia_petiolata_HV01202|0|MH591085.1|rpoBb
+OG0000001	N5	n2	0.2857142857142857	Non-Terminal	Caulerpa_cliftonii_HV03798|1|KX808498.1|orf116, Derbesia_sp_WEST4838|0|KX808497.1|orf500, Derbesia_sp_WEST4838|0|KX808497.1|orf422	Caulerpa_cliftonii_HV03798|0|KX808498.1|orf519, Derbesia_sp_WEST4838|0|KX808497.1|orf497, Derbesia_sp_WEST4838|0|KX808497.1|orf476
+OG0000001	KX808497.cds	n4	1.0	Terminal	Derbesia_sp_WEST4838|0|KX808497.1|orf500	Derbesia_sp_WEST4838|0|KX808497.1|orf422
+OG0000001	KX808497.cds	n6	1.0	Terminal	Derbesia_sp_WEST4838|0|KX808497.1|orf497	Derbesia_sp_WEST4838|0|KX808497.1|orf476
+OG0000002	KY509313.cds	n6	1.0	Terminal	Avrainvillea_mazei_HV02664|0|KY509313.1|orf100	Avrainvillea_mazei_HV02664|0|KY509313.1|psbE
+OG0000049	KX808498.cds	n5	1.0	Terminal	Caulerpa_cliftonii_HV03798|0|KX808498.1|orf179	Caulerpa_cliftonii_HV03798|0|KX808498.1|rps18
+OG0000077	KX808498.cds	n0	1.0	Terminal	Caulerpa_cliftonii_HV03798|0|KX808498.1|orf781	Caulerpa_cliftonii_HV03798|0|KX808498.1|orf120, Caulerpa_cliftonii_HV03798|0|KX808498.1|orf275, Caulerpa_cliftonii_HV03798|1|KX808498.1|orf131
+OG0000077	KX808498.cds	n1	1.0	Terminal	Caulerpa_cliftonii_HV03798|0|KX808498.1|orf120	Caulerpa_cliftonii_HV03798|0|KX808498.1|orf275, Caulerpa_cliftonii_HV03798|1|KX808498.1|orf131
+OG0000077	KX808498.cds	n2	1.0	Terminal	Caulerpa_cliftonii_HV03798|0|KX808498.1|orf275	Caulerpa_cliftonii_HV03798|1|KX808498.1|orf131

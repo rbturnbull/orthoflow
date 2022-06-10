@@ -1,5 +1,5 @@
-2022-05-31 11:07:26 : Started OrthoFinder version 2.5.4
-Command Line: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data/.snakemake/conda/fd91694ef116afd9052f80e12bca6bd5/bin/orthofinder -f results/translated -t 1 -n phyloflow -ot -M msa
+2022-06-10 16:02:23 : Started OrthoFinder version 2.5.4
+Command Line: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data/.snakemake/conda/4d2941b4328bc0736f73b0dbf434b86a/bin/orthofinder -f results/translated -t 1 -n phyloflow -ot -M msa -X
 
 WorkingDirectory_Base: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data/results/translated/OrthoFinder/Results_phyloflow/WorkingDirectory/
 
@@ -19,4 +19,4 @@ Species used:
 
 FN_Orthogroups: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data/results/translated/OrthoFinder/Results_phyloflow/WorkingDirectory/clusters_OrthoFinder_I1.5.txt_id_pairs.txt
 WorkingDirectory_Trees: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data/results/translated/OrthoFinder/Results_phyloflow/WorkingDirectory/
-2022-05-31 11:10:00 : OrthoFinder run completed
+2022-06-10 16:04:47 : OrthoFinder run completed

@@ -1,0 +1,1 @@
+(Chlorodesmis_fastigiata_HV03865|0|KY819064.1|psbT:0.0375463,((Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|psbT:0.286236,Bryopsis_plumosa_WEST4718|0|NC_026795.1|psbT:0.0123839)n2:0.0605202,(Derbesia_sp_WEST4838|0|KX808497.1|psbT:5e-09,Caulerpa_cliftonii_HV03798|0|KX808498.1|psbT:0.140493)n3:0.0355206)n1:0.0375463)n0;

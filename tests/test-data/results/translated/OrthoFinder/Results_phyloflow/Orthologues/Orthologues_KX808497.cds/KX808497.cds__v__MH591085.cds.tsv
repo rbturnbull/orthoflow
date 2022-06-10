@@ -1,9 +1,22 @@
 Orthogroup	KX808497.cds	MH591085.cds
-OG0000000	Derbesia_sp_WEST4838|0|KX808497.1|petD	Flabellia_petiolata_HV01202|MH591085.1;petD
-OG0000001	Derbesia_sp_WEST4838|0|KX808497.1|petB	Flabellia_petiolata_HV01202|MH591085.1;petB
-OG0000002	Derbesia_sp_WEST4838|0|KX808497.1|rps14	Flabellia_petiolata_HV01202|MH591085.1;rps14
-OG0000003	Derbesia_sp_WEST4838|0|KX808497.1|rpoB	Flabellia_petiolata_HV01202|MH591085.1;rpoBb, Flabellia_petiolata_HV01202|MH591085.1;rpoBa
-OG0000006	Derbesia_sp_WEST4838|0|KX808497.1|ccsA	Flabellia_petiolata_HV01202|MH591085.1;ccs1
-OG0000008	Derbesia_sp_WEST4838|0|KX808497.1|cysT	Flabellia_petiolata_HV01202|MH591085.1;cysT
-OG0000009	Derbesia_sp_WEST4838|0|KX808497.1|ycf1	Flabellia_petiolata_HV01202|MH591085.1;ycf1
-OG0000074	Derbesia_sp_WEST4838|0|KX808497.1|ycf47	Flabellia_petiolata_HV01202|MH591085.1;ycf47
+OG0000000	Derbesia_sp_WEST4838|0|KX808497.1|rpoB	Flabellia_petiolata_HV01202|0|MH591085.1|rpoBa, Flabellia_petiolata_HV01202|0|MH591085.1|rpoBb
+OG0000002	Derbesia_sp_WEST4838|0|KX808497.1|psbE	Flabellia_petiolata_HV01202|0|MH591085.1|psbE
+OG0000018	Derbesia_sp_WEST4838|0|KX808497.1|psbF	Flabellia_petiolata_HV01202|0|MH591085.1|psbF
+OG0000019	Derbesia_sp_WEST4838|0|KX808497.1|psbL	Flabellia_petiolata_HV01202|0|MH591085.1|psbL
+OG0000020	Derbesia_sp_WEST4838|0|KX808497.1|psbJ	Flabellia_petiolata_HV01202|0|MH591085.1|psbJ
+OG0000027	Derbesia_sp_WEST4838|0|KX808497.1|clpP	Flabellia_petiolata_HV01202|0|MH591085.1|clpP
+OG0000029	Derbesia_sp_WEST4838|0|KX808497.1|petD	Flabellia_petiolata_HV01202|0|MH591085.1|petD
+OG0000030	Derbesia_sp_WEST4838|0|KX808497.1|petB	Flabellia_petiolata_HV01202|0|MH591085.1|petB
+OG0000031	Derbesia_sp_WEST4838|0|KX808497.1|rps14	Flabellia_petiolata_HV01202|0|MH591085.1|rps14
+OG0000032	Derbesia_sp_WEST4838|0|KX808497.1|atpB	Flabellia_petiolata_HV01202|0|MH591085.1|atpB
+OG0000033	Derbesia_sp_WEST4838|0|KX808497.1|atpE	Flabellia_petiolata_HV01202|0|MH591085.1|atpE
+OG0000034	Derbesia_sp_WEST4838|0|KX808497.1|psaM	Flabellia_petiolata_HV01202|0|MH591085.1|psaM
+OG0000035	Derbesia_sp_WEST4838|0|KX808497.1|psbK	Flabellia_petiolata_HV01202|0|MH591085.1|psbK
+OG0000036	Derbesia_sp_WEST4838|0|KX808497.1|psbN	Flabellia_petiolata_HV01202|0|MH591085.1|psbN
+OG0000037	Derbesia_sp_WEST4838|0|KX808497.1|ccsA	Flabellia_petiolata_HV01202|0|MH591085.1|ccs1
+OG0000038	Derbesia_sp_WEST4838|0|KX808497.1|chlL	Flabellia_petiolata_HV01202|0|MH591085.1|chlL
+OG0000039	Derbesia_sp_WEST4838|0|KX808497.1|chlN	Flabellia_petiolata_HV01202|0|MH591085.1|chlN
+OG0000051	Derbesia_sp_WEST4838|0|KX808497.1|cysT	Flabellia_petiolata_HV01202|0|MH591085.1|cysT
+OG0000052	Derbesia_sp_WEST4838|0|KX808497.1|ycf1	Flabellia_petiolata_HV01202|0|MH591085.1|ycf1
+OG0000072	Derbesia_sp_WEST4838|0|KX808497.1|cemA	Flabellia_petiolata_HV01202|0|MH591085.1|cemA
+OG0000078	Derbesia_sp_WEST4838|0|KX808497.1|ycf47	Flabellia_petiolata_HV01202|0|MH591085.1|ycf47
