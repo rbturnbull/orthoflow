@@ -1,0 +1,79 @@
+PMID- 34544141
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20211014
+LR  - 20211014
+IS  - 2160-1836 (Electronic)
+IS  - 2160-1836 (Linking)
+VI  - 11
+IP  - 9
+DP  - 2021 Sep 6
+TI  - orthofisher: a broadly applicable tool for automated gene identification and 
+      retrieval.
+LID - 10.1093/g3journal/jkab250 [doi]
+LID - jkab250
+AB  - Identification and retrieval of genes of interest from genomic data are an 
+      essential step for many bioinformatic applications. We present orthofisher, a 
+      command-line tool for automated identification and retrieval of genes with high 
+      sequence similarity to a query profile Hidden Markov Model sequence alignment 
+      across a set of proteomes. Performance assessment of orthofisher revealed high 
+      accuracy and precision during single-copy orthologous gene identification. 
+      orthofisher may be useful for assessing gene annotation quality, identifying 
+      single-copy orthologous genes for phylogenomic analyses, estimating gene copy 
+      number, and other evolutionary analyses that rely on identification and retrieval 
+      of homologous genes from genomic data. orthofisher comes complete with 
+      comprehensive documentation (https://jlsteenwyk.com/orthofisher/), is freely 
+      available under the MIT license, and is available for download from GitHub 
+      (https://github.com/JLSteenwyk/orthofisher), PyPi 
+      (https://pypi.org/project/orthofisher/), and the Anaconda Cloud 
+      (https://anaconda.org/jlsteenwyk/orthofisher).
+CI  - © The Author(s) 2021. Published by Oxford University Press on behalf of Genetics 
+      Society of America.
+FAU - Steenwyk, Jacob L
+AU  - Steenwyk JL
+AUID- ORCID: 0000-0002-8436-595X
+AD  - Department of Biological Sciences, Vanderbilt University , Nashville, TN 37235, 
+      USA.
+FAU - Rokas, Antonis
+AU  - Rokas A
+AUID- ORCID: 0000-0002-7248-6551
+AD  - Department of Biological Sciences, Vanderbilt University , Nashville, TN 37235, 
+      USA.
+LA  - eng
+SI  - figshare/10.6084/m9.figshare.14399150
+GR  - R56 AI146096/AI/NIAID NIH HHS/United States
+GR  - HHMI/Howard Hughes Medical Institute/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+PT  - Research Support, Non-U.S. Gov't
+PT  - Research Support, U.S. Gov't, Non-P.H.S.
+TA  - G3 (Bethesda)
+JT  - G3 (Bethesda, Md.)
+JID - 101566598
+SB  - IM
+MH  - Computational Biology
+MH  - *Genomics
+MH  - Molecular Sequence Annotation
+MH  - Sequence Alignment
+MH  - *Software
+PMC - PMC8496211
+OTO - NOTNLM
+OT  - *Hidden Markov Model
+OT  - *gene family
+OT  - *homology
+OT  - *orthology
+OT  - *phylogenomics
+OT  - *sequence similarity search
+EDAT- 2021/09/21 06:00
+MHDA- 2021/10/15 06:00
+CRDT- 2021/09/20 20:32
+PHST- 2021/06/07 00:00 [received]
+PHST- 2021/07/06 00:00 [accepted]
+PHST- 2021/09/20 20:32 [entrez]
+PHST- 2021/09/21 06:00 [pubmed]
+PHST- 2021/10/15 06:00 [medline]
+AID - 6321954 [pii]
+AID - jkab250 [pii]
+AID - 10.1093/g3journal/jkab250 [doi]
+PST - ppublish
+SO  - G3 (Bethesda). 2021 Sep 6;11(9):jkab250. doi: 10.1093/g3journal/jkab250.

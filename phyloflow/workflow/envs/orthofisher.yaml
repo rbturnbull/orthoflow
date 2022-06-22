@@ -1,0 +1,10 @@
+name: orthofisher
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - coreutils
+  - python=3.9
+  - hmmer=3.3.2
+  - pip:
+    - orthofisher>=1.0.3

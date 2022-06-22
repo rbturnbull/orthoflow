@@ -1,2 +1,4 @@
 filter_orthofinder:
   min_sequences: 5
+orthofisher_hmmer_file:
+  hmms.txt
