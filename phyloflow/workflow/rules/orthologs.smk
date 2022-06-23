@@ -53,10 +53,7 @@ checkpoint orthosnap:
     """
     Run Orthosnap to retrieve single-copy orthologs.
 
-    To get orthosnap to run, we had to modify the IDs in the fasta files using the filter_orthofinder script to replace ';' with  '_'.
-    Later we will want to back match these IDs against the original CDS, so we have to reverse this transformation here!
-
-    :output: A directory with an unknown number of
+    :output: A directory with an unknown number of fasta files.
     """
     input:
         fasta="results/orthologs/{og}.fa",
