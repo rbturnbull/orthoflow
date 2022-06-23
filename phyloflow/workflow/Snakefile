@@ -20,7 +20,8 @@ report: "report/workflow.rst"
 
 ##### load rules #####
 include: "rules/intake.smk"
-include: "rules/orthologs.smk"
+include: "rules/orthofisher.smk"
+# include: "rules/orthologs.smk"
 include: "rules/alignment.smk"
 include: "rules/supermatrix.smk"
 # include: "rules/genetree.smk"

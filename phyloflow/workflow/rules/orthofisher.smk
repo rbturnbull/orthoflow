@@ -9,12 +9,16 @@ rule orthofisher_input_generation:
     input:
         pd.read_csv("input_sources.csv")['file'].map(lambda f: f"results/translated/{f.split('.')[0]}.cds.fasta"),
     output:
-        "results/orthofisher-input.tsv"
+        tsv="results/orthofisher-input.tsv",
+        hmm="results/hmms.txt",
+    params:
+        hmm_files="\n".join(config["orthofisher_hmmer_files"]),
     log:
         LOG_DIR / "orthofisher_input_generation.txt",
     shell:
         """
-        paste <(awk '{print $1}' {input})
+        echo "{params.hmm_files}" > {output.hmm}
+        echo {input} | tr " " "\n" > {output.tsv}
         """
 
 
@@ -34,8 +38,6 @@ rule orthofisher:
         LOG_DIR / "orthofisher.txt",
     bibs:
         "../bibs/orthofisher.nbib",
-    params:
-        hmms_file=config["orthofisher_hmmer_file"],
     shell:
         """
         orthofisher -m {params.hmms_file} -f {input} -o {output}
