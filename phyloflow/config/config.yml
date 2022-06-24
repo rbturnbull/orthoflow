@@ -1,5 +1,6 @@
 filter_orthofinder:
   min_sequences: 5
+use_orthofisher: True
 orthofisher_hmmer_files:
   - hmms/1001705at2759.hmm
   - hmms/42at3041.hmm
