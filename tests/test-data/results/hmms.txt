@@ -3,5 +3,3 @@ hmms/42at3041.hmm
 hmms/45at3041.hmm
 hmms/52at3041.hmm
 hmms/718307-1.fa.mafft.hmm
-hmms/bena.fa.mafft.hmm
-hmms/calmodulin.fa.mafft.hmm
