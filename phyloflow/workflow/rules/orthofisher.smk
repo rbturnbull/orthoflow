@@ -30,7 +30,7 @@ rule orthofisher:
         tsv=rules.orthofisher_input_generation.output.tsv,
         hmm=rules.orthofisher_input_generation.output.hmm,
     output:
-        directory("results/orthologs"),
+        directory("results/orthofisher"),
     conda:
         ENV_DIR / "orthofisher.yaml"
     log:
@@ -40,4 +40,24 @@ rule orthofisher:
     shell:
         """
         orthofisher -m {input.hmm} -f {input.tsv} -o {output}
+        """
+
+rule orthofisher_filter:
+    """
+    Filters the output of orthofisher so that it only keeps the orthologs with a minimum number of sequences.
+    """
+    input:
+        orthofisher.output
+    output:
+        directory("results/orthologs"),
+    params:
+        min_seqs=config["ortholog_min_seqs"],
+    shell:
+        """
+        for i in $(ls tests/test-data/results/orthologs/scog/); do
+            nseq=$(grep ">" tests/test-data/results/orthologs/scog/$i | wc -l)
+            if [[ $nseq -ge {params.min_seqs} ]]; then
+                cp $i {output}
+            fi
+        done       
         """

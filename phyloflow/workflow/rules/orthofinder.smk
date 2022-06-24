@@ -10,7 +10,7 @@ rule orthofinder:
     input:
         pd.read_csv("input_sources.csv")['file'].map(lambda f: f"results/translated/{f.split('.')[0]}.cds.fasta"),
     output:
-        directory("results/translated/OrthoFinder/Results_phyloflow"),
+        directory("results/orthofinder"),
     conda:
         ENV_DIR / "orthologs.yaml"
     log:
@@ -40,13 +40,13 @@ checkpoint filter_orthofinder:
     input:
         rules.orthofinder.output,
     output:
-        directory("results/orthologs"),
+        directory("results/orthofinder-filtered"),
     conda:
         ENV_DIR / "orthologs.yaml"
     params:
-        min_seq=config["filter_orthofinder"]['min_sequences'],
+        min_seqs=config["ortholog_min_seqs"],
     shell:
-        f"python {SCRIPT_DIR}/filter_OrthoFinder.py {{input}} {{output}} {{params.min_seq}}"
+        f"python {SCRIPT_DIR}/filter_OrthoFinder.py {{input}} {{output}} {{params.min_seqs}}"
 
 
 checkpoint orthosnap:
@@ -59,8 +59,8 @@ checkpoint orthosnap:
     :output: A directory with an unknown number of
     """
     input:
-        fasta="results/orthologs/{og}.fa",
-        tree="results/orthologs/{og}.nwk"
+        fasta="results/orthofinder-filtered/{og}.fa",
+        tree="results/orthofinder-filtered/{og}.nwk"
     output:
         touch("results/orthologs/.{og}.orthosnap.flag")
     conda:
@@ -72,6 +72,6 @@ checkpoint orthosnap:
         # NOTE: We need to use a loop to ensure we do nothing if there are no glob matches
         snapfiles=$(ls {input.fasta}.orthosnap.*.fa 2> /dev/null || true)
         for f in $snapfiles; do
-            cat $f >> results/orthologs/{wildcards.og}.orthosnap.fa
+            cat $f >> results/orthofinder-filtered/{wildcards.og}.orthosnap.fa
         done
         """
