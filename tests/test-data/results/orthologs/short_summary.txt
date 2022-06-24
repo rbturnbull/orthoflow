@@ -1,0 +1,13 @@
+file_name	single-copy	multi-copy	absent	per_single-copy	per_multi-copy	per_absent
+KY509313.cds.fasta	1	0	6	0.14	0.0	0.86
+NC_026795.cds.fasta	0	0	7	0.0	0.0	1.0
+KX808498.cds.fasta	0	0	7	0.0	0.0	1.0
+KY819064.cds.fasta	0	0	7	0.0	0.0	1.0
+KX808497.cds.fasta	0	0	7	0.0	0.0	1.0
+MH591079.cds.fasta	0	0	7	0.0	0.0	1.0
+MH591080.cds.fasta	0	0	7	0.0	0.0	1.0
+MH591081.cds.fasta	0	0	7	0.0	0.0	1.0
+MH591083.cds.fasta	0	0	7	0.0	0.0	1.0
+MH591084.cds.fasta	0	0	7	0.0	0.0	1.0
+MH591085.cds.fasta	0	0	7	0.0	0.0	1.0
+MH591086.cds.fasta	0	0	7	0.0	0.0	1.0
