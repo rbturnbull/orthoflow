@@ -1,0 +1,14 @@
+#                                                                                              --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                                       accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                               ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|tufA -          336at3041            -              2e-14   44.0   0.7     8e-14   42.0   0.1   2.2   3   0   0   3   3   3   1 -
+#
+# Program:         hmmsearch
+# Version:         3.3.1 (Jul 2020)
+# Pipeline mode:   SEARCH
+# Query file:      hmms/336at3041.hmm
+# Target file:     results/translated/MH591079.cds.fasta
+# Option settings: hmmsearch --tblout results/orthologs/hmmsearch_output/MH591079.cds.fasta_336at3041.hmm --noali --notextw -E 0.001 --cpu 2 hmms/336at3041.hmm results/translated/MH591079.cds.fasta 
+# Current dir:     /Users/jlsteenwyk/Desktop/VANDERBILT_UNIV/ROKAS_LAB/PHYLOFLOW/phyloflow/tests/test-data
+# Date:            Thu Jun 23 19:53:40 2022
+# [ok]

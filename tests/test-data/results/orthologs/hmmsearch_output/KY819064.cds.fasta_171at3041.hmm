@@ -1,0 +1,14 @@
+#                                                                                            --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                                     accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                             ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+Chlorodesmis_fastigiata_HV03865|0|KY819064.1|ftsH -          171at3041            -              2e-26   84.6   0.0   1.9e-13   41.7   0.0   2.1   2   0   0   2   2   2   2 -
+#
+# Program:         hmmsearch
+# Version:         3.3.1 (Jul 2020)
+# Pipeline mode:   SEARCH
+# Query file:      hmms/171at3041.hmm
+# Target file:     results/translated/KY819064.cds.fasta
+# Option settings: hmmsearch --tblout results/orthologs/hmmsearch_output/KY819064.cds.fasta_171at3041.hmm --noali --notextw -E 0.001 --cpu 2 hmms/171at3041.hmm results/translated/KY819064.cds.fasta 
+# Current dir:     /Users/jlsteenwyk/Desktop/VANDERBILT_UNIV/ROKAS_LAB/PHYLOFLOW/phyloflow/tests/test-data
+# Date:            Thu Jun 23 19:53:39 2022
+# [ok]

@@ -1,0 +1,14 @@
+#                                                                                       --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                                accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                        ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+Caulerpa_cliftonii_HV03798|0|KX808498.1|ftsH -          4242at3041           -            2.1e-20   65.7   0.0   1.4e-12   40.1   0.0   2.2   2   0   0   2   2   2   2 -
+#
+# Program:         hmmsearch
+# Version:         3.3.1 (Jul 2020)
+# Pipeline mode:   SEARCH
+# Query file:      hmms/4242at3041.hmm
+# Target file:     results/translated/KX808498.cds.fasta
+# Option settings: hmmsearch --tblout results/orthologs/hmmsearch_output/KX808498.cds.fasta_4242at3041.hmm --noali --notextw -E 0.001 --cpu 2 hmms/4242at3041.hmm results/translated/KX808498.cds.fasta 
+# Current dir:     /Users/jlsteenwyk/Desktop/VANDERBILT_UNIV/ROKAS_LAB/PHYLOFLOW/phyloflow/tests/test-data
+# Date:            Thu Jun 23 19:53:39 2022
+# [ok]
