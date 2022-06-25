@@ -63,7 +63,6 @@ rule iqtree:
         "iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads}"
 
 
-
 rule ascii_tree:
     """
     Displays the tree in ASCII format.
