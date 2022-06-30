@@ -1,0 +1,14 @@
+#                                                                                       --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                                accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                        ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+Bryopsis_plumosa_WEST4718|0|NC_026795.1|ftsH -          992at3041            -            6.5e-31  100.0   0.0   4.4e-16   51.2   0.0   2.2   2   0   0   2   2   2   2 -
+#
+# Program:         hmmsearch
+# Version:         3.3.2 (Nov 2020)
+# Pipeline mode:   SEARCH
+# Query file:      hmms/992at3041.hmm
+# Target file:     results/translated/NC_026795.cds.fasta
+# Option settings: hmmsearch --tblout results/orthofisher/hmmsearch_output/NC_026795.cds.fasta_992at3041.hmm --noali --notextw -E 0.001 --cpu 2 hmms/992at3041.hmm results/translated/NC_026795.cds.fasta 
+# Current dir:     /Users/jlsteenwyk/Desktop/VANDERBILT_UNIV/ROKAS_LAB/PHYLOFLOW/phyloflow/tests/test-data
+# Date:            Thu Jun 30 13:17:25 2022
+# [ok]

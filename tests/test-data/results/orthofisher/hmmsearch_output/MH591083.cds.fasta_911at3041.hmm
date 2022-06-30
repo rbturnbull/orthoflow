@@ -1,0 +1,14 @@
+#                                                                                        --- full sequence ---- --- best 1 domain ---- --- domain number estimation ----
+# target name                                 accession  query name           accession    E-value  score  bias   E-value  score  bias   exp reg clu  ov env dom rep inc description of target
+#                         ------------------- ---------- -------------------- ---------- --------- ------ ----- --------- ------ -----   --- --- --- --- --- --- --- --- ---------------------
+Flabellia_petiolata_HV01202|0|MH591083.1|tufA -          911at3041            -            1.7e-16   50.4   1.6   1.7e-16   50.4   1.6   2.2   2   1   0   2   2   2   1 -
+#
+# Program:         hmmsearch
+# Version:         3.3.2 (Nov 2020)
+# Pipeline mode:   SEARCH
+# Query file:      hmms/911at3041.hmm
+# Target file:     results/translated/MH591083.cds.fasta
+# Option settings: hmmsearch --tblout results/orthofisher/hmmsearch_output/MH591083.cds.fasta_911at3041.hmm --noali --notextw -E 0.001 --cpu 2 hmms/911at3041.hmm results/translated/MH591083.cds.fasta 
+# Current dir:     /Users/jlsteenwyk/Desktop/VANDERBILT_UNIV/ROKAS_LAB/PHYLOFLOW/phyloflow/tests/test-data
+# Date:            Thu Jun 30 13:17:28 2022
+# [ok]
