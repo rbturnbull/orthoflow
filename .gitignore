@@ -11,4 +11,4 @@ logs/*
 phyloflow/logs/*
 **/__pycache__
 **/.snakemake
-tests/.tests-conda
+tests/.conda
