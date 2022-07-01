@@ -47,17 +47,18 @@ rule orthofisher_filter:
     Filters the output of orthofisher so that it only keeps the orthologs with a minimum number of sequences.
     """
     input:
-        orthofisher.output
+        rules.orthofisher.output
     output:
         directory("results/orthologs"),
     params:
         min_seqs=config["ortholog_min_seqs"],
     shell:
         """
-        for i in $(ls tests/test-data/results/orthologs/scog/); do
-            nseq=$(grep ">" tests/test-data/results/orthologs/scog/$i | wc -l)
+        mkdir {output}
+        for i in $(ls {input}/scog/); do
+            nseq=$(grep ">" {input}/scog/$i | wc -l)
             if [[ $nseq -ge {params.min_seqs} ]]; then
-                cp $i {output}
+                cp {input}/scog/$i {output}/$i.fa
             fi
-        done       
+        done
         """
