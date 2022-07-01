@@ -42,7 +42,7 @@ rule orthofisher:
         orthofisher -m {input.hmm} -f {input.tsv} -o {output}
         """
 
-rule orthofisher_filter:
+checkpoint orthologs_filter:
     """
     Filters the output of orthofisher so that it only keeps the orthologs with a minimum number of sequences.
     """
@@ -58,7 +58,7 @@ rule orthofisher_filter:
         for i in $(ls {input}/scog/); do
             nseq=$(grep ">" {input}/scog/$i | wc -l)
             if [[ $nseq -ge {params.min_seqs} ]]; then
-                cp {input}/scog/$i {output}/$i.fa
+                cat {input}/scog/$i | cut -f1,2,3,4 -d'|' > {output}/$i.fa
             fi
         done
         """

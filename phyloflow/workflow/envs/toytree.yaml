@@ -1,5 +1,5 @@
 channels:
   - conda-forge
 dependencies:
-  - toytree
+  - toytree=2.0.5
   - typer

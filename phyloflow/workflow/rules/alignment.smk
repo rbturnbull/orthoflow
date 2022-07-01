@@ -4,7 +4,7 @@ rule mafft:
     Aligns the protein (amino acid) file with MAFFT
     """
     input:
-        "results/orthologs/{og}.orthosnap.fa"
+        "results/orthologs/{og}.fa"
     output:
         "results/alignment/{og}.alignment.fa"
     bibs:
@@ -23,7 +23,8 @@ rule mafft:
         mafft --thread {threads} --auto {input} > {output}
         """
 
-
+# TODO: rename this rule
+# currently, this rule creates an unaligned mfasta file of the corresponding nucleotide sequences
 rule concat_nuc:
     """
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
@@ -83,19 +84,15 @@ rule taxon_only:
 
 def all_alignments(wildcards):
     # The directory created to hold all of the filtered orthogroups
-    filtered_dir = Path(checkpoints.filter_orthofinder.get().output[0])
+    filtered_dir = Path(checkpoints.orthologs_filter.get().output[0])
 
     # The names of the remaining orthogroups after filtering
     filtered_ogs = glob_wildcards(filtered_dir / "{og,OG\d+}.fa").og
 
-    # For each of the remaining orthogroups, run the orthosnap rule
-    # TODO: I'm not sure if this will force the orthosnap rule calls to be serial?
-    for og in filtered_ogs:
-        checkpoints.orthosnap.get(og=og)
-
-    # Finally, glob for the concatenated orthosnap output (some orthogroups may have no snap-ogs and hence no output)
+    # Finally, glob for the concatenated orthosnap output (some orthogroups may have no snap-ogs
+    # and hence no output)
     # and use the resulting names to generate a list of required taxon_only rule outputs.
-    return expand(rules.taxon_only.output, og=glob_wildcards("results/orthologs/{og}.orthosnap.fa").og)
+    return expand(rules.taxon_only.output, og=glob_wildcards("results/orthologs/{og}.fa").og)
 
 
 rule list_alignments:
