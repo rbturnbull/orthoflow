@@ -64,6 +64,7 @@ checkpoint orthosnap:
         ENV_DIR / "orthologs.yaml"
     shell:
         r"""
+        rm -f results/orthologs/{wildcards.og}*orthosnap*
         orthosnap -f {input.fasta} -t {input.tree}
 
         # NOTE: We need to use a loop to ensure we do nothing if there are no glob matches
