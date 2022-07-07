@@ -3,3 +3,5 @@ channels:
 dependencies:
   - toytree=2.0.5
   - typer
+  - pip:
+    - numpy==1.22.4
