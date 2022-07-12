@@ -54,10 +54,7 @@ rule orthosnap:
     """
     Run Orthosnap to retrieve single-copy orthologs.
 
-    To get orthosnap to run, we had to modify the IDs in the fasta files using the filter_orthofinder script to replace ';' with  '_'.
-    Later we will want to back match these IDs against the original CDS, so we have to reverse this transformation here!
-
-    :output: A directory with an unknown number of
+    :output: A directory with an unknown number of fasta files.
     """
     input:
         fasta="results/orthofinder/min-seq-filtered/{og}.fa",
@@ -70,6 +67,7 @@ rule orthosnap:
         ENV_DIR / "orthologs.yaml"
     shell:
         r"""
+        rm -f results/orthologs/{wildcards.og}*orthosnap*
         orthosnap -f {input.fasta} -t {input.tree} --occupancy {params.occupancy}
 
         # NOTE: We need to use a loop to ensure we do nothing if there are no glob matches

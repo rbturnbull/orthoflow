@@ -60,8 +60,7 @@ rule iqtree:
     log:
         "logs/supermatrix/iqtree.log"
     shell:
-        "iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -redo"
-
+        "iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads}"
 
 
 rule ascii_tree:

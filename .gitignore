@@ -13,3 +13,4 @@ phyloflow/logs/*
 **/.snakemake
 tests/.tests-conda
 tests/test-data/results/
+tests/.conda
