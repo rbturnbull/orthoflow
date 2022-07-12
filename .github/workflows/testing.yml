@@ -24,9 +24,9 @@ jobs:
       uses: actions/cache@v3
       with:
         key: ${{ runner.os }}-${{ matrix.python-version }}-cache
-        path:
-          - tests/test-data/results/
-          - tests/.conda/
+        path: |
+          tests/test-data/results/
+          tests/.conda/
     - name: Run Workflow
       run: poetry run phyloflow --directory tests/test-data
     - name: Testing
