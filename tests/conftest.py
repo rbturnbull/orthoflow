@@ -1,3 +1,4 @@
+import re
 import difflib
 import hashlib
 import shutil
@@ -48,7 +49,10 @@ class Workflow:
         
         return _targets_to_pathlist(expected_files)
 
-    def assert_md5sum(self, checksums:List[str], expected_files: Optional[TargetsType] = None,):
+    def assert_md5sum(self, checksums:Union[str, List[str]], *, expected_files: Optional[TargetsType] = None,):
+        if isinstance(checksums, str):
+            checksums = [checksums]
+
         for expected_file, checksum in zip(self.get_expected_paths(expected_files), checksums):
             generated_path = self.work_dir / expected_file
             generated_checksum = _md5sum(generated_path)
@@ -64,11 +68,26 @@ class Workflow:
         
         for expected_file in self.get_expected_paths(expected_files):
             generated_path = self.work_dir / expected_file
-            text = generated_path.read()
+            text = generated_path.read_text()
             for expected_string in strings:
                 if expected_string not in text:
                     raise SnakemakePytestException(
-                        f"The file '{generated_path}' does not contain the string '{expected_string}'."
+                        f"The file '{generated_path}' does not contain the string '{expected_string}':\n" + 
+                        text
+                    )
+
+    def assert_re(self, patterns:Union[str, List[str]], expected_files: Optional[TargetsType] = None,):
+        if isinstance(patterns, str):
+            patterns = [patterns]
+        
+        for expected_file in self.get_expected_paths(expected_files):
+            generated_path = self.work_dir / expected_file
+            text = generated_path.read_text()
+            for pattern in patterns:
+                if not re.search(pattern, text):
+                    raise SnakemakePytestException(
+                        f"The file '{generated_path}' does match with pattern '{pattern}':\n" + 
+                        text
                     )
 
     def assert_expected(self, expected_files: Optional[TargetsType] = None, diff_on_fail: bool = True) -> bool:
@@ -112,7 +131,7 @@ def run_workflow(tmpdir: Path):
         targets = _targets_to_pathlist(targets)
 
         work_dir = Path(tmpdir) / "work_dir"
-        tests_dir = Path(__file__).parent
+        tests_dir = Path(__file__).parent.resolve()
         expected_dir = tests_dir / "test-data"
         conda_dir = tests_dir / ".conda"
 

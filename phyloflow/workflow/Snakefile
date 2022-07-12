@@ -55,4 +55,6 @@ onstart:
 
 rule all:
     input:
-        "results/supermatrix/render_tree.svg"
+        "results/supermatrix/render_tree.svg",
+        "results/supermatrix/alignment_summary.txt",
+        "results/supermatrix/ascii_tree.txt",
