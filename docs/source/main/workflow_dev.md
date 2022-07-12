@@ -27,7 +27,7 @@ Brain dump of what we need for the user to provide other than a directory with d
 
 Must work from input CSV file to determine which type of input the different input files represent. It produces two files for each taxon, one with CDS and one with protein sequences (translated from CDS based on genetic code).
 
-The default name for the input CSV file is `input_sources.csv`. To override that, either edit the `config.yaml` file or use pass an argument to the CLI overriding the config setting, e.g. `--config input_sources='/path/to/desired/input/file.csv'` (see [here](https://snakemake.readthedocs.io/en/stable/executing/cli.html) for more details).
+The default name for the input CSV file is `input_sources.csv`. To override that, either edit the `config.yml` file or use pass an argument to the CLI overriding the config setting, e.g. `--config input_sources='/path/to/desired/input/file.csv'` (see [here](https://snakemake.readthedocs.io/en/stable/executing/cli.html) for more details).
 
 1.  Intake of exome data
     
