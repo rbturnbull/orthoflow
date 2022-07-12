@@ -7,12 +7,13 @@ min_version("6.0")
 SNAKE_DIR = Path(workflow.basedir)
 SCRIPT_DIR = SNAKE_DIR/ "scripts"
 WORKFLOW_DIR = SNAKE_DIR / "workflow"
-RESOURCES_DIR = SNAKE_DIR.parent / "resources"
 ENV_DIR = WORKFLOW_DIR.parent / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = SNAKE_DIR.parent / "logs"
 
 
+# Get the path to the default config file.
+# This can be overridden on the command line
 configfile: CONFIG_DIR / "config.yml"
 
 report: "report/workflow.rst"
@@ -20,7 +21,8 @@ report: "report/workflow.rst"
 
 ##### load rules #####
 include: "rules/intake.smk"
-include: "rules/orthologs.smk"
+include: "rules/orthofisher.smk"
+include: "rules/orthofinder.smk"
 include: "rules/alignment.smk"
 include: "rules/supermatrix.smk"
 # include: "rules/genetree.smk"
@@ -33,7 +35,6 @@ onstart:
     path_vars = (
         'SNAKE_DIR',
         'SCRIPT_DIR',
-        'RESOURCES_DIR',
         'CONFIG_DIR',
         'LOG_DIR',
     )
@@ -54,4 +55,6 @@ onstart:
 
 rule all:
     input:
-        "results/alignment/alignments.txt"
+        "results/supermatrix/render_tree.svg",
+        "results/supermatrix/alignment_summary.txt",
+        "results/supermatrix/ascii_tree.txt",

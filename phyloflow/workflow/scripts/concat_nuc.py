@@ -65,8 +65,7 @@ def concat_nuc(
         
         for row in alignment:
             if row.id not in multifastaindex:
-                print(f"cannot find {row.id} in multifastaindex")
-                breakpoint()
+                raise Exception(f"cannot find {row.id} in multifastaindex")
             f.write(f">{row.id}\n{multifastaindex[row.id]}\n")
 
 

@@ -1,1 +1,0 @@
-(Caulerpa_cliftonii_HV03798|0|KX808498.1|orf781:0.269983,(Caulerpa_cliftonii_HV03798|0|KX808498.1|orf120:0.232673,(Caulerpa_cliftonii_HV03798|0|KX808498.1|orf275:0.379622,Caulerpa_cliftonii_HV03798|1|KX808498.1|orf131:0.0168259)n2:0.409481)n1:0.269983)n0;
