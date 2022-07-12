@@ -3,10 +3,15 @@ from pathlib import Path
 
 
 def validate_input():
-    df = pd.read_csv(config["input_sources"])
+    input_csv = config["input_sources"]
+    try:
+        df = pd.read_csv(input_csv)
+    except FileNotFoundError as e:
+        print(f"Could not find your input_sources file '{input_csv}'. Please check your config file.\n")
+        raise SystemExit(e)
     for file in df["file"]:
         if not Path(file).exists():
-            print(f"File '{file} does not exist. Please check your input file '{config['input_sources']}'.")
+            print(f"File '{file} does not exist. Please check your input file '{input_csv}'.")
             raise FileNotFoundError
     return df
 
