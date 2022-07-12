@@ -19,7 +19,16 @@ jobs:
         python-version: ${{ matrix.python-version }}
         cache: 'poetry'
     - run: poetry install
+    - name: Cache
+      id: cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-${{ matrix.python-version }}-cache
+        path:
+          - tests/test-data/results/
+          - tests/.conda/
+    - name: Run Workflow
+      run: poetry run phyloflow --directory tests/test-data
     - name: Testing
       run: |
-        poetry run phyloflow --directory tests/test-data
         poetry run pytest
