@@ -32,7 +32,7 @@ def input_sources_item(source, column):
 
 rule extract_cds:
     """
-    Extracts CDS features from GenBank files.
+    Extracts CDS features from GenBank files or copies the CDS file.
 
     Not used if input files already at in fasta format.
 
@@ -40,7 +40,7 @@ rule extract_cds:
            Snakemake having trouble identifying the creation of the symlinks.
     """
     output:
-        "results/fasta/{source}.cds.fasta",
+        "results/intake/{source}.cds.fa",
     input:
         input_sources="input_sources.csv",
         file=lambda wildcards: Path(input_sources_item(wildcards.source, 'file')).resolve(),
@@ -65,19 +65,18 @@ rule extract_cds:
 
 rule add_taxon:
     """
-    Prepends the taxon name to the description of each sequence in a fasta file.
+    Prepends the taxon name to the description of each sequence in a CDS file.
     """
     output:
-        "results/taxon-added/{source}.cds.fasta",
+        "results/intake/taxon-added/{source}.cds.fasta",
     input:
-        input_sources="input_sources.csv",
-        fasta="results/fasta/{source}.cds.fasta",
+        rules.extract_cds.output,
     conda:
         ENV_DIR / "typer.yaml"
     params:
         taxon=lambda wildcards: input_sources_item(wildcards.source, 'taxon_string'),
     shell:
-        "python {SCRIPT_DIR}/add_taxon.py --unique-counter {params.taxon} {input.fasta} {output}"
+        "python {SCRIPT_DIR}/add_taxon.py --unique-counter {params.taxon} {input} {output}"
 
 
 rule translate:
@@ -91,10 +90,9 @@ rule translate:
     BioKIT is found here: https://github.com/JLSteenwyk/BioKIT
     """
     output:
-        "results/translated/{source}.cds.fasta",
+        "results/intake/translated/{source}.protein.fa",
     input:
-        input_sources="input_sources.csv",
-        fasta="results/taxon-added/{source}.cds.fasta",
+        rules.add_taxon.output
     bibs:
         "../bibs/biokit.bib"
     conda:
@@ -102,4 +100,4 @@ rule translate:
     params:
         translation_table=lambda wildcards: input_sources_item(wildcards.source, 'translation_table'),
     shell:
-        "biokit translate_sequence {input.fasta} --output {output} --translation_table {params.translation_table}"
+        "biokit translate_sequence {input} --output {output} --translation_table {params.translation_table}"

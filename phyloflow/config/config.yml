@@ -1,5 +1,6 @@
 ortholog_min_seqs: 5
-use_orthofisher: True
+use_orthofisher: False
+orthosnap_occupancy: 1
 orthofisher_hmmer_files:
   - hmms/1080at3041.hmm
   - hmms/1103at3041.hmm

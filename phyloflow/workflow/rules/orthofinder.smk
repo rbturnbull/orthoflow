@@ -8,9 +8,9 @@ rule orthofinder:
     Runs `OrthoFinder <https://github.com/davidemms/OrthoFinder>`_ on fasta files from the intake rule.
     """
     input:
-        pd.read_csv("input_sources.csv")['file'].map(lambda f: f"results/translated/{f.split('.')[0]}.cds.fasta"),
+        pd.read_csv("input_sources.csv")['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
     output:
-        directory("results/orthofinder"),
+        directory("results/orthofinder/output"),
     conda:
         ENV_DIR / "orthologs.yaml"
     log:
@@ -22,15 +22,16 @@ rule orthofinder:
     threads: workflow.cores
     shell:
         """
+        mkdir -p results/orthofinder
         orthofinder -f {params.input_dir} -t {threads} -n phyloflow -ot -M msa -X
+        mv {params.input_dir}/OrthoFinder/Results_phyloflow/ {output}
         """
 
-
-checkpoint filter_orthofinder:
+checkpoint min_seq_filter_orthofinder:
     """
     Copy out OGs with more than a minimum number of sequences.
 
-    :config: filter_orthofinder
+    :config: ortholog_min_seqs
 
     % Notes - these are commented with a '%' character so they don't interefere with the markdown doc
     % -----
@@ -40,16 +41,16 @@ checkpoint filter_orthofinder:
     input:
         rules.orthofinder.output,
     output:
-        directory("results/orthofinder-filtered"),
+        directory("results/orthofinder/min-seq-filtered"),
     conda:
         ENV_DIR / "orthologs.yaml"
     params:
-        min_seqs=config["ortholog_min_seqs"],
+        min_seqs=config.get("ortholog_min_seqs", 1),
     shell:
         f"python {SCRIPT_DIR}/filter_OrthoFinder.py {{input}} {{output}} {{params.min_seqs}}"
 
 
-checkpoint orthosnap:
+rule orthosnap:
     """
     Run Orthosnap to retrieve single-copy orthologs.
 
@@ -59,19 +60,56 @@ checkpoint orthosnap:
     :output: A directory with an unknown number of
     """
     input:
-        fasta="results/orthofinder-filtered/{og}.fa",
-        tree="results/orthofinder-filtered/{og}.nwk"
+        fasta="results/orthofinder/min-seq-filtered/{og}.fa",
+        tree="results/orthofinder/min-seq-filtered/{og}.nwk"
     output:
-        touch("results/orthologs/.{og}.orthosnap.flag")
+        "results/orthofinder/orthosnap/{og}.fa"
+    params:
+        occupancy=config.get("orthosnap_occupancy", 1),
     conda:
         ENV_DIR / "orthologs.yaml"
     shell:
         r"""
-        orthosnap -f {input.fasta} -t {input.tree}
+        orthosnap -f {input.fasta} -t {input.tree} --occupancy {params.occupancy}
 
         # NOTE: We need to use a loop to ensure we do nothing if there are no glob matches
         snapfiles=$(ls {input.fasta}.orthosnap.*.fa 2> /dev/null || true)
         for f in $snapfiles; do
-            cat $f >> results/orthofinder-filtered/{wildcards.og}.orthosnap.fa
+            cat $f >> {output}
+            rm $f
+        done
+        """
+
+
+def orthofinder_aggregation(wildcards):
+    checkpoint_output = checkpoints.min_seq_filter_orthofinder.get(**wildcards).output[0]
+    all_ogs = glob_wildcards(os.path.join(checkpoint_output, "{og}.fa")).og
+    return expand(rules.orthosnap.output, og=all_ogs)
+
+
+checkpoint orthofinder_all:
+    """
+    Collects all the SC-OGs and the SNAP OGs and creates symlinks for each in a single directory.
+
+    :config: ortholog_min_seqs
+    """
+    input:
+        orthofinder_aggregation
+    output:
+        directory("results/orthofinder/all"),
+    params:
+        min_seqs=config.get("ortholog_min_seqs", 1),
+    shell:
+        """
+        mkdir -p {output}
+        for i in {input}; do
+            nseq=$(grep ">" $i | wc -l)
+
+            if [[ $nseq -ge {params.min_seqs} ]]; then
+                og=$(basename $i | sed 's/\..*//g')
+                path={output}/$og.fa
+                echo "Symlinking $(pwd)/$i to $path"
+                ln -s $(pwd)/$i $path
+            fi
         done
         """
