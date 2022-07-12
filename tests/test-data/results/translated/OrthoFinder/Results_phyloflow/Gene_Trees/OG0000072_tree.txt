@@ -1,1 +1,0 @@
-(Flabellia_petiolata_HV01202|0|MH591085.1|cemA:0.0156677,(Chlorodesmis_fastigiata_HV03865|0|KY819064.1|cemA:0.31748,(Caulerpa_cliftonii_HV03798|0|KX808498.1|cemA:0.255276,(Derbesia_sp_WEST4838|0|KX808497.1|cemA:0.49591,Bryopsis_plumosa_WEST4718|0|NC_026795.1|cemA:0.428277)1:0.462432)0.978:0.161751)1:0.0156677);

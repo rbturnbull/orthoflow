@@ -1,1 +1,0 @@
-(Flabellia_petiolata_HV01202|0|MH591085.1|ycf1:0.11055,(Chlorodesmis_fastigiata_HV03865|0|KY819064.1|ycf1:0.434744,(Caulerpa_cliftonii_HV03798|0|KX808498.1|ycf1:0.512419,(Avrainvillea_mazei_HV02664|0|KY509313.1|ycf1:0.729822,(Derbesia_sp_WEST4838|0|KX808497.1|ycf1:0.601593,Bryopsis_plumosa_WEST4718|0|NC_026795.1|ycf1:0.181301)n4:0.45415)n3:0.370224)n2:0.142419)n1:0.11055)n0;

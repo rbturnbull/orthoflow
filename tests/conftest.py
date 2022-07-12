@@ -15,6 +15,10 @@ class FilesDiffer(Exception):
     pass
 
 
+class SnakemakePytestException(Exception):
+    pass
+
+
 def _md5sum(filename):
     md5 = hashlib.md5()
     with open(filename, 'rb') as f:
@@ -38,16 +42,38 @@ class Workflow:
         self.work_dir = work_dir
         self.expected_dir = expected_dir
 
-    def assert_expected(self, expected_files: Optional[TargetsType] = None, diff_on_fail: bool = True) -> bool:
+    def get_expected_paths(self, expected_files: Optional[TargetsType] = None) -> List[Path]:
         if expected_files is None:
-            expected_files = self.targets
-        else:
-            expected_files = _targets_to_pathlist(expected_files)
+            return self.targets
+        
+        return _targets_to_pathlist(expected_files)
 
-        expected_files: List[Path]
+    def assert_md5sum(self, checksums:List[str], expected_files: Optional[TargetsType] = None,):
+        for expected_file, checksum in zip(self.get_expected_paths(expected_files), checksums):
+            generated_path = self.work_dir / expected_file
+            generated_checksum = _md5sum(generated_path)
+            if generated_checksum != checksum:
+                raise SnakemakePytestException(
+                    f"The md5 checksum for '{generated_path}' is '{generated_checksum}'."
+                    f"This differs from the expected checksum '{checksum}'."
+                )
 
+    def assert_contains(self, strings:Union[str, List[str]], expected_files: Optional[TargetsType] = None,):
+        if isinstance(strings, str):
+            strings = [strings]
+        
+        for expected_file in self.get_expected_paths(expected_files):
+            generated_path = self.work_dir / expected_file
+            text = generated_path.read()
+            for expected_string in strings:
+                if expected_string not in text:
+                    raise SnakemakePytestException(
+                        f"The file '{generated_path}' does not contain the string '{expected_string}'."
+                    )
+
+    def assert_expected(self, expected_files: Optional[TargetsType] = None, diff_on_fail: bool = True) -> bool:
         # Check expected files
-        for expected_file in expected_files:
+        for expected_file in self.get_expected_paths(expected_files):
             generated_path = self.work_dir / expected_file
             expected_path = self.expected_dir / expected_file
 
