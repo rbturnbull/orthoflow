@@ -10,8 +10,7 @@ rule orthofinder:
     input:
         pd.read_csv("input_sources.csv")['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
     output:
-        root=directory("results/orthofinder/output"),
-        gene_trees=directory("results/orthofinder/output/Gene_Trees"),
+        directory("results/orthofinder/output"),
     conda:
         ENV_DIR / "orthofinder.yaml"
     log:
@@ -25,7 +24,7 @@ rule orthofinder:
         """
         mkdir -p results/orthofinder
         orthofinder -f {params.input_dir} -t {threads} -n phyloflow -ot -M msa -X
-        mv {params.input_dir}/OrthoFinder/Results_phyloflow/ {output.root}
+        mv {params.input_dir}/OrthoFinder/Results_phyloflow/ {output}
         """
 
 checkpoint split_scogs_and_multi_copy_ogs:
@@ -39,7 +38,7 @@ checkpoint split_scogs_and_multi_copy_ogs:
     :config: ortholog_min_seqs
     """
     input:
-        rules.orthofinder.output.root,
+        rules.orthofinder.output,
     output:
         scogs=directory("results/orthofinder/scogs"),
         multi_copy_ogs=directory("results/orthofinder/multi_copy_ogs"),
@@ -78,7 +77,7 @@ checkpoint generate_orthosnap_input:
     """
     input:
         multi_copy_ogs=get_multi_copy_ogs,
-        gene_trees=rules.orthofinder.output.gene_trees
+        gene_trees=f"{rules.orthofinder.output}/Gene_trees"
     output:
         directory("results/orthofinder/orthosnap_input"),
     conda:
