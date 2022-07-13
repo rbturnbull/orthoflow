@@ -108,7 +108,7 @@ def list_protein_alignments(wildcards):
 
 
 def list_alignments(wildcards):
-    if config.get("infer_tree_with_protein_seqs", True):
+    if config.get("infer_tree_with_protein_seqs", False):
         return list_protein_alignments(wildcards)
     return list_cds_alignments(wildcards)
 

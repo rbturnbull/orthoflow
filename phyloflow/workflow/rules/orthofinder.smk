@@ -77,7 +77,7 @@ checkpoint generate_orthosnap_input:
     """
     input:
         multi_copy_ogs=get_multi_copy_ogs,
-        gene_trees=f"{rules.orthofinder.output}/Gene_trees"
+        orthofinder_output=rules.orthofinder.output
     output:
         directory("results/orthofinder/orthosnap_input"),
     conda:
@@ -85,7 +85,7 @@ checkpoint generate_orthosnap_input:
     params:
         min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
     shell:
-        f"python {SCRIPT_DIR}/generate_orthosnap_input.py {{input.multi_copy_ogs}} {{input.gene_trees}} {{output}} {{params.min_seqs}}"
+        f"python {SCRIPT_DIR}/generate_orthosnap_input.py {{input.multi_copy_ogs}} {{input.orthofinder_output}}/Gene_Trees/ {{output}} {{params.min_seqs}}"
  
 
 checkpoint orthosnap:
@@ -125,7 +125,6 @@ def list_orthosnap_snap_ogs(wildcards):
     for multi_copy_og in multi_copy_ogs:
         checkpoint_output = checkpoints.orthosnap.get(og=multi_copy_og).output[0]
         snap_ogs += list(Path(checkpoint_output).glob("*.fa"))
-        print('snap_ogs', snap_ogs)
 
     return snap_ogs
 
