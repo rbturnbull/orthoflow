@@ -26,7 +26,7 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.python-version }}-cache
         path: |
           tests/test-data/results/
-          test-data/.snakemake/conda/
+          tests/test-data/.snakemake/conda/
     - name: Run Workflow
       run: poetry run phyloflow --directory tests/test-data results/supermatrix/ascii_tree.txt
     # - name: Testing
