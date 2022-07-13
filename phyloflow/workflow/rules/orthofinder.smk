@@ -57,7 +57,7 @@ checkpoint split_scogs_and_multi_copy_ogs:
             if [[ $num_taxa_multicopy -gt 0 ]]; then
                 echo "multi-copy" # and run orthosnap
                 ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.multi_copy_ogs}/$i
-            elif [[ $num_taxa_singlecopy -ge {params.min_seqs} ]]; then
+            elif [[ $num_taxa_singlecopy -ge {params.min_seqs} ]] && [[ $num_taxa_multicopy -eq 0 ]]; then
                 echo "single-copy" # and pass to alignment file
                 ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.scogs}/$i
             fi
