@@ -25,20 +25,22 @@ Brain dump of what we need for the user to provide other than a directory with d
 
 ## Data intake module
 
-Must work from `input_sources.csv` file to determine which type of input the different input files represent. It produces two files for each taxon, one with CDS and one with protein sequences (translated from CDS based on genetic code).
+Must work from input CSV file to determine which type of input the different input files represent. It produces two files for each taxon, one with CDS and one with protein sequences (translated from CDS based on genetic code).
+
+The default name for the input CSV file is `input_sources.csv`. To override that, either edit the `config.yml` file or use pass an argument to the CLI overriding the config setting, e.g. `--config input_sources='/path/to/desired/input/file.csv'` (see [here](https://snakemake.readthedocs.io/en/stable/executing/cli.html) for more details).
 
 1.  Intake of exome data
     
     - this comes in fasta format
-    - add taxon\_string field from `input\_sources.csv` with the `add_taxon_to_seqID.py` in `ext_scripts`, keep this output
-    - translate sequences using `biokit translate` ([github](https://github.com/JLSteenwyk/BioKIT)), specifying the genetic code given in `input_sources.csv`, keep output
+    - add taxon\_string field from input CSV with the `add_taxon_to_seqID.py` in `ext_scripts`, keep this output
+    - translate sequences using `biokit translate` ([github](https://github.com/JLSteenwyk/BioKIT)), specifying the genetic code given in the input CSV, keep output
 2.  Intake of annotated genbank files
     
     - this comes in genbank flatfile format
     - extract CDS features from genbank file with `gbseqextractor` ([github](https://github.com/linzhi2013/gbseqextractor))
     - this essentially converts the input into the exome data from point 1, so downstream processing is identical to 1 from above
     - add taxon\_string field from `input\_sources.csv`, keep this output
-    - translate sequences using `biokit translate`, specifying genetic code given in `input_sources.csv`, keep output
+    - translate sequences using `biokit translate`, specifying genetic code given in input CSV, keep output
 2b.  Index CDSs
 
     - create samtools faidx indexed copy of all CDS combined (using files with taxon string added but before translation)

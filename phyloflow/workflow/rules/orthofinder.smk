@@ -8,7 +8,7 @@ rule orthofinder:
     Runs `OrthoFinder <https://github.com/davidemms/OrthoFinder>`_ on fasta files from the intake rule.
     """
     input:
-        pd.read_csv("input_sources.csv")['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
+        input_csv['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
     output:
         directory("results/orthofinder/output"),
     conda:

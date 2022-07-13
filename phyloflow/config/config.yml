@@ -1,3 +1,4 @@
+input_sources: "input_sources.csv" 
 ortholog_min_seqs: 5
 orthofinder_use_scogs: True
 orthofinder_use_snap_ogs: True
