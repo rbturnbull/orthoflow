@@ -21,11 +21,31 @@ The `translation_table` is integer id of the translation table to translated cod
 `BioKIT <https://jlsteenwyk.com/BioKIT/usage/index.html#translate-sequence>`_. 
 See the `list of genetic codes published by the NCBI <https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=c>`_.
 
+Once this file is created and stored in the current working directory, run phyloflow with the command:
+
+.. code-block::bash
+
+    phyloflow
+
+To set a specific target file to generate, give that as an argument:
+
+.. code-block::bash
+
+    phyloflow path/to/target/file
+
+To set a working directory different to the current directory, use the `--directory` flag:
+
+.. code-block::bash
+
+    phyloflow --directory path/to/working/dir
+
 
 Demonstration Data
 ==================
 
-In the repository is a set of demonstration data. There are already input DNA sequence files and an `input_sources.csv`.
+In the repository is a set of demonstration data. 
+There are already input DNA sequence files and an `input_sources.csv` which is the same as the table above.
+To run it, go into the test-data directory and run phyloflow:
 
 .. code-block::bash
 

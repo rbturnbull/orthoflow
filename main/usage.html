@@ -200,9 +200,14 @@ The <cite>data_type</cite> column must be <cite>CDS</cite> or <cite>GenBank</cit
 The <cite>translation_table</cite> is integer id of the translation table to translated coding sequences to amino acid sequences using
 <a class="reference external" href="https://jlsteenwyk.com/BioKIT/usage/index.html#translate-sequence">BioKIT</a>.
 See the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=c">list of genetic codes published by the NCBI</a>.</p>
+<p>Once this file is created and stored in the current working directory, run phyloflow with the command:</p>
+<p>To set a specific target file to generate, give that as an argument:</p>
+<p>To set a working directory different to the current directory, use the <cite>–directory</cite> flag:</p>
 <section id="demonstration-data">
 <h2>Demonstration Data<a class="headerlink" href="#demonstration-data" title="Permalink to this headline"></a></h2>
-<p>In the repository is a set of demonstration data. There are already input DNA sequence files and an <cite>input_sources.csv</cite>.</p>
+<p>In the repository is a set of demonstration data.
+There are already input DNA sequence files and an <cite>input_sources.csv</cite> which is the same as the table above.
+To run it, go into the test-data directory and run phyloflow:</p>
 </section>
 <section id="hpc">
 <h2>HPC<a class="headerlink" href="#hpc" title="Permalink to this headline"></a></h2>
