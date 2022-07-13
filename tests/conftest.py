@@ -62,7 +62,7 @@ class Workflow:
                     f"This differs from the expected checksum '{checksum}'."
                 )
 
-    def assert_contains(self, strings:Union[str, List[str]], expected_files: Optional[TargetsType] = None,):
+    def assert_contains(self, strings:Union[str, List[str]], *, expected_files: Optional[TargetsType] = None,):
         if isinstance(strings, str):
             strings = [strings]
         
