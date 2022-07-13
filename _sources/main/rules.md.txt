@@ -33,7 +33,7 @@ Prepends the taxon name to the description of each sequence in a fasta file.
 
 Translates coding sequences to amino acid sequences using BioKIT.
 
-It relies on the `translation_table` column in the input CSV.
+It relies on the `translation_table` column in `input_sources.csv`.
 It expects a number there which corresponds with the NCBI genetic codes: 
 https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes
 
