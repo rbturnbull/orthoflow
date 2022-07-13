@@ -1,3 +1,4 @@
+input_sources: "input_sources.csv" 
 ortholog_min_seqs: 5
 use_orthofisher: False
 orthosnap_occupancy: 1

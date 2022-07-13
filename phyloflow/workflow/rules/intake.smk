@@ -2,23 +2,39 @@ import pandas as pd
 from pathlib import Path
 
 
+def validate_input():
+    input_csv = config["input_sources"]
+    try:
+        df = pd.read_csv(input_csv)
+    except FileNotFoundError as e:
+        print(f"Could not find your input_sources file '{input_csv}'. Please check your config file.\n")
+        raise SystemExit(e)
+    for file in df["file"]:
+        if not Path(file).exists():
+            print(f"File '{file} does not exist. Please check your input file '{input_csv}'.")
+            raise FileNotFoundError
+    return df
+
+
+input_csv = validate_input()
+
+
 def input_sources_row(source):
     """
-    Reads a row in `input_sources.csv` based on the first part of the filename (before a '.').
+    Reads a row in the input CSV based on the first part of the filename (before a '.').
 
     Returns:
         pd.Series: The row which corresponds to the file.
     """
-    df = pd.read_csv("input_sources.csv")
-    index = df['file'].apply(lambda x: x.split(".")[0]) == source
+    index = input_csv['file'].apply(lambda x: x.split(".")[0]) == source
     if sum(index) != 1:
-        raise Exception(f"Cannot find unique row with filename '{source}' in 'input_sources.csv'")
-    return df[index]
+        raise Exception(f"Cannot find unique row with filename '{source}' in '{config['input_sources']}'")
+    return input_csv[index]
 
 
 def input_sources_item(source, column):
     """
-    Reads a cell in `input_sources.csv` for a file and a column.
+    Reads a cell in the input CSV for a file and a column.
     """
     row = input_sources_row(source)
     val = row[column].item()
@@ -42,7 +58,7 @@ rule extract_cds:
     output:
         "results/intake/{source}.cds.fa",
     input:
-        input_sources="input_sources.csv",
+        input_sources=config["input_sources"],
         file=lambda wildcards: Path(input_sources_item(wildcards.source, 'file')).resolve(),
     bibs:
         "../bibs/biopython.bib"
@@ -83,7 +99,7 @@ rule translate:
     """
     Translates coding sequences to amino acid sequences using BioKIT.
 
-    It relies on the `translation_table` column in `input_sources.csv`.
+    It relies on the `translation_table` column in the input CSV.
     It expects a number there which corresponds with the NCBI genetic codes:
     https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes
 
