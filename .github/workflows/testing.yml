@@ -28,7 +28,7 @@ jobs:
           tests/test-data/results/
           tests/.conda/
     - name: Run Workflow
-      run: poetry run phyloflow --directory tests/test-data
+      run: poetry run phyloflow --directory tests/test-data results/supermatrix/ascii_tree.txt
     - name: Testing
       run: |
         poetry run pytest
