@@ -1,4 +1,6 @@
 ortholog_min_seqs: 5
+orthofinder_use_scogs: True
+orthofinder_use_snap_ogs: True
 use_orthofisher: False
 # orthosnap_occupancy: 5 # uncomment this line if you wish to set the orthosnap_occupancy to be somehting other than ortholog_min_seqs
 orthofisher_hmmer_files:
