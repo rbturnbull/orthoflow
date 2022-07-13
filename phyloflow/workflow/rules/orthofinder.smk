@@ -136,7 +136,7 @@ def combine_scogs_and_snap_ogs(wildcards):
     orthofinder_use_snap_ogs = config.get('orthofinder_use_snap_ogs', True)
     if not orthofinder_use_scogs and not orthofinder_use_scogs:
         raise Exception(
-            "You need to set either `orthofinder_use_scogs` or `orthofinder_use_snap_ogs` or both 
+            "You need to set either `orthofinder_use_scogs` or `orthofinder_use_snap_ogs` or both "
             "in the configuration file so that at least some orthologs can be used."
         )
     ogs = []
