@@ -62,7 +62,7 @@ class Workflow:
                     f"This differs from the expected checksum '{checksum}'."
                 )
 
-    def assert_contains(self, strings:Union[str, List[str]], expected_files: Optional[TargetsType] = None,):
+    def assert_contains(self, strings:Union[str, List[str]], *, expected_files: Optional[TargetsType] = None,):
         if isinstance(strings, str):
             strings = [strings]
         
@@ -133,7 +133,7 @@ def run_workflow(tmpdir: Path):
         work_dir = Path(tmpdir) / "work_dir"
         tests_dir = Path(__file__).parent.resolve()
         expected_dir = tests_dir / "test-data"
-        conda_dir = tests_dir / ".conda"
+        conda_dir = expected_dir/".snakemake/conda/"
 
         shutil.copytree(
             expected_dir,

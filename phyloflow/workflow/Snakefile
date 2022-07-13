@@ -11,6 +11,8 @@ ENV_DIR = WORKFLOW_DIR.parent / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = SNAKE_DIR.parent / "logs"
 
+# Defaults for config
+ORTHOLOG_MIN_SEQS_DEFAULT = 5
 
 # Get the path to the default config file.
 # This can be overridden on the command line

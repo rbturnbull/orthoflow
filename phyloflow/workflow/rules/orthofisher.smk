@@ -9,7 +9,7 @@ rule orthofisher_input_generation:
     input:
         input_csv['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
     output:
-        tsv="results/orthofisher/input.tsv",
+        tsv="results/orthofisher/input_protein_files.tsv",
         hmm="results/orthofisher/hmms.txt",
     params:
         hmm_files="\n".join(config["orthofisher_hmmer_files"]),
@@ -43,26 +43,27 @@ checkpoint orthofisher:
         """
 
 
-def orthofisher_aggregation(wildcards):
+def list_orthofisher_scogs(wildcards):
     checkpoint_output = checkpoints.orthofisher.get(**wildcards).output[0]
     scog = Path(checkpoint_output)/"scog"
     return list(scog.glob("*.hmm.orthofisher"))
 
 
-checkpoint orthofisher_filtered:
+checkpoint min_seq_filter_orthofisher:
     """
     List all the ortholog ids and puts them in a file.
 
     Only keeps the orthologs with a minimum number of sequences.
+    It also removes suffixes added to the IDs by orthofisher.
 
     :config: ortholog_min_seqs
     """
     input:
-        orthofisher_aggregation
+        list_orthofisher_scogs
     output:
-        directory("results/orthofisher/filtered"),
+        directory("results/orthofisher/min-seq-filtered"),
     params:
-        min_seqs=config.get("ortholog_min_seqs", 1),
+        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
     shell:
         """
         mkdir -p {output}
