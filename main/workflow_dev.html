@@ -144,13 +144,14 @@
 </section>
 <section id="data-intake-module">
 <h2>Data intake module<a class="headerlink" href="#data-intake-module" title="Permalink to this headline"></a></h2>
-<p>Must work from <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code> file to determine which type of input the different input files represent. It produces two files for each taxon, one with CDS and one with protein sequences (translated from CDS based on genetic code).</p>
+<p>Must work from input CSV file to determine which type of input the different input files represent. It produces two files for each taxon, one with CDS and one with protein sequences (translated from CDS based on genetic code).</p>
+<p>The default name for the input CSV file is <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code>. To override that, either edit the <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file or use pass an argument to the CLI overriding the config setting, e.g. <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">input_sources='/path/to/desired/input/file.csv'</span></code> (see <a class="reference external" href="https://snakemake.readthedocs.io/en/stable/executing/cli.html">here</a> for more details).</p>
 <ol class="arabic simple">
 <li><p>Intake of exome data</p>
 <ul class="simple">
 <li><p>this comes in fasta format</p></li>
-<li><p>add taxon_string field from <code class="docutils literal notranslate"><span class="pre">input\_sources.csv</span></code> with the <code class="docutils literal notranslate"><span class="pre">add_taxon_to_seqID.py</span></code> in <code class="docutils literal notranslate"><span class="pre">ext_scripts</span></code>, keep this output</p></li>
-<li><p>translate sequences using <code class="docutils literal notranslate"><span class="pre">biokit</span> <span class="pre">translate</span></code> (<a class="reference external" href="https://github.com/JLSteenwyk/BioKIT">github</a>), specifying the genetic code given in <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code>, keep output</p></li>
+<li><p>add taxon_string field from input CSV with the <code class="docutils literal notranslate"><span class="pre">add_taxon_to_seqID.py</span></code> in <code class="docutils literal notranslate"><span class="pre">ext_scripts</span></code>, keep this output</p></li>
+<li><p>translate sequences using <code class="docutils literal notranslate"><span class="pre">biokit</span> <span class="pre">translate</span></code> (<a class="reference external" href="https://github.com/JLSteenwyk/BioKIT">github</a>), specifying the genetic code given in the input CSV, keep output</p></li>
 </ul>
 </li>
 <li><p>Intake of annotated genbank files</p>
@@ -159,7 +160,7 @@
 <li><p>extract CDS features from genbank file with <code class="docutils literal notranslate"><span class="pre">gbseqextractor</span></code> (<a class="reference external" href="https://github.com/linzhi2013/gbseqextractor">github</a>)</p></li>
 <li><p>this essentially converts the input into the exome data from point 1, so downstream processing is identical to 1 from above</p></li>
 <li><p>add taxon_string field from <code class="docutils literal notranslate"><span class="pre">input\_sources.csv</span></code>, keep this output</p></li>
-<li><p>translate sequences using <code class="docutils literal notranslate"><span class="pre">biokit</span> <span class="pre">translate</span></code>, specifying genetic code given in <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code>, keep output
+<li><p>translate sequences using <code class="docutils literal notranslate"><span class="pre">biokit</span> <span class="pre">translate</span></code>, specifying genetic code given in input CSV, keep output
 2b.  Index CDSs</p></li>
 <li><p>create samtools faidx indexed copy of all CDS combined (using files with taxon string added but before translation)</p></li>
 <li><p>first all the right fasta files need to be concatenated: <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">*.fa</span> <span class="pre">&gt;</span> <span class="pre">all_CDS.fa</span></code></p></li>
