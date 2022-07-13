@@ -133,7 +133,7 @@ def run_workflow(tmpdir: Path):
         work_dir = Path(tmpdir) / "work_dir"
         tests_dir = Path(__file__).parent.resolve()
         expected_dir = tests_dir / "test-data"
-        conda_dir = tests_dir / ".conda"
+        conda_dir = expected_dir/".snakemake/conda/"
 
         shutil.copytree(
             expected_dir,
