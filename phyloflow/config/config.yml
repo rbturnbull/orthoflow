@@ -1,6 +1,6 @@
 ortholog_min_seqs: 5
 use_orthofisher: False
-orthosnap_occupancy: 1
+# orthosnap_occupancy: 5 # uncomment this line if you wish to set the orthosnap_occupancy to be somehting other than ortholog_min_seqs
 orthofisher_hmmer_files:
   - hmms/1080at3041.hmm
   - hmms/1103at3041.hmm
@@ -28,3 +28,4 @@ orthofisher_hmmer_files:
   - hmms/911at3041.hmm
   - hmms/9903at3041.hmm
   - hmms/992at3041.hmm
+infer_tree_with_protein_seqs: True

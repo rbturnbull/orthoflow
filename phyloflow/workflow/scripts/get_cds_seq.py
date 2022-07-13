@@ -43,7 +43,7 @@ class MultiFastaIndex():
         return seq_id in self.id_refs
 
 
-def concat_nuc(
+def get_cds_seq(
     cds_dir: Path = typer.Option(..., help="The directory of the input CDS files that have the taxon_string prepended to seqIDs."),
     alignment: Path = typer.Option(..., help="The path to the alignment file to get the correct order."),
     output_file: Path = typer.Option(..., help="The file for the concatenated sequences."),
@@ -57,11 +57,6 @@ def concat_nuc(
 
     with open(output_file, 'w') as f:
         alignment = AlignIO.read(alignment, "fasta")
-
-        # try:
-        # except ValueError:
-        #     print(f'Error reading alignment file: {alignment}')
-        #     return
         
         for row in alignment:
             if row.id not in multifastaindex:
@@ -70,4 +65,4 @@ def concat_nuc(
 
 
 if __name__ == "__main__":
-    typer.run(concat_nuc)
+    typer.run(get_cds_seq)
