@@ -1,5 +1,6 @@
 from snakemake.utils import min_version
 from pathlib import Path
+
 import subprocess
 
 min_version("6.0")
@@ -15,6 +16,7 @@ LOG_DIR = SNAKE_DIR.parent / "logs"
 ORTHOLOG_MIN_SEQS_DEFAULT = 5
 MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS = 501
 MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS = 167
+MAX_TRIMMED_PROPORTION = 0.5
 
 # Get the path to the default config file.
 # This can be overridden on the command line

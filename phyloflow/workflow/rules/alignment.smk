@@ -95,7 +95,7 @@ rule thread_dna:
         phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output}
         """
 
-rule trim_alignments:
+checkpoint trim_alignments:
     """
     Trim multiple-sequence alignments using ClipKIT.
 
@@ -115,19 +115,29 @@ rule trim_alignments:
         clipkit {input} -m smart-gap -o {output}
         """
 
-def filter_alignments(alignments, min_length):
-    return [
-        alignment_path for alignment_path in alignments
-        if AlignIO.read(alignment_path, "fasta").get_alignment_length() >= min_length
-    ]
+def filter_alignments(untrimmed_alignments, trimmed_alignments, min_length, max_trimmed_proportion):
+    filtered = []
+    for untrimmed_alignment_path, trimmed_alignment_path in zip(untrimmed_alignments, trimmed_alignments):
+        trimmed_length = AlignIO.read(trimmed_alignment_path, "fasta").get_alignment_length()
+        if trimmed_length < min_length:
+            continue
+
+        untrimmed_length = AlignIO.read(untrimmed_alignment_path, "fasta").get_alignment_length()
+        if trimmed_length > max_trimmed_proportion * untrimmed_length:
+            filtered.append(trimmed_alignment_path)
+    return filtered
 
 
 def list_cds_alignments(wildcards):
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
+    for og in all_ogs:
+        checkpoints.trim_alignments.get(og=og)
     return filter_alignments(
-        expand(rules.trim_alignments.output, og=all_ogs),
-        config.get("minimum_trimmed_alignment_length_cds", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS),
+        untrimmed_alignments=expand(rules.thread_dna.output, og=all_ogs),
+        trimmed_alignments=expand(rules.trim_alignments.output, og=all_ogs),
+        min_length=config.get("minimum_trimmed_alignment_length_cds", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS),
+        max_trimmed_proportion=config.get("max_trimmed_proportion", MAX_TRIMMED_PROPORTION),
     )
 
 
@@ -135,8 +145,10 @@ def list_protein_alignments(wildcards):
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
     return filter_alignments(
-        expand(rules.taxon_only.output, og=all_ogs),
-        config.get("minimum_trimmed_alignment_length_proteins", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS),
+        untrimmed_alignments=expand(rules.taxon_only.output, og=all_ogs),
+        trimmed_alignments=expand(rules.taxon_only.output, og=all_ogs), # this needs to change after we use clipkit on proteins
+        min_length=config.get("minimum_trimmed_alignment_length_proteins", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS),
+        max_trimmed_proportion=config.get("max_trimmed_proportion", MAX_TRIMMED_PROPORTION),
     )
 
 
