@@ -13,6 +13,8 @@ LOG_DIR = SNAKE_DIR.parent / "logs"
 
 # Defaults for config
 ORTHOLOG_MIN_SEQS_DEFAULT = 5
+MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS = 501
+MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS = 167
 
 # Get the path to the default config file.
 # This can be overridden on the command line

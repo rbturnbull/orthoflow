@@ -1,3 +1,4 @@
+from Bio import AlignIO
 
 def get_orthologs_path(wildcards):
     orthologs_checkpoint = checkpoints.min_seq_filter_orthofisher if config.get('use_orthofisher', False) else checkpoints.orthofinder_all
@@ -114,16 +115,29 @@ rule trim_alignments:
         clipkit {input} -m smart-gap -o {output}
         """
 
+def filter_alignments(alignments, min_length):
+    return [
+        alignment_path for alignment_path in alignments
+        if AlignIO.read(alignment_path, "fasta").get_alignment_length() >= min_length
+    ]
+
+
 def list_cds_alignments(wildcards):
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
-    return expand(rules.trim_alignments.output, og=all_ogs)
+    return filter_alignments(
+        expand(rules.trim_alignments.output, og=all_ogs),
+        config.get("minimum_trimmed_alignment_length_cds", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS),
+    )
 
 
 def list_protein_alignments(wildcards):
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
-    return expand(rules.taxon_only.output, og=all_ogs)
+    return filter_alignments(
+        expand(rules.taxon_only.output, og=all_ogs),
+        config.get("minimum_trimmed_alignment_length_proteins", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS),
+    )
 
 
 def list_alignments(wildcards):
