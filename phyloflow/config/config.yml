@@ -34,4 +34,4 @@ orthofisher_hmmer_files:
   - hmms/911at3041.hmm
   - hmms/9903at3041.hmm
   - hmms/992at3041.hmm
-infer_tree_with_protein_seqs: False
+infer_tree_with_protein_seqs: True
