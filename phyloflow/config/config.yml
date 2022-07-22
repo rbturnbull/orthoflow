@@ -2,7 +2,7 @@ input_sources: "input_sources.csv"
 ortholog_min_seqs: 5
 orthofinder_use_scogs: True
 orthofinder_use_snap_ogs: True
-use_orthofisher: False
+use_orthofisher: True
 # orthosnap_occupancy: 5 # uncomment this line if you wish to set the orthosnap_occupancy to be somehting other than ortholog_min_seqs
 orthofisher_hmmer_files:
   - hmms/1080at3041.hmm

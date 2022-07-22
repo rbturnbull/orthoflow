@@ -1,6 +1,6 @@
 
 def get_orthologs_path(wildcards):
-    orthologs_checkpoint = checkpoints.orthofisher_filtered if config.get('use_orthofisher', False) else checkpoints.orthofinder_all
+    orthologs_checkpoint = checkpoints.min_seq_filter_orthofisher if config.get('use_orthofisher', False) else checkpoints.orthofinder_all
     orthologs_path = orthologs_checkpoint.get(**wildcards).output[0]
     return orthologs_path
 
@@ -94,11 +94,30 @@ rule thread_dna:
         phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output}
         """
 
+rule trim_alignments:
+    """
+    Trim multiple-sequence alignments using ClipKIT.
+
+    https://jlsteenwyk.com/ClipKIT
+    """
+    input:
+        rules.thread_dna.output,
+        # rules.taxon_only.output for AAs
+    output:
+        "results/alignment/trimmed/{og}.alignment.trimmed.cds.fa"
+    bibs:
+        "../bibs/clipkit.bib"
+    conda:
+        "../envs/clipkit.yaml"
+    shell:
+        """
+        clipkit {input} -m smart-gap -o {output}
+        """
 
 def list_cds_alignments(wildcards):
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
-    return expand(rules.thread_dna.output, og=all_ogs)
+    return expand(rules.trim_alignments.output, og=all_ogs)
 
 
 def list_protein_alignments(wildcards):
@@ -111,8 +130,6 @@ def list_alignments(wildcards):
     if config.get("infer_tree_with_protein_seqs", False):
         return list_protein_alignments(wildcards)
     return list_cds_alignments(wildcards)
-
-# TODO add alignment trimming
 
 
 rule list_alignments:

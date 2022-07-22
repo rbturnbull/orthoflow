@@ -9,6 +9,7 @@ results/*
 tests/unit/.tests-conda/*
 logs/*
 phyloflow/logs/*
+tests/test-data/logs/*
 **/__pycache__
 **/.snakemake
 tests/.tests-conda
