@@ -17,7 +17,7 @@ ORTHOLOG_MIN_SEQS_DEFAULT = 5
 MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS_DEFAULT = 501
 MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS_DEFAULT = 167
 MAX_TRIMMED_PROPORTION_DEFAULT = 0.5
-INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT = False
+INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT = True
 
 # Get the path to the default config file.
 # This can be overridden on the command line
@@ -32,7 +32,7 @@ include: "rules/orthofisher.smk"
 include: "rules/orthofinder.smk"
 include: "rules/alignment.smk"
 include: "rules/supermatrix.smk"
-# include: "rules/genetree.smk"
+include: "rules/gene_tree.smk"
 # include: "rules/reconciliation.smk"
 
 
