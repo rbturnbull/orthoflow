@@ -63,3 +63,16 @@ Enter into the virtual environment as follows:
 .. note::
 
     If installing from source, conda needs to be available on the system for the workflow to run.
+
+
+Recommendations for Mac M1 and Windows systems
+==============================================
+
+Information coming soon.
+
+
+
+Setting up on HPC system
+========================
+
+Information coming soon.
