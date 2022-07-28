@@ -90,6 +90,17 @@ class Workflow:
                         text
                     )
 
+    def assert_exists(self, expected_files: Optional[TargetsType] = None, diff_on_fail: bool = True) -> bool:
+        for expected_file in self.get_expected_paths(expected_files):
+            generated_path = self.work_dir / expected_file
+            assert generated_path.exists()
+
+    def assert_dir_exists(self, expected_files: Optional[TargetsType] = None, diff_on_fail: bool = True) -> bool:
+        for expected_file in self.get_expected_paths(expected_files):
+            generated_path = self.work_dir / expected_file
+            assert generated_path.exists()
+            assert generated_path.is_dir()
+
     def assert_expected(self, expected_files: Optional[TargetsType] = None, diff_on_fail: bool = True) -> bool:
         # Check expected files
         for expected_file in self.get_expected_paths(expected_files):
