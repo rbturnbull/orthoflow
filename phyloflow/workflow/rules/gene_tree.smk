@@ -9,7 +9,7 @@ rule gene_tree_iqtree:
     input:
         rules.trim_alignments.output
     output:
-        directory("results/gene_tree/{og}"),
+        directory("results/gene_tree/iqtree/{og}/"),
     threads: 
         workflow.cores
     conda:
@@ -23,18 +23,18 @@ rule gene_tree_iqtree:
     shell:
         """
         mkdir -p {output}
-        iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -pre {output}/{og} -redo
+        iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -pre {output}/{wildcards.og} -redo
         """
 
 
-rule ascii_gene_tree:
+rule gene_tree_ascii:
     """
     Displays the tree in ASCII format.
     """
     input:
         "results/gene_tree/{og}/{og}.treefile"
     output:
-        report("results/gene_tree/{og}/ascii_tree.txt", category="Gene Tree"),
+        report("results/gene_tree/ascii/{og}.txt", category="Gene Tree"),
     conda:
         "../envs/phykit.yaml"
     bibs:
@@ -42,4 +42,4 @@ rule ascii_gene_tree:
     log:
         "logs/supermatrix/print_ascii_tree-{og}.log"
     shell:
-        "phykit print_tree {input}/1080at3041.treefile > {output}"
+        "phykit print_tree {input} > {output}"
