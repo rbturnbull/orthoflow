@@ -12,6 +12,7 @@ snakemake = { git = "https://github.com/rbturnbull/snakemake.git", branch = "bib
 pandas = "1.2.5"
 typer = "^0.4.1"
 Flask = "^2.1.2"
+biopython = "^1.79"
 
 [tool.poetry.dev-dependencies]
 Sphinx = "^4.4.0"

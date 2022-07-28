@@ -1,6 +1,11 @@
+from Bio import AlignIO
+
+
+infer_tree_with_protein_seqs = config.get("infer_tree_with_protein_seqs", INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT)
+alignment_type = "protein" if infer_tree_with_protein_seqs else "cds"
 
 def get_orthologs_path(wildcards):
-    orthologs_checkpoint = checkpoints.orthofisher_filtered if config.get('use_orthofisher', False) else checkpoints.orthofinder_all
+    orthologs_checkpoint = checkpoints.min_seq_filter_orthofisher if config.get('use_orthofisher', False) else checkpoints.orthofinder_all
     orthologs_path = orthologs_checkpoint.get(**wildcards).output[0]
     return orthologs_path
 
@@ -55,7 +60,7 @@ rule get_cds_seq:
         "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output}"
 
 
-rule taxon_only:
+checkpoint taxon_only:
     """
     Trim sequence IDs to taxon.
 
@@ -94,25 +99,68 @@ rule thread_dna:
         phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output}
         """
 
+checkpoint trim_alignments:
+    """
+    Trim multiple-sequence alignments using ClipKIT.
+
+    https://jlsteenwyk.com/ClipKIT
+    """
+    input:
+        rules.taxon_only.output if infer_tree_with_protein_seqs else rules.thread_dna.output,
+    output:
+        f"results/alignment/trimmed/{{og}}.alignment.trimmed.{alignment_type}.fa"
+    bibs:
+        "../bibs/clipkit.bib"
+    conda:
+        "../envs/clipkit.yaml"
+    shell:
+        """
+        clipkit {input} -m smart-gap -o {output}
+        """
+
+def filter_alignments(untrimmed_alignments, trimmed_alignments, min_length, max_trimmed_proportion):
+    filtered = []
+    for untrimmed_alignment_path, trimmed_alignment_path in zip(untrimmed_alignments, trimmed_alignments):
+        trimmed_length = AlignIO.read(trimmed_alignment_path, "fasta").get_alignment_length()
+        if trimmed_length < min_length:
+            continue
+
+        untrimmed_length = AlignIO.read(untrimmed_alignment_path, "fasta").get_alignment_length()
+        if trimmed_length > max_trimmed_proportion * untrimmed_length:
+            filtered.append(trimmed_alignment_path)
+    return filtered
+
 
 def list_cds_alignments(wildcards):
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
-    return expand(rules.thread_dna.output, og=all_ogs)
+    for og in all_ogs:
+        checkpoints.trim_alignments.get(og=og)
+    return filter_alignments(
+        untrimmed_alignments=expand(rules.thread_dna.output, og=all_ogs),
+        trimmed_alignments=expand(rules.trim_alignments.output, og=all_ogs),
+        min_length=config.get("minimum_trimmed_alignment_length_cds", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS_DEFAULT),
+        max_trimmed_proportion=config.get("max_trimmed_proportion", MAX_TRIMMED_PROPORTION_DEFAULT),
+    )
 
 
 def list_protein_alignments(wildcards):
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
-    return expand(rules.taxon_only.output, og=all_ogs)
+    for og in all_ogs:
+        checkpoints.trim_alignments.get(og=og)
+    return filter_alignments(
+        untrimmed_alignments=expand(rules.taxon_only.output, og=all_ogs),
+        trimmed_alignments=expand(rules.trim_alignments.output, og=all_ogs),
+        min_length=config.get("minimum_trimmed_alignment_length_proteins", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS_DEFAULT),
+        max_trimmed_proportion=config.get("max_trimmed_proportion", MAX_TRIMMED_PROPORTION_DEFAULT),
+    )
 
 
 def list_alignments(wildcards):
-    if config.get("infer_tree_with_protein_seqs", False):
+    if infer_tree_with_protein_seqs:
         return list_protein_alignments(wildcards)
     return list_cds_alignments(wildcards)
-
-# TODO add alignment trimming
 
 
 rule list_alignments:
