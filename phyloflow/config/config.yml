@@ -2,11 +2,11 @@ input_sources: "input_sources.csv"
 ortholog_min_seqs: 5
 orthofinder_use_scogs: True
 orthofinder_use_snap_ogs: True
-use_orthofisher: True
+use_orthofisher: False
 minimum_trimmed_alignment_length_cds: 501
 minimum_trimmed_alignment_length_proteins: 167
 max_trimmed_proportion: 0.5
-# orthosnap_occupancy: 5 # uncomment this line if you wish to set the orthosnap_occupancy to be somehting other than ortholog_min_seqs
+# orthosnap_occupancy: 5 # uncomment this line if you wish to set the orthosnap_occupancy to be something other than ortholog_min_seqs
 orthofisher_hmmer_files:
   - hmms/1080at3041.hmm
   - hmms/1103at3041.hmm
