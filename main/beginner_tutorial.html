@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Usage &mdash; phyloflow 0.1.0 documentation</title>
+  <title>PhyloFlow Beginner’s Tutorial &mdash; phyloflow 0.1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="next" title="PhyloFlow Advanced Tutorial" href="advanced_tutorial.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
@@ -45,12 +45,18 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#demonstration-data">Demonstration Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hpc">HPC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PhyloFlow Beginner’s Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input-data">Input data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simple-run">Simple run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examining-the-output">Examining the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#inferred-tree-and-intermediate-files">Inferred tree and intermediate files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#report-and-diagnostics">Report and diagnostics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-logs">Output logs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">PhyloFlow Advanced Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="orthologs.html">Orthologs Module</a></li>
@@ -76,9 +82,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Usage</li>
+      <li>PhyloFlow Beginner’s Tutorial</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/main/usage.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/main/beginner_tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -110,18 +116,25 @@
     text-align: unset;
 }
 </style>
-<section id="usage">
-<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h1>
-<p>After installing, you need to create an input file for phyloflow to use.
-The default name for this file is <cite>input_sources.csv</cite> but this can be changed in the <a class="reference external" href="configuration.html">configuration</a> file.</p>
-<p>The file looks something like this:</p>
-<table class="colwidths-given docutils align-default" id="id1">
-<caption><span class="caption-text">input_sources.csv</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<section id="phyloflow-beginner-s-tutorial">
+<h1>PhyloFlow Beginner’s Tutorial<a class="headerlink" href="#phyloflow-beginner-s-tutorial" title="Permalink to this headline"></a></h1>
+<section id="input-data">
+<h2>Input data<a class="headerlink" href="#input-data" title="Permalink to this headline"></a></h2>
+<p>PhyloFlow works from an input CSV file with information about the data sources  to be used. Preparing this file is central to setting up your run. The default filename for this is <cite>input_sources.csv</cite>.</p>
+<p>It needs the columns <cite>file</cite>, <cite>taxon_string</cite>, <cite>data_type</cite> and <cite>translation_table</cite>.</p>
+<ul class="simple">
+<li><p>The <cite>file</cite> column is the path to the file relative to the working directory.</p></li>
+<li><p>The <cite>taxon_string</cite>, is the name of the taxon from which the data was obtained.</p></li>
+<li><p>The <cite>data_type</cite> column should be either <cite>CDS</cite> when providing a FASTA file with coding sequences, or <cite>GenBank</cite> when providing a GenBank-formatted file with CDS annotations.</p></li>
+<li><p>The <cite>translation_table</cite> column should have the translation table (genetic code) number for the data as given <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=c">here</a>.</p></li>
+</ul>
+<p>Let’s look at the demonstration dataset distributed with the code: <cite>tests/test-data/input_sources.csv</cite>.</p>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col style="width: 24%" />
+<col style="width: 43%" />
+<col style="width: 13%" />
+<col style="width: 21%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>file</p></th>
@@ -156,7 +169,7 @@ The default name for this file is <cite>input_sources.csv</cite> but this can be
 <td><p>CDS</p></td>
 <td><p>11</p></td>
 </tr>
-<tr class="row-odd"><td><p>MH591079.gbk</p></td>
+<tr class="row-odd"><td><p>MH591079.gb</p></td>
 <td><p>Dichotomosiphon_tuberosus_HV03781</p></td>
 <td><p>GenBank</p></td>
 <td><p>11</p></td>
@@ -193,25 +206,31 @@ The default name for this file is <cite>input_sources.csv</cite> but this can be
 </tr>
 </tbody>
 </table>
-<p>It needs the columns <cite>file</cite>, <cite>taxon_string</cite>, <cite>data_type</cite> and <cite>translation_table</cite>.
-The <cite>file</cite> column is the path to the file relative to the working directory.
-The <cite>taxon_string</cite>, is the name of the taxon in the file.
-The <cite>data_type</cite> column must be <cite>CDS</cite> or <cite>GenBank</cite>, <cite>gb</cite>, or <cite>gbk</cite> (case insensitive).
-The <cite>translation_table</cite> is integer id of the translation table to translated coding sequences to amino acid sequences using
-<a class="reference external" href="https://jlsteenwyk.com/BioKIT/usage/index.html#translate-sequence">BioKIT</a>.
-See the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=c">list of genetic codes published by the NCBI</a>.</p>
-<p>Once this file is created and stored in the current working directory, run phyloflow with the command:</p>
-<p>To set a specific target file to generate, give that as an argument:</p>
-<p>To set a working directory different to the current directory, use the <cite>–directory</cite> flag:</p>
-<section id="demonstration-data">
-<h2>Demonstration Data<a class="headerlink" href="#demonstration-data" title="Permalink to this headline"></a></h2>
-<p>In the repository is a set of demonstration data.
-There are already input DNA sequence files and an <cite>input_sources.csv</cite> which is the same as the table above.
-To run it, go into the test-data directory and run phyloflow:</p>
+<p>We are using a dataset of algal chloroplast genomes, some as annotated genbank files (<cite>data_type: Genbank</cite>), some as fasta files of the coding sequences (<cite>data_type: CDS</cite>). They all use the bacterial genetic code (<cite>translation_table: 11</cite>). Some of the genomes were in a single Genbank file (e.g. KY09313.gb at the top), others were fragmented across multiple files (e.g. last 4 all belonging to the same taxon).</p>
+<p>The <cite>taxon_string</cite> column is perhaps the most important one, as these will be the names to appear in the output tree and this determines how input data gets grouped (e.g. all CDSs in the final four GenBank files will be grouped into a single taxon). In this case, we have included specimen numbers as part of the taxon string but that is optional.</p>
 </section>
-<section id="hpc">
-<h2>HPC<a class="headerlink" href="#hpc" title="Permalink to this headline"></a></h2>
-<p>HOW TO RUN WITH SLURM</p>
+<section id="simple-run">
+<h2>Simple run<a class="headerlink" href="#simple-run" title="Permalink to this headline"></a></h2>
+<p>We are using the small demonstration dataset distributed with the PhyloFlow in the <cite>tests/test-data</cite> subdirectory.</p>
+<p>Go into the directory containing the <cite>input_sources.csv</cite> file and run phyloflow with default settings with these commands:</p>
+<p>By default, PhyloFlow will extract the CDSs from the input files, run OrthoFinder followed by OrthoSNAP to determine orthologous genes, align them and infer a concatenated tree from the protein sequences. You can follow progress on the screen as the workflow executes and outputs are produced.</p>
+<p>Note that the first time you run the workflow, it will be slow because it needs to download and install the software it depends on. This is a one-time thing and runs should get going much faster after.</p>
+</section>
+<section id="examining-the-output">
+<h2>Examining the output<a class="headerlink" href="#examining-the-output" title="Permalink to this headline"></a></h2>
+<section id="inferred-tree-and-intermediate-files">
+<h3>Inferred tree and intermediate files<a class="headerlink" href="#inferred-tree-and-intermediate-files" title="Permalink to this headline"></a></h3>
+<p>All output files are saved in the <cite>results</cite> directory. Output files are subdivided into the workflow modules, which each have their own subdirectory. For the demonstration analysis that we ran above, the inferred phylogeny will be in the <cite>supermatrix</cite> subdirectory and be called <cite>supermatrix.fa.treefile</cite>. Open this with a tree browser (e.g. <a class="reference external" href="https://github.com/rambaut/figtree">FigTree</a>). Also take some time to browse the intermediary files, including the orthogroups, gene alignments and the supermatrix constructed from them.</p>
+</section>
+<section id="report-and-diagnostics">
+<h3>Report and diagnostics<a class="headerlink" href="#report-and-diagnostics" title="Permalink to this headline"></a></h3>
+<p>The report provides a comprehensive overview of the results, the analysis settings used and citations of the software used to produce the results. <strong>THIS CAN BE FOUND WHERE??</strong></p>
+<p><strong>EDUCATE USERS ABOUT THE DIAGNOSTICS</strong></p>
+</section>
+<section id="output-logs">
+<h3>Output logs<a class="headerlink" href="#output-logs" title="Permalink to this headline"></a></h3>
+<p>The output logs of all software used as part of the workflow can be found in the <cite>logs</cite> directory.</p>
+</section>
 </section>
 </section>
 
@@ -220,7 +239,7 @@ To run it, go into the test-data directory and run phyloflow:</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="advanced_tutorial.html" class="btn btn-neutral float-right" title="PhyloFlow Advanced Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
