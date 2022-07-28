@@ -18,8 +18,5 @@ def test_orthofisher(run_workflow):
 def test_min_seq_filter_orthofisher(run_workflow):
     w = run_workflow("results/orthofisher/min-seq-filtered")
     w.assert_dir_exists()
-    w.assert_contains(
-        "> Avrainvillea_mazei_HV02664|0|KY509313.1|clpP\n",
-        expected_files="results/orthofisher/min-seq-filtered/4759at3041.fa",
-    )
+    w.assert_glob_count("*.fa", min=15)
 
