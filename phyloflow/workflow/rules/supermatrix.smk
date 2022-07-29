@@ -4,12 +4,12 @@ rule concatenate_alignments:
 
     https://jlsteenwyk.com/PhyKIT/usage/index.html#create-concatenation-matrix
     """
+    input:
+        rules.list_alignments.output
     output:
         fasta="results/supermatrix/supermatrix.fa",
         partition="results/supermatrix/supermatrix.partition",
         occupancy="results/supermatrix/supermatrix.occupancy",
-    input:
-        rules.list_alignments.output
     conda:
         "../envs/phykit.yaml"
     bibs:

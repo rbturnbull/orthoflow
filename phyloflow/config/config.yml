@@ -1,3 +1,4 @@
+## TODO: clean up and create a basic and advanced config file
 input_sources: "input_sources.csv" 
 ortholog_min_seqs: 5
 orthofinder_use_scogs: True
@@ -34,4 +35,8 @@ orthofisher_hmmer_files:
   - hmms/911at3041.hmm
   - hmms/9903at3041.hmm
   - hmms/992at3041.hmm
+
 infer_tree_with_protein_seqs: True
+
+supermatrix: True
+supertree: True

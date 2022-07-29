@@ -33,7 +33,7 @@ include: "rules/orthofinder.smk"
 include: "rules/alignment.smk"
 include: "rules/supermatrix.smk"
 include: "rules/gene_tree.smk"
-# include: "rules/reconciliation.smk"
+include: "rules/supertree.smk"
 
 
 onstart:
@@ -60,8 +60,20 @@ onstart:
         assert globals()[name].exists()
 
 
+def get_all_outputs():
+    outputs = []
+    if config.get("supermatrix", True):
+        outputs += [
+            "results/supermatrix/render_tree.svg",
+            "results/supermatrix/alignment_summary.txt",
+            "results/supermatrix/ascii_tree.txt",
+        ]
+    if config.get("supertree", True):
+        outputs += [
+            "results/supertree/supertree.tre",
+        ]
+    return outputs
+
+
 rule all:
-    input:
-        "results/supermatrix/render_tree.svg",
-        "results/supermatrix/alignment_summary.txt",
-        "results/supermatrix/ascii_tree.txt",
+    input: get_all_outputs()
