@@ -63,7 +63,6 @@ rule iqtree:
         "iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -redo"
 
 
-
 rule ascii_tree:
     """
     Displays the tree in ASCII format.
@@ -89,6 +88,7 @@ rule render_tree:
     output:
         svg=report("results/supermatrix/render_tree.svg", category="Supermatrix"),
         html=report("results/supermatrix/render_tree.html", category="Supermatrix"),
+        png=report("results/supermatrix/render_tree.png", category="Supermatrix"),
     input:
         rules.iqtree.output.treefile
     conda:
@@ -98,6 +98,6 @@ rule render_tree:
     log:
         "logs/supermatrix/render_tree.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --html {output.html}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} --html {output.html}"
 
 

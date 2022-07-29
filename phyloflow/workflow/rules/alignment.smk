@@ -1,12 +1,25 @@
 
+def get_orthologs_path(wildcards):
+    orthologs_checkpoint = checkpoints.orthofisher_filtered if config.get('use_orthofisher', False) else checkpoints.orthofinder_all
+    orthologs_path = orthologs_checkpoint.get(**wildcards).output[0]
+    return orthologs_path
+
+
+def get_alignment_inputs(wildcards):
+    """
+    Gets the results of one of the orthologs modules to pass to the alignment.
+    """
+    return f"{get_orthologs_path(wildcards)}/{{og}}.fa"
+
+
 rule mafft:
     """
-    Aligns the protein (amino acid) file with MAFFT
+    Aligns the protein (amino acid) ortholog with MAFFT.
     """
     input:
-        "results/orthologs/{og}.orthosnap.fa"
+        get_alignment_inputs
     output:
-        "results/alignment/{og}.alignment.fa"
+        "results/alignment/aligned_proteins/{og}.alignment.fa"
     bibs:
         "../bibs/mafft7.bib"
     log:
@@ -23,22 +36,40 @@ rule mafft:
         mafft --thread {threads} --auto {input} > {output}
         """
 
-
-rule concat_nuc:
+rule get_cds_seq:
     """
+    This rule creates an unaligned mfasta file of the corresponding nucleotide sequences.
+
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
     """
-    output:
-        "results/alignment/{og}.seqs.cds.fa"
     input:
-        cds=Path("results/taxon-added/"),
+        cds_dir=Path(rules.add_taxon.output[0]).parent,
         alignment=rules.mafft.output
+    output:
+        "results/alignment/seqs_cds/{og}.seqs.cds.fa"
     bibs:
         "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
     shell:
-        "python {SCRIPT_DIR}/concat_nuc.py --cds-dir {input.cds} --alignment {input.alignment} --output-file {output}"
+        "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output}"
+
+
+rule taxon_only:
+    """
+    Trim sequence IDs to taxon.
+
+    At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier
+    and produce clean output for the next stages.
+    """
+    input:
+        rules.mafft.output
+    output:
+        "results/alignment/taxon_only/{og}.alignment.taxon_only.protein.fa"
+    conda:
+        "../envs/typer.yaml"
+    shell:
+        "python {SCRIPT_DIR}/taxon_only.py {input} {output}"
 
 
 rule thread_dna:
@@ -49,11 +80,11 @@ rule thread_dna:
 
     The --stop argument keeps in stop codons which are otherwise removed.
     """
-    output:
-        "results/alignment/{og}.alignment.cds.fa"
     input:
-        alignment=rules.mafft.output,
-        cds=rules.concat_nuc.output
+        alignment=rules.taxon_only.output,
+        cds=rules.get_cds_seq.output
+    output:
+        "results/alignment/threaded_cds/{og}.alignment.cds.fa"
     bibs:
         "../bibs/phykit.bib"
     conda:
@@ -64,48 +95,39 @@ rule thread_dna:
         """
 
 
-rule taxon_only:
-    """
-    Trim sequence IDs to taxon.
-
-    At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier
-    and produce clean output for the next stages.
-    """
-    output:
-        "results/alignment/{og}.alignment.no_taxon.cds.fa"
-    input:
-        rules.thread_dna.output
-    conda:
-        "../envs/typer.yaml"
-    shell:
-        "python {SCRIPT_DIR}/taxon_only.py {input} {output}"
+def list_cds_alignments(wildcards):
+    orthologs_path = get_orthologs_path(wildcards)
+    all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
+    return expand(rules.thread_dna.output, og=all_ogs)
 
 
-def all_alignments(wildcards):
-    # The directory created to hold all of the filtered orthogroups
-    filtered_dir = Path(checkpoints.filter_orthofinder.get().output[0])
+def list_protein_alignments(wildcards):
+    orthologs_path = get_orthologs_path(wildcards)
+    all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
+    return expand(rules.taxon_only.output, og=all_ogs)
 
-    # The names of the remaining orthogroups after filtering
-    filtered_ogs = glob_wildcards(filtered_dir / "{og,OG\d+}.fa").og
 
-    # For each of the remaining orthogroups, run the orthosnap rule
-    # TODO: I'm not sure if this will force the orthosnap rule calls to be serial?
-    for og in filtered_ogs:
-        checkpoints.orthosnap.get(og=og)
+def list_alignments(wildcards):
+    if config.get("infer_tree_with_protein_seqs", False):
+        return list_protein_alignments(wildcards)
+    return list_cds_alignments(wildcards)
 
-    # Finally, glob for the concatenated orthosnap output (some orthogroups may have no snap-ogs and hence no output)
-    # and use the resulting names to generate a list of required taxon_only rule outputs.
-    return expand(rules.taxon_only.output, og=glob_wildcards("results/orthologs/{og}.orthosnap.fa").og)
+# TODO add alignment trimming
 
 
 rule list_alignments:
     """
     List path to alignment files into a single text file for use in PhyKIT.
+
+    If the `infer_tree_with_protein_seqs` config variable is True, then it uses the protein alignments
+    otherwise it uses the threaded CDS sequences.
+
+    :config: infer_tree_with_protein_seqs
     """
+    input:
+        list_alignments
     output:
         "results/alignment/alignments.txt",
-    input:
-        all_alignments
     shell:
         """
         ls -1 {input} > {output}

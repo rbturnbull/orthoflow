@@ -1,4 +1,34 @@
-filter_orthofinder:
-  min_sequences: 5
-orthofisher_hmmer_file:
-  hmms.txt
+input_sources: "input_sources.csv" 
+ortholog_min_seqs: 5
+orthofinder_use_scogs: True
+orthofinder_use_snap_ogs: True
+use_orthofisher: False
+# orthosnap_occupancy: 5 # uncomment this line if you wish to set the orthosnap_occupancy to be somehting other than ortholog_min_seqs
+orthofisher_hmmer_files:
+  - hmms/1080at3041.hmm
+  - hmms/1103at3041.hmm
+  - hmms/1271at3041.hmm
+  - hmms/1379at3041.hmm
+  - hmms/1518at3041.hmm
+  - hmms/1569at3041.hmm
+  - hmms/1610at3041.hmm
+  - hmms/171at3041.hmm
+  - hmms/1738at3041.hmm
+  - hmms/3239at3041.hmm
+  - hmms/336at3041.hmm
+  - hmms/3380at3041.hmm
+  - hmms/345at3041.hmm
+  - hmms/3499at3041.hmm
+  - hmms/3624at3041.hmm
+  - hmms/4242at3041.hmm
+  - hmms/4605at3041.hmm
+  - hmms/4751at3041.hmm
+  - hmms/4759at3041.hmm
+  - hmms/5839at3041.hmm
+  - hmms/6145at3041.hmm
+  - hmms/6593at3041.hmm
+  - hmms/6989at3041.hmm
+  - hmms/911at3041.hmm
+  - hmms/9903at3041.hmm
+  - hmms/992at3041.hmm
+infer_tree_with_protein_seqs: False

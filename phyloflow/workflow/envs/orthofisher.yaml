@@ -7,4 +7,4 @@ dependencies:
   - python=3.9
   - hmmer=3.3.2
   - pip:
-    - orthofisher>=1.0.3
+    - orthofisher>=1.0.4

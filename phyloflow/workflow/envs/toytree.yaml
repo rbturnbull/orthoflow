@@ -1,5 +1,8 @@
 channels:
   - conda-forge
 dependencies:
-  - toytree
+  - ghostscript=9.54.0
+  - toytree=2.0.5
   - typer
+  - pip:
+    - numpy==1.22.4

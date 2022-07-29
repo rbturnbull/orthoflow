@@ -1,1 +1,0 @@
-((Caulerpa_cliftonii_HV03798|0|KX808498.1|infA:0.1618,(Avrainvillea_mazei_HV02664|0|KY509313.1|infA:0.285563,(Derbesia_sp_WEST4838|0|KX808497.1|infA:0.189617,Bryopsis_plumosa_WEST4718|0|NC_026795.1|infA:0.0584013)n3:0.203647)n2:0.166531)n1:0.0395732,(Chlorodesmis_fastigiata_HV03865|0|KY819064.1|infA:0.272907,Flabellia_petiolata_HV01202|0|MH591084.1|infA:0.0982657)n4:0.0395732)n0;

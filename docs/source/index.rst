@@ -15,6 +15,8 @@ Welcome to phyloflow's documentation!
    :caption: Contents:
 
    main/installation
+   main/usage
+   main/configuration
    main/workflow
    main/intake
    main/orthologs

@@ -1,1 +1,0 @@
-((Avrainvillea_mazei_HV02664|0|KY509313.1|rpl12:0.0836121,Dichotomosiphon_tuberosus_HV03781|0|MH591079.1|rpl12:0.265752)n1:0.157598,(Derbesia_sp_WEST4838|0|KX808497.1|rpl12:0.294609,Bryopsis_plumosa_WEST4718|0|NC_026795.1|rpl12:0.325068)n2:0.157598)n0;
