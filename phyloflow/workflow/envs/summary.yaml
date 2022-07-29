@@ -1,0 +1,12 @@
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - seaborn
+  - pip:
+    - scipy==1.8.1
+    - pandas==1.4.3
+    # - seaborn==0.11.2
+    - matplotlib==3.5.2
+    - phykit>=1.11.10

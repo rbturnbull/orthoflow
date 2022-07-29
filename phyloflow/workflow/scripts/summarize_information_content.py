@@ -1,84 +1,70 @@
-import os
 import subprocess
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
 import seaborn as sns
 import pandas as pd
+import typer
 
-# TODO: create snakemake rule for script
 
-def main():
-    # get alignment file paths
-    alignments_path = "tests/test-data/results/alignment/"
-    aa_aln_file_paths = [f for f in os.listdir(alignments_path) if f.endswith('alignment.fa')]
-    nt_aln_file_paths = [f for f in os.listdir(alignments_path) if f.endswith('alignment.cds.fa')]
+def summarize_information_content(
+    alignment_list:Path, 
+    # gene_trees_list:Path, 
+    output_tsv:Path, 
+    output_plot:Path
+):
+    with open(alignment_list) as f:
+        aln_file_paths = f.readlines()
 
     # initialize arrays to hold summary information content
-    aa_res_arr = []
-    nt_res_arr = []
+    res_arr = []
 
     # define the metrics to calculate
-    metrics_all = [
+    metrics_all_aln = [
         "alignment_length",
-        "alignment_length_no_gaps",
-        "pairwise_identity",
+        "relative_composition_variability",
         "parsimony_informative_sites",
         "variable_sites",
     ]
 
+    metrics_all_tre = [
+        "treeness",
+        "evolutionary_rate",
+        "robinson_foulds_distance",
+        "bipartition_support_stats", # get mean
+    ]
+
     # loop through files, evaluate information content, and save to arr
     # TODO: remove control that only loops through ten alignments
-    for aa_aln, nt_aln in zip(aa_aln_file_paths[:10], nt_aln_file_paths[:10]):
+    for aln in aln_file_paths[:10]:
         
-        for metric in metrics_all:
-        
-            aa_res_arr = eval_info_content(
-                metric,
-                alignments_path,
-                aa_aln,
-                aa_res_arr
+        for metric in metrics_all_aln:
+            res_arr.append(
+                eval_info_content(
+                    metric,
+                    aln,
+                )
             )
-
-            nt_res_arr = eval_info_content(
-                metric,
-                alignments_path,
-                nt_aln,
-                nt_res_arr
-            )
-
 
     # write out dataframes of information content
-    aa_df = write_df_to_tsv_file(
-        aa_res_arr, 
-        "information_content_aa.tsv"
-        )
-
-    nt_df = write_df_to_tsv_file(
-        nt_res_arr, 
-        "information_content_nt.tsv"
+    df = write_df_to_tsv_file(
+        res_arr, 
+        output_tsv,
     )
 
     # create plot
     generate_pairplot(
-        aa_df,
-        "Information content, amino acids",
-        "information_content_amino_acids",
-        "png"
+        df,
+        "Information content",
+        output_plot,
     )
 
-    generate_pairplot(
-        nt_df,
-        "Information content, nucleotides",
-        "information_content_nucleotides",
-        "png"
-    )
 
 def generate_pairplot(
     df, # pd dataframe
     plot_title: str,
-    output_file_name: str,
-    file_format: str
+    output_path: Path,
 ):
     # convert from long to wide format
     df = df.pivot(index='alignment', columns='metric', values='value').reset_index().rename_axis(None, axis=1)
@@ -86,8 +72,7 @@ def generate_pairplot(
     df = df.astype(
         {
             "alignment_length" : "float",
-            "alignment_length_no_gaps" : "float",
-            "average_pairwise_identity" : "float",
+            "relative_composition_variability" : "float",
             "parsimony_informative_sites" : "float",
             "variable_sites" : "float",
         }
@@ -95,8 +80,7 @@ def generate_pairplot(
     df = df.rename(
         columns = {
             "alignment_length" : "alignment length",
-            "alignment_length_no_gaps" : "alignment length, no gaps",
-            "average_pairwise_identity" : "average pairwise identity",
+            "relative_composition_variability" : "relative composition variability",
             "parsimony_informative_sites" : "parsimony informative sites",
             "variable_sites" : "variable sites",
         }
@@ -122,7 +106,7 @@ def generate_pairplot(
     info_content_plot.map_upper(corrfunc)
     info_content_plot.fig.suptitle(plot_title, y=1.01)
     plt.savefig(
-        f"{output_file_name}.{file_format}",
+        output_path,
         bbox_inches = "tight"
     )
 
@@ -140,9 +124,7 @@ def write_df_to_tsv_file(
 
 def eval_info_content(
     metric: str,
-    alignments_path: str,
     aln_name: str,
-    res_arr: list
 ):
     
     metrics_with_multiple_columns = [
@@ -152,7 +134,7 @@ def eval_info_content(
     ]
 
     res_line = []
-    _phykit_cmd = ['phykit', metric, str(alignments_path)+str(aln_name)]
+    _phykit_cmd = ['phykit', metric, str(aln_name).strip()]
     res_line.append(metric)
     # handle outputs with multiple columns otherwise take all output
     if metric in metrics_with_multiple_columns:
@@ -164,9 +146,8 @@ def eval_info_content(
     else:
         res_line.append(subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8'))
     res_line.append(aln_name)
-    res_arr.append(res_line)
 
-    return res_arr
+    return res_line
 
 def corrfunc(
     x,
@@ -180,5 +161,6 @@ def corrfunc(
     ax.annotate(" p = {:.3f}".format(p),
                 xy=(.35, 0.95), xycoords=ax.transAxes)
 
+
 if __name__ == '__main__':
-    main()
+    typer.run(summarize_information_content)

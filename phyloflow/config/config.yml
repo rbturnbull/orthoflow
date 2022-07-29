@@ -1,9 +1,9 @@
 ## TODO: clean up and create a basic and advanced config file
 input_sources: "input_sources.csv" 
 ortholog_min_seqs: 5
-orthofinder_use_scogs: True
+orthofinder_use_scogs: True # only used when using orthofisher 
 orthofinder_use_snap_ogs: True
-use_orthofisher: False
+use_orthofisher: True
 minimum_trimmed_alignment_length_cds: 501
 minimum_trimmed_alignment_length_proteins: 167
 max_trimmed_proportion: 0.5
