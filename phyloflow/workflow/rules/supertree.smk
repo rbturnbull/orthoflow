@@ -30,7 +30,7 @@ rule astral:
     input:
         rules.create_astral_input.output
     output:
-        report("results/supertree/supertree.tre"),
+        report("results/supertree/supertree.tre", category="Supertree"),
     conda:
         "../envs/astral.yaml"
     bibs:
@@ -41,5 +41,22 @@ rule astral:
         """
         java -jar $(find . -name astral.5.7.8.jar) -i {input} -o {output}
         """
+
+rule supertree_ascii:
+    """
+    Displays the supertree in ASCII format.
+    """
+    input:
+        rules.astral.output
+    output:
+        report("results/supertree/supertree_ascii.txt", category="Supertree"),
+    conda:
+        "../envs/phykit.yaml"
+    bibs:
+        "../bibs/phykit.bib",
+    log:
+        "logs/supertree/print_ascii_tree.log"
+    shell:
+        "phykit print_tree {input} > {output}"
 
 
