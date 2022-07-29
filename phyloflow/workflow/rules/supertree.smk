@@ -60,3 +60,22 @@ rule supertree_ascii:
         "phykit print_tree {input} > {output}"
 
 
+rule supertree_render:
+    """
+    Renders the tree in SVG format.
+    """
+    input:
+        rules.astral.output
+    output:
+        svg=report("results/supertree/supertree_render.svg", category="Supertree"),
+        html=report("results/supertree/supertree_render.html", category="Supertree"),
+        png=report("results/supertree/supertree_render.png", category="Supertree"),
+    conda:
+        "../envs/toytree.yaml"
+    bibs:
+        "../bibs/toytree.bib",
+    log:
+        "logs/supertree/supertree_render.log"
+    shell:
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} --html {output.html}"
+
