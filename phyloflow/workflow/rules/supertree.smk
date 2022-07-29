@@ -39,7 +39,7 @@ rule astral:
         "logs/supertree/astral.log"
     shell:
         """
-        java -jar $(find . -name astral.5.7.8.jar) -i {input} -o {output}
+        java -jar $CONDA_PREFIX/share/astral-tree-5.7.8-0/astral.5.7.8.jar -i {input} -o {output}
         """
 
 rule supertree_ascii:

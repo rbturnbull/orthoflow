@@ -17,8 +17,13 @@ def test_iqtree(run_workflow):
     w.assert_re(r"Bryopsis_plumosa_WEST4718:0\.")
     
 
-def test_ascii_tree(run_workflow):
-    w = run_workflow("results/supermatrix/ascii_tree.txt")
+def test_supermatrix_ascii(run_workflow):
+    w = run_workflow("results/supermatrix/supermatrix_ascii.txt")
     w.assert_contains("________ Bryopsis_plumosa_WEST4718")
     w.assert_contains("_____ Derbesia_sp_WEST4838")
+
+
+def test_supermatrix_render(run_workflow):
+    w = run_workflow("results/supermatrix/supermatrix_render.svg")
+    w.assert_contains('<svg class="toyplot-canvas-Canvas"')
 

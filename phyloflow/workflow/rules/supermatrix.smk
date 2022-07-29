@@ -63,12 +63,12 @@ rule iqtree:
         "iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -redo"
 
 
-rule ascii_tree:
+rule supermatrix_ascii:
     """
     Displays the tree in ASCII format.
     """
     output:
-        report("results/supermatrix/ascii_tree.txt", category="Supermatrix"),
+        report("results/supermatrix/supermatrix_ascii.txt", category="Supermatrix"),
     input:
         rules.iqtree.output.treefile
     conda:
@@ -81,14 +81,14 @@ rule ascii_tree:
         "phykit print_tree {input} > {output}"
 
 
-rule render_tree:
+rule supermatrix_render:
     """
     Renders the tree in SVG format.
     """
     output:
-        svg=report("results/supermatrix/render_tree.svg", category="Supermatrix"),
-        html=report("results/supermatrix/render_tree.html", category="Supermatrix"),
-        png=report("results/supermatrix/render_tree.png", category="Supermatrix"),
+        svg=report("results/supermatrix/supermatrix_render.svg", category="Supermatrix"),
+        html=report("results/supermatrix/supermatrix_render.html", category="Supermatrix"),
+        png=report("results/supermatrix/supermatrix_render.png", category="Supermatrix"),
     input:
         rules.iqtree.output.treefile
     conda:

@@ -36,7 +36,7 @@ orthofisher_hmmer_files:
   - hmms/9903at3041.hmm
   - hmms/992at3041.hmm
 
-infer_tree_with_protein_seqs: True
+infer_tree_with_protein_seqs: False
 
 supermatrix: True
 supertree: True

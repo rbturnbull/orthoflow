@@ -64,13 +64,15 @@ def get_all_outputs():
     outputs = []
     if config.get("supermatrix", True):
         outputs += [
-            "results/supermatrix/render_tree.svg",
             "results/supermatrix/alignment_summary.txt",
-            "results/supermatrix/ascii_tree.txt",
+            "results/supermatrix/supermatrix_ascii.txt",
+            "results/supermatrix/supermatrix_render.svg",
         ]
     if config.get("supertree", True):
         outputs += [
             "results/supertree/supertree.tre",
+            "results/supertree/supertree_render.svg",            
+            "results/supertree/supertree_ascii.txt",
         ]
     return outputs
 
