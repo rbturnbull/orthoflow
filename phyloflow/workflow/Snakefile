@@ -62,7 +62,9 @@ onstart:
 
 
 def get_all_outputs():
-    outputs = []
+    outputs = [
+        "results/summary/information_content.tsv",
+    ]
     if config.get("supermatrix", True):
         outputs += [
             "results/supermatrix/render_tree.svg",

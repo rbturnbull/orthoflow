@@ -45,10 +45,10 @@ rule iqtree:
     """
     Use IQTREE on the supermatrix.
     """
-    output:
-        treefile=report("results/supermatrix/supermatrix.fa.treefile", category="Supermatrix"),
     input:
         rules.concatenate_alignments.output.fasta
+    output:
+        treefile=report("results/supermatrix/supermatrix.fa.treefile", category="Supermatrix"),
     threads: 
         workflow.cores
     conda:
