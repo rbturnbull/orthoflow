@@ -7,11 +7,12 @@ license = "Apache-2.0"
 readme = "README.rst"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<3.11"
 snakemake = { git = "https://github.com/rbturnbull/snakemake.git", branch = "bibtex" }
 pandas = "1.2.5"
 typer = "^0.4.1"
 Flask = "^2.1.2"
+biopython = "^1.79"
 
 [tool.poetry.dev-dependencies]
 Sphinx = "^4.4.0"
@@ -28,6 +29,7 @@ pre-commit = "^2.17.0"
 sphinxcontrib-bibtex = "^2.4.1"
 ipdb = "^0.13.9"
 conda-lock = {extras = ["pip_support"], version = "^1.0.5"}
+phytest = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

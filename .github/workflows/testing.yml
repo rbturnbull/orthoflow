@@ -29,7 +29,9 @@ jobs:
           tests/test-data/results/
           tests/test-data/.snakemake/conda/
     - name: Run Workflow
-      run: poetry run phyloflow --directory tests/test-data results/supermatrix/ascii_tree.txt
+      run: |
+        poetry run phyloflow --directory tests/test-data results/supermatrix/ascii_tree.txt
+        poetry run phyloflow --directory tests/test-data results/orthofisher/min-seq-filtered
     - name: Testing
       run: |
         poetry run pytest
