@@ -9,7 +9,7 @@ rule gene_tree_iqtree:
     input:
         rules.trim_alignments.output
     output:
-        directory("results/gene_tree/{og}"),
+        report("results/gene_tree/{og}/{og}.treefile", category="Gene Tree"),
     threads: 
         workflow.cores
     conda:
@@ -22,8 +22,8 @@ rule gene_tree_iqtree:
         "logs/gene_tree/iqtree-{og}.log"
     shell:
         """
-        mkdir -p {output}
-        iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -pre {output}/{og} -redo
+        mkdir -p results/gene_tree/{wildcards.og}
+        iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og} -redo
         """
 
 
@@ -32,7 +32,7 @@ rule ascii_gene_tree:
     Displays the tree in ASCII format.
     """
     input:
-        "results/gene_tree/{og}/{og}.treefile"
+        rules.gene_tree_iqtree.output
     output:
         report("results/gene_tree/{og}/ascii_tree.txt", category="Gene Tree"),
     conda:
