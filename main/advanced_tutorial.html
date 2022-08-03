@@ -124,35 +124,43 @@
 <h1>PhyloFlow Advanced Tutorial<a class="headerlink" href="#phyloflow-advanced-tutorial" title="Permalink to this headline"></a></h1>
 <section id="changing-workflow-settings">
 <h2>Changing workflow settings<a class="headerlink" href="#changing-workflow-settings" title="Permalink to this headline"></a></h2>
-<p>Some workflow settings can be changed by passing arguments to the command-line tool (<cite>phyloflow</cite>). Perhaps the most important one is –cores to specify the number of cores for the workflow to use. To see a complete list of command-line arguments, run:</p>
+<p>Some workflow settings can be changed by passing arguments to the command-line tool (<code class="docutils literal notranslate"><span class="pre">phyloflow</span></code>). Perhaps the most important one is <code class="docutils literal notranslate"><span class="pre">--cores</span></code> to specify the number of cores for the workflow to use. To see a complete list of command-line arguments, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
 <p>You can pass any snakemake arguments to phyloflow. To list these, run:</p>
-<p>Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (<cite>phyloflow/config/config.yml</cite>) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="o">--</span><span class="n">help</span><span class="o">-</span><span class="n">snakemake</span>
+</pre></div>
+</div>
+<p>Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (<code class="docutils literal notranslate"><span class="pre">phyloflow/config/config.yml</span></code>) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.</p>
 </section>
 <section id="input-and-output-paths">
 <h2>Input and output paths<a class="headerlink" href="#input-and-output-paths" title="Permalink to this headline"></a></h2>
 <p>To use a specific target file with input sources, give that as an argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="nb">input</span><span class="o">-</span><span class="n">sources</span><span class="o">-</span><span class="n">file</span>
+</pre></div>
+</div>
 <p>To set a working directory different to the current directory, use the <cite>–directory</cite> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="o">--</span><span class="n">directory</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">working</span><span class="o">/</span><span class="nb">dir</span>
+</pre></div>
+</div>
 </section>
 <section id="controlling-the-flow-of-operations">
 <h2>Controlling the flow of operations<a class="headerlink" href="#controlling-the-flow-of-operations" title="Permalink to this headline"></a></h2>
 <p>By default, PhyloFlow uses the <em>de novo</em> orthology inference module (OrthoFinder and OrthoSNAP) and supermatrix-based tree inference (supermatrix module).</p>
 <p>![](../_static/diagram.png)</p>
-<p>This can be changed in the configuration file. Setting the <cite>use_orthofisher</cite> to <cite>True</cite> will enable the ortholog fishing module instead of the <em>de novo</em> orthology inference module. This also requires you to specify a set of HMM profiles listed under <cite>orthofisher_hmmer_files</cite>. For example:</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
-use_orthofisher: True
-orthofisher_hmmer_files:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>hmms/1080at3041.hmm</p></li>
-<li><p>hmms/1103at3041.hmm</p></li>
-<li><p>hmms/1271at3041.hmm</p></li>
-<li><p>hmms/1379at3041.hmm</p></li>
-<li><p>hmms/1518at3041.hmm</p></li>
-<li><p>hmms/1569at3041.hmm</p></li>
-<li><p>hmms/1610at3041.hmm</p></li>
-</ul>
-</div></blockquote>
-<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>This can be changed in the configuration file. Setting the <code class="docutils literal notranslate"><span class="pre">use_orthofisher</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> will enable the ortholog fishing module instead of the <em>de novo</em> orthology inference module. This also requires you to specify a set of HMM profiles listed under <code class="docutils literal notranslate"><span class="pre">orthofisher_hmmer_files</span></code>. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use_orthofisher</span><span class="p">:</span> <span class="kc">True</span>
+<span class="n">orthofisher_hmmer_files</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1080</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
+<span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1103</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
+<span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1271</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
+<span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1379</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
+<span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1518</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
+<span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1569</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
+<span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1610</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
+</pre></div>
+</div>
 <p>To use the Gene Tree and Reconciliation (ASTRAL) path for tree inference, <strong>ADD INSTRUCTIONS /// ALSO, DO WE ALLOW BOTH TO RUN IN ONE EXECUTION OR SHOULD USER RE-LAUNCH WITH DIFFERENT SETTINGS. WRITE INSTRUCTIONS</strong></p>
 </section>
 <section id="gene-filtering-settings">
@@ -160,15 +168,15 @@ orthofisher_hmmer_files:</p>
 <p>There are several steps in the workflow that filter out genes not meeting particular criteria.</p>
 <section id="minimum-taxa">
 <h3>Minimum taxa<a class="headerlink" href="#minimum-taxa" title="Permalink to this headline"></a></h3>
-<p>One important setting is the minimum number of taxa that need to be in a gene dataset in order for it to be retained. This can be set with the <cite>ortholog_min_seqs</cite> setting in the configuration file. The default value is 5. The occupancy setting for OrthoSNAP can be changed with <cite>orthosnap_occupancy</cite>; by default we use the same value as that for <cite>ortholog_min_seqs</cite>.</p>
+<p>One important setting is the minimum number of taxa that need to be in a gene dataset in order for it to be retained. This can be set with the <code class="docutils literal notranslate"><span class="pre">ortholog_min_seqs</span></code> setting in the configuration file. The default value is 5. The occupancy setting for OrthoSNAP can be changed with <code class="docutils literal notranslate"><span class="pre">orthosnap_occupancy</span></code>; by default we use the same value as that for <code class="docutils literal notranslate"><span class="pre">ortholog_min_seqs</span></code>.</p>
 </section>
 <section id="using-sc-ogs-and-or-snap-ogs">
 <h3>Using SC-OGs and/or SNAP-OGs<a class="headerlink" href="#using-sc-ogs-and-or-snap-ogs" title="Permalink to this headline"></a></h3>
-<p>The traditional approach towards inferring species trees from genome data is to select single-copy orthogroups (SC-OGs). One of the innovations we’ve implemented in this workflow is the use of SNAP-OGs, sets of orthologous sequences derived from multi-copy gene families, which can yield orders of magnitude more data. You can set whether you want to build a phylogeny from just the SC-OGs, just the SNAP-OGs or both combined by setting the <cite>use_scogs</cite> and <cite>use_snap_ogs</cite> in the configuration file. In this example both SC-OGs and SNAP-OGs are combined for phylogenetic inference:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">use_scogs:</span> <span class="pre">True</span>
-<span class="pre">use_snap_ogs:</span> <span class="pre">True</span>
-<span class="pre">`</span></code></p>
+<p>The traditional approach towards inferring species trees from genome data is to select single-copy orthogroups (SC-OGs). One of the innovations we’ve implemented in this workflow is the use of SNAP-OGs, sets of orthologous sequences derived from multi-copy gene families, which can yield orders of magnitude more data. You can set whether you want to build a phylogeny from just the SC-OGs, just the SNAP-OGs or both combined by setting the <code class="docutils literal notranslate"><span class="pre">use_scogs</span></code> and <code class="docutils literal notranslate"><span class="pre">use_snap_ogs</span></code> in the configuration file. In this example both SC-OGs and SNAP-OGs are combined for phylogenetic inference:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use_scogs</span><span class="p">:</span> <span class="kc">True</span>
+<span class="n">use_snap_ogs</span><span class="p">:</span> <span class="kc">True</span>
+</pre></div>
+</div>
 <p>SNAP-OGs are currently only implemented in the <em>de novo</em> ortholog analysis path. When using the ortholog fishing path, only SC-OGs will be used for downstream analyses.</p>
 </section>
 <section id="removal-of-heavily-trimmed-alignments">
@@ -182,14 +190,14 @@ orthofisher_hmmer_files:</p>
 </section>
 <section id="tree-inference-settings">
 <h2>Tree inference settings<a class="headerlink" href="#tree-inference-settings" title="Permalink to this headline"></a></h2>
-<p>An important choice to make is whether to run the phylogenetic analysis on protein or nucleotide sequences. This can be set in the configuration file <cite>infer_tree_with_protein_seqs</cite>. The default setting (<cite>True</cite>) is to use protein sequences.</p>
-<p>To use an outgroup in the phylogenetic analysis, specify an outgroup taxon (using its value in the <cite>taxon_string</cite> column in the input sources file). For example, for the demonstration dataset:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">outgroup:</span> <span class="pre">&quot;Derbesia_sp_WEST4838&quot;</span>
-<span class="pre">`</span></code></p>
+<p>An important choice to make is whether to run the phylogenetic analysis on protein or nucleotide sequences. This can be set in the configuration file <code class="docutils literal notranslate"><span class="pre">infer_tree_with_protein_seqs</span></code>. The default setting (<code class="docutils literal notranslate"><span class="pre">True</span></code>) is to use protein sequences.</p>
+<p>To use an outgroup in the phylogenetic analysis, specify an outgroup taxon (using its value in the <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code> column in the input sources file). For example, for the demonstration dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">outgroup</span><span class="p">:</span> <span class="s2">&quot;Derbesia_sp_WEST4838&quot;</span>
+</pre></div>
+</div>
 <p><strong>ADD MORE TREE INFERENCE DETAILS HERE – SOME TOPICS BELOW</strong>
 Bootstrap types
-Model specification / testing – we’re just passing the “-m” flag =&gt; user can pass in TEST for model testing or any of the IQtree model names (&lt;<a class="reference external" href="https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models">https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models</a>&gt;)</p>
+Model specification / testing – we’re just passing the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag =&gt; user can pass in <code class="docutils literal notranslate"><span class="pre">TEST</span></code> for model testing or any of the IQtree model names (&lt;<a class="reference external" href="https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models">https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models</a>&gt;)</p>
 </section>
 <section id="other-topics">
 <h2>Other topics ????<a class="headerlink" href="#other-topics" title="Permalink to this headline"></a></h2>
