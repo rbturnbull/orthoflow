@@ -61,7 +61,7 @@ Examining the output
 
 Inferred tree and intermediate files
 ------------------------------------
-All output files are saved in the ``results`` directory. Output files are subdivided into the workflow modules, which each have their own subdirectory. For the demonstration analysis that we ran above, the inferred phylogeny will be in the `supermatrix` subdirectory and be called ``supermatrix.fa.treefile``. Open this with a tree browser (e.g. `FigTree <https://github.com/rambaut/figtree>`_). Also take some time to browse the intermediary files, including the orthogroups, gene alignments and the supermatrix constructed from them.
+All output files are saved in the ``results`` directory. Output files are subdivided into the workflow modules, which each have their own subdirectory. For the demonstration analysis that we ran above, the inferred phylogeny will be in the ``supermatrix`` subdirectory and be called ``supermatrix.fa.treefile``. Open this with a tree browser (e.g. `FigTree <https://github.com/rambaut/figtree>`_). Also take some time to browse the intermediary files, including the orthogroups, gene alignments and the supermatrix constructed from them.
 
 Report and diagnostics
 ----------------------
@@ -71,4 +71,4 @@ The report provides a comprehensive overview of the results, the analysis settin
 
 Output logs
 -----------
-The output logs of all software used as part of the workflow can be found in the `logs` directory.
+The output logs of all software used as part of the workflow can be found in the ``logs`` directory.

@@ -59,7 +59,9 @@ This can be changed in the configuration file. Setting the ``use_orthofisher`` t
     - hmms/1569at3041.hmm
     - hmms/1610at3041.hmm
 
-To use the Gene Tree and Reconciliation (ASTRAL) path for tree inference, **ADD INSTRUCTIONS /// ALSO, DO WE ALLOW BOTH TO RUN IN ONE EXECUTION OR SHOULD USER RE-LAUNCH WITH DIFFERENT SETTINGS. WRITE INSTRUCTIONS**
+The orthofisher and orthofinder paths are mutually exclusive.
+
+By default, a phylogeny is inferred from a supermatrix. To use the supertree (ASTRAL) path for tree inference, set ``supertree: True``. If both ``supermatrix`` and ``supertree`` are set to ``True``, the workflow will run both types of inference.
 
 
 Gene filtering settings
@@ -84,9 +86,7 @@ SNAP-OGs are currently only implemented in the *de novo* ortholog analysis path.
 
 Removal of heavily trimmed alignments
 -------------------------------------
-In some cases, it may make more sense to remove genes that have been decimated by the alignment trimming proceduce, particularly if they are going to be used individually to infer gene trees. **COMPLETE HERE HOW TO CHANGE THESE SETTINGS**
-
-
+In some cases, it may make more sense to remove genes that have been decimated by the alignment trimming proceduce, particularly if they are going to be used individually to infer gene trees. There are two ways to achieve his. First, any alignments that fall below a given number of amino acid positions after trimming will be removed (default: 167 amino acid positions or 501 corresponding nucleotide positions, can be changed with ``minimum_trimmed_alignment_length_cds`` and ``minimum_trimmed_alignment_length_proteins`` parameters in the config file). Second, the workflow also allows removing alignments from which a large proportion was removed in the trimming step. By default, alignments that lose half of their length in trimming get removed (change by setting the ``max_trimmed_proportion`` parameter in the config file).
 
 Alignment trimming settings
 ===========================
