@@ -39,4 +39,4 @@ orthofisher_hmmer_files:
 infer_tree_with_protein_seqs: False
 
 supermatrix: True
-supertree: True
+supertree: False
