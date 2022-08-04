@@ -70,7 +70,7 @@ checkpoint taxon_only:
     input:
         rules.mafft.output
     output:
-        "results/alignment/taxon_only/{og}.alignment.taxon_only.protein.fa"
+        f"results/alignment/taxon_only/{{og}}.alignment.taxon_only.{alignment_type}.fa"
     conda:
         "../envs/typer.yaml"
     shell:
