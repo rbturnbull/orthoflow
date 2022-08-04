@@ -161,7 +161,8 @@
 <span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1610</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
 </pre></div>
 </div>
-<p>To use the Gene Tree and Reconciliation (ASTRAL) path for tree inference, <strong>ADD INSTRUCTIONS /// ALSO, DO WE ALLOW BOTH TO RUN IN ONE EXECUTION OR SHOULD USER RE-LAUNCH WITH DIFFERENT SETTINGS. WRITE INSTRUCTIONS</strong></p>
+<p>The orthofisher and orthofinder paths are mutually exclusive.</p>
+<p>By default, a phylogeny is inferred from a supermatrix. To use the supertree (ASTRAL) path for tree inference, set <code class="docutils literal notranslate"><span class="pre">supertree:</span> <span class="pre">True</span></code>. If both <code class="docutils literal notranslate"><span class="pre">supermatrix</span></code> and <code class="docutils literal notranslate"><span class="pre">supertree</span></code> are set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the workflow will run both types of inference.</p>
 </section>
 <section id="gene-filtering-settings">
 <h2>Gene filtering settings<a class="headerlink" href="#gene-filtering-settings" title="Permalink to this headline"></a></h2>
@@ -181,7 +182,7 @@
 </section>
 <section id="removal-of-heavily-trimmed-alignments">
 <h3>Removal of heavily trimmed alignments<a class="headerlink" href="#removal-of-heavily-trimmed-alignments" title="Permalink to this headline"></a></h3>
-<p>In some cases, it may make more sense to remove genes that have been decimated by the alignment trimming proceduce, particularly if they are going to be used individually to infer gene trees. <strong>COMPLETE HERE HOW TO CHANGE THESE SETTINGS</strong></p>
+<p>In some cases, it may make more sense to remove genes that have been decimated by the alignment trimming proceduce, particularly if they are going to be used individually to infer gene trees. There are two ways to achieve his. First, any alignments that fall below a given number of amino acid positions after trimming will be removed (default: 167 amino acid positions or 501 corresponding nucleotide positions, can be changed with <code class="docutils literal notranslate"><span class="pre">minimum_trimmed_alignment_length_cds</span></code> and <code class="docutils literal notranslate"><span class="pre">minimum_trimmed_alignment_length_proteins</span></code> parameters in the config file). Second, the workflow also allows removing alignments from which a large proportion was removed in the trimming step. By default, alignments that lose half of their length in trimming get removed (change by setting the <code class="docutils literal notranslate"><span class="pre">max_trimmed_proportion</span></code> parameter in the config file).</p>
 </section>
 </section>
 <section id="alignment-trimming-settings">
