@@ -5,7 +5,7 @@ infer_tree_with_protein_seqs = config.get("infer_tree_with_protein_seqs", INFER_
 alignment_type = "protein" if infer_tree_with_protein_seqs else "cds"
 
 def get_orthologs_path(wildcards):
-    orthologs_checkpoint = checkpoints.min_seq_filter_orthofisher if config.get('use_orthofisher', False) else checkpoints.orthofinder_all
+    orthologs_checkpoint = checkpoints.min_seq_filter_orthofisher if config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT) else checkpoints.orthofinder_all
     orthologs_path = orthologs_checkpoint.get(**wildcards).output[0]
     return orthologs_path
 
@@ -24,7 +24,7 @@ rule mafft:
     input:
         get_alignment_inputs
     output:
-        "results/alignment/aligned_proteins/{og}.alignment.fa"
+        "results/alignment/aligned_proteins/{og}.protein.alignment.fa"
     bibs:
         "../bibs/mafft7.bib"
     log:
@@ -51,7 +51,7 @@ rule get_cds_seq:
         cds_dir=Path(rules.add_taxon.output[0]).parent,
         alignment=rules.mafft.output
     output:
-        "results/alignment/seqs_cds/{og}.seqs.cds.fa"
+        "results/alignment/seqs_cds/{og}.cds.seqs.fa"
     bibs:
         "../bibs/biopython.bib"
     conda:
@@ -70,7 +70,7 @@ checkpoint taxon_only:
     input:
         rules.mafft.output
     output:
-        f"results/alignment/taxon_only/{{og}}.alignment.taxon_only.{alignment_type}.fa"
+        f"results/alignment/taxon_only/{{og}}.taxon_only.{alignment_type}.alignment.fa"
     conda:
         "../envs/typer.yaml"
     shell:
@@ -89,7 +89,7 @@ rule thread_dna:
         alignment=rules.taxon_only.output,
         cds=rules.get_cds_seq.output
     output:
-        "results/alignment/threaded_cds/{og}.alignment.cds.fa"
+        "results/alignment/threaded_cds/{og}.cds.alignment.fa"
     bibs:
         "../bibs/phykit.bib"
     conda:
@@ -108,7 +108,7 @@ checkpoint trim_alignments:
     input:
         rules.taxon_only.output if infer_tree_with_protein_seqs else rules.thread_dna.output,
     output:
-        f"results/alignment/trimmed/{{og}}.alignment.trimmed.{alignment_type}.fa"
+        f"results/alignment/trimmed/{{og}}.trimmed.{alignment_type}.alignment.fa"
     bibs:
         "../bibs/clipkit.bib"
     conda:
@@ -118,7 +118,11 @@ checkpoint trim_alignments:
         clipkit {input} -m smart-gap -o {output}
         """
 
+
 def filter_alignments(untrimmed_alignments, trimmed_alignments, min_length, max_trimmed_proportion):
+    """
+    Returns a list of alignements which have a minimum length and the proportion of sites retained after trimming.
+    """
     filtered = []
     for untrimmed_alignment_path, trimmed_alignment_path in zip(untrimmed_alignments, trimmed_alignments):
         trimmed_length = AlignIO.read(trimmed_alignment_path, "fasta").get_alignment_length()
@@ -132,6 +136,9 @@ def filter_alignments(untrimmed_alignments, trimmed_alignments, min_length, max_
 
 
 def list_cds_alignments(wildcards):
+    """
+    Returns a list of all the trimmed CDS alignments which have a minimum length and the proportion of sites retained after trimming.
+    """
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
     for og in all_ogs:
@@ -145,6 +152,9 @@ def list_cds_alignments(wildcards):
 
 
 def list_protein_alignments(wildcards):
+    """
+    Returns a list of all the trimmed protein alignments which have a minimum length and the proportion of sites retained after trimming.
+    """
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
     for og in all_ogs:
@@ -158,6 +168,9 @@ def list_protein_alignments(wildcards):
 
 
 def list_alignments(wildcards):
+    """
+    Chooses either the protein or CDS alignments depending on the infer_tree_with_protein_seqs setting in the config.
+    """
     if infer_tree_with_protein_seqs:
         return list_protein_alignments(wildcards)
     return list_cds_alignments(wildcards)
@@ -175,7 +188,7 @@ rule list_alignments:
     input:
         list_alignments
     output:
-        "results/alignment/alignments.txt",
+        f"results/alignment/alignments_list.{alignment_type}.txt",
     shell:
         """
         ls -1 {input} > {output}

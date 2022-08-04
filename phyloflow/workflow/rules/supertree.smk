@@ -1,22 +1,26 @@
-def get_gene_trees(wildcards):
+def list_gene_trees(wildcards):
+    """
+    Returns a list of the treefiles for all the genes.
+    """
     alignments = list_alignments(wildcards)
 
     gene_trees = []
     for alignment in alignments:
         alignment = Path(alignment)
         og = alignment.name.split(".")[0]
-        gene_trees.append(f"results/gene_tree/{og}/{og}.treefile")
+        gene_trees.append(f"results/gene_tree/{og}/{og}.{alignment_type}.treefile")
 
     return gene_trees
+
 
 rule create_astral_input:
     """
     Concatenate single-gene trees into one file.
     """
     input:
-        get_gene_trees
+        list_gene_trees
     output:
-        "results/supertree/astral_input.trees"
+        f"results/supertree/astral_input.{alignment_type}.trees"
     shell:
         """
         cat {input} > {output}
@@ -30,7 +34,7 @@ rule astral:
     input:
         rules.create_astral_input.output
     output:
-        report("results/supertree/supertree.tre", category="Supertree"),
+        f"results/supertree/supertree.{alignment_type}.tre"
     conda:
         "../envs/astral.yaml"
     bibs:
@@ -42,6 +46,7 @@ rule astral:
         java -jar $CONDA_PREFIX/share/astral-tree-5.7.8-0/astral.5.7.8.jar -i {input} -o {output}
         """
 
+
 rule supertree_ascii:
     """
     Displays the supertree in ASCII format.
@@ -49,7 +54,7 @@ rule supertree_ascii:
     input:
         rules.astral.output
     output:
-        report("results/supertree/supertree_ascii.txt", category="Supertree"),
+        f"results/supertree/supertree_ascii.{alignment_type}.txt"
     conda:
         "../envs/phykit.yaml"
     bibs:
@@ -62,14 +67,13 @@ rule supertree_ascii:
 
 rule supertree_render:
     """
-    Renders the tree in SVG format.
+    Renders the supertree in SVG and PNG formats.
     """
     input:
         rules.astral.output
     output:
-        svg=report("results/supertree/supertree_render.svg", category="Supertree"),
-        html=report("results/supertree/supertree_render.html", category="Supertree"),
-        png=report("results/supertree/supertree_render.png", category="Supertree"),
+        svg=report("results/supertree/supertree_render.{alignment_type}.svg", category="Supertree"),
+        png=report("results/supertree/supertree_render.{alignment_type}.png", category="Supertree"),
     conda:
         "../envs/toytree.yaml"
     bibs:

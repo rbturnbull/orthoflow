@@ -7,9 +7,9 @@ rule concatenate_alignments:
     input:
         rules.list_alignments.output
     output:
-        fasta="results/supermatrix/supermatrix.fa",
-        partition="results/supermatrix/supermatrix.partition",
-        occupancy="results/supermatrix/supermatrix.occupancy",
+        fasta=f"results/supermatrix/supermatrix.{alignment_type}.fa",
+        partition=f"results/supermatrix/supermatrix.{alignment_type}.partition",
+        occupancy=f"results/supermatrix/supermatrix.{alignment_type}.occupancy",
     conda:
         "../envs/phykit.yaml"
     bibs:
@@ -17,7 +17,7 @@ rule concatenate_alignments:
     log:
         "logs/supermatrix/supermatrix.log"
     shell:
-        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix"
+        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{alignment_type}"
 
 
 rule alignment_summary:
@@ -27,10 +27,10 @@ rule alignment_summary:
     https://jlsteenwyk.com/BioKIT/usage/index.html#alignment-summary
     https://jlsteenwyk.com/tutorials/phylogenomics_made_easy.html
     """
-    output:
-        report("results/supermatrix/alignment_summary.txt", caption="../report/alignment_summary.rst", category="Supermatrix"),
     input:
         rules.concatenate_alignments.output.fasta
+    output:
+        f"results/supermatrix/alignment_summary.{alignment_type}.txt"
     conda:
         "../envs/biokit.yaml"
     bibs:
@@ -45,10 +45,10 @@ rule iqtree:
     """
     Use IQTREE on the supermatrix.
     """
-    output:
-        treefile=report("results/supermatrix/supermatrix.fa.treefile", category="Supermatrix"),
     input:
         rules.concatenate_alignments.output.fasta
+    output:
+        treefile=report("results/supermatrix/supermatrix.{alignment_type}.fa.treefile", category="Supermatrix"),
     threads: 
         workflow.cores
     conda:
@@ -67,10 +67,10 @@ rule supermatrix_ascii:
     """
     Displays the tree in ASCII format.
     """
-    output:
-        report("results/supermatrix/supermatrix_ascii.txt", category="Supermatrix"),
     input:
         rules.iqtree.output.treefile
+    output:
+        report("results/supermatrix/supermatrix_tree_ascii.{alignment_type}.txt", category="Supermatrix"),
     conda:
         "../envs/phykit.yaml"
     bibs:
@@ -83,14 +83,13 @@ rule supermatrix_ascii:
 
 rule supermatrix_render:
     """
-    Renders the tree in SVG format.
+    Renders the tree in SVG and PNG formats.
     """
-    output:
-        svg=report("results/supermatrix/supermatrix_render.svg", category="Supermatrix"),
-        html=report("results/supermatrix/supermatrix_render.html", category="Supermatrix"),
-        png=report("results/supermatrix/supermatrix_render.png", category="Supermatrix"),
     input:
         rules.iqtree.output.treefile
+    output:
+        svg=report("results/supermatrix/supermatrix_tree_render.{alignment_type}.svg", category="Supermatrix"),
+        png=report("results/supermatrix/supermatrix_tree_render.{alignment_type}.png", category="Supermatrix"),
     conda:
         "../envs/toytree.yaml"
     bibs:

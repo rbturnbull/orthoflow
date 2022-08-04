@@ -9,8 +9,7 @@ rule gene_tree_iqtree:
     input:
         rules.trim_alignments.output
     output:
-        report("results/gene_tree/{og}/{og}.treefile", category="Gene Tree"),
-
+        report(f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.treefile", category="Gene Tree"),
     threads: 
         workflow.cores
     conda:
@@ -35,7 +34,7 @@ rule gene_tree_ascii:
     input:
         rules.gene_tree_iqtree.output
     output:
-        report("results/gene_tree/ascii/{og}.txt", category="Gene Tree"),
+        f"results/gene_tree/ascii/{{og}}_tree_ascii.{alignment_type}.txt",
     conda:
         "../envs/phykit.yaml"
     bibs:
