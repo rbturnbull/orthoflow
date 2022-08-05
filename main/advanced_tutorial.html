@@ -50,13 +50,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#changing-workflow-settings">Changing workflow settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#input-and-output-paths">Input and output paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#controlling-the-flow-of-operations">Controlling the flow of operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gene-filtering-settings">Gene filtering settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gene-and-alignment-filtering-settings">Gene and alignment filtering settings</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#minimum-taxa">Minimum taxa</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-sc-ogs-and-or-snap-ogs">Using SC-OGs and/or SNAP-OGs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alignment-trimming">Alignment trimming</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#removal-of-heavily-trimmed-alignments">Removal of heavily trimmed alignments</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#alignment-trimming-settings">Alignment trimming settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tree-inference-settings">Tree inference settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-topics">Other topics ????</a></li>
 </ul>
@@ -124,7 +124,11 @@
 <h1>PhyloFlow Advanced Tutorial<a class="headerlink" href="#phyloflow-advanced-tutorial" title="Permalink to this headline"></a></h1>
 <section id="changing-workflow-settings">
 <h2>Changing workflow settings<a class="headerlink" href="#changing-workflow-settings" title="Permalink to this headline"></a></h2>
-<p>Some workflow settings can be changed by passing arguments to the command-line tool (<code class="docutils literal notranslate"><span class="pre">phyloflow</span></code>). Perhaps the most important one is <code class="docutils literal notranslate"><span class="pre">--cores</span></code> to specify the number of cores for the workflow to use. To see a complete list of command-line arguments, run:</p>
+<p>Some workflow settings can be changed by passing arguments to the command-line tool (<code class="docutils literal notranslate"><span class="pre">phyloflow</span></code>). Perhaps the most important one is <code class="docutils literal notranslate"><span class="pre">--cores</span></code> to specify the number of cores for the workflow to use.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="o">--</span><span class="n">cores</span> <span class="mi">24</span>
+</pre></div>
+</div>
+<p>To see a complete list of command-line arguments, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
@@ -164,8 +168,8 @@
 <p>The orthofisher and orthofinder paths are mutually exclusive.</p>
 <p>By default, a phylogeny is inferred from a supermatrix. To use the supertree (ASTRAL) path for tree inference, set <code class="docutils literal notranslate"><span class="pre">supertree:</span> <span class="pre">True</span></code>. If both <code class="docutils literal notranslate"><span class="pre">supermatrix</span></code> and <code class="docutils literal notranslate"><span class="pre">supertree</span></code> are set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the workflow will run both types of inference.</p>
 </section>
-<section id="gene-filtering-settings">
-<h2>Gene filtering settings<a class="headerlink" href="#gene-filtering-settings" title="Permalink to this headline"></a></h2>
+<section id="gene-and-alignment-filtering-settings">
+<h2>Gene and alignment filtering settings<a class="headerlink" href="#gene-and-alignment-filtering-settings" title="Permalink to this headline"></a></h2>
 <p>There are several steps in the workflow that filter out genes not meeting particular criteria.</p>
 <section id="minimum-taxa">
 <h3>Minimum taxa<a class="headerlink" href="#minimum-taxa" title="Permalink to this headline"></a></h3>
@@ -180,25 +184,21 @@
 </div>
 <p>SNAP-OGs are currently only implemented in the <em>de novo</em> ortholog analysis path. When using the ortholog fishing path, only SC-OGs will be used for downstream analyses.</p>
 </section>
+<section id="alignment-trimming">
+<h3>Alignment trimming<a class="headerlink" href="#alignment-trimming" title="Permalink to this headline"></a></h3>
+<p>Alignments are trimmed for quality with the smart gap method implemented in <a class="reference external" href="https://doi.org/10.1371/journal.pbio.3001007">ClipKit</a>.</p>
+</section>
 <section id="removal-of-heavily-trimmed-alignments">
 <h3>Removal of heavily trimmed alignments<a class="headerlink" href="#removal-of-heavily-trimmed-alignments" title="Permalink to this headline"></a></h3>
 <p>In some cases, it may make more sense to remove genes that have been decimated by the alignment trimming proceduce, particularly if they are going to be used individually to infer gene trees. There are two ways to achieve his. First, any alignments that fall below a given number of amino acid positions after trimming will be removed (default: 167 amino acid positions or 501 corresponding nucleotide positions, can be changed with <code class="docutils literal notranslate"><span class="pre">minimum_trimmed_alignment_length_cds</span></code> and <code class="docutils literal notranslate"><span class="pre">minimum_trimmed_alignment_length_proteins</span></code> parameters in the config file). Second, the workflow also allows removing alignments from which a large proportion was removed in the trimming step. By default, alignments that lose half of their length in trimming get removed (change by setting the <code class="docutils literal notranslate"><span class="pre">max_trimmed_proportion</span></code> parameter in the config file).</p>
 </section>
 </section>
-<section id="alignment-trimming-settings">
-<h2>Alignment trimming settings<a class="headerlink" href="#alignment-trimming-settings" title="Permalink to this headline"></a></h2>
-<p><strong>TO BE WRITTEN</strong></p>
-</section>
 <section id="tree-inference-settings">
 <h2>Tree inference settings<a class="headerlink" href="#tree-inference-settings" title="Permalink to this headline"></a></h2>
-<p>An important choice to make is whether to run the phylogenetic analysis on protein or nucleotide sequences. This can be set in the configuration file <code class="docutils literal notranslate"><span class="pre">infer_tree_with_protein_seqs</span></code>. The default setting (<code class="docutils literal notranslate"><span class="pre">True</span></code>) is to use protein sequences.</p>
-<p>To use an outgroup in the phylogenetic analysis, specify an outgroup taxon (using its value in the <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code> column in the input sources file). For example, for the demonstration dataset:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">outgroup</span><span class="p">:</span> <span class="s2">&quot;Derbesia_sp_WEST4838&quot;</span>
-</pre></div>
-</div>
-<p><strong>ADD MORE TREE INFERENCE DETAILS HERE – SOME TOPICS BELOW</strong>
-Bootstrap types
-Model specification / testing – we’re just passing the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag =&gt; user can pass in <code class="docutils literal notranslate"><span class="pre">TEST</span></code> for model testing or any of the IQtree model names (&lt;<a class="reference external" href="https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models">https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models</a>&gt;)</p>
+<p>An important choice to make is whether to run the phylogenetic analysis on protein or nucleotide sequences. This can be set in the config file <code class="docutils literal notranslate"><span class="pre">infer_tree_with_protein_seqs</span></code>. The default setting (<code class="docutils literal notranslate"><span class="pre">True</span></code>) is to use protein sequences.</p>
+<p>To use an outgroup in the phylogenetic analysis, specify an outgroup taxon (using its value in the <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code> column in the input sources file). For example, for the demonstration dataset <code class="docutils literal notranslate"><span class="pre">outgroup:</span> <span class="pre">&quot;Derbesia_sp_WEST4838&quot;</span></code>. The outgroup will only be used in the supermatrix path. We are not including this functionality for the gene tree path as the outgroup might not be present in each alignment.</p>
+<p>To specify a model of sequence evolution, the config file has a <code class="docutils literal notranslate"><span class="pre">model_string</span></code> setting where you can specify a model following the IQ-tree syntax. The default setting <code class="docutils literal notranslate"><span class="pre">model_string:</span> <span class="pre">&quot;-m</span> <span class="pre">TEST&quot;</span></code> will perform model testing to determine a suitable model. but any model implemented in IQ-tree can be specified here. For instance “-m GTR+F+G” for a nucleotide General Time Reversible (GTR) model with empirical base frequencies (+F) and a discrete gamma model (+G) for rate heterogeneity. For further information on the model options and their specification, see the <a class="reference external" href="https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models">IQ-tree documentation</a></p>
+<p>For bootstrapping, you can specify the <code class="docutils literal notranslate"><span class="pre">bootstrap_string</span></code> variable in the config file. By default, this is set to <code class="docutils literal notranslate"><span class="pre">bootstrap_string:</span> <span class="pre">&quot;-bb</span> <span class="pre">1000&quot;</span></code> to carry out 1000 ultrafast bootstrap replicates. To change this to 100 standard (nonparametric) bootstraps, for instance, use <code class="docutils literal notranslate"><span class="pre">bootstrap_string:</span> <span class="pre">&quot;-b</span> <span class="pre">100&quot;</span></code>. See the <a class="reference external" href="http://www.iqtree.org/doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation">IQ-tree documentation</a> for further information on how to specify bootstrapping.</p>
 </section>
 <section id="other-topics">
 <h2>Other topics ????<a class="headerlink" href="#other-topics" title="Permalink to this headline"></a></h2>
