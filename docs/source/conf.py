@@ -13,7 +13,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+from pathlib import Path
 
 # -- Project information -----------------------------------------------------
 
@@ -42,6 +42,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx.ext.graphviz",
     'sphinxcontrib.bibtex',
+    'snakedoc'
     # 'sphinxcontrib.mermaid',
 ]
 
@@ -80,3 +81,10 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_css_files = ['custom.css']
+
+
+# -- Snakedoc ---------------------------------------------------------------
+
+smk_linkcode_baseurl = "https://github.com/rbturnbull/phyloflow/blob/master"
+smk_configfile = "docs_config.yml"

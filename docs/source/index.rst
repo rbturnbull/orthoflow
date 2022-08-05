@@ -26,11 +26,12 @@ Welcome to phyloflow's documentation!
    main/rules
    main/contributing
    main/citation
-   
+
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
+* :ref:`smk-rule`
 * :ref:`modindex`
 * :ref:`search`
