@@ -6,7 +6,13 @@ PhyloFlow Advanced Tutorial
 Changing workflow settings
 ==========================
 
-Some workflow settings can be changed by passing arguments to the command-line tool (``phyloflow``). Perhaps the most important one is ``--cores`` to specify the number of cores for the workflow to use. To see a complete list of command-line arguments, run:
+Some workflow settings can be changed by passing arguments to the command-line tool (``phyloflow``). Perhaps the most important one is ``--cores`` to specify the number of cores for the workflow to use.
+
+.. code-block::
+
+    phyloflow --cores 24
+
+To see a complete list of command-line arguments, run:
 
 .. code-block::
 
@@ -64,8 +70,8 @@ The orthofisher and orthofinder paths are mutually exclusive.
 By default, a phylogeny is inferred from a supermatrix. To use the supertree (ASTRAL) path for tree inference, set ``supertree: True``. If both ``supermatrix`` and ``supertree`` are set to ``True``, the workflow will run both types of inference.
 
 
-Gene filtering settings
-=======================
+Gene and alignment filtering settings
+=====================================
 
 There are several steps in the workflow that filter out genes not meeting particular criteria. 
 
@@ -84,29 +90,26 @@ The traditional approach towards inferring species trees from genome data is to 
 
 SNAP-OGs are currently only implemented in the *de novo* ortholog analysis path. When using the ortholog fishing path, only SC-OGs will be used for downstream analyses.
 
+Alignment trimming
+------------------
+Alignments are trimmed for quality with the smart gap method implemented in `ClipKit <https://doi.org/10.1371/journal.pbio.3001007>`_.
+
 Removal of heavily trimmed alignments
 -------------------------------------
 In some cases, it may make more sense to remove genes that have been decimated by the alignment trimming proceduce, particularly if they are going to be used individually to infer gene trees. There are two ways to achieve his. First, any alignments that fall below a given number of amino acid positions after trimming will be removed (default: 167 amino acid positions or 501 corresponding nucleotide positions, can be changed with ``minimum_trimmed_alignment_length_cds`` and ``minimum_trimmed_alignment_length_proteins`` parameters in the config file). Second, the workflow also allows removing alignments from which a large proportion was removed in the trimming step. By default, alignments that lose half of their length in trimming get removed (change by setting the ``max_trimmed_proportion`` parameter in the config file).
 
-Alignment trimming settings
-===========================
-Alignments are trimmed for quality with the smart gap method implemented in `ClipKit <https://doi.org/10.1371/journal.pbio.3001007>`_.
 
 
 Tree inference settings
 =======================
 
-An important choice to make is whether to run the phylogenetic analysis on protein or nucleotide sequences. This can be set in the configuration file ``infer_tree_with_protein_seqs``. The default setting (``True``) is to use protein sequences.
+An important choice to make is whether to run the phylogenetic analysis on protein or nucleotide sequences. This can be set in the config file ``infer_tree_with_protein_seqs``. The default setting (``True``) is to use protein sequences.
 
-To use an outgroup in the phylogenetic analysis, specify an outgroup taxon (using its value in the ``taxon_string`` column in the input sources file). For example, for the demonstration dataset:
+To use an outgroup in the phylogenetic analysis, specify an outgroup taxon (using its value in the ``taxon_string`` column in the input sources file). For example, for the demonstration dataset ``outgroup: "Derbesia_sp_WEST4838"``. The outgroup will only be used in the supermatrix path. We are not including this functionality for the gene tree path as the outgroup might not be present in each alignment.
 
-.. code-block::
+To specify a model of sequence evolution, the config file has a ``model_string`` setting where you can specify a model following the IQ-tree syntax. The default setting ``model_string: "-m TEST"`` will perform model testing to determine a suitable model. but any model implemented in IQ-tree can be specified here. For instance "-m GTR+F+G" for a nucleotide General Time Reversible (GTR) model with empirical base frequencies (+F) and a discrete gamma model (+G) for rate heterogeneity. For further information on the model options and their specification, see the `IQ-tree documentation <https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models>`_
 
-    outgroup: "Derbesia_sp_WEST4838"
-
-**ADD MORE TREE INFERENCE DETAILS HERE -- SOME TOPICS BELOW**
-Bootstrap types
-Model specification / testing -- we're just passing the ``-m`` flag => user can pass in ``TEST`` for model testing or any of the IQtree model names (<https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models>)
+For bootstrapping, you can specify the ``bootstrap_string`` variable in the config file. By default, this is set to ``bootstrap_string: "-bb 1000"`` to carry out 1000 ultrafast bootstrap replicates. To change this to 100 standard (nonparametric) bootstraps, for instance, use ``bootstrap_string: "-b 100"``. See the `IQ-tree documentation <http://www.iqtree.org/doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation>`_ for further information on how to specify bootstrapping.
 
 
 Other topics ????
