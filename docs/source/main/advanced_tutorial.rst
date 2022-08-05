@@ -90,7 +90,7 @@ In some cases, it may make more sense to remove genes that have been decimated b
 
 Alignment trimming settings
 ===========================
-**TO BE WRITTEN**
+Alignments are trimmed for quality with the smart gap method implemented in `ClipKit <https://doi.org/10.1371/journal.pbio.3001007>`_.
 
 
 Tree inference settings
