@@ -1,7 +1,4 @@
 
-
-
-
 rule gene_tree_iqtree:
     """
     Use IQTREE on the gene alignments.
@@ -20,12 +17,14 @@ rule gene_tree_iqtree:
         "../bibs/modelfinder.ris",
     log:
         "logs/gene_tree/iqtree-{og}.log"
+    params:
+        bootstrap_string=config.get("bootstrap_string", BOOTSTRAP_STRING_DEFAULT),
+        model_string=config.get("model_string", MODEL_STRING_DEFAULT),
     shell:
         """
         mkdir -p results/gene_tree/{wildcards.og}
-        iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{alignment_type} -redo
+        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{alignment_type} -redo
         """
-
 
 rule gene_tree_ascii:
     """

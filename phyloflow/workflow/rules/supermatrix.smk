@@ -41,6 +41,8 @@ rule supermatrix_alignment_summary:
         "biokit alignment_summary {input} > {output}"
 
 
+supermatrix_outgroup = config.get("supermatrix_outgroup", SUPERMATRIX_OUTGROUP_DEFAULT)
+
 rule supermatrix_iqtree:
     """
     Use IQTREE on the supermatrix.
@@ -59,8 +61,12 @@ rule supermatrix_iqtree:
         "../bibs/modelfinder.ris",
     log:
         "logs/supermatrix/iqtree.log"
+    params:
+        bootstrap_string=config.get("bootstrap_string", BOOTSTRAP_STRING_DEFAULT),
+        model_string=config.get("model_string", MODEL_STRING_DEFAULT),
+        supermatrix_outgroup_string=f"-o {supermatrix_outgroup}" if supermatrix_outgroup else "",
     shell:
-        "iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -redo"
+        "iqtree2 -s {input} {params.bootstrap_string} {params.model_string} {params.supermatrix_outgroup_string} -ntmax {threads} -redo"
 
 
 rule supermatrix_ascii:
