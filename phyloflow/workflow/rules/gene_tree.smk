@@ -23,7 +23,7 @@ rule gene_tree_iqtree:
     shell:
         """
         mkdir -p results/gene_tree/{wildcards.og}
-        iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og} -redo
+        iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{alignment_type} -redo
         """
 
 
