@@ -1,14 +1,13 @@
 from pathlib import Path
 import jinja2
-from jinja2 import select_autoescape
-
 import typer
 
 
-def report(
+def create_report(
     output: Path = typer.Option(..., help="The path to output the report."),
     supermatrix_render_svg: Path = None,
     supermatrix_alignment_summary: Path = None,
+    use_supertree:bool = False,
 ):
     report_dir = Path(__file__).parent.parent/"report"
     loader = jinja2.FileSystemLoader(report_dir)
@@ -25,6 +24,7 @@ def report(
 
     template = env.get_template("report-template.html")
     result = template.render(
+        use_supertree=use_supertree,
         supermatrix_render_svg=supermatrix_render_svg.resolve(),
         supermatrix_alignment_summary=supermatrix_alignment_summary,
     )
@@ -34,4 +34,4 @@ def report(
 
 
 if __name__ == "__main__":
-    typer.run(report)
+    typer.run(create_report)

@@ -174,30 +174,36 @@
                 Data Intake
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="orthofinder-tab" data-bs-toggle="pill" data-bs-target="#orthofinder" type="button" role="tab" aria-controls="orthofinder" aria-selected="false">
-                <span data-feather="file"></span>
-                Orthofinder
-              </a>
-            </li>
+            {% if use_orthofisher %}
             <li class="nav-item">
               <a class="nav-link" href="#" id="orthofinder-tab" data-bs-toggle="pill" data-bs-target="#orthofinder" type="button" role="tab" aria-controls="orthofinder" aria-selected="false">
                 <span data-feather="file"></span>
                 Orthofisher
               </a>
             </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="orthofinder-tab" data-bs-toggle="pill" data-bs-target="#orthofinder" type="button" role="tab" aria-controls="orthofinder" aria-selected="false">
+                <span data-feather="file"></span>
+                Orthofinder
+              </a>
+            </li>
+            {%endif%}
             <li class="nav-item">
               <a class="nav-link" href="#" id="alignment-tab" data-bs-toggle="pill" data-bs-target="#alignment" type="button" role="tab" aria-controls="alignment" aria-selected="false">
                 <span data-feather="file"></span>
                 Alignment
               </a>
             </li>
+            {% if use_supermatrix %}
             <li class="nav-item">
               <a class="nav-link" href="#" id="supermatrix-tab" data-bs-toggle="pill" data-bs-target="#supermatrix" type="button" role="tab" aria-controls="supermatrix" aria-selected="false">
                 <span data-feather="file"></span>
                 Supermatrix
               </a>
             </li>
+            {%endif%}
+            {% if use_supertree %}
             <li class="nav-item">
               <a class="nav-link" href="#" id="genetree-tab" data-bs-toggle="pill" data-bs-target="#genetree" type="button" role="tab" aria-controls="genetree" aria-selected="false">
                 <span data-feather="file"></span>
@@ -210,6 +216,7 @@
                 Supertree
               </a>
             </li>
+            {%endif%}
             <li class="nav-item">
               <a class="nav-link" href="#" id="bibliography-tab" data-bs-toggle="pill" data-bs-target="#bibliography" type="button" role="tab" aria-controls="bibliography" aria-selected="false">
                 <span data-feather="file"></span>
@@ -228,35 +235,50 @@
           <div class="tab-pane fade" id="intake" role="tabpanel" aria-labelledby="intake-tab">
             <h1>Data Intake</h1>
           </div>
+          {% if use_orthofisher %}
+          <div class="tab-pane fade" id="orthofisher" role="tabpanel" aria-labelledby="orthofisher-tab">
+            <h1>Orthofisher</h1>
+          </div>
+          {% else %}
           <div class="tab-pane fade" id="orthofinder" role="tabpanel" aria-labelledby="orthofinder-tab">
             <h1>Orthofinder</h1>
           </div>
+          {% endif %}
           <div class="tab-pane fade" id="alignment" role="tabpanel" aria-labelledby="alignment-tab">
             <h1>Alignment</h1>
+            <p>The following alignments were used after filtering:</p>
+            <pre>{{ include_file(list_alignments)|safe }}</pre>
           </div>
-          <div class="tab-pane fade" id="supermatrix" role="tabpanel" aria-labelledby="supermatrix-tab">
-            <h1>Supermatrix</h1>
+          {% if use_supermatrix %}
+            <div class="tab-pane fade" id="supermatrix" role="tabpanel" aria-labelledby="supermatrix-tab">
+              <h1>Supermatrix</h1>
 
-            {% if supermatrix_alignment_summary %}
-              <h2>Alignment Summary</h2>
-              <pre>
-              {{ include_file(supermatrix_alignment_summary)|safe }}
-              </pre>
-            {% endif %}
+              {% if supermatrix_alignment_summary %}
+                <h2>Alignment Summary</h2>
+                <pre>
+                {{ include_file(supermatrix_alignment_summary)|safe }}
+                </pre>
+              {% endif %}
 
-            <h2>Inferred Tree</h2>
-            This is the tree inferred:<br>
-            {{ include_file(supermatrix_render_svg)|safe }}
-            
-          </div>
-          <div class="tab-pane fade" id="genetree" role="tabpanel" aria-labelledby="genetree-tab">
-            <h1>Gene Tree</h1>
-          </div>
-          <div class="tab-pane fade" id="supertree" role="tabpanel" aria-labelledby="supertree-tab">
-            <h1>Supertree</h1>
-          </div>
+              <h2>Inferred Tree</h2>
+              This is the tree inferred:<br>
+              {{ include_file(supermatrix_render_svg)|safe }}
+              
+            </div>
+          {% endif %}
+          {% if use_supertree %}
+            <div class="tab-pane fade" id="genetree" role="tabpanel" aria-labelledby="genetree-tab">
+              <h1>Gene Tree</h1>
+            </div>
+            <div class="tab-pane fade" id="supertree" role="tabpanel" aria-labelledby="supertree-tab">
+              <h1>Supertree</h1>
+            </div>
+          {% endif %}
           <div class="tab-pane fade" id="bibliography" role="tabpanel" aria-labelledby="bibliography-tab">
             <h1>Bibliography</h1>
+            {{ bibliography|safe }}
+            <h2>BibTeX Format</h2>
+            <pre>{{ bibtex|safe }}</pre>
           </div>
         </div>        
       </main>
