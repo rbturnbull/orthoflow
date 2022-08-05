@@ -81,5 +81,5 @@ rule supertree_render:
     log:
         "logs/supertree/supertree_render.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} --html {output.html}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
 

@@ -97,6 +97,6 @@ rule supermatrix_render:
     log:
         "logs/supermatrix/render_tree.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} --html {output.html}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
 
 
