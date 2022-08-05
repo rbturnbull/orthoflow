@@ -151,7 +151,7 @@ class Workflow:
 
 @pytest.fixture
 def run_workflow(tmpdir: Path):
-    def _run_workflow(targets: TargetsType) -> Workflow:
+    def _run_workflow(targets: TargetsType, *args) -> Workflow:
         targets = _targets_to_pathlist(targets)
 
         work_dir = Path(tmpdir) / "work_dir"
@@ -176,6 +176,7 @@ def run_workflow(tmpdir: Path):
                 "--keep-target-files",
                 "--conda-prefix",
                 conda_dir,
+                *args,
             ]
         )
 
