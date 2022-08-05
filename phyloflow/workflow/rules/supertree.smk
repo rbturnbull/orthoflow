@@ -72,8 +72,8 @@ rule supertree_render:
     input:
         rules.astral.output
     output:
-        svg=report("results/supertree/supertree_render.{alignment_type}.svg", category="Supertree"),
-        png=report("results/supertree/supertree_render.{alignment_type}.png", category="Supertree"),
+        svg=f"results/supertree/supertree_render.{alignment_type}.svg",
+        png=f"results/supertree/supertree_render.{alignment_type}.png"
     conda:
         "../envs/toytree.yaml"
     bibs:
