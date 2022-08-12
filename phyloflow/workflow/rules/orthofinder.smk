@@ -2,6 +2,10 @@ from pathlib import Path
 from collections import namedtuple
 import re
 
+use_orthofisher = config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT)
+orthofinder_use_scogs = config.get('orthofinder_use_scogs', True)
+orthofinder_use_snap_ogs = config.get('orthofinder_use_snap_ogs', True)
+
 
 rule orthofinder:
     """
@@ -115,10 +119,17 @@ checkpoint orthosnap:
 
 
 def list_orthofinder_scogs(wildcards):
+    if use_orthofisher or not orthofinder_use_scogs:
+        return []
+
     checkpoint_output = checkpoints.split_scogs_and_multi_copy_ogs.get(**wildcards).output.scogs
     return list(Path(checkpoint_output).glob("*.fa"))
 
+
 def list_orthosnap_snap_ogs(wildcards):
+    if use_orthofisher or not orthofinder_use_snap_ogs:
+        return []
+
     checkpoint_output = checkpoints.generate_orthosnap_input.get(**wildcards).output[0]
     multi_copy_ogs = glob_wildcards(os.path.join(checkpoint_output, "{og}.fa")).og
     snap_ogs = []
@@ -130,20 +141,13 @@ def list_orthosnap_snap_ogs(wildcards):
 
 
 def combine_scogs_and_snap_ogs(wildcards):
-    orthofinder_use_scogs = config.get('orthofinder_use_scogs', True)
-    orthofinder_use_snap_ogs = config.get('orthofinder_use_snap_ogs', True)
     if not orthofinder_use_scogs and not orthofinder_use_scogs:
         raise Exception(
             "You need to set either `orthofinder_use_scogs` or `orthofinder_use_snap_ogs` or both "
             "in the configuration file so that at least some orthologs can be used."
         )
-    ogs = []
-    if orthofinder_use_scogs:
-        ogs += list_orthofinder_scogs(wildcards)
-    if orthofinder_use_snap_ogs:
-        ogs += list_orthosnap_snap_ogs(wildcards)
 
-    return ogs
+    return list_orthofinder_scogs(wildcards) + list_orthosnap_snap_ogs(wildcards)
 
 
 checkpoint orthofinder_all:

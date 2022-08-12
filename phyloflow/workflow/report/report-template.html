@@ -242,6 +242,11 @@
           {% else %}
           <div class="tab-pane fade" id="orthofinder" role="tabpanel" aria-labelledby="orthofinder-tab">
             <h1>Orthofinder</h1>
+            <h2>orthofinder_scogs</h2>
+            {{ orthofinder_scogs }}
+
+            <h2>orthosnap_snap_ogs</h2>
+            {{ orthosnap_snap_ogs }}
           </div>
           {% endif %}
           <div class="tab-pane fade" id="alignment" role="tabpanel" aria-labelledby="alignment-tab">
@@ -251,6 +256,7 @@
             <h2>Summary Metrics</h2>
             {{ include_file(summary_plot)|safe }}
           </div>
+
           {% if use_supermatrix %}
             <div class="tab-pane fade" id="supermatrix" role="tabpanel" aria-labelledby="supermatrix-tab">
               <h1>Supermatrix</h1>
@@ -268,14 +274,22 @@
               
             </div>
           {% endif %}
+
           {% if use_supertree %}
             <div class="tab-pane fade" id="genetree" role="tabpanel" aria-labelledby="genetree-tab">
               <h1>Gene Tree</h1>
             </div>
             <div class="tab-pane fade" id="supertree" role="tabpanel" aria-labelledby="supertree-tab">
               <h1>Supertree</h1>
+              
+              <h2>Rendered Tree</h2>
+              {{ include_file(supertree_render_svg)|safe }}
+
+              <h2>ASCII Tree</h2>
+              <pre>{{ include_file(supertree_ascii)|safe }}</pre>
             </div>
           {% endif %}
+
           <div class="tab-pane fade" id="bibliography" role="tabpanel" aria-labelledby="bibliography-tab">
             <h1>Bibliography</h1>
             {{ bibliography|safe }}
