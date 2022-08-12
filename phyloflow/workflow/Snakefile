@@ -63,7 +63,7 @@ onstart:
 
 def get_all_outputs():
     outputs = [
-        "results/summary/information_content.tsv",
+        "results/summary/information_content.csv",
     ]
     if config.get("supermatrix", True):
         outputs += [

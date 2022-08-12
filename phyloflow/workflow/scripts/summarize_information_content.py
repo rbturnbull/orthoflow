@@ -11,11 +11,12 @@ import typer
 def summarize_information_content(
     alignment_list:Path, 
     # gene_trees_list:Path, 
-    output_tsv:Path, 
+    output_csv:Path, 
     output_plot:Path
 ):
-    with open(alignment_list) as f:
-        aln_file_paths = f.readlines()
+
+    # read in file paths
+    aln_file_paths = [alignment for alignment in alignment_list.read_text().split("\n") if alignment]
 
     # initialize arrays to hold summary information content
     res_arr = []
@@ -24,20 +25,19 @@ def summarize_information_content(
     metrics_all_aln = [
         "alignment_length",
         "relative_composition_variability",
+        "pairwise_identity", # get mean
         "parsimony_informative_sites",
         "variable_sites",
     ]
 
-    metrics_all_tre = [
-        "treeness",
-        "evolutionary_rate",
-        "robinson_foulds_distance",
-        "bipartition_support_stats", # get mean
-    ]
+    # metrics_all_tre = [
+    #     "treeness",
+    #     "robinson_foulds_distance",
+    #     "bipartition_support_stats", # get mean
+    # ]
 
     # loop through files, evaluate information content, and save to arr
-    # TODO: remove control that only loops through ten alignments
-    for aln in aln_file_paths[:10]:
+    for aln in aln_file_paths:
         
         for metric in metrics_all_aln:
             res_arr.append(
@@ -48,9 +48,9 @@ def summarize_information_content(
             )
 
     # write out dataframes of information content
-    df = write_df_to_tsv_file(
+    df = write_df_to_csv_file(
         res_arr, 
-        output_tsv,
+        output_csv,
     )
 
     # create plot
@@ -73,18 +73,22 @@ def generate_pairplot(
         {
             "alignment_length" : "float",
             "relative_composition_variability" : "float",
+            "pairwise_identity" : "float",
             "parsimony_informative_sites" : "float",
-            "variable_sites" : "float",
+            "variable_sites" : "float"
         }
     )
-    df = df.rename(
-        columns = {
-            "alignment_length" : "alignment length",
-            "relative_composition_variability" : "relative composition variability",
-            "parsimony_informative_sites" : "parsimony informative sites",
-            "variable_sites" : "variable sites",
-        }
-    )
+
+    df = df.rename(columns={column:column.replace("_", " ").title() for column in df.columns})
+    # df = df.rename(
+    #     columns = {
+    #         "alignment_length" : "alignment length",
+    #         "relative_composition_variability" : "relative composition variability",
+    #         "pairwise_identity" : "pairwise identity",
+    #         "parsimony_informative_sites" : "parsimony informative sites",
+    #     }
+    # )
+    
     df.drop('alignment', axis=1)
 
     # define custom parameters of seaborn plot
@@ -111,13 +115,13 @@ def generate_pairplot(
     )
 
 
-def write_df_to_tsv_file(
+def write_df_to_csv_file(
     df: list, 
     output_name: str
 ):
 
     df = pd.DataFrame(df, columns = ['metric', 'value', 'alignment'])
-    df.to_csv(output_name, index=False, header=True, sep="\t")
+    df.to_csv(output_name, index=False, header=True, sep=",")
 
     return df
 
@@ -126,23 +130,16 @@ def eval_info_content(
     metric: str,
     aln_name: str,
 ):
-    
-    metrics_with_multiple_columns = [
-        "alignment_length_no_gaps",
-        "parsimony_informative_sites", 
-        "variable_sites"
-    ]
 
     res_line = []
     _phykit_cmd = ['phykit', metric, str(aln_name).strip()]
     res_line.append(metric)
     # handle outputs with multiple columns otherwise take all output
-    if metric in metrics_with_multiple_columns:
+    if metric in ["parsimony_informative_sites", "variable_sites"]:
         res_line.append(subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8').split("\t")[0])
     elif metric == "pairwise_identity":
-        res_line = []
-        res_line.append("average_pairwise_identity")
-        res_line.append(subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8').split(" ")[1])
+        temp_res = subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8')
+        res_line.append(temp_res.replace("mean: ", ""))
     else:
         res_line.append(subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8'))
     res_line.append(aln_name)

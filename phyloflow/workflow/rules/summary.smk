@@ -6,7 +6,7 @@ rule summarize_information_content:
     input:
         alignments=rules.list_alignments.output
     output:
-        tsv="results/summary/information_content.tsv",
+        csv="results/summary/information_content.csv",
         plot=report("results/summary/information_content.svg", category="Summary"),
     conda:
         "../envs/summary.yaml"
@@ -14,6 +14,6 @@ rule summarize_information_content:
         """
         python {SCRIPT_DIR}/summarize_information_content.py \
             {input.alignments} \
-            {output.tsv} \
+            {output.csv} \
             {output.plot}
         """

@@ -4,6 +4,7 @@ dependencies:
   - python=3.9
   - pip
   - seaborn
+  - typer
   - pip:
     - scipy==1.8.1
     - pandas==1.4.3
