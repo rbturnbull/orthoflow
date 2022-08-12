@@ -4,6 +4,5 @@ dependencies:
   - coreutils
   - rich==12.4.1
   - python=3.9
-  - pip:
-    - typer
+  - typer
 

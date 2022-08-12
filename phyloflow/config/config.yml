@@ -22,6 +22,7 @@ model_string: "-m TEST"  # Use IQ-tree syntax, e.g. "-m TEST" to activate ModelF
 #supermatrix_outgroup: "Derbesia_sp_WEST4838"  # Uncomment this line if you wish to specify an outgroup for tree inference
 
 # list of hmmer files for orthofisher
+# TODO: glob for HMMs
 orthofisher_hmmer_files:
   - hmms/1080at3041.hmm
   - hmms/1103at3041.hmm
