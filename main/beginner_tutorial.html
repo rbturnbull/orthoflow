@@ -120,15 +120,15 @@
 <h1>PhyloFlow Beginner’s Tutorial<a class="headerlink" href="#phyloflow-beginner-s-tutorial" title="Permalink to this headline"></a></h1>
 <section id="input-data">
 <h2>Input data<a class="headerlink" href="#input-data" title="Permalink to this headline"></a></h2>
-<p>PhyloFlow works from an input CSV file with information about the data sources  to be used. Preparing this file is central to setting up your run. The default filename for this is <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code>.</p>
-<p>It needs the columns <code class="docutils literal notranslate"><span class="pre">file</span></code>, <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code>, <code class="docutils literal notranslate"><span class="pre">data_type</span></code> and <code class="docutils literal notranslate"><span class="pre">translation_table</span></code>.</p>
+<p>PhyloFlow works from an input CSV file with information about the data sources  to be used. Preparing this file is central to setting up your run. The default filename for this is <cite>input_sources.csv</cite>.</p>
+<p>It needs the columns <cite>file</cite>, <cite>taxon_string</cite>, <cite>data_type</cite> and <cite>translation_table</cite>.</p>
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">file</span></code> column is the path to the file relative to the working directory.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code> is the name of the taxon from which the data was obtained.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">data_type</span></code> column should be either <cite>CDS</cite> when providing a FASTA file with coding sequences, or <code class="docutils literal notranslate"><span class="pre">GenBank</span></code> when providing a GenBank-formatted file with CDS annotations.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">translation_table</span></code> column should have the translation table (genetic code) number for the data as given <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=c">here</a>.</p></li>
+<li><p>The <cite>file</cite> column is the path to the file relative to the working directory.</p></li>
+<li><p>The <cite>taxon_string</cite>, is the name of the taxon from which the data was obtained.</p></li>
+<li><p>The <cite>data_type</cite> column should be either <cite>CDS</cite> when providing a FASTA file with coding sequences, or <cite>GenBank</cite> when providing a GenBank-formatted file with CDS annotations.</p></li>
+<li><p>The <cite>translation_table</cite> column should have the translation table (genetic code) number for the data as given <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=c">here</a>.</p></li>
 </ul>
-<p>Let’s look at the demonstration dataset distributed with the code: <code class="docutils literal notranslate"><span class="pre">tests/test-data/input_sources.csv</span></code>.</p>
+<p>Let’s look at the demonstration dataset distributed with the code: <cite>tests/test-data/input_sources.csv</cite>.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 24%" />
@@ -206,17 +206,13 @@
 </tr>
 </tbody>
 </table>
-<p>We are using a dataset of algal chloroplast genomes, some as annotated genbank files (<code class="docutils literal notranslate"><span class="pre">data_type:</span> <span class="pre">Genbank</span></code>), some as fasta files of the coding sequences (<code class="docutils literal notranslate"><span class="pre">data_type:</span> <span class="pre">CDS</span></code>). They all use the bacterial genetic code (<code class="docutils literal notranslate"><span class="pre">translation_table:</span> <span class="pre">11</span></code>). Some of the genomes were in a single Genbank file (e.g. <code class="docutils literal notranslate"><span class="pre">KY09313.gb</span></code> at the top), others were fragmented across multiple files (e.g. last 4 all belonging to the same taxon).</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code> column is perhaps the most important one, as these will be the names to appear in the output tree and this determines how input data gets grouped (e.g. all CDSs in the final four GenBank files will be grouped into a single taxon). In this case, we have included specimen numbers as part of the taxon string but that is optional.</p>
+<p>We are using a dataset of algal chloroplast genomes, some as annotated genbank files (<cite>data_type: Genbank</cite>), some as fasta files of the coding sequences (<cite>data_type: CDS</cite>). They all use the bacterial genetic code (<cite>translation_table: 11</cite>). Some of the genomes were in a single Genbank file (e.g. KY09313.gb at the top), others were fragmented across multiple files (e.g. last 4 all belonging to the same taxon).</p>
+<p>The <cite>taxon_string</cite> column is perhaps the most important one, as these will be the names to appear in the output tree and this determines how input data gets grouped (e.g. all CDSs in the final four GenBank files will be grouped into a single taxon). In this case, we have included specimen numbers as part of the taxon string but that is optional.</p>
 </section>
 <section id="simple-run">
 <h2>Simple run<a class="headerlink" href="#simple-run" title="Permalink to this headline"></a></h2>
-<p>We are using the small demonstration dataset distributed with the PhyloFlow in the <code class="docutils literal notranslate"><span class="pre">tests/test-data</span></code> subdirectory.</p>
-<p>Go into the directory containing the <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code> file and run phyloflow with default settings with these commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tests</span><span class="o">/</span><span class="n">test</span><span class="o">-</span><span class="n">data</span>
-<span class="n">phyloflow</span>
-</pre></div>
-</div>
+<p>We are using the small demonstration dataset distributed with the PhyloFlow in the <cite>tests/test-data</cite> subdirectory.</p>
+<p>Go into the directory containing the <cite>input_sources.csv</cite> file and run phyloflow with default settings with these commands:</p>
 <p>By default, PhyloFlow will extract the CDSs from the input files, run OrthoFinder followed by OrthoSNAP to determine orthologous genes, align them and infer a concatenated tree from the protein sequences. You can follow progress on the screen as the workflow executes and outputs are produced.</p>
 <p>Note that the first time you run the workflow, it will be slow because it needs to download and install the software it depends on. This is a one-time thing and runs should get going much faster after.</p>
 </section>
@@ -224,7 +220,7 @@
 <h2>Examining the output<a class="headerlink" href="#examining-the-output" title="Permalink to this headline"></a></h2>
 <section id="inferred-tree-and-intermediate-files">
 <h3>Inferred tree and intermediate files<a class="headerlink" href="#inferred-tree-and-intermediate-files" title="Permalink to this headline"></a></h3>
-<p>All output files are saved in the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory. Output files are subdivided into the workflow modules, which each have their own subdirectory. For the demonstration analysis that we ran above, the inferred phylogeny will be in the <code class="docutils literal notranslate"><span class="pre">supermatrix</span></code> subdirectory and be called <code class="docutils literal notranslate"><span class="pre">supermatrix.protein.fa.treefile</span></code>. Open this with a tree browser (e.g. <a class="reference external" href="https://github.com/rambaut/figtree">FigTree</a>). Also take some time to browse the intermediary files, including the orthogroups, gene alignments and the supermatrix constructed from them.</p>
+<p>All output files are saved in the <cite>results</cite> directory. Output files are subdivided into the workflow modules, which each have their own subdirectory. For the demonstration analysis that we ran above, the inferred phylogeny will be in the <cite>supermatrix</cite> subdirectory and be called <cite>supermatrix.fa.treefile</cite>. Open this with a tree browser (e.g. <a class="reference external" href="https://github.com/rambaut/figtree">FigTree</a>). Also take some time to browse the intermediary files, including the orthogroups, gene alignments and the supermatrix constructed from them.</p>
 </section>
 <section id="report-and-diagnostics">
 <h3>Report and diagnostics<a class="headerlink" href="#report-and-diagnostics" title="Permalink to this headline"></a></h3>
@@ -233,7 +229,7 @@
 </section>
 <section id="output-logs">
 <h3>Output logs<a class="headerlink" href="#output-logs" title="Permalink to this headline"></a></h3>
-<p>The output logs of all software used as part of the workflow can be found in the <code class="docutils literal notranslate"><span class="pre">logs</span></code> directory.</p>
+<p>The output logs of all software used as part of the workflow can be found in the <cite>logs</cite> directory.</p>
 </section>
 </section>
 </section>
