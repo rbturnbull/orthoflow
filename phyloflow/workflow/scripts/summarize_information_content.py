@@ -80,14 +80,6 @@ def generate_pairplot(
     )
 
     df = df.rename(columns={column:column.replace("_", " ").title() for column in df.columns})
-    # df = df.rename(
-    #     columns = {
-    #         "alignment_length" : "alignment length",
-    #         "relative_composition_variability" : "relative composition variability",
-    #         "pairwise_identity" : "pairwise identity",
-    #         "parsimony_informative_sites" : "parsimony informative sites",
-    #     }
-    # )
     
     df.drop('alignment', axis=1)
 
