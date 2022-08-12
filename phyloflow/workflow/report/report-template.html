@@ -248,6 +248,8 @@
             <h1>Alignment</h1>
             <p>The following alignments were used after filtering:</p>
             <pre>{{ include_file(list_alignments)|safe }}</pre>
+            <h2>Summary Metrics</h2>
+            {{ include_file(summary_plot)|safe }}
           </div>
           {% if use_supermatrix %}
             <div class="tab-pane fade" id="supermatrix" role="tabpanel" aria-labelledby="supermatrix-tab">

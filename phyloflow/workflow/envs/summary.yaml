@@ -5,6 +5,7 @@ dependencies:
   - pip
   - seaborn
   - typer
+  - rich==12.4.1
   - pip:
     - scipy==1.8.1
     - pandas==1.4.3

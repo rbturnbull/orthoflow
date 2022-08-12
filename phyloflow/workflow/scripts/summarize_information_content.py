@@ -6,6 +6,7 @@ from scipy.stats import spearmanr
 import seaborn as sns
 import pandas as pd
 import typer
+from rich.progress import track
 
 
 def summarize_information_content(
@@ -37,8 +38,7 @@ def summarize_information_content(
     # ]
 
     # loop through files, evaluate information content, and save to arr
-    for aln in aln_file_paths:
-        
+    for aln in track(aln_file_paths, description="Processing..."):        
         for metric in metrics_all_aln:
             res_arr.append(
                 eval_info_content(
@@ -81,7 +81,7 @@ def generate_pairplot(
 
     df = df.rename(columns={column:column.replace("_", " ").title() for column in df.columns})
     
-    df.drop('alignment', axis=1)
+    df.drop('Alignment', axis=1)
 
     # define custom parameters of seaborn plot
     custom_params = {
