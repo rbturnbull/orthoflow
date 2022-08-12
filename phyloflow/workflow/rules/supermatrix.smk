@@ -7,9 +7,9 @@ rule concatenate_alignments:
     input:
         rules.list_alignments.output
     output:
-        fasta="results/supermatrix/supermatrix.fa",
-        partition="results/supermatrix/supermatrix.partition",
-        occupancy="results/supermatrix/supermatrix.occupancy",
+        fasta=f"results/supermatrix/supermatrix.{alignment_type}.fa",
+        partition=f"results/supermatrix/supermatrix.{alignment_type}.partition",
+        occupancy=f"results/supermatrix/supermatrix.{alignment_type}.occupancy",
     conda:
         "../envs/phykit.yaml"
     bibs:
@@ -17,20 +17,20 @@ rule concatenate_alignments:
     log:
         "logs/supermatrix/supermatrix.log"
     shell:
-        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix"
+        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{alignment_type}"
 
 
-rule alignment_summary:
+rule supermatrix_alignment_summary:
     """
     Summarizes the supermatrix alignment using BioKIT
 
     https://jlsteenwyk.com/BioKIT/usage/index.html#alignment-summary
     https://jlsteenwyk.com/tutorials/phylogenomics_made_easy.html
     """
-    output:
-        report("results/supermatrix/alignment_summary.txt", caption="../report/alignment_summary.rst", category="Supermatrix"),
     input:
         rules.concatenate_alignments.output.fasta
+    output:
+        f"results/supermatrix/alignment_summary.{alignment_type}.txt"
     conda:
         "../envs/biokit.yaml"
     bibs:
@@ -41,14 +41,16 @@ rule alignment_summary:
         "biokit alignment_summary {input} > {output}"
 
 
-rule iqtree:
+supermatrix_outgroup = config.get("supermatrix_outgroup", SUPERMATRIX_OUTGROUP_DEFAULT)
+
+rule supermatrix_iqtree:
     """
     Use IQTREE on the supermatrix.
     """
     input:
         rules.concatenate_alignments.output.fasta
     output:
-        treefile=report("results/supermatrix/supermatrix.fa.treefile", category="Supermatrix"),
+        treefile=f"results/supermatrix/supermatrix.{alignment_type}.fa.treefile"
     threads: 
         workflow.cores
     conda:
@@ -59,18 +61,22 @@ rule iqtree:
         "../bibs/modelfinder.ris",
     log:
         "logs/supermatrix/iqtree.log"
+    params:
+        bootstrap_string=config.get("bootstrap_string", BOOTSTRAP_STRING_DEFAULT),
+        model_string=config.get("model_string", MODEL_STRING_DEFAULT),
+        supermatrix_outgroup_string=f"-o {supermatrix_outgroup}" if supermatrix_outgroup else "",
     shell:
-        "iqtree2 -s {input} -bb 1000 -m TEST -ntmax {threads} -redo"
+        "iqtree2 -s {input} {params.bootstrap_string} {params.model_string} {params.supermatrix_outgroup_string} -ntmax {threads} -redo"
 
 
-rule ascii_tree:
+rule supermatrix_ascii:
     """
     Displays the tree in ASCII format.
     """
-    output:
-        report("results/supermatrix/ascii_tree.txt", category="Supermatrix"),
     input:
-        rules.iqtree.output.treefile
+        rules.supermatrix_iqtree.output.treefile
+    output:
+        f"results/supermatrix/supermatrix_tree_ascii.{alignment_type}.txt"
     conda:
         "../envs/phykit.yaml"
     bibs:
@@ -81,16 +87,15 @@ rule ascii_tree:
         "phykit print_tree {input} > {output}"
 
 
-rule render_tree:
+rule supermatrix_render:
     """
-    Renders the tree in SVG format.
+    Renders the tree in SVG and PNG formats.
     """
-    output:
-        svg=report("results/supermatrix/render_tree.svg", category="Supermatrix"),
-        html=report("results/supermatrix/render_tree.html", category="Supermatrix"),
-        png=report("results/supermatrix/render_tree.png", category="Supermatrix"),
     input:
-        rules.iqtree.output.treefile
+        rules.supermatrix_iqtree.output.treefile
+    output:
+        svg=f"results/supermatrix/supermatrix_tree_render.{alignment_type}.svg",
+        png=f"results/supermatrix/supermatrix_tree_render.{alignment_type}.png"
     conda:
         "../envs/toytree.yaml"
     bibs:
@@ -98,6 +103,6 @@ rule render_tree:
     log:
         "logs/supermatrix/render_tree.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} --html {output.html}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
 
 

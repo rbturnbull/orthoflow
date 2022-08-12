@@ -7,8 +7,7 @@ min_version("6.0")
 
 SNAKE_DIR = Path(workflow.basedir)
 SCRIPT_DIR = SNAKE_DIR/ "scripts"
-WORKFLOW_DIR = SNAKE_DIR / "workflow"
-ENV_DIR = WORKFLOW_DIR.parent / "envs"
+ENV_DIR = SNAKE_DIR / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = SNAKE_DIR.parent / "logs"
 
@@ -18,6 +17,10 @@ MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS_DEFAULT = 501
 MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS_DEFAULT = 167
 MAX_TRIMMED_PROPORTION_DEFAULT = 0.5
 INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT = True
+USE_ORTHOFISHER_DEFAULT = False
+BOOTSTRAP_STRING_DEFAULT = "-bb 1000"
+MODEL_STRING_DEFAULT = "-m TEST"
+SUPERMATRIX_OUTGROUP_DEFAULT = ""
 
 # Get the path to the default config file.
 # This can be overridden on the command line
@@ -35,6 +38,7 @@ include: "rules/supermatrix.smk"
 include: "rules/gene_tree.smk"
 include: "rules/supertree.smk"
 include: "rules/summary.smk"
+include: "rules/report.smk"
 
 
 onstart:
@@ -61,22 +65,5 @@ onstart:
         assert globals()[name].exists()
 
 
-def get_all_outputs():
-    outputs = [
-        "results/summary/information_content.csv",
-    ]
-    if config.get("supermatrix", True):
-        outputs += [
-            "results/supermatrix/render_tree.svg",
-            "results/supermatrix/alignment_summary.txt",
-            "results/supermatrix/ascii_tree.txt",
-        ]
-    if config.get("supertree", True):
-        outputs += [
-            "results/supertree/supertree.tre",
-        ]
-    return outputs
-
-
 rule all:
-    input: get_all_outputs()
+    input: rules.report.output
