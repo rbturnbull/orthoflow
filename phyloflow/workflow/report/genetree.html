@@ -1,1 +1,19 @@
 <h1>Gene Tree</h1>
+
+
+<div class="d-flex align-items-start">
+  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    {% for og in input.genetree_treefiles %}
+      <button class="nav-link {% if loop.first %}active{% endif %}" id="v-pills-og-{{loop.index}}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-og-{{loop.index}}" type="button" role="tab" aria-controls="v-pills-og-{{loop.index}}" aria-selected="{% if loop.first %}true{%else%}false{%endif%}">{{ parent_name(og) }}</button>
+    {% endfor %}
+  </div>
+  <div class="tab-content" id="v-pills-tabContent">
+    {% for treefile, svg in zip(input.genetree_treefiles, input.genetree_svgs) %}
+      <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="v-pills-og-{{loop.index}}" role="tabpanel" aria-labelledby="v-pills-og-{{loop.index}}-tab">
+        <h2>{{ parent_name(treefile) }}</h2>
+        {{ include_file(svg)|safe }}
+        <pre style="padding-top: 20px;">{{ include_file(treefile)|safe }}</pre>
+      </div>
+    {% endfor %}
+  </div>
+</div>

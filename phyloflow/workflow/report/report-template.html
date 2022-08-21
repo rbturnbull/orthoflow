@@ -147,7 +147,27 @@
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }    
-  </style>
+
+dl {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  width: 100%; /* set the container width*/
+  overflow: visible;
+}
+dl dt {
+  flex: 0 0 3%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+dl dd {
+  margin-left: auto;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 0 0 97%
+}  
+</style>
 </head>
 
 <body>
