@@ -6,7 +6,10 @@ rule gene_tree_iqtree:
     input:
         rules.trim_alignments.output
     output:
-        report(f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.treefile", category="Gene Tree"),
+        treefile=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.treefile",
+        consensus_tree=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.contree",
+        iqtree_report=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.iqtree",
+        iqtree_log=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.log",
     threads: 
         workflow.cores
     conda:
@@ -26,14 +29,15 @@ rule gene_tree_iqtree:
         iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{alignment_type} -redo
         """
 
+
 rule gene_tree_ascii:
     """
-    Displays the tree in ASCII format.
+    Displays the gene tree in ASCII format.
     """
     input:
-        rules.gene_tree_iqtree.output
+        rules.gene_tree_iqtree.output.treefile
     output:
-        f"results/gene_tree/ascii/{{og}}_tree_ascii.{alignment_type}.txt",
+        f"results/gene_tree/{{og}}/{{og}}_tree_ascii.{alignment_type}.txt",
     conda:
         "../envs/phykit.yaml"
     bibs:
@@ -42,3 +46,37 @@ rule gene_tree_ascii:
         "logs/supermatrix/print_ascii_tree-{og}.log"
     shell:
         "phykit print_tree {input} > {output}"
+
+
+rule gene_tree_render:
+    """
+    Renders the gene tree in SVG and PNG formats.
+    """
+    input:
+        rules.gene_tree_iqtree.output.treefile
+    output:
+        svg=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.tree.svg",
+        png=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.tree.png",
+    conda:
+        "../envs/toytree.yaml"
+    bibs:
+        "../bibs/toytree.bib",
+    shell:
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
+
+
+rule gene_tree_consensus_render:
+    """
+    Renders the consensus gene tree tree in SVG and PNG formats.
+    """
+    input:
+        rules.gene_tree_iqtree.output.consensus_tree
+    output:
+        svg=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.consensus-tree.svg",
+        png=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.consensus-tree.png",
+    conda:
+        "../envs/toytree.yaml"
+    bibs:
+        "../bibs/toytree.bib",
+    shell:
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"

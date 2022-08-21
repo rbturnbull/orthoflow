@@ -50,7 +50,10 @@ rule supermatrix_iqtree:
     input:
         rules.concatenate_alignments.output.fasta
     output:
-        treefile=f"results/supermatrix/supermatrix.{alignment_type}.fa.treefile"
+        treefile=f"results/supermatrix/supermatrix.{alignment_type}.fa.treefile",
+        consensus_tree=f"results/supermatrix/supermatrix.{alignment_type}.fa.contree",
+        iqtree_report=f"results/supermatrix/supermatrix.{alignment_type}.fa.iqtree",
+        iqtree_log=f"results/supermatrix/supermatrix.{alignment_type}.fa.log",
     threads: 
         workflow.cores
     conda:
@@ -87,15 +90,34 @@ rule supermatrix_ascii:
         "phykit print_tree {input} > {output}"
 
 
-rule supermatrix_render:
+rule supermatrix_tree_render:
     """
-    Renders the tree in SVG and PNG formats.
+    Renders the supermatrix tree in SVG and PNG formats.
     """
     input:
         rules.supermatrix_iqtree.output.treefile
     output:
         svg=f"results/supermatrix/supermatrix_tree_render.{alignment_type}.svg",
         png=f"results/supermatrix/supermatrix_tree_render.{alignment_type}.png"
+    conda:
+        "../envs/toytree.yaml"
+    bibs:
+        "../bibs/toytree.bib",
+    log:
+        "logs/supermatrix/render_tree.log"
+    shell:
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
+
+
+rule supermatrix_consensus_tree_render:
+    """
+    Renders the consensus supermatrix tree in SVG and PNG formats.
+    """
+    input:
+        rules.supermatrix_iqtree.output.consensus_tree
+    output:
+        svg=f"results/supermatrix/supermatrix_consensus_tree_render.{alignment_type}.svg",
+        png=f"results/supermatrix/supermatrix_consensus_tree_render.{alignment_type}.png"
     conda:
         "../envs/toytree.yaml"
     bibs:

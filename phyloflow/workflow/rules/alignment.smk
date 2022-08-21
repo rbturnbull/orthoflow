@@ -132,7 +132,7 @@ def filter_alignments(untrimmed_alignments, trimmed_alignments, min_length, max_
         untrimmed_length = AlignIO.read(untrimmed_alignment_path, "fasta").get_alignment_length()
         if trimmed_length > max_trimmed_proportion * untrimmed_length:
             filtered.append(trimmed_alignment_path)
-    return filtered
+    return sorted(filtered)
 
 
 def list_cds_alignments(wildcards):
