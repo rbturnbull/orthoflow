@@ -38,19 +38,12 @@ rule report:
 
         template = env.get_template("report-template.html")
         result = template.render(
+            input=input,
             use_orthofisher=use_orthofisher,
             use_supertree=use_supertree,
             use_supermatrix=use_supermatrix,
-            summary_plot=input.summary_plot,
-            list_alignments=input.list_alignments,
-            supermatrix_render_svg=input.supermatrix_render_svg,
-            supermatrix_alignment_summary=input.supermatrix_alignment_summary,
-            supertree_render_svg=input.supertree_render_svg,
-            supertree_ascii=input.supertree_ascii,
             bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
             bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
-            orthofinder_scogs=input.orthofinder_scogs,
-            orthosnap_snap_ogs=input.orthosnap_snap_ogs,
         )
 
         with open(str(output), 'w') as f:

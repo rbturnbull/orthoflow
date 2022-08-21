@@ -4,7 +4,7 @@ input_sources: "input_sources.csv" # Specify the CSV file containing the input s
 # flow of operations
 use_orthofisher: False  # Set to True to use OrthoFisher analysis path. When False, the will OrthoFinder+OrthoSNAP path will be used.
 supermatrix: True  # Infer a tree using the supermatrix method
-supertree: False  # Infer a tree using the supertree (ASTRAL) method
+supertree: True  # Infer a tree using the supertree (ASTRAL) method
 
 # gene and alignment filtering
 orthofinder_use_scogs: True  # Use the single-copy orthogroups (when using de novo ortholog analysis path)

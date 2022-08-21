@@ -1,0 +1,13 @@
+<h1>Supermatrix</h1>
+
+{% if input.supermatrix_alignment_summary %}
+  <h2>Alignment Summary</h2>
+  <pre>
+  {{ include_file(input.supermatrix_alignment_summary)|safe }}
+  </pre>
+{% endif %}
+
+<h2>Inferred Tree</h2>
+This is the tree inferred:<br>
+{{ include_file(input.supermatrix_render_svg)|safe }}
+
