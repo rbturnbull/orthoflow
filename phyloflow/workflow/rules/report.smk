@@ -22,8 +22,10 @@ rule report:
         summary_plot=rules.summarize_information_content.output.plot,
         supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
         supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
-        genetree_treefiles=partial(list_gene_trees, extension="iqtree") if use_supertree else ".",
+        genetree_iqtree_reports=partial(list_gene_trees, extension="iqtree") if use_supertree else ".",
+        genetree_iqtree_logs=partial(list_gene_trees, extension="log") if use_supertree else ".",
         genetree_svgs=partial(list_gene_trees, extension="tree.svg") if use_supertree else ".",
+        genetree_consensus_svgs=partial(list_gene_trees, extension="consensus-tree.svg") if use_supertree else ".",
     output:
         "results/report.html"
     run:

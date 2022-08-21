@@ -3,16 +3,38 @@
 
 <div class="d-flex align-items-start">
   <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-    {% for og in input.genetree_treefiles %}
-      <button class="nav-link {% if loop.first %}active{% endif %}" id="v-pills-og-{{loop.index}}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-og-{{loop.index}}" type="button" role="tab" aria-controls="v-pills-og-{{loop.index}}" aria-selected="{% if loop.first %}true{%else%}false{%endif%}">{{ parent_name(og) }}</button>
+    {% for iqtree_report in input.genetree_iqtree_reports %}
+      <button class="nav-link {% if loop.first %}active{% endif %}" id="v-pills-og-{{loop.index}}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-og-{{loop.index}}" type="button" role="tab" aria-controls="v-pills-og-{{loop.index}}" aria-selected="{% if loop.first %}true{%else%}false{%endif%}">{{ parent_name(iqtree_report) }}</button>
     {% endfor %}
   </div>
   <div class="tab-content" id="v-pills-tabContent">
-    {% for treefile, svg in zip(input.genetree_treefiles, input.genetree_svgs) %}
+    {% for iqtree_report, iqtree_log, svg, consensus_tree_svg in zip(input.genetree_iqtree_reports, input.genetree_iqtree_logs, input.genetree_svgs, input.genetree_consensus_svgs) %}
       <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="v-pills-og-{{loop.index}}" role="tabpanel" aria-labelledby="v-pills-og-{{loop.index}}-tab">
-        <h2>{{ parent_name(treefile) }}</h2>
-        {{ include_file(svg)|safe }}
-        <pre style="padding-top: 20px;">{{ include_file(treefile)|safe }}</pre>
+        <h2>{{ parent_name(iqtree_report) }}</h2>
+
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="gene-tree-svg-{{loop.index}}-tab" data-bs-toggle="tab" data-bs-target="#gene-tree-svg-{{loop.index}}" type="button" role="tab" aria-controls="gene-tree-svg-{{loop.index}}" aria-selected="true">Tree</button>
+            <button class="nav-link" id="gene-tree-consensus-{{loop.index}}-tab" data-bs-toggle="tab" data-bs-target="#gene-tree-consensus-{{loop.index}}" type="button" role="tab" aria-controls="gene-tree-consensus-{{loop.index}}" aria-selected="false">Consensus Tree</button>
+            <button class="nav-link" id="gene-tree-iqtree-report-{{loop.index}}-tab" data-bs-toggle="tab" data-bs-target="#gene-tree-iqtree-report-{{loop.index}}" type="button" role="tab" aria-controls="gene-tree-iqtree-report-{{loop.index}}" aria-selected="false">IQTree Report</button>
+            <button class="nav-link" id="gene-tree-iqtree-log-{{loop.index}}-tab" data-bs-toggle="tab" data-bs-target="#gene-tree-iqtree-log-{{loop.index}}" type="button" role="tab" aria-controls="gene-tree-iqtree-log-{{loop.index}}" aria-selected="false">IQTree Log</button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="gene-tree-svg-{{loop.index}}" role="tabpanel" aria-labelledby="gene-tree-svg-{{loop.index}}-tab">
+            {{ include_file(svg)|safe }}
+          </div>
+          <div class="tab-pane fade" id="gene-tree-consensus-{{loop.index}}" role="tabpanel" aria-labelledby="gene-tree-consensus-{{loop.index}}-tab">
+            {{ include_file(consensus_tree_svg)|safe }}
+          </div>
+          <div class="tab-pane fade" id="gene-tree-iqtree-report-{{loop.index}}" role="tabpanel" aria-labelledby="gene-tree-iqtree-report-{{loop.index}}-tab">
+            <pre style="padding-top: 20px;">{{ include_file(iqtree_report)|safe }}</pre>
+          </div>
+          <div class="tab-pane fade" id="gene-tree-iqtree-log-{{loop.index}}" role="tabpanel" aria-labelledby="gene-tree-iqtree-log-{{loop.index}}-tab">
+            <pre style="padding-top: 20px;">{{ include_file(iqtree_log)|safe }}</pre>
+          </div>
+        </div>
+        
       </div>
     {% endfor %}
   </div>
