@@ -1,13 +1,39 @@
 <h1>Supermatrix</h1>
 
-{% if input.supermatrix_alignment_summary %}
-  <h2>Alignment Summary</h2>
-  <pre>
-  {{ include_file(input.supermatrix_alignment_summary)|safe }}
-  </pre>
-{% endif %}
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="supermatrix_tree_svg-tab" data-bs-toggle="tab" data-bs-target="#supermatrix_tree_svg" type="button" role="tab" aria-controls="supermatrix_tree_svg" aria-selected="true">Tree</button>
+    <button class="nav-link" id="supermatrix_consensus_tree_svg-tab" data-bs-toggle="tab" data-bs-target="#supermatrix_consensus_tree_svg" type="button" role="tab" aria-controls="supermatrix_consensus_tree_svg" aria-selected="false">Consensus Tree</button>
+    {% if input.supermatrix_alignment_summary %}
+      <button class="nav-link" id="supermatrix_alignment_summary-tab" data-bs-toggle="tab" data-bs-target="#supermatrix_alignment_summary" type="button" role="tab" aria-controls="supermatrix_alignment_summary" aria-selected="false">Alignment Summary</button>
+    {% endif %}
+    <button class="nav-link" id="iqtree_report-tab" data-bs-toggle="tab" data-bs-target="#iqtree_report" type="button" role="tab" aria-controls="iqtree_report" aria-selected="false">IQTree Report</button>
+    <button class="nav-link" id="iqtree_log-tab" data-bs-toggle="tab" data-bs-target="#iqtree_log" type="button" role="tab" aria-controls="iqtree_log" aria-selected="false">IQTree Log</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="supermatrix_tree_svg" role="tabpanel" aria-labelledby="supermatrix_tree_svg-tab">
+    {{ include_file(input.supermatrix_tree_svg)|safe }}
+  </div>
+  <div class="tab-pane fade" id="supermatrix_consensus_tree_svg" role="tabpanel" aria-labelledby="supermatrix_consensus_tree_svg-tab">
+    {{ include_file(input.supermatrix_consensus_tree_svg)|safe }}
+  </div>
+  {% if input.supermatrix_alignment_summary %}
+    <div class="tab-pane fade" id="supermatrix_alignment_summary" role="tabpanel" aria-labelledby="supermatrix_alignment_summary-tab">
+      <pre style="padding-top: 20px;">{{ include_file(input.supermatrix_alignment_summary)|safe }}</pre>
+    </div>
+  {% endif %}
+  <div class="tab-pane fade" id="iqtree_report" role="tabpanel" aria-labelledby="iqtree_report-tab">
+    <pre style="padding-top: 20px;">{{ include_file(input.supermatrix_iqtree_report)|safe }}</pre>
+  </div>
+  <div class="tab-pane fade" id="iqtree_log" role="tabpanel" aria-labelledby="iqtree_log-tab">
+    <pre style="padding-top: 20px;">{{ include_file(input.supermatrix_iqtree_log)|safe }}</pre>
+  </div>
+</div>
 
-<h2>Inferred Tree</h2>
-This is the tree inferred:<br>
-{{ include_file(input.supermatrix_render_svg)|safe }}
+
+
+
+
+
 

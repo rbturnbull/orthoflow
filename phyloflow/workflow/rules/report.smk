@@ -12,8 +12,11 @@ rule report:
     input:
         orthofinder_scogs=list_orthofinder_scogs,
         orthosnap_snap_ogs=list_orthosnap_snap_ogs,
-        supermatrix_render_svg=rules.supermatrix_render.output.svg if use_supermatrix else ".",
+        supermatrix_tree_svg=rules.supermatrix_tree_render.output.svg if use_supermatrix else ".",
+        supermatrix_consensus_tree_svg=rules.supermatrix_consensus_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_alignment_summary=rules.supermatrix_alignment_summary.output  if use_supermatrix else ".",
+        supermatrix_iqtree_report=rules.supermatrix_iqtree.output.iqtree_report  if use_supermatrix else ".",
+        supermatrix_iqtree_log=rules.supermatrix_iqtree.output.iqtree_log  if use_supermatrix else ".",
         list_alignments=rules.list_alignments.output,
         summary_plot=rules.summarize_information_content.output.plot,
         supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
