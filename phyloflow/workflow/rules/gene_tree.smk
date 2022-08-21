@@ -35,7 +35,7 @@ rule gene_tree_ascii:
     Displays the gene tree in ASCII format.
     """
     input:
-        rules.gene_tree_iqtree.output
+        rules.gene_tree_iqtree.output.treefile
     output:
         f"results/gene_tree/{{og}}/{{og}}_tree_ascii.{alignment_type}.txt",
     conda:
