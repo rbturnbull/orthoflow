@@ -178,6 +178,9 @@ dl dd {
 #sidebarMenu {
   padding-top: 0px !important;
 }
+.tab-content {
+  padding-top: 15px;
+}
 H1 { 
   text-align: center;
   background-color: #2470dc;
@@ -270,6 +273,12 @@ H2 {
             </li>
             {%endif%}
             <li class="nav-item">
+              <a class="nav-link" href="#" id="workflow-tab" data-bs-toggle="pill" data-bs-target="#workflow" type="button" role="tab" aria-controls="workflow" aria-selected="false">
+                <span data-feather="file"></span>
+                Workflow
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#" id="bibliography-tab" data-bs-toggle="pill" data-bs-target="#bibliography" type="button" role="tab" aria-controls="bibliography" aria-selected="false">
                 <span data-feather="file"></span>
                 Bibliography
@@ -314,7 +323,9 @@ H2 {
               {% include "supertree.html" %}
             </div>
           {% endif %}
-
+          <div class="tab-pane fade" id="workflow" role="tabpanel" aria-labelledby="workflow-tab">
+            {% include 'workflow.html' %}
+          </div>
           <div class="tab-pane fade" id="bibliography" role="tabpanel" aria-labelledby="bibliography-tab">
             {% include "bibliography.html" %}
           </div>

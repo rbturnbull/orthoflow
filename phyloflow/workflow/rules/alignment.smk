@@ -123,6 +123,7 @@ def filter_alignments(untrimmed_alignments, trimmed_alignments, min_length, max_
     """
     Returns a list of alignements which have a minimum length and the proportion of sites retained after trimming.
     """
+    print("in filter_alignments")
     filtered = []
     for untrimmed_alignment_path, trimmed_alignment_path in zip(untrimmed_alignments, trimmed_alignments):
         trimmed_length = AlignIO.read(trimmed_alignment_path, "fasta").get_alignment_length()
@@ -139,6 +140,7 @@ def list_cds_alignments(wildcards):
     """
     Returns a list of all the trimmed CDS alignments which have a minimum length and the proportion of sites retained after trimming.
     """
+    print("in list_cds_alignments")
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
     for og in all_ogs:
@@ -155,6 +157,7 @@ def list_protein_alignments(wildcards):
     """
     Returns a list of all the trimmed protein alignments which have a minimum length and the proportion of sites retained after trimming.
     """
+    print("in list_protein_alignments")
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
     for og in all_ogs:
@@ -167,10 +170,11 @@ def list_protein_alignments(wildcards):
     )
 
 
-def list_alignments(wildcards):
+def get_alignments(wildcards):
     """
     Chooses either the protein or CDS alignments depending on the infer_tree_with_protein_seqs setting in the config.
     """
+    print("in get_alignments")
     if infer_tree_with_protein_seqs:
         return list_protein_alignments(wildcards)
     return list_cds_alignments(wildcards)
@@ -186,7 +190,7 @@ rule list_alignments:
     :config: infer_tree_with_protein_seqs
     """
     input:
-        list_alignments
+        get_alignments
     output:
         f"results/alignment/alignments_list.{alignment_type}.txt",
     shell:

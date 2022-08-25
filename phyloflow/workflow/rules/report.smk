@@ -2,6 +2,7 @@ from pathlib import Path
 import jinja2
 import typer
 from functools import partial
+import pydot
 
 
 use_supermatrix = config.get("supermatrix", True)
@@ -18,15 +19,17 @@ rule report:
         supermatrix_consensus_tree_svg=rules.supermatrix_consensus_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_alignment_summary=rules.supermatrix_alignment_summary.output  if use_supermatrix else ".",
         supermatrix_iqtree_report=rules.supermatrix_iqtree.output.iqtree_report  if use_supermatrix else ".",
-        supermatrix_iqtree_log=rules.supermatrix_iqtree.output.iqtree_log  if use_supermatrix else ".",
+        supermatrix_iqtree_log=f"results/supermatrix/supermatrix.protein.fa.log",#  if use_supermatrix else ".",
+        # Alignment
         list_alignments=rules.list_alignments.output,
         summary_plot=rules.summarize_information_content.output.plot,
+        # Supertree
         supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
         supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
-        genetree_iqtree_reports=partial(list_gene_trees, extension="iqtree") if use_supertree else ".",
-        genetree_iqtree_logs=partial(list_gene_trees, extension="log") if use_supertree else ".",
-        genetree_svgs=partial(list_gene_trees, extension="tree.svg") if use_supertree else ".",
-        genetree_consensus_svgs=partial(list_gene_trees, extension="consensus-tree.svg") if use_supertree else ".",
+        genetree_iqtree_reports=partial(list_gene_tree_files, extension="iqtree") if use_supertree else ".",
+        genetree_iqtree_logs=partial(list_gene_tree_files, extension="log") if use_supertree else ".",
+        genetree_svgs=partial(list_gene_tree_files, extension="tree.svg") if use_supertree else ".",
+        genetree_consensus_svgs=partial(list_gene_tree_files, extension="consensus-tree.svg") if use_supertree else ".",
     output:
         "results/report.html"
     run:
@@ -79,6 +82,12 @@ rule report:
         env.globals['pandas_to_bootstrap'] = pandas_to_bootstrap
         env.globals.update(zip=zip)
 
+        # DAG diagram
+        dot_string = workflow.persistence.dag.rule_dot()
+        graphs = pydot.graph_from_dot_data(dot_string)
+        graph = graphs[0]
+        dag_svg = graph.create_svg().decode('utf-8')
+
         template = env.get_template("report-template.html")
         result = template.render(
             input=input,
@@ -86,6 +95,7 @@ rule report:
             use_orthofisher=use_orthofisher,
             use_supertree=use_supertree,
             use_supermatrix=use_supermatrix,
+            dag_svg=dag_svg,
             bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
             bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
         )

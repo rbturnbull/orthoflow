@@ -1,8 +1,7 @@
-def list_gene_trees(wildcards, extension="treefile"):
-    """
-    Returns a list of the treefiles for all the genes.
-    """
-    alignments = list_alignments(wildcards)
+
+
+def list_gene_tree_files(wildcards, extension):
+    alignments = get_alignments(wildcards)
 
     gene_trees = []
     for alignment in alignments:
@@ -11,6 +10,13 @@ def list_gene_trees(wildcards, extension="treefile"):
         gene_trees.append(f"results/gene_tree/{og}/{og}.{alignment_type}.{extension}")
 
     return gene_trees
+
+
+def list_gene_trees(wildcards):
+    """
+    Returns a list of the treefiles for all the genes.
+    """
+    return list_gene_tree_files(wildcards, extension="treefile")
 
 
 rule create_astral_input:
@@ -23,6 +29,7 @@ rule create_astral_input:
         f"results/supertree/astral_input.{alignment_type}.trees"
     shell:
         """
+        echo {input}
         cat {input} > {output}
         """
 
