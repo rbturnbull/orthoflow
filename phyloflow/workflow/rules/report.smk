@@ -13,6 +13,7 @@ rule report:
     input:
         orthofinder_scogs=list_orthofinder_scogs,
         orthosnap_snap_ogs=list_orthosnap_snap_ogs,
+        orthofinder_report_components=rules.orthofinder_report_components.output,
         supermatrix_tree_svg=rules.supermatrix_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_consensus_tree_svg=rules.supermatrix_consensus_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_alignment_summary=rules.supermatrix_alignment_summary.output  if use_supermatrix else ".",
@@ -36,9 +37,11 @@ rule report:
             loader=loader,
             autoescape=jinja2.select_autoescape()
         )
-        def include_file(name):
-            if name:
-                return Path(str(name)).read_text()
+        def include_file(*args):
+            args = [str(arg) for arg in args]
+            path = Path(*args)
+            if path:
+                return path.read_text()
             return ""
         
         def parent_name(path):

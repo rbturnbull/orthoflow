@@ -31,6 +31,21 @@ rule orthofinder:
         mv {params.input_dir}/OrthoFinder/Results_phyloflow/ {output}
         """
 
+
+rule orthofinder_report_components:
+    """
+    Converts the orthofinder output to HTML components that will be used in the Orthoflow report.
+    """
+    input:
+        rules.orthofinder.output
+    output:
+        directory("results/orthofinder/report"),   
+    conda:
+        ENV_DIR / "summary.yaml"
+    shell:
+        "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output}"
+
+
 checkpoint split_scogs_and_multi_copy_ogs:
     """
     Takes the output of orthofinder and outputs the SCOGs.
