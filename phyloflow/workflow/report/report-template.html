@@ -175,29 +175,31 @@ dl dd {
   overflow: hidden;
   flex: 0 0 97%
 }  
+#sidebarMenu {
+  padding-top: 10px !important;
+}
 </style>
 </head>
 
 <body>
 
-  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Orthoflow Report</a>
+  <header class="navbar navbar-dark sticky-top bg-light flex-md-nowrap p-0 shadow">
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
       data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-    <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
-      </div>
-    </div>
   </header>
 
   <div class="container-fluid">
     <div class="row">
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
+
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div id="brand">
+          {% include 'assets/img/orthoflow-logo-black.svg' %}
+        </div>
+  
+        <div class="position-sticky">
+          <ul class="nav flex-column pt-2">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">
                 <span data-feather="home"></span>
