@@ -37,9 +37,15 @@ def orthofinder_report_components(
     report_dir:Path, 
 ):
 
-    orthogroups = pd.read_csv(orthofinder_dir/"Orthogroups/Orthogroups.tsv", sep="\t").set_index('Orthogroup')
-    pandas_to_bootstrap(orthogroups, report_dir/"Orthogroups.html")
-    
+    pandas_to_bootstrap(
+        pd.read_csv(orthofinder_dir/"Orthogroups/Orthogroups.tsv", sep="\t").set_index('Orthogroup'), 
+        report_dir/"Orthogroups.html"
+    )
+    pandas_to_bootstrap(
+        pd.read_csv(orthofinder_dir/"Orthogroups/Orthogroups_UnassignedGenes.tsv", sep="\t").set_index('Orthogroup'), 
+        report_dir/"Orthogroups_UnassignedGenes.html"
+    )
+
     
 
   
