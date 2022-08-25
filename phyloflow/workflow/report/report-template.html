@@ -176,8 +176,22 @@ dl dd {
   flex: 0 0 97%
 }  
 #sidebarMenu {
-  padding-top: 10px !important;
+  padding-top: 0px !important;
 }
+H1 { 
+  text-align: center;
+  background-color: #2470dc;
+  color: white;
+  padding: 30px;
+  margin-top: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+}
+H2 { 
+  text-align: center 
+}
+
 </style>
 </head>
 
@@ -195,19 +209,19 @@ dl dd {
 
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
         <div id="brand">
-          {% include 'assets/img/orthoflow-logo-black.svg' %}
+          {% include 'assets/img/orthoflow-logo-blue.svg' %}
         </div>
   
         <div class="position-sticky">
           <ul class="nav flex-column pt-2">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">
                 <span data-feather="home"></span>
                 Overview
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="#"  id="intake-tab" data-bs-toggle="tab" data-bs-target="#intake" type="button" role="tab" aria-controls="intake" aria-selected="true">
+              <a class="nav-link active" aria-current="page" href="#"  id="intake-tab" data-bs-toggle="tab" data-bs-target="#intake" type="button" role="tab" aria-controls="intake" aria-selected="true">
                 <span data-feather="file"></span>
                 Data Intake
               </a>
@@ -267,10 +281,10 @@ dl dd {
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+          <!-- <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
             {% include 'overview.html' %}
-          </div>
-          <div class="tab-pane fade" id="intake" role="tabpanel" aria-labelledby="intake-tab">
+          </div> -->
+          <div class="tab-pane fade show active" id="intake" role="tabpanel" aria-labelledby="intake-tab">
             {% include 'intake.html' %}
           </div>
           {% if use_orthofisher %}

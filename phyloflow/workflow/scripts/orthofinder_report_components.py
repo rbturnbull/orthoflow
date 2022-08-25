@@ -46,6 +46,20 @@ def orthofinder_report_components(
         report_dir/"Orthogroups_UnassignedGenes.html"
     )
 
+    df = pd.read_csv(orthofinder_dir/"Comparative_Genomics_Statistics/Orthogroups_SpeciesOverlaps.tsv", sep="\t")
+    df = df.rename(columns={"Unnamed: 0":"Input"}).set_index('Input')
+    pandas_to_bootstrap(
+        df, 
+        report_dir/"Orthogroups_SpeciesOverlaps.html"
+    )
+
+    df = pd.read_csv(orthofinder_dir/"Comparative_Genomics_Statistics/OrthologuesStats_Totals.tsv", sep="\t")
+    df = df.rename(columns={"Unnamed: 0":"Input"}).set_index('Input')
+    pandas_to_bootstrap(
+        df, 
+        report_dir/"OrthologuesStats_Totals.html"
+    )
+
     
 
   

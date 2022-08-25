@@ -4,6 +4,8 @@
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <button class="nav-link active" id="orthogroups-tab" data-bs-toggle="tab" data-bs-target="#orthogroups" type="button" role="tab" aria-controls="orthogroups" aria-selected="true">Orthogroups</button>
     <button class="nav-link" id="Unassigned-Genes-tab" data-bs-toggle="tab" data-bs-target="#Unassigned-Genes" type="button" role="tab" aria-controls="Unassigned-Genes" aria-selected="false">Unassigned Genes</button>
+    <button class="nav-link" id="Species-Overlaps-tab" data-bs-toggle="tab" data-bs-target="#Species-Overlaps" type="button" role="tab" aria-controls="Species-Overlaps" aria-selected="false">Species Overlaps</button>
+    <button class="nav-link" id="Totals-tab" data-bs-toggle="tab" data-bs-target="#Totals" type="button" role="tab" aria-controls="Totals" aria-selected="false">Totals</button>
     <button class="nav-link" id="SCOGs-tab" data-bs-toggle="tab" data-bs-target="#SCOGs" type="button" role="tab" aria-controls="SCOGs" aria-selected="false">SCOGs</button>
     <button class="nav-link" id="SNAP-OGs-tab" data-bs-toggle="tab" data-bs-target="#SNAP-OGs" type="button" role="tab" aria-controls="SNAP-OGs" aria-selected="false">SNAP OGs</button>
   </div>
@@ -15,10 +17,24 @@
   <div class="tab-pane fade" id="Unassigned-Genes" role="tabpanel" aria-labelledby="Unassigned-Genes-tab">
     {{ include_file(input.orthofinder_report_components, "Orthogroups_UnassignedGenes.html")|safe }}
   </div>
+  <div class="tab-pane fade" id="Species-Overlaps" role="tabpanel" aria-labelledby="Species-Overlaps-tab">
+    {{ include_file(input.orthofinder_report_components, "Orthogroups_SpeciesOverlaps.html")|safe }}
+  </div>
+  <div class="tab-pane fade" id="Totals" role="tabpanel" aria-labelledby="Totals-tab">
+    {{ include_file(input.orthofinder_report_components, "OrthologuesStats_Totals.html")|safe }}
+  </div>
   <div class="tab-pane fade" id="SCOGs" role="tabpanel" aria-labelledby="SCOGs-tab">
-    {{ input.orthofinder_scogs }}
+    <ul>
+      {% for og in input.orthofinder_scogs %}
+        <li>{{og}}</li>
+      {% endfor %}
+    </ul>
+    
   </div>
   <div class="tab-pane fade" id="SNAP-OGs" role="tabpanel" aria-labelledby="SNAP-OGs-tab">
-    {{ input.orthosnap_snap_ogs }}
+    {% for og in input.orthosnap_snap_ogs %}
+      <li>{{og}}</li>
+    {% endfor %}
   </div>
+  
 </div>

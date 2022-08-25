@@ -43,17 +43,46 @@ rule report:
             if path:
                 return path.read_text()
             return ""
+
+        def pandas_to_bootstrap(df, output:Path = None):
+            """
+            Adapted from https://stackoverflow.com/a/62153724
+            """
+            dict_data = [df.to_dict(), df.to_dict('index')]
+
+            html = '<div class="table-responsive"><table class="table table-sm table-striped table-hover table-sm align-middle"><tr class="table-primary">'
+
+            column_names = [df.index.name] + list(dict_data[0].keys())
+            for key in column_names:
+                html += f'<th class="header" scope="col">{key}</th>'
+
+            html += '</tr>'
+
+            for key in dict_data[1].keys():
+                html += f'<tr><th class="index " scope="row">{key}</th>'
+                for subkey in dict_data[1][key]:
+                    cell_text = dict_data[1][key][subkey] if not pd.isna(dict_data[1][key][subkey]) else "—"
+                    html += f'<td>{cell_text}</td>'
+
+            html += '</tr></table></div>'
+            if output:
+                output.parent.mkdir(exist_ok=True, parents=True)
+                output.write_text(html)
+
+            return html            
         
         def parent_name(path):
             return Path(path).parent.name
 
         env.globals['include_file'] = include_file
         env.globals['parent_name'] = parent_name
+        env.globals['pandas_to_bootstrap'] = pandas_to_bootstrap
         env.globals.update(zip=zip)
 
         template = env.get_template("report-template.html")
         result = template.render(
             input=input,
+            input_csv=input_csv,
             use_orthofisher=use_orthofisher,
             use_supertree=use_supertree,
             use_supermatrix=use_supermatrix,
