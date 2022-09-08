@@ -8,21 +8,22 @@ import pydot
 use_supermatrix = config.get("supermatrix", True)
 use_supertree = config.get("supertree", False)
 use_orthofisher = config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT)
-
+summarize_information_content = config.get('summarize_information_content', True)
 
 rule report:
     input:
         orthofinder_scogs=list_orthofinder_scogs,
-        orthosnap_snap_ogs=list_orthosnap_snap_ogs,
         orthofinder_report_components=rules.orthofinder_report_components.output,
+        orthosnap_snap_ogs=list_orthosnap_snap_ogs, # this breaks the DAG?!
+        # Alignment
+        list_alignments=rules.list_alignments.output,
+        summary_plot=rules.summarize_information_content.output.plot if summarize_information_content else ".",
+        # Supermatrix
         supermatrix_tree_svg=rules.supermatrix_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_consensus_tree_svg=rules.supermatrix_consensus_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_alignment_summary=rules.supermatrix_alignment_summary.output  if use_supermatrix else ".",
         supermatrix_iqtree_report=rules.supermatrix_iqtree.output.iqtree_report  if use_supermatrix else ".",
         supermatrix_iqtree_log=f"results/supermatrix/supermatrix.protein.fa.log",#  if use_supermatrix else ".",
-        # Alignment
-        list_alignments=rules.list_alignments.output,
-        summary_plot=rules.summarize_information_content.output.plot,
         # Supertree
         supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
         supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
@@ -43,7 +44,7 @@ rule report:
         def include_file(*args):
             args = [str(arg) for arg in args]
             path = Path(*args)
-            if path:
+            if path and not path.is_dir():
                 return path.read_text()
             return ""
 
@@ -82,23 +83,21 @@ rule report:
         env.globals['pandas_to_bootstrap'] = pandas_to_bootstrap
         env.globals.update(zip=zip)
 
-        # DAG diagram
-        dot_string = workflow.persistence.dag.rule_dot()
-        graphs = pydot.graph_from_dot_data(dot_string)
-        graph = graphs[0]
-        dag_svg = graph.create_svg().decode('utf-8')
-
         template = env.get_template("report-template.html")
-        result = template.render(
-            input=input,
-            input_csv=input_csv,
-            use_orthofisher=use_orthofisher,
-            use_supertree=use_supertree,
-            use_supermatrix=use_supermatrix,
-            dag_svg=dag_svg,
-            bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
-            bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
-        )
+
+        try:        
+            result = template.render(
+                input=input,
+                input_csv=input_csv,
+                use_orthofisher=use_orthofisher,
+                use_supertree=use_supertree,
+                use_supermatrix=use_supermatrix,
+                bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
+                bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
+            )
+        except Exception as err:
+            print(f"failed to render {err}")
+            
 
         with open(str(output), 'w') as f:
             print(f"Writing result to {output}")

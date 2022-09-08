@@ -2,6 +2,8 @@
 orthoflow
 ======================
 
+.. image:: https://raw.githubusercontent.com/rbturnbull/orthoflow/master/docs/_static/images/orthoflow-banner.svg
+
 .. start-badges
 
 |pipeline badge| |docs badge| |black badge| |snakemake badge| |git3moji badge| |contributor covenant badge|
