@@ -86,5 +86,5 @@ html_css_files = ['custom.css']
 
 # -- Snakedoc ---------------------------------------------------------------
 
-smk_linkcode_baseurl = "https://github.com/rbturnbull/phyloflow/blob/master"
+smk_linkcode_baseurl = "https://github.com/rbturnbull/orthoflow/blob/master"
 smk_configfile = "docs_config.yml"
