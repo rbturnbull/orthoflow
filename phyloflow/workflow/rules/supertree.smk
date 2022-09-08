@@ -1,4 +1,4 @@
-def list_gene_trees(wildcards):
+def list_gene_trees(wildcards, extension="treefile"):
     """
     Returns a list of the treefiles for all the genes.
     """
@@ -8,7 +8,7 @@ def list_gene_trees(wildcards):
     for alignment in alignments:
         alignment = Path(alignment)
         og = alignment.name.split(".")[0]
-        gene_trees.append(f"results/gene_tree/{og}/{og}.{alignment_type}.treefile")
+        gene_trees.append(f"results/gene_tree/{og}/{og}.{alignment_type}.{extension}")
 
     return gene_trees
 

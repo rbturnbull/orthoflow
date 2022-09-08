@@ -7,8 +7,7 @@ min_version("6.0")
 
 SNAKE_DIR = Path(workflow.basedir)
 SCRIPT_DIR = SNAKE_DIR/ "scripts"
-WORKFLOW_DIR = SNAKE_DIR / "workflow"
-ENV_DIR = WORKFLOW_DIR.parent / "envs"
+ENV_DIR = SNAKE_DIR / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = SNAKE_DIR.parent / "logs"
 
@@ -38,6 +37,8 @@ include: "rules/alignment.smk"
 include: "rules/supermatrix.smk"
 include: "rules/gene_tree.smk"
 include: "rules/supertree.smk"
+include: "rules/summary.smk"
+include: "rules/report.smk"
 
 
 onstart:
@@ -64,21 +65,5 @@ onstart:
         assert globals()[name].exists()
 
 
-def get_all_outputs():
-    outputs = []
-    if config.get("supermatrix", True):
-        outputs += [
-            rules.supermatrix_alignment_summary.output,
-            rules.supermatrix_ascii.output,
-            rules.supermatrix_render.output.svg,
-        ]
-    if config.get("supertree", True):
-        outputs += [
-            rules.supertree_ascii.output,
-            rules.supertree_render.output.svg,
-        ]
-    return outputs
-
-
 rule all:
-    input: get_all_outputs()
+    input: rules.report.output
