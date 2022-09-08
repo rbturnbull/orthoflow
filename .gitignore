@@ -9,7 +9,7 @@ results/*
 .envrc
 tests/unit/.tests-conda/*
 logs/*
-phyloflow/logs/*
+orthoflow/logs/*
 tests/test-data/logs/*
 **/__pycache__
 **/.snakemake

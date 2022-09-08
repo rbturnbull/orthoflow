@@ -1,16 +1,18 @@
 ======================
-phyloflow
+orthoflow
 ======================
+
+.. image:: https://raw.githubusercontent.com/rbturnbull/orthoflow/master/docs/_static/images/orthoflow-banner.svg
 
 .. start-badges
 
 |pipeline badge| |docs badge| |black badge| |snakemake badge| |git3moji badge| |contributor covenant badge|
 
-.. |pipeline badge| image:: https://github.com/rbturnbull/phyloflow/actions/workflows/testing.yml/badge.svg
-    :target: https://rbturnbull.github.io/phyloflow
+.. |pipeline badge| image:: https://github.com/rbturnbull/orthoflow/actions/workflows/testing.yml/badge.svg
+    :target: https://rbturnbull.github.io/orthoflow
 
-.. |docs badge| image:: https://github.com/rbturnbull/phyloflow/actions/workflows/docs.yml/badge.svg
-    :target: https://rbturnbull.github.io/phyloflow/
+.. |docs badge| image:: https://github.com/rbturnbull/orthoflow/actions/workflows/docs.yml/badge.svg
+    :target: https://rbturnbull.github.io/orthoflow/
     
 .. |black badge| image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
@@ -26,4 +28,4 @@ phyloflow
 
 .. end-badges
 
-Documentation at https://rbturnbull.github.io/phyloflow/
+Documentation at https://rbturnbull.github.io/orthoflow/

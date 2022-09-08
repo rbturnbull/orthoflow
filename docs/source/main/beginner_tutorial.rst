@@ -1,11 +1,11 @@
 =============================
-PhyloFlow Beginner's Tutorial
+Orthoflow Beginner's Tutorial
 =============================
 
 Input data
 ==========
 
-PhyloFlow works from an input CSV file with information about the data sources  to be used. Preparing this file is central to setting up your run. The default filename for this is ``input_sources.csv``.
+Orthoflow works from an input CSV file with information about the data sources  to be used. Preparing this file is central to setting up your run. The default filename for this is ``input_sources.csv``.
 
 It needs the columns ``file``, ``taxon_string``, ``data_type`` and ``translation_table``.
 
@@ -42,16 +42,16 @@ The ``taxon_string`` column is perhaps the most important one, as these will be 
 Simple run
 ==========
 
-We are using the small demonstration dataset distributed with the PhyloFlow in the ``tests/test-data`` subdirectory.
+We are using the small demonstration dataset distributed with the Orthoflow in the ``tests/test-data`` subdirectory.
 
-Go into the directory containing the ``input_sources.csv`` file and run phyloflow with default settings with these commands:
+Go into the directory containing the ``input_sources.csv`` file and run orthoflow with default settings with these commands:
 
 .. code-block::
 
     cd tests/test-data
-    phyloflow
+    orthoflow
 
-By default, PhyloFlow will extract the CDSs from the input files, run OrthoFinder followed by OrthoSNAP to determine orthologous genes, align them and infer a concatenated tree from the protein sequences. You can follow progress on the screen as the workflow executes and outputs are produced.
+By default, Orthoflow will extract the CDSs from the input files, run OrthoFinder followed by OrthoSNAP to determine orthologous genes, align them and infer a concatenated tree from the protein sequences. You can follow progress on the screen as the workflow executes and outputs are produced.
 
 Note that the first time you run the workflow, it will be slow because it needs to download and install the software it depends on. This is a one-time thing and runs should get going much faster after.
 

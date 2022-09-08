@@ -1,30 +1,30 @@
 ===========================
-PhyloFlow Advanced Tutorial
+Orthoflow Advanced Tutorial
 ===========================
 
 
 Changing workflow settings
 ==========================
 
-Some workflow settings can be changed by passing arguments to the command-line tool (``phyloflow``). Perhaps the most important one is ``--cores`` to specify the number of cores for the workflow to use.
+Some workflow settings can be changed by passing arguments to the command-line tool (``orthoflow``). Perhaps the most important one is ``--cores`` to specify the number of cores for the workflow to use.
 
 .. code-block::
 
-    phyloflow --cores 24
+    orthoflow --cores 24
 
 To see a complete list of command-line arguments, run:
 
 .. code-block::
 
-    phyloflow --help
+    orthoflow --help
 
-You can pass any snakemake arguments to phyloflow. To list these, run:
+You can pass any snakemake arguments to orthoflow. To list these, run:
 
 .. code-block::
 
-    phyloflow --help-snakemake 
+    orthoflow --help-snakemake 
 
-Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (``phyloflow/config/config.yml``) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.
+Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (``orthoflow/config/config.yml``) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.
 
 
 Input and output paths
@@ -34,20 +34,20 @@ To use a specific target file with input sources, give that as an argument:
 
 .. code-block::
 
-    phyloflow path/to/target/input-sources-file
+    orthoflow path/to/target/input-sources-file
 
 To set a working directory different to the current directory, use the `--directory` flag:
 
 .. code-block::
 
-    phyloflow --directory path/to/working/dir
+    orthoflow --directory path/to/working/dir
 
 
 
 Controlling the flow of operations
 ==================================
 
-By default, PhyloFlow uses the *de novo* orthology inference module (OrthoFinder and OrthoSNAP) and supermatrix-based tree inference (supermatrix module).
+By default, Orthoflow uses the *de novo* orthology inference module (OrthoFinder and OrthoSNAP) and supermatrix-based tree inference (supermatrix module).
 
 ![](../_static/diagram.png)
 

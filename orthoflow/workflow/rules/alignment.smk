@@ -132,7 +132,9 @@ def filter_alignments(untrimmed_alignments, trimmed_alignments, min_length, max_
         untrimmed_length = AlignIO.read(untrimmed_alignment_path, "fasta").get_alignment_length()
         if trimmed_length > max_trimmed_proportion * untrimmed_length:
             filtered.append(trimmed_alignment_path)
-    return sorted(filtered)
+    
+    filtered = sorted(filtered)
+    return filtered
 
 
 def list_cds_alignments(wildcards):
@@ -167,7 +169,7 @@ def list_protein_alignments(wildcards):
     )
 
 
-def list_alignments(wildcards):
+def get_alignments(wildcards):
     """
     Chooses either the protein or CDS alignments depending on the infer_tree_with_protein_seqs setting in the config.
     """
@@ -186,7 +188,7 @@ rule list_alignments:
     :config: infer_tree_with_protein_seqs
     """
     input:
-        list_alignments
+        get_alignments
     output:
         f"results/alignment/alignments_list.{alignment_type}.txt",
     shell:

@@ -27,9 +27,24 @@ rule orthofinder:
     shell:
         """
         mkdir -p results/orthofinder
-        orthofinder -f {params.input_dir} -t {threads} -n phyloflow -ot -M msa -X
-        mv {params.input_dir}/OrthoFinder/Results_phyloflow/ {output}
+        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -ot -M msa -X
+        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output}
         """
+
+
+rule orthofinder_report_components:
+    """
+    Converts the orthofinder output to HTML components that will be used in the Orthoflow report.
+    """
+    input:
+        rules.orthofinder.output
+    output:
+        directory("results/orthofinder/report"),   
+    conda:
+        ENV_DIR / "summary.yaml"
+    shell:
+        "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output}"
+
 
 checkpoint split_scogs_and_multi_copy_ogs:
     """

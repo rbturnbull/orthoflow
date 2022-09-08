@@ -7,13 +7,13 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.84.0">
-  <title>Phyloflow Report</title>
+  <title>Orthoflow Report</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
   <!-- Bootstrap core CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 
   <!-- prism for syntax highlighting -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-coy.min.css" />
@@ -34,6 +34,9 @@
 
 
   <style>
+
+    {% include 'assets/css/bootstrap.cosmo.min.css' %}
+
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -147,7 +150,12 @@
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }    
-
+.table td {
+   text-align: center;   
+}
+.table th {
+   text-align: center;   
+}
 dl {
   display: flex;
   flex-flow: row;
@@ -167,37 +175,56 @@ dl dd {
   overflow: hidden;
   flex: 0 0 97%
 }  
+#sidebarMenu {
+  padding-top: 0px !important;
+}
+.tab-content {
+  padding-top: 15px;
+}
+H1 { 
+  text-align: center;
+  background-color: #2470dc;
+  color: white;
+  padding: 30px;
+  margin-top: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+}
+H2 { 
+  text-align: center 
+}
+
 </style>
 </head>
 
 <body>
 
-  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Phyloflow Report</a>
+  <header class="navbar navbar-dark sticky-top bg-light flex-md-nowrap p-0 shadow">
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
       data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-    <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
-      </div>
-    </div>
   </header>
 
   <div class="container-fluid">
     <div class="row">
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
+
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div id="brand">
+          {% include 'assets/img/orthoflow-logo-blue.svg' %}
+        </div>
+  
+        <div class="position-sticky">
+          <ul class="nav flex-column pt-2">
+            <!-- <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">
                 <span data-feather="home"></span>
                 Overview
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="#"  id="intake-tab" data-bs-toggle="tab" data-bs-target="#intake" type="button" role="tab" aria-controls="intake" aria-selected="true">
+              <a class="nav-link active" aria-current="page" href="#"  id="intake-tab" data-bs-toggle="tab" data-bs-target="#intake" type="button" role="tab" aria-controls="intake" aria-selected="true">
                 <span data-feather="file"></span>
                 Data Intake
               </a>
@@ -246,6 +273,12 @@ dl dd {
             </li>
             {%endif%}
             <li class="nav-item">
+              <a class="nav-link" href="#" id="workflow-tab" data-bs-toggle="pill" data-bs-target="#workflow" type="button" role="tab" aria-controls="workflow" aria-selected="false">
+                <span data-feather="file"></span>
+                Workflow
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#" id="bibliography-tab" data-bs-toggle="pill" data-bs-target="#bibliography" type="button" role="tab" aria-controls="bibliography" aria-selected="false">
                 <span data-feather="file"></span>
                 Bibliography
@@ -257,10 +290,10 @@ dl dd {
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+          <!-- <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
             {% include 'overview.html' %}
-          </div>
-          <div class="tab-pane fade" id="intake" role="tabpanel" aria-labelledby="intake-tab">
+          </div> -->
+          <div class="tab-pane fade show active" id="intake" role="tabpanel" aria-labelledby="intake-tab">
             {% include 'intake.html' %}
           </div>
           {% if use_orthofisher %}
@@ -290,7 +323,9 @@ dl dd {
               {% include "supertree.html" %}
             </div>
           {% endif %}
-
+          <div class="tab-pane fade" id="workflow" role="tabpanel" aria-labelledby="workflow-tab">
+            {% include 'workflow.html' %}
+          </div>
           <div class="tab-pane fade" id="bibliography" role="tabpanel" aria-labelledby="bibliography-tab">
             {% include "bibliography.html" %}
           </div>

@@ -30,9 +30,9 @@ jobs:
           tests/test-data/.snakemake/conda/
     - name: Run Workflow
       run: |
-        poetry run phyloflow --directory tests/test-data 
-        poetry run phyloflow --directory tests/test-data --config infer_tree_with_protein_seqs=0
-        poetry run phyloflow --directory tests/test-data results/orthofisher/min-seq-filtered
+        poetry run orthoflow --directory tests/test-data --rerun-triggers mtime # hack because of issue 69
+        poetry run orthoflow --directory tests/test-data --config infer_tree_with_protein_seqs=0 --rerun-triggers mtime # hack because of issue 69
+        poetry run orthoflow --directory tests/test-data results/orthofisher/min-seq-filtered --rerun-triggers mtime # hack because of issue 69
     - name: Testing
       run: |
         poetry run pytest

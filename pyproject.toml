@@ -1,10 +1,21 @@
 [tool.poetry]
-name = "phyloflow"
+name = "orthoflow"
 version = "0.1.0"
-description = "A phylogenomic workflow developed in collaboration with Jo Birch from the University of Melbourne Herbarium"
+description = "A phylogenomic workflow"
 authors = ["University of Melbourne"]
 license = "Apache-2.0"
 readme = "README.rst"
+homepage = "https://github.com/rbturnbull/orthoflow"
+repository = "https://github.com/rbturnbull/orthoflow"
+documentation = "https://rbturnbull.github.io/orthoflow/"
+keywords = ["phylogenomics"]
+# For classifiers see https://pypi.org/classifiers/
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
@@ -14,6 +25,7 @@ typer = "^0.4.1"
 Flask = "^2.1.2"
 biopython = "^1.79"
 Jinja2 = "^3.1.2"
+pydot = "^1.4.2"
 
 [tool.poetry.dev-dependencies]
 Sphinx = "^4.4.0"
@@ -34,7 +46,7 @@ phytest = "^1.0.0"
 snakedoc = { git = "https://github.com/smutch/snakedoc.git", branch = "deps/smk-bibtex" }
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["setuptools", "poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
@@ -55,4 +67,4 @@ line_length = 120
 include = '\.smk$|^Snakefile$'
 
 [tool.poetry.scripts]
-phyloflow = 'phyloflow.main:app'
+orthoflow = 'orthoflow.main:app'
