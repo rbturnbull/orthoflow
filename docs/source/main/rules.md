@@ -95,4 +95,4 @@ MIT License
 Copyright (c) 2019 Maarten-vd-Sande (vanheeringen-lab)
 
 For the full license, please see the
-[script source code](https://github.com/rbturnbull/phyloflow/blob/master/docs/scripts/rule_description.py).
+[script source code](https://github.com/rbturnbull/orthoflow/blob/master/docs/scripts/rule_description.py).

@@ -27,8 +27,8 @@ rule orthofinder:
     shell:
         """
         mkdir -p results/orthofinder
-        orthofinder -f {params.input_dir} -t {threads} -n phyloflow -ot -M msa -X
-        mv {params.input_dir}/OrthoFinder/Results_phyloflow/ {output}
+        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -ot -M msa -X
+        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output}
         """
 
 

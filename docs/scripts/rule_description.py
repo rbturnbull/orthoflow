@@ -18,7 +18,7 @@ MIT License
 Copyright (c) 2019 Maarten-vd-Sande (vanheeringen-lab)
 
 For the full license, please see the
-[script source code](https://github.com/rbturnbull/phyloflow/blob/master/docs/scripts/rule_description.py).
+[script source code](https://github.com/rbturnbull/orthoflow/blob/master/docs/scripts/rule_description.py).
 """
 
 license = """
@@ -59,12 +59,12 @@ final_md = """
 This is an automatically generated list of all supported rules, their docstrings, and command. At the start of each 
 workflow run a list is printed of which rules will be run. And while the workflow is running it prints which rules are
 being started and finished. This page is here to give an explanation to the user about what each rule does, and for
-developers to find what is, and isn't yet supported. Not all Phyloflow rules are listed here, only the ones with a
-`shell` directive. Rules with `script` or `wrapper` directives are not included. To see all rules in Phyloflow, 
-please refer to the [workflow source code](https://github.com/rbturnbull/phyloflow/tree/master/workflow).
+developers to find what is, and isn't yet supported. Not all Orthoflow rules are listed here, only the ones with a
+`shell` directive. Rules with `script` or `wrapper` directives are not included. To see all rules in Orthoflow, 
+please refer to the [workflow source code](https://github.com/rbturnbull/orthoflow/tree/master/workflow).
 """
 
-path = "phyloflow/workflow/rules/"
+path = "orthoflow/workflow/rules/"
 docs_page = "docs/source/main/rules.md"
 
 

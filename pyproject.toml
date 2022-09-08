@@ -45,7 +45,7 @@ conda-lock = {extras = ["pip_support"], version = "^1.0.5"}
 phytest = "^1.0.0"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["setuptools", "poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
@@ -66,4 +66,4 @@ line_length = 120
 include = '\.smk$|^Snakefile$'
 
 [tool.poetry.scripts]
-phyloflow = 'phyloflow.main:app'
+orthoflow = 'orthoflow.main:app'

@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'phyloflow'
+project = 'orthoflow'
 copyright = '2022 University of Melbourne'
 author = 'University of Melbourne'
 

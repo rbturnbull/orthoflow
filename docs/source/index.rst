@@ -1,9 +1,9 @@
-.. phyloflow documentation master file, created by
+.. orthoflow documentation master file, created by
    sphinx-quickstart on Fri Feb 18 19:07:07 2022.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to phyloflow's documentation!
+Welcome to orthoflow's documentation!
 =================================================
 
 .. include:: ../../README.rst

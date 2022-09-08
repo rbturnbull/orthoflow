@@ -167,7 +167,7 @@ def run_workflow(tmpdir: Path):
 
         sp.check_output(
             [
-                "phyloflow",
+                "orthoflow",
                 *targets,
                 "-f",
                 "-j1",
