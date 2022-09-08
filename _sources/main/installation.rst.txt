@@ -2,7 +2,7 @@
 Installation
 ============
 
-Phyloflow can be installed using conda, PyPI or from source.
+Orthoflow can be installed using conda, PyPI or from source.
 
 Conda Installation
 ==================
@@ -16,11 +16,11 @@ PyPI Installation
 
     The code is not available on PyPI yet. This will be available soon!
 
-(Soon) Phyloflow can be installed with pip from the Python Package Index as follows.
+(Soon) Orthoflow can be installed with pip from the Python Package Index as follows.
 
 .. code-block::
 
-    pip install phyloflow
+    pip install orthoflow
 
 .. note::
 
@@ -41,12 +41,12 @@ On windows, it can be installed with this command:
 
     (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python -
 
-Then clone the phyloflow repository from github:
+Then clone the orthoflow repository from github:
 
 .. code-block:: bash
 
-    git clone https://github.com/rbturnbull/phyloflow.git
-    cd phyloflow
+    git clone https://github.com/rbturnbull/orthoflow.git
+    cd orthoflow
 
 Install the code into a virtual environment managed by poetry as follows:
 

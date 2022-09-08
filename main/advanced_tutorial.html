@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PhyloFlow Advanced Tutorial &mdash; phyloflow 0.1.0 documentation</title>
+  <title>Orthoflow Advanced Tutorial &mdash; orthoflow 0.1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Workflow" href="workflow.html" />
-    <link rel="prev" title="PhyloFlow Beginner’s Tutorial" href="beginner_tutorial.html" /> 
+    <link rel="prev" title="Orthoflow Beginner’s Tutorial" href="beginner_tutorial.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> phyloflow
+            <a href="../index.html" class="icon icon-home"> orthoflow
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -45,8 +45,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">PhyloFlow Beginner’s Tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">PhyloFlow Advanced Tutorial</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Orthoflow Beginner’s Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Orthoflow Advanced Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#changing-workflow-settings">Changing workflow settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#input-and-output-paths">Input and output paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#controlling-the-flow-of-operations">Controlling the flow of operations</a></li>
@@ -78,7 +78,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">phyloflow</a>
+          <a href="../index.html">orthoflow</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -86,7 +86,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>PhyloFlow Advanced Tutorial</li>
+      <li>Orthoflow Advanced Tutorial</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/main/advanced_tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -120,38 +120,38 @@
     text-align: unset;
 }
 </style>
-<section id="phyloflow-advanced-tutorial">
-<h1>PhyloFlow Advanced Tutorial<a class="headerlink" href="#phyloflow-advanced-tutorial" title="Permalink to this headline"></a></h1>
+<section id="orthoflow-advanced-tutorial">
+<h1>Orthoflow Advanced Tutorial<a class="headerlink" href="#orthoflow-advanced-tutorial" title="Permalink to this headline"></a></h1>
 <section id="changing-workflow-settings">
 <h2>Changing workflow settings<a class="headerlink" href="#changing-workflow-settings" title="Permalink to this headline"></a></h2>
-<p>Some workflow settings can be changed by passing arguments to the command-line tool (<code class="docutils literal notranslate"><span class="pre">phyloflow</span></code>). Perhaps the most important one is <code class="docutils literal notranslate"><span class="pre">--cores</span></code> to specify the number of cores for the workflow to use.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="o">--</span><span class="n">cores</span> <span class="mi">24</span>
+<p>Some workflow settings can be changed by passing arguments to the command-line tool (<code class="docutils literal notranslate"><span class="pre">orthoflow</span></code>). Perhaps the most important one is <code class="docutils literal notranslate"><span class="pre">--cores</span></code> to specify the number of cores for the workflow to use.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">cores</span> <span class="mi">24</span>
 </pre></div>
 </div>
 <p>To see a complete list of command-line arguments, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="o">--</span><span class="n">help</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
-<p>You can pass any snakemake arguments to phyloflow. To list these, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="o">--</span><span class="n">help</span><span class="o">-</span><span class="n">snakemake</span>
+<p>You can pass any snakemake arguments to orthoflow. To list these, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">help</span><span class="o">-</span><span class="n">snakemake</span>
 </pre></div>
 </div>
-<p>Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (<code class="docutils literal notranslate"><span class="pre">phyloflow/config/config.yml</span></code>) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.</p>
+<p>Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (<code class="docutils literal notranslate"><span class="pre">orthoflow/config/config.yml</span></code>) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.</p>
 </section>
 <section id="input-and-output-paths">
 <h2>Input and output paths<a class="headerlink" href="#input-and-output-paths" title="Permalink to this headline"></a></h2>
 <p>To use a specific target file with input sources, give that as an argument:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="nb">input</span><span class="o">-</span><span class="n">sources</span><span class="o">-</span><span class="n">file</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="nb">input</span><span class="o">-</span><span class="n">sources</span><span class="o">-</span><span class="n">file</span>
 </pre></div>
 </div>
 <p>To set a working directory different to the current directory, use the <cite>–directory</cite> flag:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phyloflow</span> <span class="o">--</span><span class="n">directory</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">working</span><span class="o">/</span><span class="nb">dir</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">directory</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">working</span><span class="o">/</span><span class="nb">dir</span>
 </pre></div>
 </div>
 </section>
 <section id="controlling-the-flow-of-operations">
 <h2>Controlling the flow of operations<a class="headerlink" href="#controlling-the-flow-of-operations" title="Permalink to this headline"></a></h2>
-<p>By default, PhyloFlow uses the <em>de novo</em> orthology inference module (OrthoFinder and OrthoSNAP) and supermatrix-based tree inference (supermatrix module).</p>
+<p>By default, Orthoflow uses the <em>de novo</em> orthology inference module (OrthoFinder and OrthoSNAP) and supermatrix-based tree inference (supermatrix module).</p>
 <p>![](../_static/diagram.png)</p>
 <p>This can be changed in the configuration file. Setting the <code class="docutils literal notranslate"><span class="pre">use_orthofisher</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> will enable the ortholog fishing module instead of the <em>de novo</em> orthology inference module. This also requires you to specify a set of HMM profiles listed under <code class="docutils literal notranslate"><span class="pre">orthofisher_hmmer_files</span></code>. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use_orthofisher</span><span class="p">:</span> <span class="kc">True</span>
@@ -213,7 +213,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="beginner_tutorial.html" class="btn btn-neutral float-left" title="PhyloFlow Beginner’s Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="beginner_tutorial.html" class="btn btn-neutral float-left" title="Orthoflow Beginner’s Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="workflow.html" class="btn btn-neutral float-right" title="Workflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
