@@ -1,10 +1,19 @@
 [tool.poetry]
-name = "phyloflow"
+name = "orthoflow"
 version = "0.1.0"
-description = "A phylogenomic workflow developed in collaboration with Jo Birch from the University of Melbourne Herbarium"
+description = "A phylogenomic workflow"
 authors = ["University of Melbourne"]
 license = "Apache-2.0"
 readme = "README.rst"
+homepage = "https://github.com/rbturnbull/orthoflow"
+repository = "https://github.com/rbturnbull/orthoflow"
+documentation = "https://rbturnbull.github.io/orthoflow/"
+keywords = ["phylogenomics"]
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
