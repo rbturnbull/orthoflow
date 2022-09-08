@@ -9,10 +9,12 @@ homepage = "https://github.com/rbturnbull/orthoflow"
 repository = "https://github.com/rbturnbull/orthoflow"
 documentation = "https://rbturnbull.github.io/orthoflow/"
 keywords = ["phylogenomics"]
+# For classifiers see https://pypi.org/classifiers/
 classifiers = [
     "License :: OSI Approved :: Apache Software License",
     "Intended Audience :: Science/Research",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 
 [tool.poetry.dependencies]
