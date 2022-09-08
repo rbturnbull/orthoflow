@@ -2,4 +2,4 @@
 Data Intake Module
 ==================
 
-.. smk:autodoc:: ../phyloflow/workflow/Snakefile extract_cds add_taxon translate
+.. smk:autodoc:: ../orthoflow/workflow/Snakefile extract_cds add_taxon translate
