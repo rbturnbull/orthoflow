@@ -1,0 +1,17 @@
+## TODO: clean up and create a basic and advanced config file
+input_sources: "docs_input_sources.csv"
+ortholog_min_seqs: 5
+orthofinder_use_scogs: True
+orthofinder_use_snap_ogs: True
+use_orthofisher: False
+minimum_trimmed_alignment_length_cds: 501
+minimum_trimmed_alignment_length_proteins: 167
+max_trimmed_proportion: 0.5
+# orthosnap_occupancy: 5 # uncomment this line if you wish to set the orthosnap_occupancy to be something other than ortholog_min_seqs
+orthofisher_hmmer_files:
+  - ../tests/test-datat/hmms/1080at3041.hmm
+
+infer_tree_with_protein_seqs: False
+
+supermatrix: True
+supertree: True

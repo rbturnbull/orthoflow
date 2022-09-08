@@ -43,6 +43,7 @@ sphinxcontrib-bibtex = "^2.4.1"
 ipdb = "^0.13.9"
 conda-lock = {extras = ["pip_support"], version = "^1.0.5"}
 phytest = "^1.0.0"
+snakedoc = { git = "https://github.com/smutch/snakedoc.git", branch = "deps/smk-bibtex" }
 
 [build-system]
 requires = ["setuptools", "poetry-core>=1.0.0"]
