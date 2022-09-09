@@ -42,10 +42,14 @@ The workflow produces a detailed report that, in addition to the phylogenetic re
 Documentation
 =============
 
-Documentation at https://rbturnbull.github.io/orthoflow/
+Detailed documentation can be found at https://rbturnbull.github.io/orthoflow/
 
 
 .. start-beginner-tutorial
+
+=================
+Quick start guide
+=================
 
 Input data
 ==========
