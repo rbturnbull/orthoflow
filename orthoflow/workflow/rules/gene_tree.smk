@@ -13,7 +13,7 @@ rule gene_tree_iqtree:
     threads: 
         workflow.cores
     conda:
-        "../envs/iqtree.yaml"
+        ENV_DIR / "iqtree.yaml"
     bibs:
         "../bibs/iqtree2.bib",
         "../bibs/ultrafast-bootstrap.bib",
@@ -39,7 +39,7 @@ rule gene_tree_ascii:
     output:
         f"results/gene_tree/{{og}}/{{og}}_tree_ascii.{alignment_type}.txt",
     conda:
-        "../envs/phykit.yaml"
+        ENV_DIR / "phykit.yaml"
     bibs:
         "../bibs/phykit.bib",
     log:
@@ -58,7 +58,7 @@ rule gene_tree_render:
         svg=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.tree.svg",
         png=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.tree.png",
     conda:
-        "../envs/toytree.yaml"
+        ENV_DIR / "toytree.yaml"
     bibs:
         "../bibs/toytree.bib",
     shell:
@@ -75,7 +75,7 @@ rule gene_tree_consensus_render:
         svg=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.consensus-tree.svg",
         png=f"results/gene_tree/{{og}}/{{og}}.{alignment_type}.consensus-tree.png",
     conda:
-        "../envs/toytree.yaml"
+        ENV_DIR / "toytree.yaml"
     bibs:
         "../bibs/toytree.bib",
     shell:

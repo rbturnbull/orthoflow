@@ -54,7 +54,7 @@ checkpoint split_scogs_and_multi_copy_ogs:
 
     # TODO think about making this work per file
 
-    :config: ortholog_min_seqs
+    :config ortholog_min_seqs: Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
     """
     input:
         rules.orthofinder.output,
@@ -92,7 +92,7 @@ checkpoint generate_orthosnap_input:
     """
     Copy the OGs with more than a minimum number of sequences and copy the associated gene trees to prepare for use in orthosnap.
 
-    :config: ortholog_min_seqs
+    :config ortholog_min_seqs: Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
     """
     input:
         multi_copy_ogs=get_multi_copy_ogs,
@@ -112,7 +112,7 @@ checkpoint orthosnap:
     Run Orthosnap to retrieve single-copy orthologs.
 
     :output: A directory with an unknown number of fasta files.
-    :config: orthosnap_occupancy by default it uses ortholog_min_seqs
+    :config orthosnap_occupancy: by default it uses ortholog_min_seqs
     """
     input:
         fasta="results/orthofinder/orthosnap_input/{og}.fa",

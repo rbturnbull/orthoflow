@@ -2,8 +2,17 @@
 Workflow
 ========
 
-Here is a diagram of the workflow.
-
 .. image:: ../_static/images/orthoflow-workflow-diagram.svg
+
+.. toctree::
+   :caption: Modules:
+
+   intake
+   orthofisher
+   orthofinder
+   alignment
+   supermatrix
+   gene_tree
+   supertree
 
 

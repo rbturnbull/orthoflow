@@ -20,10 +20,6 @@ Welcome to orthoflow's documentation!
    main/beginner_tutorial
    main/advanced_tutorial
    main/workflow
-   main/intake
-   main/orthologs
-   main/alignment
-   main/supermatrix
    .. main/workflow_dev
    .. main/rules
    main/contributing

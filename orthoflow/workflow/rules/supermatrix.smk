@@ -11,7 +11,7 @@ rule concatenate_alignments:
         partition=f"results/supermatrix/supermatrix.{alignment_type}.partition",
         occupancy=f"results/supermatrix/supermatrix.{alignment_type}.occupancy",
     conda:
-        "../envs/phykit.yaml"
+        ENV_DIR / "phykit.yaml"
     bibs:
         "../bibs/phykit.bib"
     log:
@@ -32,7 +32,7 @@ rule supermatrix_alignment_summary:
     output:
         f"results/supermatrix/alignment_summary.{alignment_type}.txt"
     conda:
-        "../envs/biokit.yaml"
+        ENV_DIR / "biokit.yaml"
     bibs:
         "../bibs/biokit.bib",
     log:
@@ -57,7 +57,7 @@ rule supermatrix_iqtree:
     threads: 
         workflow.cores
     conda:
-        "../envs/iqtree.yaml"
+        ENV_DIR / "iqtree.yaml"
     bibs:
         "../bibs/iqtree2.bib",
         "../bibs/ultrafast-bootstrap.bib",
@@ -81,7 +81,7 @@ rule supermatrix_ascii:
     output:
         f"results/supermatrix/supermatrix_tree_ascii.{alignment_type}.txt"
     conda:
-        "../envs/phykit.yaml"
+        ENV_DIR / "phykit.yaml"
     bibs:
         "../bibs/phykit.bib",
     log:
@@ -100,7 +100,7 @@ rule supermatrix_tree_render:
         svg=f"results/supermatrix/supermatrix_tree_render.{alignment_type}.svg",
         png=f"results/supermatrix/supermatrix_tree_render.{alignment_type}.png"
     conda:
-        "../envs/toytree.yaml"
+        ENV_DIR / "toytree.yaml"
     bibs:
         "../bibs/toytree.bib",
     log:
@@ -119,7 +119,7 @@ rule supermatrix_consensus_tree_render:
         svg=f"results/supermatrix/supermatrix_consensus_tree_render.{alignment_type}.svg",
         png=f"results/supermatrix/supermatrix_consensus_tree_render.{alignment_type}.png"
     conda:
-        "../envs/toytree.yaml"
+        ENV_DIR / "toytree.yaml"
     bibs:
         "../bibs/toytree.bib",
     log:

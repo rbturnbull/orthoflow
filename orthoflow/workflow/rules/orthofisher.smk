@@ -4,7 +4,7 @@ rule orthofisher_input_generation:
     """
     Runs `orthofisher <https://github.com/JLSteenwyk/orthofisher>`_ on input files of FASTA file and pHMM paths the intake rule.
 
-    :config: orthofisher_hmmer_files
+    :config orthofisher_hmmer_files: list of hmmer files for orthofisher
     """
     input:
         input_csv['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
@@ -56,7 +56,7 @@ checkpoint min_seq_filter_orthofisher:
     Only keeps the orthologs with a minimum number of sequences.
     It also removes suffixes added to the IDs by orthofisher.
 
-    :config: ortholog_min_seqs
+    :config ortholog_min_seqs: Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
     """
     input:
         list_orthofisher_scogs
