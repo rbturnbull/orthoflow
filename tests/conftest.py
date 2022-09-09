@@ -175,8 +175,6 @@ def run_workflow(tmpdir: Path):
                 work_dir,
                 "--keep-target-files",
                 "--conda-prefix",
-                "--rerun-triggers", # hack because of issue 69
-                "mtime", # hack because of issue 69
                 conda_dir,
                 *args,
             ]

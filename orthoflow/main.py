@@ -53,6 +53,7 @@ def run(
         "--use-conda",
         f"--cores={cores}",
         f"--directory={directory}",
+        f"--rerun-triggers=mtime", # hack for issue #69
     ]
     if not mamba_found:
         args.append("--conda-frontend=conda")
