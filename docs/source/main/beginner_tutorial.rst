@@ -1,5 +1,5 @@
 =============================
-Orthoflow Beginner's Tutorial
+Beginner Tutorial
 =============================
 
 .. include:: ../../../README.rst

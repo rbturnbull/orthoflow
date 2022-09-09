@@ -48,7 +48,7 @@ Runs `OrthoFinder <https://github.com/davidemms/OrthoFinder>`_ on fasta files fr
 
 Copy out OGs with more than a minimum number of sequences.
 
-:config: filter_orthofinder
+:config filter_orthofinder:
 
 
 % Notes

@@ -14,5 +14,6 @@ Workflow
    supermatrix
    gene_tree
    supertree
+   report
 
 

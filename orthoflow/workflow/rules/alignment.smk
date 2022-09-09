@@ -182,10 +182,7 @@ rule list_alignments:
     """
     List path to alignment files into a single text file for use in PhyKIT.
 
-    If the `infer_tree_with_protein_seqs` config variable is True, then it uses the protein alignments
-    otherwise it uses the threaded CDS sequences.
-
-    :config: infer_tree_with_protein_seqs
+    :config infer_tree_with_protein_seqs: If the `infer_tree_with_protein_seqs` config variable is True, then it uses the protein alignments otherwise it uses the threaded CDS sequences.
     """
     input:
         get_alignments

@@ -169,7 +169,7 @@ checkpoint orthofinder_all:
     """
     Collects all the SC-OGs and the SNAP OGs and creates symlinks for each in a single directory.
 
-    :config: ortholog_min_seqs
+    :config ortholog_min_seqs: Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
     """
     input:
         combine_scogs_and_snap_ogs

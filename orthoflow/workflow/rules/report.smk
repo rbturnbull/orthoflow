@@ -11,10 +11,15 @@ use_orthofisher = config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT)
 summarize_information_content = config.get('summarize_information_content', True)
 
 rule report:
+    """
+    Draws together the output of the workflow and presents the results in a stand-alone HTML file.
+
+    This serves as the endpoint of the DAG for Snakemake if no targets are explicitly specified.
+    """
     input:
         orthofinder_scogs=list_orthofinder_scogs,
         orthofinder_report_components=rules.orthofinder_report_components.output,
-        orthosnap_snap_ogs=list_orthosnap_snap_ogs, # this breaks the DAG?!
+        orthosnap_snap_ogs=list_orthosnap_snap_ogs,
         # Alignment
         list_alignments=rules.list_alignments.output,
         summary_plot=rules.summarize_information_content.output.plot if summarize_information_content else ".",
