@@ -4,11 +4,12 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orthoflow Advanced Tutorial &mdash; orthoflow 0.1.0 documentation</title>
+  <title>Advanced Tutorial &mdash; orthoflow 0.1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -24,7 +25,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Workflow" href="workflow.html" />
-    <link rel="prev" title="Orthoflow Beginner’s Tutorial" href="beginner_tutorial.html" /> 
+    <link rel="prev" title="Beginner Tutorial" href="beginner_tutorial.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,10 +46,11 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Orthoflow Beginner’s Tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Orthoflow Advanced Tutorial</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#changing-workflow-settings">Changing workflow settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#input-and-output-paths">Input and output paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-working-directory-and-specifying-targets">Setting working directory and specifying targets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#controlling-the-flow-of-operations">Controlling the flow of operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gene-and-alignment-filtering-settings">Gene and alignment filtering settings</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#minimum-taxa">Minimum taxa</a></li>
@@ -58,16 +60,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tree-inference-settings">Tree inference settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#other-topics">Other topics ????</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="orthologs.html">Orthologs Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflow_dev.html">Workflow development guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
 </ul>
@@ -86,7 +81,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Orthoflow Advanced Tutorial</li>
+      <li>Advanced Tutorial</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/main/advanced_tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -120,8 +115,8 @@
     text-align: unset;
 }
 </style>
-<section id="orthoflow-advanced-tutorial">
-<h1>Orthoflow Advanced Tutorial<a class="headerlink" href="#orthoflow-advanced-tutorial" title="Permalink to this headline"></a></h1>
+<section id="advanced-tutorial">
+<h1>Advanced Tutorial<a class="headerlink" href="#advanced-tutorial" title="Permalink to this headline"></a></h1>
 <section id="changing-workflow-settings">
 <h2>Changing workflow settings<a class="headerlink" href="#changing-workflow-settings" title="Permalink to this headline"></a></h2>
 <p>Some workflow settings can be changed by passing arguments to the command-line tool (<code class="docutils literal notranslate"><span class="pre">orthoflow</span></code>). Perhaps the most important one is <code class="docutils literal notranslate"><span class="pre">--cores</span></code> to specify the number of cores for the workflow to use.</p>
@@ -138,22 +133,21 @@
 </div>
 <p>Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (<code class="docutils literal notranslate"><span class="pre">orthoflow/config/config.yml</span></code>) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.</p>
 </section>
-<section id="input-and-output-paths">
-<h2>Input and output paths<a class="headerlink" href="#input-and-output-paths" title="Permalink to this headline"></a></h2>
-<p>To use a specific target file with input sources, give that as an argument:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="nb">input</span><span class="o">-</span><span class="n">sources</span><span class="o">-</span><span class="n">file</span>
-</pre></div>
-</div>
+<section id="setting-working-directory-and-specifying-targets">
+<h2>Setting working directory and specifying targets<a class="headerlink" href="#setting-working-directory-and-specifying-targets" title="Permalink to this headline"></a></h2>
 <p>To set a working directory different to the current directory, use the <cite>–directory</cite> flag:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">directory</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">working</span><span class="o">/</span><span class="nb">dir</span>
+</pre></div>
+</div>
+<p>To use a specific target, give that as an argument. For instance to produce the list of protein alignments, run as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="n">results</span><span class="o">/</span><span class="n">alignment</span><span class="o">/</span><span class="n">alignments_list</span><span class="o">.</span><span class="n">protein</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </section>
 <section id="controlling-the-flow-of-operations">
 <h2>Controlling the flow of operations<a class="headerlink" href="#controlling-the-flow-of-operations" title="Permalink to this headline"></a></h2>
 <p>By default, Orthoflow uses the <em>de novo</em> orthology inference module (OrthoFinder and OrthoSNAP) and supermatrix-based tree inference (supermatrix module).</p>
-<p>![](../_static/diagram.png)</p>
-<p>This can be changed in the configuration file. Setting the <code class="docutils literal notranslate"><span class="pre">use_orthofisher</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> will enable the ortholog fishing module instead of the <em>de novo</em> orthology inference module. This also requires you to specify a set of HMM profiles listed under <code class="docutils literal notranslate"><span class="pre">orthofisher_hmmer_files</span></code>. For example:</p>
+<img alt="../_images/orthoflow-workflow-diagram.svg" src="../_images/orthoflow-workflow-diagram.svg" /><p>This can be changed in the configuration file. Setting the <code class="docutils literal notranslate"><span class="pre">use_orthofisher</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> will enable the ortholog fishing module instead of the <em>de novo</em> orthology inference module. This also requires you to specify a set of HMM profiles listed under <code class="docutils literal notranslate"><span class="pre">orthofisher_hmmer_files</span></code>. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use_orthofisher</span><span class="p">:</span> <span class="kc">True</span>
 <span class="n">orthofisher_hmmer_files</span><span class="p">:</span>
 <span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1080</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
@@ -200,20 +194,13 @@
 <p>To specify a model of sequence evolution, the config file has a <code class="docutils literal notranslate"><span class="pre">model_string</span></code> setting where you can specify a model following the IQ-tree syntax. The default setting <code class="docutils literal notranslate"><span class="pre">model_string:</span> <span class="pre">&quot;-m</span> <span class="pre">TEST&quot;</span></code> will perform model testing to determine a suitable model. but any model implemented in IQ-tree can be specified here. For instance “-m GTR+F+G” for a nucleotide General Time Reversible (GTR) model with empirical base frequencies (+F) and a discrete gamma model (+G) for rate heterogeneity. For further information on the model options and their specification, see the <a class="reference external" href="https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models">IQ-tree documentation</a></p>
 <p>For bootstrapping, you can specify the <code class="docutils literal notranslate"><span class="pre">bootstrap_string</span></code> variable in the config file. By default, this is set to <code class="docutils literal notranslate"><span class="pre">bootstrap_string:</span> <span class="pre">&quot;-bb</span> <span class="pre">1000&quot;</span></code> to carry out 1000 ultrafast bootstrap replicates. To change this to 100 standard (nonparametric) bootstraps, for instance, use <code class="docutils literal notranslate"><span class="pre">bootstrap_string:</span> <span class="pre">&quot;-b</span> <span class="pre">100&quot;</span></code>. See the <a class="reference external" href="http://www.iqtree.org/doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation">IQ-tree documentation</a> for further information on how to specify bootstrapping.</p>
 </section>
-<section id="other-topics">
-<h2>Other topics ????<a class="headerlink" href="#other-topics" title="Permalink to this headline"></a></h2>
-<ul class="simple">
-<li><p>running on HPC (but perhaps this can go in the installation instructions instead, as it’s mostly setup/configuration)</p></li>
-<li></li>
-</ul>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="beginner_tutorial.html" class="btn btn-neutral float-left" title="Orthoflow Beginner’s Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="beginner_tutorial.html" class="btn btn-neutral float-left" title="Beginner Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="workflow.html" class="btn btn-neutral float-right" title="Workflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

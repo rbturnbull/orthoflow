@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alignment Module &mdash; orthoflow 0.1.0 documentation</title>
+  <title>Gene Tree Module &mdash; orthoflow 0.1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Supermatrix Module" href="supermatrix.html" />
-    <link rel="prev" title="Orthofinder Module" href="orthofinder.html" /> 
+    <link rel="next" title="Supertree Module" href="supertree.html" />
+    <link rel="prev" title="Supermatrix Module" href="supermatrix.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,9 +53,9 @@
 <li class="toctree-l2"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="orthofisher.html">Orthofisher Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="orthofinder.html">Orthofinder Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Alignment Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gene_tree.html">Gene Tree Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Gene Tree Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supertree.html">Supertree Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="report.html">Report Module</a></li>
 </ul>
@@ -79,9 +79,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="workflow.html">Workflow</a> &raquo;</li>
-      <li>Alignment Module</li>
+      <li>Gene Tree Module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/main/alignment.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/main/gene_tree.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -113,20 +113,21 @@
     text-align: unset;
 }
 </style>
-<section id="alignment-module">
-<h1>Alignment Module<a class="headerlink" href="#alignment-module" title="Permalink to this headline"></a></h1>
+<section id="gene-tree-module">
+<h1>Gene Tree Module<a class="headerlink" href="#gene-tree-module" title="Permalink to this headline"></a></h1>
 <dl class="smk rule">
-<dt class="sig sig-object smk" id="rule-mafft">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">mafft</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L20"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-mafft" title="Permalink to this definition"></a></dt>
-<dd><p>Aligns the protein (amino acid) ortholog with MAFFT.</p>
+<dt class="sig sig-object smk" id="rule-gene_tree_iqtree">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">gene_tree_iqtree</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/gene_tree.smk#L2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-gene_tree_iqtree" title="Permalink to this definition"></a></dt>
+<dd><p>Use IQTREE on the gene alignments.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mafft</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iqtree</span><span class="w"></span>
 <span class="nt">channels</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
 <span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mafft=7.490</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">libzlib=1.2.12</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iqtree=2.2.0.3</span><span class="w"></span>
 </pre></div>
 </div>
 </dd>
@@ -137,56 +138,9 @@
 <div class="line"><br /></div>
 </div>
 <dl class="smk rule">
-<dt class="sig sig-object smk" id="rule-get_cds_seq">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">get_cds_seq</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L44"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-get_cds_seq" title="Permalink to this definition"></a></dt>
-<dd><p>This rule creates an unaligned mfasta file of the corresponding nucleotide sequences.</p>
-<p>Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.</p>
-<dl class="field-list">
-<dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biopython</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
-
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<dl class="smk checkpoint">
-<dt class="sig sig-object smk" id="rule-taxon_only">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">taxon_only</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L63"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-taxon_only" title="Permalink to this definition"></a></dt>
-<dd><p>Trim sequence IDs to taxon.</p>
-<p>At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier
-and produce clean output for the next stages.</p>
-<dl class="field-list">
-<dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
-
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<dl class="smk rule">
-<dt class="sig sig-object smk" id="rule-thread_dna">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">thread_dna</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L80"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-thread_dna" title="Permalink to this definition"></a></dt>
-<dd><p>Back-translates the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.</p>
-<p><a class="reference external" href="https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment">https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment</a></p>
-<p>The –stop argument keeps in stop codons which are otherwise removed.</p>
+<dt class="sig sig-object smk" id="rule-gene_tree_ascii">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">gene_tree_ascii</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/gene_tree.smk#L33"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-gene_tree_ascii" title="Permalink to this definition"></a></dt>
+<dd><p>Displays the gene tree in ASCII format.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
 <dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
@@ -206,21 +160,22 @@ and produce clean output for the next stages.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<dl class="smk checkpoint">
-<dt class="sig sig-object smk" id="rule-trim_alignments">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">trim_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L102"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-trim_alignments" title="Permalink to this definition"></a></dt>
-<dd><p>Trim multiple-sequence alignments using ClipKIT.</p>
-<p><a class="reference external" href="https://jlsteenwyk.com/ClipKIT">https://jlsteenwyk.com/ClipKIT</a></p>
+<dl class="smk rule">
+<dt class="sig sig-object smk" id="rule-gene_tree_render">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">gene_tree_render</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/gene_tree.smk#L51"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-gene_tree_render" title="Permalink to this definition"></a></dt>
+<dd><p>Renders the gene tree in SVG and PNG formats.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
 <dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
 <span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghostscript=9.54.0</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clipkit&gt;=1.3.0</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy==1.22.4</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">toytree==2.0.1</span><span class="w"></span>
 </pre></div>
 </div>
 </dd>
@@ -231,13 +186,23 @@ and produce clean output for the next stages.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="smk rule">
-<dt class="sig sig-object smk" id="rule-list_alignments">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">list_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L181"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-list_alignments" title="Permalink to this definition"></a></dt>
-<dd><p>List path to alignment files into a single text file for use in PhyKIT.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Config</dt>
-<dd class="field-odd"><p><strong>infer_tree_with_protein_seqs</strong> – If the <cite>infer_tree_with_protein_seqs</cite> config variable is True, then it uses the protein alignments otherwise it uses the threaded CDS sequences.<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
-</p>
+<dt class="sig sig-object smk" id="rule-gene_tree_consensus_render">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">gene_tree_consensus_render</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/gene_tree.smk#L68"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-gene_tree_consensus_render" title="Permalink to this definition"></a></dt>
+<dd><p>Renders the consensus gene tree tree in SVG and PNG formats.</p>
+<dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghostscript=9.54.0</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy==1.22.4</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">toytree==2.0.1</span><span class="w"></span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </dd></dl>
@@ -251,8 +216,8 @@ and produce clean output for the next stages.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="orthofinder.html" class="btn btn-neutral float-left" title="Orthofinder Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="supermatrix.html" class="btn btn-neutral float-right" title="Supermatrix Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="supermatrix.html" class="btn btn-neutral float-left" title="Supermatrix Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="supertree.html" class="btn btn-neutral float-right" title="Supertree Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

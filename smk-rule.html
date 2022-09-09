@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snakemake Rules &mdash; orthoflow 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+ 
+
+    <script>
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> orthoflow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="main/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main/beginner_tutorial.html">Beginner Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main/beginner_tutorial.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main/advanced_tutorial.html">Advanced Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main/workflow.html">Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main/citation.html">Citation and Attribution</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">orthoflow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Snakemake Rules</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+
+   <h1>Snakemake Rules</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-a"><strong>a</strong></a> | 
+   <a href="#cap-c"><strong>c</strong></a> | 
+   <a href="#cap-e"><strong>e</strong></a> | 
+   <a href="#cap-g"><strong>g</strong></a> | 
+   <a href="#cap-l"><strong>l</strong></a> | 
+   <a href="#cap-m"><strong>m</strong></a> | 
+   <a href="#cap-o"><strong>o</strong></a> | 
+   <a href="#cap-r"><strong>r</strong></a> | 
+   <a href="#cap-s"><strong>s</strong></a> | 
+   <a href="#cap-t"><strong>t</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-a"><td></td><td>
+       <strong>a</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/intake.html#rule-add_taxon"><code class="xref">add_taxon</code></a> <em>(main/intake)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supertree.html#rule-astral"><code class="xref">astral</code></a> <em>(main/supertree)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-c"><td></td><td>
+       <strong>c</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supermatrix.html#rule-concatenate_alignments"><code class="xref">concatenate_alignments</code></a> <em>(main/supermatrix)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supertree.html#rule-create_astral_input"><code class="xref">create_astral_input</code></a> <em>(main/supertree)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-e"><td></td><td>
+       <strong>e</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/intake.html#rule-extract_cds"><code class="xref">extract_cds</code></a> <em>(main/intake)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-g"><td></td><td>
+       <strong>g</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/alignment.html#rule-get_cds_seq"><code class="xref">get_cds_seq</code></a> <em>(main/alignment)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/gene_tree.html#rule-gene_tree_iqtree"><code class="xref">gene_tree_iqtree</code></a> <em>(main/gene_tree)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/gene_tree.html#rule-gene_tree_ascii"><code class="xref">gene_tree_ascii</code></a> <em>(main/gene_tree)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/gene_tree.html#rule-gene_tree_render"><code class="xref">gene_tree_render</code></a> <em>(main/gene_tree)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/gene_tree.html#rule-gene_tree_consensus_render"><code class="xref">gene_tree_consensus_render</code></a> <em>(main/gene_tree)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/orthofinder.html#rule-generate_orthosnap_input"><code class="xref">generate_orthosnap_input</code></a> <em>(main/orthofinder)</em></td><td>
+       <em>Checkpoint</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-l"><td></td><td>
+       <strong>l</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/alignment.html#rule-list_alignments"><code class="xref">list_alignments</code></a> <em>(main/alignment)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-m"><td></td><td>
+       <strong>m</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/alignment.html#rule-mafft"><code class="xref">mafft</code></a> <em>(main/alignment)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/orthofisher.html#rule-min_seq_filter_orthofisher"><code class="xref">min_seq_filter_orthofisher</code></a> <em>(main/orthofisher)</em></td><td>
+       <em>Checkpoint</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-o"><td></td><td>
+       <strong>o</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/orthofinder.html#rule-orthofinder"><code class="xref">orthofinder</code></a> <em>(main/orthofinder)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/orthofinder.html#rule-orthofinder_report_components"><code class="xref">orthofinder_report_components</code></a> <em>(main/orthofinder)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/orthofinder.html#rule-orthosnap"><code class="xref">orthosnap</code></a> <em>(main/orthofinder)</em></td><td>
+       <em>Checkpoint</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/orthofinder.html#rule-orthofinder_all"><code class="xref">orthofinder_all</code></a> <em>(main/orthofinder)</em></td><td>
+       <em>Checkpoint</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/orthofisher.html#rule-orthofisher_input_generation"><code class="xref">orthofisher_input_generation</code></a> <em>(main/orthofisher)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/orthofisher.html#rule-orthofisher"><code class="xref">orthofisher</code></a> <em>(main/orthofisher)</em></td><td>
+       <em>Checkpoint</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-r"><td></td><td>
+       <strong>r</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/report.html#rule-report"><code class="xref">report</code></a> <em>(main/report)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-s"><td></td><td>
+       <strong>s</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/orthofinder.html#rule-split_scogs_and_multi_copy_ogs"><code class="xref">split_scogs_and_multi_copy_ogs</code></a> <em>(main/orthofinder)</em></td><td>
+       <em>Checkpoint</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supermatrix.html#rule-supermatrix_alignment_summary"><code class="xref">supermatrix_alignment_summary</code></a> <em>(main/supermatrix)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supermatrix.html#rule-supermatrix_iqtree"><code class="xref">supermatrix_iqtree</code></a> <em>(main/supermatrix)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supermatrix.html#rule-supermatrix_ascii"><code class="xref">supermatrix_ascii</code></a> <em>(main/supermatrix)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supermatrix.html#rule-supermatrix_tree_render"><code class="xref">supermatrix_tree_render</code></a> <em>(main/supermatrix)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supermatrix.html#rule-supermatrix_consensus_tree_render"><code class="xref">supermatrix_consensus_tree_render</code></a> <em>(main/supermatrix)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supertree.html#rule-supertree_ascii"><code class="xref">supertree_ascii</code></a> <em>(main/supertree)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/supertree.html#rule-supertree_render"><code class="xref">supertree_render</code></a> <em>(main/supertree)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-t"><td></td><td>
+       <strong>t</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/alignment.html#rule-taxon_only"><code class="xref">taxon_only</code></a> <em>(main/alignment)</em></td><td>
+       <em>Checkpoint</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/alignment.html#rule-thread_dna"><code class="xref">thread_dna</code></a> <em>(main/alignment)</em></td><td>
+       <em>Rule</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/alignment.html#rule-trim_alignments"><code class="xref">trim_alignments</code></a> <em>(main/alignment)</em></td><td>
+       <em>Checkpoint</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="main/intake.html#rule-translate"><code class="xref">translate</code></a> <em>(main/intake)</em></td><td>
+       <em>Rule</em></td></tr>
+   </table>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 University of Melbourne.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

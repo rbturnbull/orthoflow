@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -24,7 +25,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Data Intake Module" href="intake.html" />
-    <link rel="prev" title="Orthoflow Advanced Tutorial" href="advanced_tutorial.html" /> 
+    <link rel="prev" title="Advanced Tutorial" href="advanced_tutorial.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,15 +46,20 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Orthoflow Beginner’s Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Orthoflow Advanced Tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="orthologs.html">Orthologs Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflow_dev.html">Workflow development guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orthofisher.html">Orthofisher Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orthofinder.html">Orthofinder Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gene_tree.html">Gene Tree Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supertree.html">Supertree Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report.html">Report Module</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
 </ul>
@@ -108,75 +114,30 @@
 </style>
 <section id="workflow">
 <h1>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline"></a></h1>
-<p>Here is a diagram of the proposed workflow.</p>
-<div class="graphviz"><object data="../_images/graphviz-c8a8bbfc7a7b0fe8be6cf0003f0cbfdf2378e19e.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph workflow {
-    exome [label=&quot;Exome data&quot;];
-    transcriptome [label=&quot;Transcriptome data\n(pre-assembled)&quot;];
-    addotated [label=&quot;Annotated genomes\n(.gb)&quot;];
-    ddRAD [label=&quot;ddRAD reads&quot;];
-    cds [label=&quot;CDS collection&quot;];
-    gene [label=&quot;gene clusters&quot;];
-    scog [label=&quot;SC-OG&quot;];
-    snap [label=&quot;SNAP-OG&quot;];
-    unaligned [label=&quot;Unaligned genes\n(AA &amp; NT)&quot;];
-    genealignments [label=&quot;Gene alignments\n(AA &amp; NT)&quot;];
-    filtered [label=&quot;Filtered alignments\n(AA &amp; NT)&quot;];
-    supermatrix [label=&quot;Supermatrix\n(AA &amp; NT)&quot;];
-    phy1 [label=&quot;Phylogeny 1&quot;];
-    genetrees [label=&quot;Gene Trees\n(AA &amp;/or NT)&quot;];
-    phy2 [label=&quot;Phylogeny 2&quot;];
-
-    subgraph clusterdata {
-        node [style=filled];
-        exome -&gt; cds;
-        transcriptome -&gt; cds;
-        addotated -&gt; cds;
-        ddRAD;
-        label = &quot;Data Intake&quot;;
-        color=purple
-    }
-    subgraph clusterortho {
-        node [style=filled];
-        gene -&gt; scog;
-        gene -&gt; snap;
-        label = &quot;Orthologs Module\n(de novo stream)&quot;;
-        color=green
-    }
-    subgraph clusteralignment {
-        node [style=filled];
-        unaligned -&gt; genealignments;
-        genealignments -&gt; filtered;
-        label = &quot;Alignment Module&quot;;
-        color=blue
-    }
-    subgraph clustersupermatrix {
-        node [style=filled];
-        supermatrix -&gt; phy1;
-        label = &quot;Supermatrix Module&quot;;
-        color=orange
-    }
-    subgraph clustergenetree {
-        node [style=filled];
-        genetrees -&gt; phy2;
-        label = &quot;Genetree and Reconciliation Module&quot;;
-        color=red
-    }
-
-    cds -&gt; gene;
-    scog -&gt; unaligned;
-    snap -&gt; unaligned;
-    ddRAD -&gt; filtered;
-    filtered -&gt; supermatrix;
-    filtered -&gt; genetrees;
-}</p></object></div>
+<p>The workflow starts with a data intake module that converts the input data to a uniform data format.</p>
+<p>There are two options to infer orthologs from this, the OrthoFinder stream performing de novo ortholog inference and the OrthoFisher stream using HMM profiles to extract orthologs.</p>
+<p>The orthologs then get passed into the alignment module where they are aligned based on their amino acid sequences.</p>
+<p>Two paths exist for phylogenetic inference. The supermatrix module uses a concatenated alignment of all orthologs to infer a tree. The gene tree + supertree path infers trees for all orthologs separately and infers a species tree from them (Astral).</p>
+<img alt="../_images/orthoflow-workflow-diagram.svg" src="../_images/orthoflow-workflow-diagram.svg" /><div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orthofisher.html">Orthofisher Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orthofinder.html">Orthofinder Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gene_tree.html">Gene Tree Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supertree.html">Supertree Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report.html">Report Module</a></li>
+</ul>
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="advanced_tutorial.html" class="btn btn-neutral float-left" title="Orthoflow Advanced Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="advanced_tutorial.html" class="btn btn-neutral float-left" title="Advanced Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="intake.html" class="btn btn-neutral float-right" title="Data Intake Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

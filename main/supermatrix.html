@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -23,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Workflow development guidelines" href="workflow_dev.html" />
+    <link rel="next" title="Gene Tree Module" href="gene_tree.html" />
     <link rel="prev" title="Alignment Module" href="alignment.html" /> 
 </head>
 
@@ -45,15 +46,20 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Orthoflow Beginner’s Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Orthoflow Advanced Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="orthologs.html">Orthologs Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Supermatrix Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflow_dev.html">Workflow development guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="workflow.html">Workflow</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orthofisher.html">Orthofisher Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orthofinder.html">Orthofinder Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Supermatrix Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gene_tree.html">Gene Tree Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supertree.html">Supertree Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report.html">Report Module</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
 </ul>
@@ -72,6 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="workflow.html">Workflow</a> &raquo;</li>
       <li>Supermatrix Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/main/supermatrix.rst.txt" rel="nofollow"> View page source</a>
@@ -108,6 +115,150 @@
 </style>
 <section id="supermatrix-module">
 <h1>Supermatrix Module<a class="headerlink" href="#supermatrix-module" title="Permalink to this headline"></a></h1>
+<dl class="smk rule">
+<dt class="sig sig-object smk" id="rule-concatenate_alignments">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">concatenate_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supermatrix.smk#L1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-concatenate_alignments" title="Permalink to this definition"></a></dt>
+<dd><p>Concatenate alignments into a single supermatrix.</p>
+<p><a class="reference external" href="https://jlsteenwyk.com/PhyKIT/usage/index.html#create-concatenation-matrix">https://jlsteenwyk.com/PhyKIT/usage/index.html#create-concatenation-matrix</a></p>
+<dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phykit&gt;=1.11.10</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk rule">
+<dt class="sig sig-object smk" id="rule-supermatrix_alignment_summary">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">supermatrix_alignment_summary</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supermatrix.smk#L23"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-supermatrix_alignment_summary" title="Permalink to this definition"></a></dt>
+<dd><p>Summarizes the supermatrix alignment using BioKIT</p>
+<p><a class="reference external" href="https://jlsteenwyk.com/BioKIT/usage/index.html#alignment-summary">https://jlsteenwyk.com/BioKIT/usage/index.html#alignment-summary</a>
+<a class="reference external" href="https://jlsteenwyk.com/tutorials/phylogenomics_made_easy.html">https://jlsteenwyk.com/tutorials/phylogenomics_made_easy.html</a></p>
+<dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jlsteenwyk-biokit</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk rule">
+<dt class="sig sig-object smk" id="rule-supermatrix_iqtree">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">supermatrix_iqtree</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supermatrix.smk#L46"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-supermatrix_iqtree" title="Permalink to this definition"></a></dt>
+<dd><p>Use IQTREE on the supermatrix.</p>
+<dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iqtree</span><span class="w"></span>
+<span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">libzlib=1.2.12</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iqtree=2.2.0.3</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk rule">
+<dt class="sig sig-object smk" id="rule-supermatrix_ascii">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">supermatrix_ascii</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supermatrix.smk#L75"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-supermatrix_ascii" title="Permalink to this definition"></a></dt>
+<dd><p>Displays the tree in ASCII format.</p>
+<dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phykit&gt;=1.11.10</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk rule">
+<dt class="sig sig-object smk" id="rule-supermatrix_tree_render">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">supermatrix_tree_render</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supermatrix.smk#L93"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-supermatrix_tree_render" title="Permalink to this definition"></a></dt>
+<dd><p>Renders the supermatrix tree in SVG and PNG formats.</p>
+<dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghostscript=9.54.0</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy==1.22.4</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">toytree==2.0.1</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk rule">
+<dt class="sig sig-object smk" id="rule-supermatrix_consensus_tree_render">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">supermatrix_consensus_tree_render</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supermatrix.smk#L112"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-supermatrix_consensus_tree_render" title="Permalink to this definition"></a></dt>
+<dd><p>Renders the consensus supermatrix tree in SVG and PNG formats.</p>
+<dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghostscript=9.54.0</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy==1.22.4</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">toytree==2.0.1</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 
 
@@ -115,7 +266,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="alignment.html" class="btn btn-neutral float-left" title="Alignment Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="workflow_dev.html" class="btn btn-neutral float-right" title="Workflow development guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gene_tree.html" class="btn btn-neutral float-right" title="Gene Tree Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

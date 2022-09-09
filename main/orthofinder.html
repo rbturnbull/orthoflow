@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orthofinder Module &mdash; orthoflow 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Alignment Module" href="alignment.html" />
+    <link rel="prev" title="Orthofisher Module" href="orthofisher.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> orthoflow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="workflow.html">Workflow</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orthofisher.html">Orthofisher Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Orthofinder Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gene_tree.html">Gene Tree Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supertree.html">Supertree Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report.html">Report Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">orthoflow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="workflow.html">Workflow</a> &raquo;</li>
+      <li>Orthofinder Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/main/orthofinder.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="orthofinder-module">
+<h1>Orthofinder Module<a class="headerlink" href="#orthofinder-module" title="Permalink to this headline"></a></h1>
+<dl class="smk rule">
+<dt class="sig sig-object smk" id="rule-orthofinder">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L10"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder" title="Permalink to this definition"></a></dt>
+<dd><p>Runs <a class="reference external" href="https://github.com/davidemms/OrthoFinder">OrthoFinder</a> on fasta files from the intake rule.</p>
+<dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthofinder==2.5.4</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy==1.8.1</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk rule">
+<dt class="sig sig-object smk" id="rule-orthofinder_report_components">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder_report_components</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L35"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_report_components" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the orthofinder output to HTML components that will be used in the Orthoflow report.</p>
+<dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seaborn</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy==1.8.1</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas==1.4.3</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># - seaborn==0.11.2</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib==3.5.2</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phykit&gt;=1.11.10</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk checkpoint">
+<dt class="sig sig-object smk" id="rule-split_scogs_and_multi_copy_ogs">
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">split_scogs_and_multi_copy_ogs</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L49"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-split_scogs_and_multi_copy_ogs" title="Permalink to this definition"></a></dt>
+<dd><p>Takes the output of orthofinder and outputs the SCOGs.</p>
+<p>It is more liberal than orthofinder SCOGs.</p>
+<p># TODO think about making this work per file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Config</dt>
+<dd class="field-odd"><p><strong>ortholog_min_seqs</strong> – Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">5</span></code></p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk checkpoint">
+<dt class="sig sig-object smk" id="rule-generate_orthosnap_input">
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">generate_orthosnap_input</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L91"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-generate_orthosnap_input" title="Permalink to this definition"></a></dt>
+<dd><p>Copy the OGs with more than a minimum number of sequences and copy the associated gene trees to prepare for use in orthosnap.</p>
+<dl class="field-list">
+<dt class="field-odd">Config</dt>
+<dd class="field-odd"><p><strong>ortholog_min_seqs</strong> – Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">5</span></code></p>
+</p>
+</dd>
+<dt class="field-even">Conda</dt>
+<dd class="field-even"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk checkpoint">
+<dt class="sig sig-object smk" id="rule-orthosnap">
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthosnap</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthosnap" title="Permalink to this definition"></a></dt>
+<dd><p>Run Orthosnap to retrieve single-copy orthologs.</p>
+<dl class="field-list">
+<dt class="field-odd">Output</dt>
+<dd class="field-odd"><p>A directory with an unknown number of fasta files.</p>
+</dd>
+<dt class="field-even">Config</dt>
+<dd class="field-even"><p><strong>orthosnap_occupancy</strong> – by default it uses ortholog_min_seqs<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</p>
+</dd>
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># WARNING: The below versions **must** match the dependencies of orthosnap to allow the build to work on M1 macs.</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy==1.20.1</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tqdm==4.58.0</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biopython==1.78</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthosnap==0.0.2</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<dl class="smk checkpoint">
+<dt class="sig sig-object smk" id="rule-orthofinder_all">
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthofinder_all</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L168"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_all" title="Permalink to this definition"></a></dt>
+<dd><p>Collects all the SC-OGs and the SNAP OGs and creates symlinks for each in a single directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Config</dt>
+<dd class="field-odd"><p><strong>ortholog_min_seqs</strong> – Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">5</span></code></p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="orthofisher.html" class="btn btn-neutral float-left" title="Orthofisher Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="alignment.html" class="btn btn-neutral float-right" title="Alignment Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 University of Melbourne.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

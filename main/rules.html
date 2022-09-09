@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -22,9 +23,7 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contributing" href="contributing.html" />
-    <link rel="prev" title="Workflow development guidelines" href="workflow_dev.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,23 +42,12 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Orthoflow Beginner’s Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Orthoflow Advanced Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="orthologs.html">Orthologs Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflow_dev.html">Workflow development guidelines</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Rules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#intake-smk">intake.smk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#orthologs-smk">orthologs.smk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#alignment-smk">alignment.smk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#supermatrix-smk">supermatrix.smk</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
 </ul>
@@ -150,7 +138,7 @@ https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes</p>
 <p>Runs <code class="docutils literal notranslate"><span class="pre">OrthoFinder</span> <span class="pre">&lt;https://github.com/davidemms/OrthoFinder&gt;</span></code>_ on fasta files from the intake rule.</p>
 <p><strong>filter_orthofinder</strong></p>
 <p>Copy out OGs with more than a minimum number of sequences.</p>
-<p>:config: filter_orthofinder</p>
+<p>:config filter_orthofinder:</p>
 </section>
 <section id="alignment-smk">
 <h2>alignment.smk<a class="headerlink" href="#alignment-smk" title="Permalink to this headline"></a></h2>
@@ -184,10 +172,7 @@ https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="workflow_dev.html" class="btn btn-neutral float-left" title="Workflow development guidelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

@@ -1,10 +1,13 @@
 ========================================
 Citation and Attribution
 ========================================
-Citation details to come.
+
+.. include:: ../../../README.rst
+   :start-after: start-credits
+   :end-before: end-credits
 
 
-Dependencies
+Bibliography
 ========================================
 
 The following articles and software packages were used in this workflow:

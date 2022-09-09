@@ -4,11 +4,12 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orthoflow Beginner’s Tutorial &mdash; orthoflow 0.1.0 documentation</title>
+  <title>Beginner Tutorial &mdash; orthoflow 0.1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -23,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Orthoflow Advanced Tutorial" href="advanced_tutorial.html" />
+    <link rel="next" title="Advanced Tutorial" href="advanced_tutorial.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
@@ -45,7 +46,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Orthoflow Beginner’s Tutorial</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Beginner Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#quick-start-guide">Quick start guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#input-data">Input data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simple-run">Simple run</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#examining-the-output">Examining the output</a><ul>
@@ -56,14 +58,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Orthoflow Advanced Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="orthologs.html">Orthologs Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workflow_dev.html">Workflow development guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rules.html">Rules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
 </ul>
@@ -82,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Orthoflow Beginner’s Tutorial</li>
+      <li>Beginner Tutorial</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/main/beginner_tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -116,8 +112,11 @@
     text-align: unset;
 }
 </style>
-<section id="orthoflow-beginner-s-tutorial">
-<h1>Orthoflow Beginner’s Tutorial<a class="headerlink" href="#orthoflow-beginner-s-tutorial" title="Permalink to this headline"></a></h1>
+<section id="beginner-tutorial">
+<h1>Beginner Tutorial<a class="headerlink" href="#beginner-tutorial" title="Permalink to this headline"></a></h1>
+</section>
+<section id="quick-start-guide">
+<h1>Quick start guide<a class="headerlink" href="#quick-start-guide" title="Permalink to this headline"></a></h1>
 <section id="input-data">
 <h2>Input data<a class="headerlink" href="#input-data" title="Permalink to this headline"></a></h2>
 <p>Orthoflow works from an input CSV file with information about the data sources  to be used. Preparing this file is central to setting up your run. The default filename for this is <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code>.</p>
@@ -228,8 +227,7 @@
 </section>
 <section id="report-and-diagnostics">
 <h3>Report and diagnostics<a class="headerlink" href="#report-and-diagnostics" title="Permalink to this headline"></a></h3>
-<p>The report provides a comprehensive overview of the results, the analysis settings used and citations of the software used to produce the results. <strong>THIS CAN BE FOUND WHERE??</strong></p>
-<p><strong>EDUCATE USERS ABOUT THE DIAGNOSTICS</strong></p>
+<p>The report provides an overview of the results, the analysis settings used and citations of the software used to produce the results. This report is found in the <code class="docutils literal notranslate"><span class="pre">results/report.html</span></code></p>
 </section>
 <section id="output-logs">
 <h3>Output logs<a class="headerlink" href="#output-logs" title="Permalink to this headline"></a></h3>
@@ -243,7 +241,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="advanced_tutorial.html" class="btn btn-neutral float-right" title="Orthoflow Advanced Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="advanced_tutorial.html" class="btn btn-neutral float-right" title="Advanced Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
