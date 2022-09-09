@@ -48,7 +48,7 @@ Controlling the flow of operations
 
 By default, Orthoflow uses the *de novo* orthology inference module (OrthoFinder and OrthoSNAP) and supermatrix-based tree inference (supermatrix module).
 
-![](../_static/diagram.png)
+.. image:: ../_static/images/orthoflow-workflow-diagram.svg
 
 This can be changed in the configuration file. Setting the ``use_orthofisher`` to ``True`` will enable the ortholog fishing module instead of the *de novo* orthology inference module. This also requires you to specify a set of HMM profiles listed under ``orthofisher_hmmer_files``. For example:
 
