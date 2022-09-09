@@ -24,8 +24,8 @@ Welcome to orthoflow's documentation!
    main/orthologs
    main/alignment
    main/supermatrix
-   main/workflow_dev
-   main/rules
+   .. main/workflow_dev
+   .. main/rules
    main/contributing
    main/citation
 

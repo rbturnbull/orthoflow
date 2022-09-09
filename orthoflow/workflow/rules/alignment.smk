@@ -35,7 +35,7 @@ rule mafft:
         mem="8G",
         cpus=4,
     conda:
-        "../envs/mafft.yaml"
+        ENV_DIR / "mafft.yaml"
     shell:
         """
         mafft --thread {threads} --auto {input} > {output}
@@ -72,7 +72,7 @@ checkpoint taxon_only:
     output:
         f"results/alignment/taxon_only/{{og}}.taxon_only.{alignment_type}.alignment.fa"
     conda:
-        "../envs/typer.yaml"
+        ENV_DIR / "typer.yaml"
     shell:
         "python {SCRIPT_DIR}/taxon_only.py {input} {output}"
 
@@ -93,7 +93,7 @@ rule thread_dna:
     bibs:
         "../bibs/phykit.bib"
     conda:
-        "../envs/phykit.yaml"
+        ENV_DIR / "phykit.yaml"
     shell:
         """
         phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output}
@@ -112,7 +112,7 @@ checkpoint trim_alignments:
     bibs:
         "../bibs/clipkit.bib"
     conda:
-        "../envs/clipkit.yaml"
+        ENV_DIR / "clipkit.yaml"
     shell:
         """
         clipkit {input} -m smart-gap -o {output}
