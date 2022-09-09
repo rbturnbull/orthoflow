@@ -10,7 +10,7 @@ Welcome to orthoflow's documentation!
    :start-after: start-badges
    :end-before: end-badges
 
-.. image:: https://raw.githubusercontent.com/rbturnbull/orthoflow/master/docs/_static/images/orthoflow-banner.svg   
+.. image:: https://raw.githubusercontent.com/rbturnbull/orthoflow/master/docs/source/_static/images/orthoflow-banner.svg
 
 .. toctree::
    :maxdepth: 2

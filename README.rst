@@ -2,7 +2,7 @@
 Orthoflow
 ======================
 
-.. image:: https://raw.githubusercontent.com/rbturnbull/orthoflow/master/docs/_static/images/orthoflow-banner.svg
+.. image:: https://raw.githubusercontent.com/rbturnbull/orthoflow/master/docs/source/_static/images/orthoflow-banner.svg
 
 .. start-badges
 
