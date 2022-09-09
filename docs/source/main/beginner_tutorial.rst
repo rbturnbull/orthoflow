@@ -65,9 +65,7 @@ All output files are saved in the ``results`` directory. Output files are subdiv
 
 Report and diagnostics
 ----------------------
-The report provides a comprehensive overview of the results, the analysis settings used and citations of the software used to produce the results. **THIS CAN BE FOUND WHERE??**
-
-**EDUCATE USERS ABOUT THE DIAGNOSTICS**
+The report provides an overview of the results, the analysis settings used and citations of the software used to produce the results. This report is found in the ``results/report.html``
 
 Output logs
 -----------

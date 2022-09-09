@@ -16,3 +16,4 @@ tests/test-data/logs/*
 tests/.tests-conda
 tests/test-data/results/
 tests/.conda
+docs/_build/

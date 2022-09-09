@@ -27,14 +27,8 @@ You can pass any snakemake arguments to orthoflow. To list these, run:
 Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (``orthoflow/config/config.yml``) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.
 
 
-Input and output paths
-======================
-
-To use a specific target file with input sources, give that as an argument:
-
-.. code-block::
-
-    orthoflow path/to/target/input-sources-file
+Setting working directory and specifying targets
+================================================
 
 To set a working directory different to the current directory, use the `--directory` flag:
 
@@ -42,6 +36,11 @@ To set a working directory different to the current directory, use the `--direct
 
     orthoflow --directory path/to/working/dir
 
+To use a specific target, give that as an argument. For instance to produce the list of protein alignments, run as follows
+
+.. code-block::
+
+    orthoflow results/alignment/alignments_list.protein.txt
 
 
 Controlling the flow of operations
@@ -111,9 +110,3 @@ To specify a model of sequence evolution, the config file has a ``model_string``
 
 For bootstrapping, you can specify the ``bootstrap_string`` variable in the config file. By default, this is set to ``bootstrap_string: "-bb 1000"`` to carry out 1000 ultrafast bootstrap replicates. To change this to 100 standard (nonparametric) bootstraps, for instance, use ``bootstrap_string: "-b 100"``. See the `IQ-tree documentation <http://www.iqtree.org/doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation>`_ for further information on how to specify bootstrapping.
 
-
-Other topics ????
-=================
-
-- running on HPC (but perhaps this can go in the installation instructions instead, as it's mostly setup/configuration)
-- 
