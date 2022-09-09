@@ -1,5 +1,5 @@
 ======================
-orthoflow
+Orthoflow
 ======================
 
 .. image:: https://raw.githubusercontent.com/rbturnbull/orthoflow/master/docs/_static/images/orthoflow-banner.svg
@@ -27,6 +27,20 @@ orthoflow
     :target: CONTRIBUTING.html#code-of-conduct
 
 .. end-badges
+
+Orthoflow is a workflow for phylogenetic inference of genome-scale datasets of protein-coding genes. 
+Our goal was to make it straightforward to work from a combination of input sources including annotated contigs in Genbank format and FASTA files containing CDSs.
+It uses several state of the art inference methods for orthology inference, either based on HMM profiles or de novo inference of orthogroups.
+Through the use of OrthoSNAP, many additional ortholog alignments can be generated from multi-copy gene families.
+For phylogenetic inference, users can choose a supermatrix approach and/or gene tree inference followed by supertree reconstruction.
+Users can specify a range of alignment filtering settings to retain high-quality alignments for phylogenetic inference.
+The workflow produces a detailed report that, in addition to the phylogenetic results, includes a range of diagnostics to verify the quality of the results.
+
+
+.. image:: docs/source/_static/images/orthoflow-workflow-diagram.svg
+
+Documentation
+=============
 
 Documentation at https://rbturnbull.github.io/orthoflow/
 
