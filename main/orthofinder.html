@@ -184,7 +184,7 @@
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-generate_orthosnap_input">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">generate_orthosnap_input</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L91"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-generate_orthosnap_input" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">generate_orthosnap_input</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L94"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-generate_orthosnap_input" title="Permalink to this definition"></a></dt>
 <dd><p>Copy the OGs with more than a minimum number of sequences and copy the associated gene trees to prepare for use in orthosnap.</p>
 <dl class="field-list">
 <dt class="field-odd">Config</dt>
@@ -210,7 +210,7 @@
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-orthosnap">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthosnap</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthosnap" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthosnap</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L113"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthosnap" title="Permalink to this definition"></a></dt>
 <dd><p>Run Orthosnap to retrieve single-copy orthologs.</p>
 <dl class="field-list">
 <dt class="field-odd">Output</dt>
@@ -243,7 +243,7 @@
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-orthofinder_all">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthofinder_all</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L168"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_all" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthofinder_all</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L171"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_all" title="Permalink to this definition"></a></dt>
 <dd><p>Collects all the SC-OGs and the SNAP OGs and creates symlinks for each in a single directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Config</dt>
