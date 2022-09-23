@@ -68,20 +68,23 @@ checkpoint split_scogs_and_multi_copy_ogs:
         mkdir -p {output.multi_copy_ogs}
         mkdir -p {output.scogs}
         for i in $(ls {input}/Orthogroup_Sequences/); do
-            echo $i
-            taxa_and_counts=$(grep ">" {input}/Orthogroup_Sequences/$i | sed 's/|.*$//g' | sed 's/>//g' | sort | uniq -c)
-            num_taxa_multicopy=$(echo "$taxa_and_counts" | awk '{{if ($1!=1) print $0}}' | wc -l)
-            num_taxa_singlecopy=$(echo "$taxa_and_counts" | awk '{{if ($1==1) print $0}}' | wc -l)
-
-            if [[ $num_taxa_multicopy -gt 0 ]]; then
-                echo "multi-copy" # and run orthosnap
-                ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.multi_copy_ogs}/$i
-            elif [[ $num_taxa_singlecopy -ge {params.min_seqs} ]] && [[ $num_taxa_multicopy -eq 0 ]]; then
-                echo "single-copy" # and pass to alignment file
-                ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.scogs}/$i
+            ntaxa=$(grep ">" {input}/Orthogroup_Sequences/$i | sed 's/|.*$//g' | sed 's/>//g' | sort | uniq -c | wc -l)
+            if [[ $ntaxa -ge {params.min_seqs} ]]; then
+                taxa_and_counts=$(grep ">" {input}/Orthogroup_Sequences/$i | sed 's/|.*$//g' | sed 's/>//g' | sort | uniq -c)
+                num_taxa_multicopy=$(echo "$taxa_and_counts" | awk '{{if ($1!=1) print $0}}' | wc -l)
+                num_taxa_singlecopy=$(echo "$taxa_and_counts" | awk '{{if ($1==1) print $0}}' | wc -l)
+                    if [[ $num_taxa_multicopy -gt 0 ]]; then
+                        echo "$i multi-copy" # and run orthosnap
+                        ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.multi_copy_ogs}/$i
+                    elif [[ $num_taxa_singlecopy -ge {params.min_seqs} ]] && [[ $num_taxa_multicopy -eq 0 ]]; then
+                        echo "$i single-copy" # and pass to alignment file
+                        ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.scogs}/$i
+                    fi
+            else
+                echo "$i too few taxa" # and do not include in downstream analysis
             fi
         done
-        """   
+        """
 
 
 def get_multi_copy_ogs(wildcards):
