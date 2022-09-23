@@ -76,7 +76,7 @@ rule extract_cds:
         fi
 
         # Sanitize the IDs
-        sed '/^>/s/;/_/g;s/ //g' {output} > {output}.tmp && mv {output}.tmp {output}
+        sed '/^>/s/;/_/g;s/ //g;s/\[/_/g;s/\]/_/g' {output} > {output}.tmp && mv {output}.tmp {output}
         """
 
 rule add_taxon:
