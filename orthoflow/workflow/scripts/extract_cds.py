@@ -23,7 +23,12 @@ def extract_cds(
             for feat in seq.features:
                 if feat.type == "CDS":
                     feat_seq = feat.extract(seq)
-                    print(">", seq.id, "|", feat.qualifiers["gene"][0], "\n", feat_seq.seq, sep="", file=fout)
+                    gene = "NA"
+                    try:
+                        gene = feat.qualifiers["gene"][0]
+                    except:
+                        logger.debug(f"Gene without gene name encountered in {infile}")
+                    print(">", seq.id, "|", gene, "\n", feat_seq.seq, sep="", file=fout)
                     counter += 1
 
     logger.debug(f"Extracted {counter} CDS from {infile} → {outfile}.")
