@@ -5,6 +5,7 @@ from typing import Optional
 
 import snakemake
 import typer
+from appdirs import user_cache_dir
 
 app = typer.Typer()
 
@@ -14,6 +15,10 @@ def _print_snakemake_help(value: bool):
         snakemake.main("-h")
 
 
+def get_default_conda_prefix() -> Path:
+    return Path(user_cache_dir("orthoflow"))/"conda"
+
+
 @app.command(
     context_settings={"allow_extra_args": True, "ignore_unknown_options": True, "help_option_names": ["-h", "--help"]},
 )
@@ -21,6 +26,7 @@ def run(
     ctx: typer.Context,
     directory: Optional[Path] = typer.Option(Path("."), file_okay=False, exists=True, dir_okay=True),
     cores: Optional[int] = typer.Option(1, "--cores", "-c", help="Number of cores to request for the workflow"),
+    conda_prefix:Path = typer.Option(None, envvar="ORTHOFLOW_CONDA_PREFIX"),
     help_snakemake: Optional[bool] = typer.Option(
         False,
         "--help-snakemake",
@@ -48,11 +54,14 @@ def run(
     except (subprocess.CalledProcessError, FileNotFoundError):
         mamba_found = False
 
+    conda_prefix = conda_prefix or get_default_conda_prefix()
+
     args = [
         f"--snakefile={snakefile}",
         "--use-conda",
         f"--cores={cores}",
         f"--directory={directory}",
+        f"--conda-prefix={conda_prefix}"
         f"--rerun-triggers=mtime", # hack for issue #69
     ]
     if not mamba_found:

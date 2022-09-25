@@ -26,6 +26,7 @@ Flask = "^2.1.2"
 biopython = "^1.79"
 Jinja2 = "^3.1.2"
 pydot = "^1.4.2"
+appdirs = "^1.4.4"
 
 [tool.poetry.dev-dependencies]
 Sphinx = "^4.4.0"
