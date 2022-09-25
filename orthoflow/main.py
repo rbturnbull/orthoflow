@@ -61,7 +61,7 @@ def run(
         "--use-conda",
         f"--cores={cores}",
         f"--directory={directory}",
-        f"--conda-prefix={conda_prefix}"
+        f"--conda-prefix={conda_prefix}",
         f"--rerun-triggers=mtime", # hack for issue #69
     ]
     if not mamba_found:
