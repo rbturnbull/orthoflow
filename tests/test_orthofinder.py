@@ -18,5 +18,5 @@ def test_generate_orthosnap_input(run_workflow):
 
 def test_orthosnap(run_workflow):
     workflow = run_workflow("results/orthofinder/orthosnap/OG0000049/")
-    workflow.assert_contains(">Derbesia_sp_WEST4838|0|KX808497.1|rps18\n", expected_files="results/orthofinder/orthosnap/OG0000049/OG0000049.fa.orthosnap.0.fa")
-    workflow.assert_contains("MKKYNPRRRRRRKKR", expected_files="results/orthofinder/orthosnap/OG0000049/OG0000049.fa.orthosnap.0.fa")
+    workflow.assert_contains(">Derbesia_sp_WEST4838|0|KX808497.1|rps18\n", expected_files="results/orthofinder/orthosnap/OG0000049/OG0000049_orthosnap_0.fa")
+    workflow.assert_contains("MKKYNPRRRRRRKKR", expected_files="results/orthofinder/orthosnap/OG0000049/OG0000049_orthosnap_0.fa")
