@@ -131,7 +131,7 @@ checkpoint orthosnap:
         orthosnap -f {input.fasta} -t {input.tree} --occupancy {params.occupancy}
         mkdir -p {output}
         for file in $(find results/orthofinder/orthosnap_input -name '{wildcards.og}.fa.orthosnap.*.fa') ; do
-            mv $file {output}
+            mv $file {output}/$(basename $file | sed 's/\.fa\.orthosnap\./_orthosnap_/g')
         done
         """
 
