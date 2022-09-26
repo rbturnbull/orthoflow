@@ -69,7 +69,7 @@ rule supermatrix_iqtree:
         model_string=config.get("model_string", MODEL_STRING_DEFAULT),
         supermatrix_outgroup_string=f"-o {supermatrix_outgroup}" if supermatrix_outgroup else "",
     shell:
-        "iqtree2 -s {input} {params.bootstrap_string} {params.model_string} {params.supermatrix_outgroup_string} -ntmax {threads} -redo"
+        "iqtree2 -s {input} {params.bootstrap_string} {params.model_string} {params.supermatrix_outgroup_string} -ntmax {threads} -nt AUTO -redo"
 
 
 rule supermatrix_ascii:
