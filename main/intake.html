@@ -118,15 +118,10 @@
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-extract_cds">
 <span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">extract_cds</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L49"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-extract_cds" title="Permalink to this definition"></a></dt>
-<dd><p>Extracts CDS features from GenBank files or copies the CDS file.</p>
-<p>Not used if input files already at in fasta format.</p>
+<dd><p>Extracts CDS features from GenBank or fasta files.</p>
 <dl class="field-list">
-<dt class="field-odd">Note</dt>
-<dd class="field-odd"><p>We use <code class="docutils literal notranslate"><span class="pre">cp</span></code> for existing fasta files instead of <code class="docutils literal notranslate"><span class="pre">ln</span></code> due to
-Snakemake having trouble identifying the creation of the symlinks.</p>
-</dd>
-<dt class="field-even">Conda</dt>
-<dd class="field-even"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
 <span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biopython</span><span class="w"></span>
@@ -142,7 +137,7 @@ Snakemake having trouble identifying the creation of the symlinks.</p>
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-add_taxon">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">add_taxon</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L82"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-add_taxon" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">add_taxon</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L78"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-add_taxon" title="Permalink to this definition"></a></dt>
 <dd><p>Prepends the taxon name to the description of each sequence in a CDS file.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
@@ -164,7 +159,7 @@ Snakemake having trouble identifying the creation of the symlinks.</p>
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-translate">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">translate</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L98"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-translate" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">translate</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L94"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-translate" title="Permalink to this definition"></a></dt>
 <dd><p>Translates coding sequences to amino acid sequences using BioKIT.</p>
 <p>It relies on the <cite>translation_table</cite> column in the input CSV.
 It expects a number there which corresponds with the NCBI genetic codes:
