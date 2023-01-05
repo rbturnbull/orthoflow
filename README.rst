@@ -9,7 +9,7 @@ Orthoflow
 |pipeline badge| |docs badge| |black badge| |snakemake badge| |git3moji badge| |contributor covenant badge|
 
 .. |pipeline badge| image:: https://github.com/rbturnbull/orthoflow/actions/workflows/testing.yml/badge.svg
-    :target: https://rbturnbull.github.io/orthoflow
+    :target: https://github.com/rbturnbull/orthoflow/actions/workflows/testing.yml
 
 .. |docs badge| image:: https://github.com/rbturnbull/orthoflow/actions/workflows/docs.yml/badge.svg
     :target: https://rbturnbull.github.io/orthoflow/
