@@ -48,12 +48,8 @@ def input_sources_item(source, column):
 
 rule extract_cds:
     """
-    Extracts CDS features from GenBank files or copies the CDS file.
+    Extracts CDS features from GenBank or fasta files.
 
-    Not used if input files already at in fasta format.
-
-    :note: We use ``cp`` for existing fasta files instead of ``ln`` due to
-           Snakemake having trouble identifying the creation of the symlinks.
     """
     output:
         "results/intake/{source}.cds.fa",
@@ -70,13 +66,13 @@ rule extract_cds:
     shell:
         """
         if [ "{params.is_genbank}" = "True" ] ; then
-            python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output}
+            python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} Genbank
         else
-            cp {input.file} {output}
+            python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} fasta
         fi
 
         # Sanitize the IDs
-        sed '/^>/s/;/_/g;s/ //g;s/\[/_/g;s/\]/_/g' {output} > {output}.tmp && mv {output}.tmp {output}
+        # sed '/^>/s/;/_/g;s/ //g;s/\[/_/g;s/\]/_/g' {output} > {output}.tmp && mv {output}.tmp {output}
         """
 
 rule add_taxon:

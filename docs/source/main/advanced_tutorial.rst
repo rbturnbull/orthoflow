@@ -68,6 +68,7 @@ The orthofisher and orthofinder paths are mutually exclusive.
 
 By default, a phylogeny is inferred from a supermatrix. To use the supertree (ASTRAL) path for tree inference, set ``supertree: True``. If both ``supermatrix`` and ``supertree`` are set to ``True``, the workflow will run both types of inference.
 
+You can also run the workflow up to any given point by specifying the rule with the snakemake `--until`` flag, specifying the rule where you'd like to stop. An example might be where you want to produce the CDS nucleotide alignments for all orthogroups but no trees. In that case you could set the `infer_tree_with_protein_seqs: False` to indicate that you wish nucleotide alignments to be produced, activate supermatrix inference (`supermatrix: True`) but keep snakemake from actually producing the supermatrix using `--until concatenate_alignments`. Snakemake will run everything up until the start of this rule (which concatenates the single-gene alignments into the supermatrix), so the output will include the DNA alignments.
 
 Gene and alignment filtering settings
 =====================================
