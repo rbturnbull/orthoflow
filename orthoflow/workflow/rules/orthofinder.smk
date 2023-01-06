@@ -165,7 +165,11 @@ def combine_scogs_and_snap_ogs(wildcards):
             "in the configuration file so that at least some orthologs can be used."
         )
 
-    return list_orthofinder_scogs(wildcards) + list_orthosnap_snap_ogs(wildcards)
+    all_ogs = list_orthofinder_scogs(wildcards) + list_orthosnap_snap_ogs(wildcards)
+    if len(all_ogs) == 0:
+        raise Exception("No orthogroups found. Please check your input file.")
+
+    return all_ogs
 
 
 checkpoint orthofinder_all:
