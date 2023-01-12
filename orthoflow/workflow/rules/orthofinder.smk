@@ -10,6 +10,8 @@ orthofinder_use_snap_ogs = config.get('orthofinder_use_snap_ogs', True)
 rule orthofinder:
     """
     Runs `OrthoFinder <https://github.com/davidemms/OrthoFinder>`_ on fasta files from the intake rule.
+
+    OrthoFinder runs to the point of orthogroup inference.
     """
     input:
         input_csv['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
@@ -27,8 +29,24 @@ rule orthofinder:
     shell:
         """
         mkdir -p results/orthofinder
-        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -ot -M msa -X
+        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X
         mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output}
+        """
+
+
+rule filter_separate_ogs:
+    """filtering and separating OGs"""
+    input:
+        fasta="results/orthofinder/output/Orthogroup_Sequences/{og}.fa"
+    output:
+        "results/orthofinder/filtered-report/{og}.txt"
+    conda:
+        ENV_DIR / "perl.yaml"
+    params:
+        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
+    shell:
+        """
+        {SCRIPT_DIR}/filter_separate_ogs.pl {input} {output} {params.min_seqs} results/orthofinder/scogs results/orthofinder/mcogs
         """
 
 
