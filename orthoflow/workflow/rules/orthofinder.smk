@@ -50,6 +50,39 @@ rule filter_separate_ogs:
         """
 
 
+checkpoint orthosnap:
+    """
+    Run Orthosnap to retrieve single-copy orthologs.
+
+    :output: A directory with an unknown number of fasta files.
+    :config orthosnap_occupancy: by default it uses ortholog_min_seqs
+    """
+    input:
+        "results/orthofinder/mcogs/{og}.fa"
+    output:
+        alignment=temp("results/orthofinder/tmp/{og}.aln"),
+        tree=temp("results/orthofinder/tmp/{og}.nwk"),
+        snap_ogs=directory("results/orthofinder/orthosnap/{og}")
+    params:
+        occupancy=config.get("orthosnap_occupancy", config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
+    conda:
+        ENV_DIR / "orthosnap.yaml"
+    shell:
+        r"""
+        mafft {input} > {output.alignment}
+        fasttree {output.alignment} > {output.tree}
+        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy}
+        
+        mkdir -p {output.snap_ogs}
+        for file in $(find results/orthofinder/tmp -name '{wildcards.og}.aln.orthosnap.*.fa') ; do
+            basename $file
+            basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g'
+            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g')
+        done
+        """
+
+
+
 rule orthofinder_report_components:
     """
     Converts the orthofinder output to HTML components that will be used in the Orthoflow report.
@@ -128,7 +161,7 @@ checkpoint generate_orthosnap_input:
         f"python {SCRIPT_DIR}/generate_orthosnap_input.py {{input.multi_copy_ogs}} {{input.orthofinder_output}}/Gene_Trees/ {{output}} {{params.min_seqs}}"
  
 
-checkpoint orthosnap:
+checkpoint orthosnap_old:
     """
     Run Orthosnap to retrieve single-copy orthologs.
 
@@ -139,7 +172,7 @@ checkpoint orthosnap:
         fasta="results/orthofinder/orthosnap_input/{og}.fa",
         tree="results/orthofinder/orthosnap_input/{og}.nwk"
     output:
-        directory("results/orthofinder/orthosnap/{og}")
+        directory("results/orthofinder/orthosnap_old/{og}")
     params:
         occupancy=config.get("orthosnap_occupancy", config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
     conda:
