@@ -53,12 +53,14 @@ def orthofinder_report_components(
         report_dir/"Orthogroups_SpeciesOverlaps.html"
     )
 
-    df = pd.read_csv(orthofinder_dir/"Comparative_Genomics_Statistics/OrthologuesStats_Totals.tsv", sep="\t")
-    df = df.rename(columns={"Unnamed: 0":"Input"}).set_index('Input')
-    pandas_to_bootstrap(
-        df, 
-        report_dir/"OrthologuesStats_Totals.html"
-    )
+    # Get OG totals stats
+    # no longer applicable since we are not using the full orthofinder workflow
+    # df = pd.read_csv(orthofinder_dir/"Comparative_Genomics_Statistics/OrthologuesStats_Totals.tsv", sep="\t")
+    # df = df.rename(columns={"Unnamed: 0":"Input"}).set_index('Input')
+    # pandas_to_bootstrap(
+    #     df, 
+    #     report_dir/"OrthologuesStats_Totals.html"
+    # )
 
     
 
