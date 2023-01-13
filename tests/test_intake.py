@@ -1,17 +1,20 @@
 
 def test_extract_cds(run_workflow):
-    w = run_workflow("results/intake/MH591079.cds.fa")
-    w.assert_contains(">MH591079.1|cysT")
-    w.assert_contains(">MH591079.1|rpoC2")
+    w = run_workflow("results/intake/MH591083-truncated.cds.fa")
+    w.assert_contains(">MH591083-truncated.gb|0|petG")
+    w.assert_contains(">MH591083-truncated.gb|1|psaI")
 
-def test_add_taxon_KX808497(run_workflow):
-    w = run_workflow("results/intake/taxon-added/KX808497.cds.fasta")
-    w.assert_contains(">Derbesia_sp_WEST4838|0|KX808497.1|orf153")
 
-def test_add_taxon_MH591080(run_workflow):
-    w = run_workflow("results/intake/taxon-added/MH591080.cds.fasta")
-    w.assert_contains(">Dichotomosiphon_tuberosus_HV03781|0|MH591080.1|psbA")
+def test_add_taxon_MH591083(run_workflow):
+    w = run_workflow("results/intake/taxon-added/MH591083-truncated.cds.fasta")
+    w.assert_contains(">Flabellia_petiolata_HV01202|0|MH591083-truncated.gb|0|petG")
+
+
+def test_add_taxon_KY819064(run_workflow):
+    w = run_workflow("results/intake/taxon-added/KY819064.cds.fasta")
+    w.assert_contains(">Chlorodesmis_fastigiata_HV03865|0|KY819064.cds.fasta|0")
+
 
 def test_translate(run_workflow):
-    w = run_workflow("results/intake/translated/KX808497.protein.fa")
-    w.assert_contains("LNIILKVFIVNQKCDLYIKYLVLCTYFKDITCIQLPSKVKPKKPIIVELSMLETLDDSFG")
+    w = run_workflow("results/intake/translated/NC_026795-truncated.protein.fa")
+    w.assert_contains("MSIQISLRQFINKSINTLFLCGIFLYANPQDTFAYPIFAQQNYENPREPNGRLVCANCHL")

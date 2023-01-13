@@ -24,15 +24,10 @@ jobs:
       id: cache
       uses: actions/cache@v3
       with:
-        key: ${{ runner.os }}-${{ matrix.python-version }}-cache
+        key: ${{ runner.os }}-${{ matrix.python-version }}-conda-cache
         path: |
-          tests/test-data/results/
-          tests/test-data/.snakemake/conda/
-    - name: Run Workflow
-      run: |
-        poetry run orthoflow --directory tests/test-data
-        poetry run orthoflow --directory tests/test-data --config infer_tree_with_protein_seqs=0
-        poetry run orthoflow --directory tests/test-data results/orthofisher/min-seq-filtered
+          ~/conda
     - name: Testing
       run: |
+        export ORTHOFLOW_CONDA_PREFIX=~/conda
         poetry run pytest

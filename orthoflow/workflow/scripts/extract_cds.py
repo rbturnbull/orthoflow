@@ -42,11 +42,14 @@ def extract_cds(
                         if modulo != 0:
                             seq_str = seq_str[0:len(seq_str)-modulo]
                             logger.debug(f"CDS of length not divisible by 3 encountered in {infile}; sequence has been trimmed at end")
-                        print(">", infile, "|", counter, "|", gene, "\n", seq_str, sep="", file=fout)
+                        
+                        print(f">{infile.name}|{counter}|{gene}", file=fout)
+                        print(seq_str, file=fout)
                         counter += 1
         elif seqformat == "fasta":
             for seq in SeqIO.parse(infile, "fasta"):
-                print(">", infile, "|", counter, "\n", seq.seq, sep="", file=fout)
+                print(f">{infile.name}|{counter}", file=fout)
+                print(seq.seq, file=fout)
                 counter += 1
 
     logger.debug(f"Extracted {counter} CDS from {infile} → {outfile}.")
