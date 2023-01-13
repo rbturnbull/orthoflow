@@ -7,7 +7,7 @@ orthofinder_use_scogs = config.get('orthofinder_use_scogs', True)
 orthofinder_use_snap_ogs = config.get('orthofinder_use_snap_ogs', True)
 
 
-rule orthofinder:
+checkpoint orthofinder:
     """
     Runs `OrthoFinder <https://github.com/davidemms/OrthoFinder>`_ on fasta files from the intake rule.
 
@@ -34,20 +34,46 @@ rule orthofinder:
         """
 
 
-rule filter_separate_ogs:
-    """filtering and separating OGs"""
+checkpoint orthogroup_classification:
+    """
+    Classifies orthogroups as single-copy or multi-copy or rejects them for not having enough sequences or taxa.
+    """
     input:
-        fasta="results/orthofinder/output/Orthogroup_Sequences/{og}.fa"
+        rules.orthofinder.output
     output:
-        "results/orthofinder/filtered-report/{og}.txt"
+        mcogs="results/orthofinder/mcogs.txt",
+        scogs="results/orthofinder/scogs.txt",
     conda:
-        ENV_DIR / "perl.yaml"
+        ENV_DIR / "joblib.yaml"
     params:
         min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
+        min_taxa=config.get("ortholog_min_taxa", ORTHOLOG_MIN_TAXA_DEFAULT),
     shell:
         """
-        {SCRIPT_DIR}/filter_separate_ogs.pl {input} {output} {params.min_seqs} results/orthofinder/scogs results/orthofinder/mcogs
+        python {SCRIPT_DIR}/orthogroup_classification.py \
+            {input}/Orthogroup_Sequences/ \
+            --mcogs {output.mcogs} \
+            --scogs {output.scogs} \
+            --min-seqs {params.min_seqs} \
+            --min-taxa {params.min_taxa}
         """
+
+
+def list_orthofinder_ogs(wildcards):
+    checkpoint_output = checkpoints.orthofinder.get(**wildcards).output
+    sequences_dir = Path(checkpoint_output[0])/"Orthogroup_Sequences"
+    ogs = [path.name.split(".")[0] for path in sequences_dir.glob("*.fa")]
+    filtered_reports = [f"results/orthofinder/filtered-report/{og}.txt" for og in ogs]
+    return filtered_reports
+
+
+checkpoint list_orthofinder_ogs_rule:
+    input:
+        list_orthofinder_ogs
+    output:
+        "results/list_orthofinder_ogs.txt"
+    shell:
+        "echo {input} > {output}"
 
 
 checkpoint orthosnap:
@@ -97,95 +123,6 @@ rule orthofinder_report_components:
         "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output}"
 
 
-checkpoint split_scogs_and_multi_copy_ogs:
-    """
-    Takes the output of orthofinder and outputs the SCOGs.
-
-    It is more liberal than orthofinder SCOGs.
-
-    # TODO think about making this work per file
-
-    :config ortholog_min_seqs: Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
-    """
-    input:
-        rules.orthofinder.output,
-    output:
-        scogs=directory("results/orthofinder/scogs"),
-        multi_copy_ogs=directory("results/orthofinder/multi_copy_ogs"),
-    params:
-        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
-    shell:
-        """
-        mkdir -p {output.multi_copy_ogs}
-        mkdir -p {output.scogs}
-        for i in $(ls {input}/Orthogroup_Sequences/); do
-            ntaxa=$(grep ">" {input}/Orthogroup_Sequences/$i | sed 's/|.*$//g' | sed 's/>//g' | sort | uniq -c | wc -l)
-            if [[ $ntaxa -ge {params.min_seqs} ]]; then
-                taxa_and_counts=$(grep ">" {input}/Orthogroup_Sequences/$i | sed 's/|.*$//g' | sed 's/>//g' | sort | uniq -c)
-                num_taxa_multicopy=$(echo "$taxa_and_counts" | awk '{{if ($1!=1) print $0}}' | wc -l)
-                num_taxa_singlecopy=$(echo "$taxa_and_counts" | awk '{{if ($1==1) print $0}}' | wc -l)
-                    if [[ $num_taxa_multicopy -gt 0 ]]; then
-                        echo "$i multi-copy" # and run orthosnap
-                        ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.multi_copy_ogs}/$i
-                    elif [[ $num_taxa_singlecopy -ge {params.min_seqs} ]] && [[ $num_taxa_multicopy -eq 0 ]]; then
-                        echo "$i single-copy" # and pass to alignment file
-                        ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.scogs}/$i
-                    fi
-            else
-                echo "$i too few taxa" # and do not include in downstream analysis
-            fi
-        done
-        """
-
-
-def get_multi_copy_ogs(wildcards):
-    return checkpoints.split_scogs_and_multi_copy_ogs.get(**wildcards).output.multi_copy_ogs
-
-
-checkpoint generate_orthosnap_input:
-    """
-    Copy the OGs with more than a minimum number of sequences and copy the associated gene trees to prepare for use in orthosnap.
-
-    :config ortholog_min_seqs: Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
-    """
-    input:
-        multi_copy_ogs=get_multi_copy_ogs,
-        orthofinder_output=rules.orthofinder.output
-    output:
-        directory("results/orthofinder/orthosnap_input"),
-    conda:
-        ENV_DIR / "typer.yaml"
-    params:
-        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
-    shell:
-        f"python {SCRIPT_DIR}/generate_orthosnap_input.py {{input.multi_copy_ogs}} {{input.orthofinder_output}}/Gene_Trees/ {{output}} {{params.min_seqs}}"
- 
-
-checkpoint orthosnap_old:
-    """
-    Run Orthosnap to retrieve single-copy orthologs.
-
-    :output: A directory with an unknown number of fasta files.
-    :config orthosnap_occupancy: by default it uses ortholog_min_seqs
-    """
-    input:
-        fasta="results/orthofinder/orthosnap_input/{og}.fa",
-        tree="results/orthofinder/orthosnap_input/{og}.nwk"
-    output:
-        directory("results/orthofinder/orthosnap_old/{og}")
-    params:
-        occupancy=config.get("orthosnap_occupancy", config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
-    conda:
-        ENV_DIR / "orthosnap.yaml"
-    shell:
-        r"""
-        orthosnap -f {input.fasta} -t {input.tree} --occupancy {params.occupancy}
-        mkdir -p {output}
-        for file in $(find results/orthofinder/orthosnap_input -name '{wildcards.og}.fa.orthosnap.*.fa') ; do
-            mv $file {output}/$(basename $file | sed 's/\.fa\.orthosnap\./_orthosnap_/g')
-        done
-        """
-
 
 def list_orthofinder_scogs(wildcards):
     if use_orthofisher or not orthofinder_use_scogs:
@@ -210,7 +147,7 @@ def list_orthosnap_snap_ogs(wildcards):
 
 
 def combine_scogs_and_snap_ogs(wildcards):
-    if not orthofinder_use_scogs and not orthofinder_use_scogs:
+    if not orthofinder_use_scogs and not orthofinder_use_snap_ogs:
         raise Exception(
             "You need to set either `orthofinder_use_scogs` or `orthofinder_use_snap_ogs` or both "
             "in the configuration file so that at least some orthologs can be used."
