@@ -180,6 +180,7 @@ def run_workflow(tmpdir: Path):
             expected_dir,
             work_dir,
             ignore=shutil.ignore_patterns('.snakemake'),
+            symlinks=True,
         )
 
         sp.check_output(
