@@ -1,7 +1,7 @@
 def test_mafft(run_workflow):
-    w = run_workflow("results/alignment/aligned_proteins/OG0000048.protein.alignment.fa")
-    w.assert_contains(">Derbesia_sp_WEST4838|0|KX808497.1|psbM")
-    w.assert_contains("MEVNILGLIATALFIIIPTSFLLILYVKTASQNS---------")
+    w = run_workflow("results/alignment/aligned_proteins/OG0000000_orthosnap_0.protein.alignment.fa")
+    w.assert_contains(">Caulerpa_cliftonii_HV03798|0|KX808498-truncated.gb|28|psbE")
+    w.assert_contains("TDRLNALKQINKNL---")
 
 
 def test_get_cds_seq(run_workflow):

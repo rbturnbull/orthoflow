@@ -59,9 +59,6 @@ checkpoint orthogroup_classification:
         """
 
 
-rule orthosnap_listing:
-
-
 def list_orthofinder_ogs(wildcards):
     checkpoint_output = checkpoints.orthofinder.get(**wildcards).output
     sequences_dir = Path(checkpoint_output[0])/"Orthogroup_Sequences"
