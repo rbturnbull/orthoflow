@@ -76,6 +76,21 @@ class Workflow:
                         text
                     )
 
+    def assert_line_count(self, expected_count=None, min=None, max=None, expected_files: Optional[TargetsType] = None) -> bool:
+        for expected_file in self.get_expected_paths(expected_files):
+            generated_path = self.work_dir / expected_file
+            with open(generated_path, "r") as f:
+                line_count = sum(1 for _ in f)
+                if expected_count:
+                    assert expected_count == line_count
+
+                if min:
+                    assert line_count >= min
+
+                if max:
+                    assert line_count <= max                
+
+
     def assert_re(self, patterns:Union[str, List[str]], expected_files: Optional[TargetsType] = None,):
         if isinstance(patterns, str):
             patterns = [patterns]
