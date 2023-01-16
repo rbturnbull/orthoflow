@@ -173,6 +173,9 @@ def run_workflow(tmpdir: Path):
         tests_dir = Path(__file__).parent.resolve()
         expected_dir = tests_dir / "test-data-small"
 
+        if not expected_dir.exists():
+            raise FileNotFoundError(f"Cannot find expected dir '{expected_dir}'.")
+
         shutil.copytree(
             expected_dir,
             work_dir,
