@@ -57,3 +57,12 @@ def test_supermatrix_render_cds(run_workflow):
     w = run_workflow("results/supermatrix/supermatrix_tree_render.cds.svg", "--config", "infer_tree_with_protein_seqs=0")
     w.assert_contains('<svg class="toyplot-canvas-Canvas"')
 
+
+def test_supermatrix_consensus_tree_render_protein(run_workflow):
+    w = run_workflow("results/supermatrix/supermatrix_consensus_tree_render.protein.svg")
+    w.assert_contains('<svg class="toyplot-canvas-Canvas"')
+
+
+def test_supermatrix_consensus_tree_render_cds(run_workflow):
+    w = run_workflow("results/supermatrix/supermatrix_consensus_tree_render.cds.svg", "--config", "infer_tree_with_protein_seqs=0")
+    w.assert_contains('<svg class="toyplot-canvas-Canvas"')    
