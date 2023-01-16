@@ -106,7 +106,6 @@ checkpoint orthosnap:
         """
 
 
-
 rule orthofinder_report_components:
     """
     Converts the orthofinder output to HTML components that will be used in the Orthoflow report.

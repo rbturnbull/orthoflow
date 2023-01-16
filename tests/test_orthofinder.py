@@ -19,3 +19,12 @@ def test_orthosnap(run_workflow):
     workflow = run_workflow("results/orthofinder/orthosnap/OG0000000/")
     workflow.assert_contains(">Caulerpa_cliftonii_HV03798|0|KX808498-truncated.gb|28|psbE\n", expected_files="results/orthofinder/orthosnap/OG0000000/OG0000000_orthosnap_0.fa")
     workflow.assert_contains("MSGTPRERPFSDILTSIRYWVIHSITIPSLFIAGWLF", expected_files="results/orthofinder/orthosnap/OG0000000/OG0000000_orthosnap_0.fa")
+
+
+def test_orthofinder_report_components(run_workflow):
+    workflow = run_workflow("results/orthofinder/report")
+    workflow.assert_contains('<div class="table-responsive"><table class="table table-sm table-striped table-hover table-sm align-middle"><', expected_files="results/orthofinder/report/Orthogroups.html")
+    workflow.assert_contains('<th class="header" scope="col">Input</th><th class="header" scope="col">', expected_files="results/orthofinder/report/Orthogroups_SpeciesOverlaps.html")
+    workflow.assert_contains('Chlorodesmis_fastigiata_HV03865|0|KY819064.cds.fasta|16', expected_files="results/orthofinder/report/Orthogroups_UnassignedGenes.html")
+
+    
