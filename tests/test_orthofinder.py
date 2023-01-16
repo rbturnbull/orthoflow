@@ -8,12 +8,11 @@ def test_orthofinder(run_workflow):
     workflow.assert_md5sum("932322266c4a9649de5da3f6171e9ffa", expected_files=orthogroup_sequences_dir / "OG0000000.fa")
 
 
-def test_generate_orthosnap_input(run_workflow):
-    workflow = run_workflow("results/orthofinder/orthosnap_input")
-    orthogroups_dir = workflow.work_dir / workflow.targets[0]
-    n_filtered = sum(1 for f in orthogroups_dir.glob("*.fa") if "orthosnap" not in f.name)
-    assert n_filtered == 4
-    workflow.assert_md5sum("37f95650287346ac84e7704cd1833f14", expected_files=orthogroups_dir / "OG0000049.fa")
+def test_orthogroup_classification(run_workflow):
+    workflow = run_workflow("results/orthofinder/mcogs.txt")
+    workflow.assert_contains("results/orthofinder/output/Orthogroup_Sequences/OG0000000.fa")
+    for i in range(1,6):
+        workflow.assert_contains(f"results/orthofinder/output/Orthogroup_Sequences/OG000000{i}.fa", expected_files="results/orthofinder/scogs.txt")
 
 
 def test_orthosnap(run_workflow):
