@@ -67,15 +67,6 @@ def list_orthofinder_ogs(wildcards):
     return filtered_reports
 
 
-checkpoint list_orthofinder_ogs_rule:
-    input:
-        list_orthofinder_ogs
-    output:
-        "results/list_orthofinder_ogs.txt"
-    shell:
-        "echo {input} > {output}"
-
-
 checkpoint orthosnap:
     """
     Run Orthosnap to retrieve single-copy orthologs.
