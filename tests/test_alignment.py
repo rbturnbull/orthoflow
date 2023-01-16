@@ -5,9 +5,9 @@ def test_mafft(run_workflow):
 
 
 def test_get_cds_seq(run_workflow):
-    w = run_workflow("results/alignment/seqs_cds/OG0000048.cds.seqs.fa", "--config", "infer_tree_with_protein_seqs=0")
-    w.assert_contains(">Derbesia_sp_WEST4838|0|KX808497.1|psbM")
-    w.assert_contains("ATGGAAGTTAATATTTTAGGATTAATTGCTACTGCTCTATTTATTATTATTCCCA")
+    w = run_workflow("results/alignment/seqs_cds/OG0000001.cds.seqs.fa", "--config", "infer_tree_with_protein_seqs=0")
+    w.assert_contains(">Caulerpa_cliftonii_HV03798|0|KX808498-truncated.gb|22|rpl23")
+    w.assert_contains("ATGTTTGATTTTTTAAATAAACCATTAATAACAGAAAAAGCAACTCAACTTATTGAA")
 
 
 def test_thread_dna(run_workflow):

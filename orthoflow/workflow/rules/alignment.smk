@@ -41,6 +41,7 @@ rule mafft:
         mafft --thread {threads} --auto {input} > {output}
         """
 
+
 rule get_cds_seq:
     """
     This rule creates an unaligned mfasta file of the corresponding nucleotide sequences.
