@@ -36,5 +36,16 @@ def test_trim_alignments(run_workflow):
     w.assert_contains("ATGACCGCAGCATATTTACCTCAAATTTTCGTGCCACTCGTTGGTTTATTTTTTCCGCTT")
 
 
+def test_list_alignments(run_workflow):
+    w = run_workflow("results/alignment/alignments_list.protein.txt")
+    w.assert_contains("results/alignment/trimmed/OG0000002.trimmed.protein.alignment.fa\n")
+    w.assert_contains("results/alignment/trimmed/OG0000005.trimmed.protein.alignment.fa\n")    
+
+
+def test_list_alignments_cds(run_workflow):
+    w = run_workflow("results/alignment/alignments_list.cds.txt", "--config", "infer_tree_with_protein_seqs=0")
+    w.assert_contains("results/alignment/trimmed/OG0000002.trimmed.cds.alignment.fa\n")
+    w.assert_contains("results/alignment/trimmed/OG0000005.trimmed.cds.alignment.fa\n")    
+
 
 
