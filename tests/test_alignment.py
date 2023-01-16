@@ -32,8 +32,8 @@ def test_thread_dna(run_workflow):
 
 def test_trim_alignments(run_workflow):
     w = run_workflow("results/alignment/trimmed/OG0000003.trimmed.cds.alignment.fa", "--config", "infer_tree_with_protein_seqs=0")
-    w.assert_contains(">Derbesia_sp_WEST4838\n")
-    w.assert_contains("ATGACAGCTATTTTACAACGTCGCGAAAATACGACTTTATGGGC")
+    w.assert_contains(">Caulerpa_cliftonii_HV03798\n")
+    w.assert_contains("ATGACCGCAGCATATTTACCTCAAATTTTCGTGCCACTCGTTGGTTTATTTTTTCCGCTT")
 
 
 

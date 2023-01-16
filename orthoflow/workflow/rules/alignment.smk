@@ -100,6 +100,7 @@ rule thread_dna:
         phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output}
         """
 
+
 checkpoint trim_alignments:
     """
     Trim multiple-sequence alignments using ClipKIT.
