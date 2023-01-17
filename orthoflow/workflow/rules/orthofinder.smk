@@ -198,7 +198,7 @@ checkpoint orthofinder_all:
                 og=$(basename $i)
                 path={output}/$og
                 echo "Symlinking $(pwd)/$i to $path"
-                ln -s $(pwd)/$i $path
+                ln -s ../../../$i $path
             fi
         done
         """
