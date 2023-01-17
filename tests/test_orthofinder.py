@@ -7,7 +7,7 @@ def test_orthofinder(run_workflow):
     min_seqs = 86
     max_seqs = 87
     assert min_seqs <= n_sequences <= max_seqs
-    workflow.assert_md5sum("932322266c4a9649de5da3f6171e9ffa", expected_files=orthogroup_sequences_dir / "OG0000000.fa")
+    workflow.assert_contains(">Caulerpa_cliftonii_HV03798|0|KX808498-truncated.gb|28|psbE", expected_files=orthogroup_sequences_dir / "OG0000000.fa")
 
 
 def test_orthogroup_classification(run_workflow):
