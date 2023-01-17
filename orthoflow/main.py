@@ -66,6 +66,7 @@ def run(
     ]
     if not mamba_found:
         args.append("--conda-frontend=conda")
+        
     if ctx.args:
         args.extend(ctx.args)
 
