@@ -187,7 +187,7 @@ def run_workflow(tmpdir: Path):
             [
                 "orthoflow",
                 *targets,
-                "-f",
+                "--force",
                 "-j1",
                 "--directory",
                 work_dir,
