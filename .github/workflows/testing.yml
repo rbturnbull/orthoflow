@@ -17,7 +17,7 @@ jobs:
     - name: Install Micromamba
       run: |
           curl micro.mamba.pm/install.sh | bash
-          $(dirname $(which micromamba))/mamba
+          ln -s $(dirname $(which micromamba))/mamba
     - name: Install dependencies for Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
