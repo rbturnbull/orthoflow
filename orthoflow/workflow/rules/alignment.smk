@@ -38,7 +38,7 @@ rule mafft:
         ENV_DIR / "mafft.yaml"
     shell:
         """
-        mafft --thread {threads} --auto {input} > {output}
+        {{ mafft --thread {threads} --auto {input} > {output} ; }} &> {log}
         """
 
 
@@ -58,7 +58,7 @@ rule get_cds_seq:
     conda:
         ENV_DIR / "biopython.yaml"
     shell:
-        "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output}"
+        "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
 
 
 checkpoint taxon_only:
@@ -75,7 +75,7 @@ checkpoint taxon_only:
     conda:
         ENV_DIR / "typer.yaml"
     shell:
-        "python {SCRIPT_DIR}/taxon_only.py {input} {output}"
+        "python {SCRIPT_DIR}/taxon_only.py {input} {output} &> {log}"
 
 
 rule thread_dna:
@@ -97,7 +97,7 @@ rule thread_dna:
         ENV_DIR / "phykit.yaml"
     shell:
         """
-        phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output}
+        {{ phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output} ; }} &> {log}
         """
 
 
@@ -117,7 +117,7 @@ checkpoint trim_alignments:
         ENV_DIR / "clipkit.yaml"
     shell:
         """
-        clipkit {input} -m smart-gap -o {output}
+        clipkit {input} -m smart-gap -o {output} &> {log}
         """
 
 
@@ -192,5 +192,5 @@ rule list_alignments:
         f"results/alignment/alignments_list.{alignment_type}.txt",
     shell:
         """
-        ls -1 {input} > {output}
+        {{ ls -1 {input} > {output} ; }} &> {log}
         """
