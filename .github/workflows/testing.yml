@@ -16,8 +16,8 @@ jobs:
       run: pipx install poetry
     - name: Install Mamba
       run: |
-        wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
-        bash Mambaforge-$(uname)-$(uname -m).sh
+          conda config --set channel_priority strict
+          conda install -c conda-forge -q mamba
     - name: Install dependencies for Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
