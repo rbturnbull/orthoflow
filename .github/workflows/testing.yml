@@ -35,5 +35,4 @@ jobs:
     - name: Testing
       run: |
         export ORTHOFLOW_CONDA_PREFIX=/home/runner/conda-cache
-        ls -l $ORTHOFLOW_CONDA_PREFIX
         poetry run pytest tests/test_report.py
