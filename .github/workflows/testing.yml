@@ -17,8 +17,8 @@ jobs:
     - name: Install Micromamba
       run: |
           curl micro.mamba.pm/install.sh | bash
-          ln -s $(dirname $(which micromamba))/mamba
-          echo ln -s $(dirname $(which micromamba))/mamba
+          ln -s $(which micromamba) $(dirname $(which micromamba))/mamba
+          echo ln -s $(which micromamba) $(dirname $(which micromamba))/mamba
           which micromamba
           micromamba --version
           which mamba
