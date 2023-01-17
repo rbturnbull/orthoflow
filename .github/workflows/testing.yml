@@ -35,4 +35,4 @@ jobs:
       run: |
         export ORTHOFLOW_CONDA_PREFIX=./conda-cache
         mkdir -p $ORTHOFLOW_CONDA_PREFIX
-        poetry run pytest tests/test_intake.py
+        poetry run pytest
