@@ -23,8 +23,10 @@ jobs:
           /home/runner/mamba-cache
     - name: Install Mamba
       run: |
-          wget -O Mambaforge.sh  "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
-          bash Mambaforge.sh -b -p "/home/runner/mamba-cache/mamba"
+          if [ ! -f /home/runner/mamba-cache/mamba/etc/profile.d/conda.sh ] ; then
+            wget -O Mambaforge.sh  "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+            bash Mambaforge.sh -b -p "/home/runner/mamba-cache/mamba"
+          fi
           source "/home/runner/mamba-cache/mamba/etc/profile.d/conda.sh"
           mamba --version
     - name: Install dependencies for Python ${{ matrix.python-version }}
