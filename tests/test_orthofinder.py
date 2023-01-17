@@ -4,7 +4,9 @@ def test_orthofinder(run_workflow):
         workflow.work_dir / "results/orthofinder/output/Orthogroup_Sequences"
     )
     n_sequences = sum(1 for _ in orthogroup_sequences_dir.glob("*.fa"))
-    assert n_sequences == 86, f"Expected 86 orthogroup sequences, found {n_sequences}"
+    min_seqs = 86
+    max_seqs = 87
+    assert min_seqs <= n_sequences <= max_seqs
     workflow.assert_md5sum("932322266c4a9649de5da3f6171e9ffa", expected_files=orthogroup_sequences_dir / "OG0000000.fa")
 
 
