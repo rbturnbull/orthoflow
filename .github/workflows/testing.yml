@@ -38,6 +38,4 @@ jobs:
     - name: Testing
       run: |
         export ORTHOFLOW_CONDA_PREFIX=/home/runner/mamba-cache/orthoflow
-        poetry run pytest tests/test_intake.py
-        poetry run pytest tests/test_report.py
-        poetry run pytest tests/test_orthofinder.py
+        poetry run pytest
