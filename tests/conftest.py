@@ -76,6 +76,21 @@ class Workflow:
                         text
                     )
 
+    def assert_line_count(self, expected_count=None, min=None, max=None, expected_files: Optional[TargetsType] = None) -> bool:
+        for expected_file in self.get_expected_paths(expected_files):
+            generated_path = self.work_dir / expected_file
+            with open(generated_path, "r") as f:
+                line_count = sum(1 for _ in f)
+                if expected_count:
+                    assert expected_count == line_count
+
+                if min:
+                    assert line_count >= min
+
+                if max:
+                    assert line_count <= max                
+
+
     def assert_re(self, patterns:Union[str, List[str]], expected_files: Optional[TargetsType] = None,):
         if isinstance(patterns, str):
             patterns = [patterns]
@@ -156,26 +171,27 @@ def run_workflow(tmpdir: Path):
 
         work_dir = Path(tmpdir) / "work_dir"
         tests_dir = Path(__file__).parent.resolve()
-        expected_dir = tests_dir / "test-data"
-        conda_dir = expected_dir/".snakemake/conda/"
+        expected_dir = tests_dir / "test-data-small"
+
+        if not expected_dir.exists():
+            raise FileNotFoundError(f"Cannot find expected dir '{expected_dir}'.")
 
         shutil.copytree(
             expected_dir,
             work_dir,
             ignore=shutil.ignore_patterns('.snakemake'),
+            symlinks=True,
         )
 
         sp.check_output(
             [
                 "orthoflow",
                 *targets,
-                "-f",
+                "--force",
                 "-j1",
                 "--directory",
                 work_dir,
                 "--keep-target-files",
-                "--conda-prefix",
-                conda_dir,
                 *args,
             ]
         )

@@ -4,19 +4,29 @@ def test_orthofinder(run_workflow):
         workflow.work_dir / "results/orthofinder/output/Orthogroup_Sequences"
     )
     n_sequences = sum(1 for _ in orthogroup_sequences_dir.glob("*.fa"))
-    assert n_sequences == 153, f"Expected 153 orthogroup sequences, found {n_sequences}"
-    workflow.assert_md5sum("b2fa93748cc0533f6139fab93787c282", expected_files=orthogroup_sequences_dir / "OG0000000.fa")
+    min_seqs = 86
+    max_seqs = 87
+    assert min_seqs <= n_sequences <= max_seqs
+    workflow.assert_contains(">Caulerpa_cliftonii_HV03798|0|KX808498-truncated.gb", expected_files=orthogroup_sequences_dir / "OG0000000.fa")
 
 
-def test_generate_orthosnap_input(run_workflow):
-    workflow = run_workflow("results/orthofinder/orthosnap_input")
-    orthogroups_dir = workflow.work_dir / workflow.targets[0]
-    n_filtered = sum(1 for f in orthogroups_dir.glob("*.fa") if "orthosnap" not in f.name)
-    assert n_filtered == 4
-    workflow.assert_md5sum("37f95650287346ac84e7704cd1833f14", expected_files=orthogroups_dir / "OG0000049.fa")
+def test_orthogroup_classification(run_workflow):
+    workflow = run_workflow("results/orthofinder/mcogs.txt")
+    workflow.assert_contains("results/orthofinder/output/Orthogroup_Sequences/OG0000000.fa")
+    for i in range(1,6):
+        workflow.assert_contains(f"results/orthofinder/output/Orthogroup_Sequences/OG000000{i}.fa", expected_files="results/orthofinder/scogs.txt")
 
 
 def test_orthosnap(run_workflow):
-    workflow = run_workflow("results/orthofinder/orthosnap/OG0000049/")
-    workflow.assert_contains(">Derbesia_sp_WEST4838|0|KX808497.1|rps18\n", expected_files="results/orthofinder/orthosnap/OG0000049/OG0000049_orthosnap_0.fa")
-    workflow.assert_contains("MKKYNPRRRRRRKKR", expected_files="results/orthofinder/orthosnap/OG0000049/OG0000049_orthosnap_0.fa")
+    workflow = run_workflow("results/orthofinder/orthosnap/OG0000000/")
+    workflow.assert_contains(">Caulerpa_cliftonii_HV03798|0|KX808498-truncated.gb|28|psbE\n", expected_files="results/orthofinder/orthosnap/OG0000000/OG0000000_orthosnap_0.fa")
+    workflow.assert_contains("MSGTPRERPFSDILTSIRYWVIHSITIPSLFIAGWLF", expected_files="results/orthofinder/orthosnap/OG0000000/OG0000000_orthosnap_0.fa")
+
+
+def test_orthofinder_report_components(run_workflow):
+    workflow = run_workflow("results/orthofinder/report")
+    workflow.assert_contains('<div class="table-responsive"><table class="table table-sm table-striped table-hover table-sm align-middle"><', expected_files="results/orthofinder/report/Orthogroups.html")
+    workflow.assert_contains('<th class="header" scope="col">Input</th><th class="header" scope="col">', expected_files="results/orthofinder/report/Orthogroups_SpeciesOverlaps.html")
+    workflow.assert_contains('Chlorodesmis_fastigiata_HV03865|0|KY819064.cds.fasta|16', expected_files="results/orthofinder/report/Orthogroups_UnassignedGenes.html")
+
+    

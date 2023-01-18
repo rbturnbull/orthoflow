@@ -3,7 +3,6 @@ venv/
 test-data/.snakemake/*
 .snakemake/*
 datasets/*
-results/*
 .vscode/*
 .DS_Store
 .envrc

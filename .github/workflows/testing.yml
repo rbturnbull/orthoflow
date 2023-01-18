@@ -14,25 +14,28 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install poetry
       run: pipx install poetry
+    - name: Cache
+      id: cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-${{ matrix.python-version }}-mamba
+        path: |
+          /home/runner/mamba-cache
+    - name: Install Mamba
+      run: |
+          if [ ! -f /home/runner/mamba-cache/mamba/etc/profile.d/conda.sh ] ; then
+            wget -O Mambaforge.sh  "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+            bash Mambaforge.sh -b -p "/home/runner/mamba-cache/mamba"
+          fi
+          source "/home/runner/mamba-cache/mamba/etc/profile.d/conda.sh"
+          mamba --version
     - name: Install dependencies for Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'poetry'
     - run: poetry install
-    - name: Cache
-      id: cache
-      uses: actions/cache@v3
-      with:
-        key: ${{ runner.os }}-${{ matrix.python-version }}-cache
-        path: |
-          tests/test-data/results/
-          tests/test-data/.snakemake/conda/
-    - name: Run Workflow
-      run: |
-        poetry run orthoflow --directory tests/test-data
-        poetry run orthoflow --directory tests/test-data --config infer_tree_with_protein_seqs=0
-        poetry run orthoflow --directory tests/test-data results/orthofisher/min-seq-filtered
     - name: Testing
       run: |
+        export ORTHOFLOW_CONDA_PREFIX=/home/runner/mamba-cache/orthoflow
         poetry run pytest

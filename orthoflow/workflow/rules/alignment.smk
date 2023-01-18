@@ -41,6 +41,7 @@ rule mafft:
         mafft --thread {threads} --auto {input} > {output}
         """
 
+
 rule get_cds_seq:
     """
     This rule creates an unaligned mfasta file of the corresponding nucleotide sequences.
@@ -98,6 +99,7 @@ rule thread_dna:
         """
         phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output}
         """
+
 
 checkpoint trim_alignments:
     """

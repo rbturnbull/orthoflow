@@ -1,10 +1,42 @@
-def test_gene_tree_iqtree(run_workflow):
-    w = run_workflow("results/gene_tree/OG0000003/OG0000003.cds.treefile", "--config", "infer_tree_with_protein_seqs=0")
-    w.assert_contains("(Derbesia_sp_WEST4838:")
+
+
+def test_gene_tree_iqtree_protein(run_workflow):
+    w = run_workflow("results/gene_tree/OG0000002/OG0000002.protein.treefile")
+    w.assert_contains("(Caulerpa_cliftonii_HV03798:0.")
     
 
-def test_gene_tree_ascii(run_workflow):
-    w = run_workflow("results/gene_tree/OG0000003/OG0000003_tree_ascii.cds.txt", "--config", "infer_tree_with_protein_seqs=0")
-    w.assert_contains("__________ Caulerpa_cliftonii_HV03798")
-    w.assert_contains("_____ Flabellia_petiolata_HV01202")
+def test_gene_tree_iqtree_cds(run_workflow):
+    w = run_workflow("results/gene_tree/OG0000002/OG0000002.cds.treefile", "--config", "infer_tree_with_protein_seqs=0")
+    w.assert_contains("(Caulerpa_cliftonii_HV03798:0.")
+    
 
+def test_gene_tree_ascii_protein(run_workflow):
+    w = run_workflow("results/gene_tree/OG0000002/OG0000002_tree_ascii.protein.txt")
+    w.assert_contains("______ Caulerpa_cliftonii_HV03798")
+    w.assert_contains("_ Flabellia_petiolata_HV01202")
+
+
+def test_gene_tree_ascii_cds(run_workflow):
+    w = run_workflow("results/gene_tree/OG0000002/OG0000002_tree_ascii.cds.txt", "--config", "infer_tree_with_protein_seqs=0")
+    w.assert_contains("______ Caulerpa_cliftonii_HV03798")
+    w.assert_contains("_ Flabellia_petiolata_HV01202")
+
+
+def test_gene_tree_render_protein(run_workflow):
+    w = run_workflow("results/gene_tree/OG0000002/OG0000002.protein.tree.svg")
+    w.assert_contains('<svg class="toyplot-canvas-Canvas"')
+
+
+def test_gene_tree_render_cds(run_workflow):
+    w = run_workflow("results/gene_tree/OG0000002/OG0000002.cds.tree.svg", "--config", "infer_tree_with_protein_seqs=0")
+    w.assert_contains('<svg class="toyplot-canvas-Canvas"')
+
+
+def test_gene_tree_consensus_render_protein(run_workflow):
+    w = run_workflow("results/gene_tree/OG0000002/OG0000002.protein.consensus-tree.svg")
+    w.assert_contains('<svg class="toyplot-canvas-Canvas"')
+
+
+def test_gene_tree_consensus_render_cds(run_workflow):
+    w = run_workflow("results/gene_tree/OG0000002/OG0000002.cds.consensus-tree.svg", "--config", "infer_tree_with_protein_seqs=0")
+    w.assert_contains('<svg class="toyplot-canvas-Canvas"')

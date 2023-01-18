@@ -1,0 +1,100 @@
+	KX808498-truncated.protein	KY509313-truncated.protein	KY819064.protein	MH591083-truncated.protein	MH591084-truncated.protein	MH591085-truncated.protein	NC_026795-truncated.protein
+Number of genes	31	8	85	3	2	1	7
+Number of genes in orthogroups	26	8	31	3	2	1	7
+Number of unassigned genes	5	0	54	0	0	0	0
+Percentage of genes in orthogroups	83.9	100.0	36.5	100.0	100.0	100.0	100.0
+Percentage of unassigned genes	16.1	0.0	63.5	0.0	0.0	0.0	0.0
+Number of orthogroups containing species	25	7	27	3	2	1	7
+Percentage of orthogroups containing species	92.6	25.9	100.0	11.1	7.4	3.7	25.9
+Number of species-specific orthogroups	0	0	2	0	0	0	0
+Number of genes in species-specific orthogroups	0	0	4	0	0	0	0
+Percentage of genes in species-specific orthogroups	0.0	0.0	4.7	0.0	0.0	0.0	0.0
+
+
+Number of genes per-species in orthogroup	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups
+'0	2	20	0	24	25	26	20
+'1	24	6	23	3	2	1	7
+'2	1	1	4	0	0	0	0
+'3	0	0	0	0	0	0	0
+'4	0	0	0	0	0	0	0
+'5	0	0	0	0	0	0	0
+'6	0	0	0	0	0	0	0
+'7	0	0	0	0	0	0	0
+'8	0	0	0	0	0	0	0
+'9	0	0	0	0	0	0	0
+'10	0	0	0	0	0	0	0
+11-15	0	0	0	0	0	0	0
+16-20	0	0	0	0	0	0	0
+21-50	0	0	0	0	0	0	0
+51-100	0	0	0	0	0	0	0
+101-150	0	0	0	0	0	0	0
+151-200	0	0	0	0	0	0	0
+201-500	0	0	0	0	0	0	0
+501-1000	0	0	0	0	0	0	0
+'1001+	0	0	0	0	0	0	0
+
+Number of genes per-species in orthogroup	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups
+'0	7.4	74.1	0.0	88.9	92.6	96.3	74.1
+'1	88.9	22.2	85.2	11.1	7.4	3.7	25.9
+'2	3.7	3.7	14.8	0.0	0.0	0.0	0.0
+'3	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'4	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'5	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'6	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'7	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'8	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'9	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'10	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+11-15	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+16-20	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+21-50	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+51-100	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+101-150	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+151-200	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+201-500	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+501-1000	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'1001+	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+
+Number of genes per-species in orthogroup	Number of genes	Number of genes	Number of genes	Number of genes	Number of genes	Number of genes	Number of genes
+'0	0	0	0	0	0	0	0
+'1	24	6	23	3	2	1	7
+'2	2	2	8	0	0	0	0
+'3	0	0	0	0	0	0	0
+'4	0	0	0	0	0	0	0
+'5	0	0	0	0	0	0	0
+'6	0	0	0	0	0	0	0
+'7	0	0	0	0	0	0	0
+'8	0	0	0	0	0	0	0
+'9	0	0	0	0	0	0	0
+'10	0	0	0	0	0	0	0
+11-15	0	0	0	0	0	0	0
+16-20	0	0	0	0	0	0	0
+21-50	0	0	0	0	0	0	0
+51-100	0	0	0	0	0	0	0
+101-150	0	0	0	0	0	0	0
+151-200	0	0	0	0	0	0	0
+201-500	0	0	0	0	0	0	0
+501-1000	0	0	0	0	0	0	0
+'1001+	0	0	0	0	0	0	0
+
+Number of genes per-species in orthogroup	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes
+'0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'1	77.4	75.0	27.1	100.0	100.0	100.0	100.0
+'2	6.5	25.0	9.4	0.0	0.0	0.0	0.0
+'3	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'4	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'5	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'6	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'7	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'8	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'9	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'10	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+11-15	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+16-20	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+21-50	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+51-100	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+101-150	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+151-200	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+201-500	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+501-1000	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'1001+	0.0	0.0	0.0	0.0	0.0	0.0	0.0

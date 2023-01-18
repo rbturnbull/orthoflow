@@ -10,6 +10,8 @@ orthofinder_use_snap_ogs = config.get('orthofinder_use_snap_ogs', True)
 rule orthofinder:
     """
     Runs `OrthoFinder <https://github.com/davidemms/OrthoFinder>`_ on fasta files from the intake rule.
+
+    OrthoFinder runs to the point of orthogroup inference.
     """
     input:
         input_csv['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
@@ -27,8 +29,71 @@ rule orthofinder:
     shell:
         """
         mkdir -p results/orthofinder
-        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -ot -M msa -X
+        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X
         mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output}
+        """
+
+
+checkpoint orthogroup_classification:
+    """
+    Classifies orthogroups as single-copy or multi-copy or rejects them for not having enough sequences or taxa.
+    """
+    input:
+        rules.orthofinder.output
+    output:
+        mcogs="results/orthofinder/mcogs.txt",
+        scogs="results/orthofinder/scogs.txt",
+    conda:
+        ENV_DIR / "joblib.yaml"
+    params:
+        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
+        min_taxa=config.get("ortholog_min_taxa", ORTHOLOG_MIN_TAXA_DEFAULT),
+    shell:
+        """
+        python {SCRIPT_DIR}/orthogroup_classification.py \
+            {input}/Orthogroup_Sequences/ \
+            --mcogs {output.mcogs} \
+            --scogs {output.scogs} \
+            --min-seqs {params.min_seqs} \
+            --min-taxa {params.min_taxa}
+        """
+
+
+def list_orthofinder_ogs(wildcards):
+    checkpoint_output = checkpoints.orthofinder.get(**wildcards).output
+    sequences_dir = Path(checkpoint_output[0])/"Orthogroup_Sequences"
+    ogs = [path.name.split(".")[0] for path in sequences_dir.glob("*.fa")]
+    filtered_reports = [f"results/orthofinder/filtered-report/{og}.txt" for og in ogs]
+    return filtered_reports
+
+
+checkpoint orthosnap:
+    """
+    Run Orthosnap to retrieve single-copy orthologs.
+
+    :output: A directory with an unknown number of fasta files.
+    :config orthosnap_occupancy: by default it uses ortholog_min_seqs
+    """
+    input:
+        "results/orthofinder/output/Orthogroup_Sequences/{og}.fa"
+    output:
+        alignment=temp("results/orthofinder/tmp/{og}.aln"),
+        tree=temp("results/orthofinder/tmp/{og}.nwk"),
+        snap_ogs=directory("results/orthofinder/orthosnap/{og}")
+    params:
+        occupancy=config.get("orthosnap_occupancy", config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
+    conda:
+        ENV_DIR / "orthosnap.yaml"
+    shell:
+        r"""
+        mafft {input} > {output.alignment}
+        fasttree {output.alignment} > {output.tree}
+        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy}
+        
+        mkdir -p {output.snap_ogs}
+        for file in $(find results/orthofinder/tmp -name '{wildcards.og}.aln.orthosnap.*.fa') ; do
+            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g')
+        done
         """
 
 
@@ -46,125 +111,64 @@ rule orthofinder_report_components:
         "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output}"
 
 
-checkpoint split_scogs_and_multi_copy_ogs:
-    """
-    Takes the output of orthofinder and outputs the SCOGs.
-
-    It is more liberal than orthofinder SCOGs.
-
-    # TODO think about making this work per file
-
-    :config ortholog_min_seqs: Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
-    """
-    input:
-        rules.orthofinder.output,
-    output:
-        scogs=directory("results/orthofinder/scogs"),
-        multi_copy_ogs=directory("results/orthofinder/multi_copy_ogs"),
-    params:
-        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
-    shell:
-        """
-        mkdir -p {output.multi_copy_ogs}
-        mkdir -p {output.scogs}
-        for i in $(ls {input}/Orthogroup_Sequences/); do
-            ntaxa=$(grep ">" {input}/Orthogroup_Sequences/$i | sed 's/|.*$//g' | sed 's/>//g' | sort | uniq -c | wc -l)
-            if [[ $ntaxa -ge {params.min_seqs} ]]; then
-                taxa_and_counts=$(grep ">" {input}/Orthogroup_Sequences/$i | sed 's/|.*$//g' | sed 's/>//g' | sort | uniq -c)
-                num_taxa_multicopy=$(echo "$taxa_and_counts" | awk '{{if ($1!=1) print $0}}' | wc -l)
-                num_taxa_singlecopy=$(echo "$taxa_and_counts" | awk '{{if ($1==1) print $0}}' | wc -l)
-                    if [[ $num_taxa_multicopy -gt 0 ]]; then
-                        echo "$i multi-copy" # and run orthosnap
-                        ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.multi_copy_ogs}/$i
-                    elif [[ $num_taxa_singlecopy -ge {params.min_seqs} ]] && [[ $num_taxa_multicopy -eq 0 ]]; then
-                        echo "$i single-copy" # and pass to alignment file
-                        ln -s $(pwd)/{input}/Orthogroup_Sequences/$i {output.scogs}/$i
-                    fi
-            else
-                echo "$i too few taxa" # and do not include in downstream analysis
-            fi
-        done
-        """
-
-
-def get_multi_copy_ogs(wildcards):
-    return checkpoints.split_scogs_and_multi_copy_ogs.get(**wildcards).output.multi_copy_ogs
-
-
-checkpoint generate_orthosnap_input:
-    """
-    Copy the OGs with more than a minimum number of sequences and copy the associated gene trees to prepare for use in orthosnap.
-
-    :config ortholog_min_seqs: Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
-    """
-    input:
-        multi_copy_ogs=get_multi_copy_ogs,
-        orthofinder_output=rules.orthofinder.output
-    output:
-        directory("results/orthofinder/orthosnap_input"),
-    conda:
-        ENV_DIR / "typer.yaml"
-    params:
-        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
-    shell:
-        f"python {SCRIPT_DIR}/generate_orthosnap_input.py {{input.multi_copy_ogs}} {{input.orthofinder_output}}/Gene_Trees/ {{output}} {{params.min_seqs}}"
- 
-
-checkpoint orthosnap:
-    """
-    Run Orthosnap to retrieve single-copy orthologs.
-
-    :output: A directory with an unknown number of fasta files.
-    :config orthosnap_occupancy: by default it uses ortholog_min_seqs
-    """
-    input:
-        fasta="results/orthofinder/orthosnap_input/{og}.fa",
-        tree="results/orthofinder/orthosnap_input/{og}.nwk"
-    output:
-        directory("results/orthofinder/orthosnap/{og}")
-    params:
-        occupancy=config.get("orthosnap_occupancy", config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
-    conda:
-        ENV_DIR / "orthosnap.yaml"
-    shell:
-        r"""
-        orthosnap -f {input.fasta} -t {input.tree} --occupancy {params.occupancy}
-        mkdir -p {output}
-        for file in $(find results/orthofinder/orthosnap_input -name '{wildcards.og}.fa.orthosnap.*.fa') ; do
-            mv $file {output}/$(basename $file | sed 's/\.fa\.orthosnap\./_orthosnap_/g')
-        done
-        """
-
-
 def list_orthofinder_scogs(wildcards):
+    """ 
+    Returns a list of all the single copy orthogroups available for downstream analysis.
+    
+    Returns an empty list if the config species to use Orthofisher instead of OrthoFinder or if the config says to not use SC-OGs.
+    """
     if use_orthofisher or not orthofinder_use_scogs:
         return []
 
-    checkpoint_output = checkpoints.split_scogs_and_multi_copy_ogs.get(**wildcards).output.scogs
-    return list(Path(checkpoint_output).glob("*.fa"))
+    checkpoint_output = checkpoints.orthogroup_classification.get(**wildcards).output.scogs
+    results = Path(checkpoint_output).read_text().strip().split("\n")
+    return results
 
 
-def list_orthosnap_snap_ogs(wildcards):
+def list_orthofinder_mcogs(wildcards):
+    """ 
+    Returns a list of all the multi copy orthogroups available for downstream analysis.
+    
+    Returns an empty list if the config species to use Orthofisher instead of OrthoFinder or if the config says to not use SNAP-OGs.
+    """
     if use_orthofisher or not orthofinder_use_snap_ogs:
         return []
 
-    checkpoint_output = checkpoints.generate_orthosnap_input.get(**wildcards).output[0]
-    multi_copy_ogs = glob_wildcards(os.path.join(checkpoint_output, "{og}.fa")).og
+    checkpoint_output = checkpoints.orthogroup_classification.get(**wildcards).output.mcogs
+    return Path(checkpoint_output).read_text().strip().split("\n")
+
+
+def list_orthosnap_snap_ogs(wildcards):
+    """ 
+    Returns a list of all the SNAP orthogroups available for downstream analysis.
+    
+    These are produced by running Orthosnap on the multi-copy orthogroups.
+    Returns an empty list if the config species to use Orthofisher instead of OrthoFinder or if the config says to not user SNAP-OGs.
+    """
+    if use_orthofisher or not orthofinder_use_snap_ogs:
+        return []
+
+    multi_copy_ogs = list_orthofinder_mcogs(wildcards)
+
     snap_ogs = []
-    for multi_copy_og in multi_copy_ogs:
-        checkpoint_output = checkpoints.orthosnap.get(og=multi_copy_og).output[0]
+    for multi_copy_og_path in multi_copy_ogs:
+        og = Path(multi_copy_og_path).name.split(".")[0]
+        checkpoint_output = checkpoints.orthosnap.get(og=og).output.snap_ogs
         snap_ogs += list(Path(checkpoint_output).glob("*.fa"))
 
     return snap_ogs
 
 
 def combine_scogs_and_snap_ogs(wildcards):
-    if not orthofinder_use_scogs and not orthofinder_use_scogs:
+    """ 
+    Returns a list of all single copy orthogroups or SNAP orthogroups to use in downstream analysis.
+    """
+    if not orthofinder_use_scogs and not orthofinder_use_snap_ogs:
         raise Exception(
             "You need to set either `orthofinder_use_scogs` or `orthofinder_use_snap_ogs` or both "
             "in the configuration file so that at least some orthologs can be used."
         )
-
+    
     all_ogs = list_orthofinder_scogs(wildcards) + list_orthosnap_snap_ogs(wildcards)
     if len(all_ogs) == 0:
         raise Exception("No orthogroups found. Please check your input file.")
@@ -194,7 +198,7 @@ checkpoint orthofinder_all:
                 og=$(basename $i)
                 path={output}/$og
                 echo "Symlinking $(pwd)/$i to $path"
-                ln -s $(pwd)/$i $path
+                ln -s ../../../$i $path
             fi
         done
         """
