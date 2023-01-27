@@ -10,10 +10,7 @@ rule input_sources_csv:
     output:
         "results/intake/input_sources.csv",
     run:
-        with open(output[0], "w") as f:
-            print("stub", "file", "data_type", "taxon_string", "translation_table", file=f, sep=",")
-            for stub, data in input_dictionary.items():
-                print(stub, data.file, data.data_type, data.taxon_string, data.translation_table, file=f, sep=",")
+        input_dictionary.write_csv(output[0])
 
 
 rule extract_cds:

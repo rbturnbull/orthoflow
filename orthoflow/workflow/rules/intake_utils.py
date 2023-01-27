@@ -7,6 +7,11 @@ import json
 import yaml
 import toml
 
+if "config" not in locals():
+    config = {}
+
+if "TRANSLATION_TABLE_DEFAULT" not in locals():
+    TRANSLATION_TABLE_DEFAULT = 1
 
 @dataclass
 class OrthoflowInput():
@@ -20,13 +25,55 @@ class OrthoflowInput():
         if not self.file.exists():
             raise FileNotFoundError(f"Cannot find input file {self.file}")
         
-        self.taxon_string = self.taxon_string or self.file.name
         self.data_type = self.data_type or "Fasta"
-        self.translation_table = self.translation_table or config.get("default_translation_table", TRANSLATION_TABLE_DEFAULT)
+        self.validate_taxon_string()
+        self.validate_translation_table()
 
     def stub(self):
         suffix = self.file.suffix
-        return self.file.name[:-len(suffix)].replace(".", "-")
+        return self.file.name[:-len(suffix)].replace(".", "-").replace(" ", "_")
+
+    def is_genbank(self) -> bool:
+        return self.data_type.lower() in ["genbank", "gb", "gbk"]        
+
+    def validate_taxon_string(self):
+        if not self.taxon_string:
+            if self.is_genbank():
+                # If no taxon_string is given then get it from the organism in the GenBank metadata
+                with open(self.file) as handle:
+                    record = GenBank.read(handle)
+                    self.taxon_string = record.organism
+            else:
+                self.taxon_string = self.stub()
+        
+        self.taxon_string = self.taxon_string.replace(" ", "_")
+        
+    def validate_translation_table(self):
+        # Get the translation table from the CDS qualifiers and check that they are all the same
+        if not self.translation_table and self.is_genbank():
+            for seq in SeqIO.parse(self.file, "genbank"):
+                for feature in seq.features:
+                    if feature.type == "CDS" and "transl_table" in feature.qualifiers:
+                        cds_translation_table = feature.qualifiers["transl_table"][0]
+                        if not self.translation_table:
+                            self.translation_table = cds_translation_table
+                        elif self.translation_table != cds_translation_table:
+                            raise ValueError(
+                                "Inconsistent translation table values ({translation_table}, {cds_translation_table}) in '{input_source}'"
+                            )
+
+        if not self.translation_table:
+            self.translation_table = config.get("default_translation_table", TRANSLATION_TABLE_DEFAULT)            
+
+        if not str(self.translation_table).isdigit():
+            raise ValueError(f"Translation table {self.translation_table} not numeric")
+
+        self.translation_table = int(self.translation_table)
+        if not (1 <= self.translation_table <= 33):
+            raise ValueError(
+                f"Translation table {self.translation_table} not valid. "
+                "See values here: https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes"
+            )
 
 
 class OrthoflowInputDictionary(dict):
@@ -39,6 +86,12 @@ class OrthoflowInputDictionary(dict):
                 raise ValueError(f"Multiple input sources with same stub '{stub}': {self[stub].file} and {source.file}")
 
             self[stub] = source
+
+    def write_csv(self, csv):
+        with open(csv, "w") as f:
+            print("stub", "file", "data_type", "taxon_string", "translation_table", file=f, sep=",")
+            for stub, data in self.items():
+                print(stub, data.file, data.data_type, data.taxon_string, data.translation_table, file=f, sep=",")
 
 
 def read_input_source_dictionary(data:Dict, directory:Path=None):
@@ -110,33 +163,6 @@ def read_input_source_pandas(input_csv:Path) -> List[OrthoflowInput]:
     return input_objects
 
 
-def read_input_source_genbank(file:Path, taxon_string=None, translation_table=None) -> List[OrthoflowInput]:
-    # If no taxon_string is given then get it from the organism in the GenBank metadata
-    if not taxon_string:
-        with open(file) as handle:
-            record = GenBank.read(handle)
-            taxon_string = record.organism
-    
-    # Get the translation table from the CDS qualifiers and check that they are all the same
-    if not translation_table:
-        for seq in SeqIO.parse(file, "genbank"):
-            for feature in seq.features:
-                if feature.type == "CDS" and "transl_table" in feature.qualifiers:
-                    cds_translation_table = feature.qualifiers["transl_table"]
-                    if not translation_table:
-                        translation_table = cds_translation_table
-                    elif translation_table != cds_translation_table:
-                        raise ValueError(
-                            "Inconsistent translation table values ({translation_table}, {cds_translation_table}) in '{input_source}'"
-                        )
-
-    return [OrthoflowInput(file=file, taxon_string=taxon_string, translation_table=translation_table, data_type="GenBank")]
-                    
-
-def read_input_source_fasta(file:Path) -> List[OrthoflowInput]:
-    return [OrthoflowInput(file=file, data_type="Fasta")]
-
-
 def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInput]:
     # If this is a list, then run the function on all the items in the list
     if isinstance(input_source, list):
@@ -155,10 +181,10 @@ def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInpu
         return read_input_source_pandas(input_source)
     
     if suffix in [".genbank", ".gb", ".gbk"]:
-        return read_input_source_genbank(input_source)
+        return [OrthoflowInput(file=input_source, data_type="GenBank")]
 
     if suffix in [".fasta", ".fa"]:
-        return read_input_source_fasta(input_source)
+        return [OrthoflowInput(file=input_source, data_type="Fasta")]
 
     if suffix == ".json":
         return read_input_source_json(input_source)
