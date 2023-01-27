@@ -117,7 +117,7 @@
 <h1>Orthofinder Module<a class="headerlink" href="#orthofinder-module" title="Permalink to this headline"></a></h1>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-orthofinder">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L10"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L9"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder" title="Permalink to this definition"></a></dt>
 <dd><p>Runs <a class="reference external" href="https://github.com/davidemms/OrthoFinder">OrthoFinder</a> on fasta files from the intake rule.</p>
 <p>OrthoFinder runs to the point of orthogroup inference.</p>
 <dl class="field-list">
@@ -139,7 +139,7 @@
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-orthogroup_classification">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthogroup_classification</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L37"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthogroup_classification" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthogroup_classification</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L36"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthogroup_classification" title="Permalink to this definition"></a></dt>
 <dd><p>Classifies orthogroups as single-copy or multi-copy or rejects them for not having enough sequences or taxa.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
@@ -162,7 +162,7 @@
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-orthofinder_report_components">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder_report_components</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L100"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_report_components" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder_report_components</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L99"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_report_components" title="Permalink to this definition"></a></dt>
 <dd><p>Converts the orthofinder output to HTML components that will be used in the Orthoflow report.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
@@ -191,7 +191,7 @@
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-orthosnap">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthosnap</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L70"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthosnap" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthosnap</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L69"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthosnap" title="Permalink to this definition"></a></dt>
 <dd><p>Run Orthosnap to retrieve single-copy orthologs.</p>
 <dl class="field-list">
 <dt class="field-odd">Output</dt>
@@ -226,7 +226,7 @@
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-orthofinder_all">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthofinder_all</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L179"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_all" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthofinder_all</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L178"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_all" title="Permalink to this definition"></a></dt>
 <dd><p>Collects all the SC-OGs and the SNAP OGs and creates symlinks for each in a single directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Config</dt>
