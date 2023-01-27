@@ -12,14 +12,15 @@ logger = logging.getLogger("extract_cds")
 def extract_cds(
     infile: Path = typer.Argument(..., file_okay=True, dir_okay=False, exists=True),
     outfile: Path = typer.Argument(..., file_okay=True, dir_okay=False, exists=False),
-    seqformat: str = typer.Argument("Genbank"),
+    data_type: str = typer.Argument(...),
     debug: Optional[bool] = typer.Option(False, "--debug", "-d"),
 ):
     if debug:
         logger.setLevel("DEBUG")
+    
     counter = 0
     with outfile.open("w") as fout:
-        if seqformat == "Genbank":
+        if data_type.lower() == "genbank":
             for seq in SeqIO.parse(infile, "genbank"):
                 for feat in seq.features:
                     if feat.type == "CDS":
@@ -46,7 +47,8 @@ def extract_cds(
                         print(f">{infile.name}|{counter}|{gene}", file=fout)
                         print(seq_str, file=fout)
                         counter += 1
-        elif seqformat == "fasta":
+        else:
+            # Assume that non-genbank files are Fasta format
             for seq in SeqIO.parse(infile, "fasta"):
                 print(f">{infile.name}|{counter}", file=fout)
                 print(seq.seq, file=fout)

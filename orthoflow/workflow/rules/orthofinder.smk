@@ -6,7 +6,6 @@ use_orthofisher = config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT)
 orthofinder_use_scogs = config.get('orthofinder_use_scogs', True)
 orthofinder_use_snap_ogs = config.get('orthofinder_use_snap_ogs', True)
 
-
 rule orthofinder:
     """
     Runs `OrthoFinder <https://github.com/davidemms/OrthoFinder>`_ on fasta files from the intake rule.
@@ -14,7 +13,7 @@ rule orthofinder:
     OrthoFinder runs to the point of orthogroup inference.
     """
     input:
-        input_csv['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
+        translated_files
     output:
         directory("results/orthofinder/output"),
     conda:

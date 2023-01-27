@@ -17,6 +17,7 @@ rule report:
     This serves as the endpoint of the DAG for Snakemake if no targets are explicitly specified.
     """
     input:
+        input_sources_csv=rules.input_sources_csv.output[0],
         orthofinder_scogs=list_orthofinder_scogs,
         orthofinder_report_components=rules.orthofinder_report_components.output,
         orthosnap_snap_ogs=list_orthosnap_snap_ogs,
@@ -57,6 +58,10 @@ rule report:
             """
             Adapted from https://stackoverflow.com/a/62153724
             """
+            if isinstance(df, str):
+                df = pd.read_csv(df)
+                df.index.name = "Index"
+
             dict_data = [df.to_dict(), df.to_dict('index')]
 
             html = '<div class="table-responsive"><table class="table table-sm table-striped table-hover table-sm align-middle"><tr class="table-primary">'
@@ -93,7 +98,6 @@ rule report:
         try:        
             result = template.render(
                 input=input,
-                input_csv=input_csv,
                 use_orthofisher=use_orthofisher,
                 use_supertree=use_supertree,
                 use_supermatrix=use_supermatrix,
