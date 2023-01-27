@@ -1,7 +1,7 @@
 import subprocess
 import sys
 from pathlib import Path
-from typing import Optional
+from typing import Optional, List
 
 import snakemake
 import typer
@@ -24,6 +24,8 @@ def get_default_conda_prefix() -> Path:
 )
 def run(
     ctx: typer.Context,
+    files: List[Path] = typer.Option(None, help="The input source files"),
+    target: Optional[Path] = typer.Option(None, help="The target file to create"),
     directory: Optional[Path] = typer.Option(Path("."), file_okay=False, exists=True, dir_okay=True),
     cores: Optional[int] = typer.Option(1, "--cores", "-c", help="Number of cores to request for the workflow"),
     conda_prefix:Path = typer.Option(None, envvar="ORTHOFLOW_CONDA_PREFIX"),
@@ -42,7 +44,7 @@ def run(
     | (_) | '_|  _| ' \/ _ \  _| / _ \ V  V /
      \___/|_|  \__|_||_\___/_| |_\___/\_/\_/ 
                                                                                                                                                                                                                      
-    All unrecognised arguments will be passed directly to Snakemake. Use `orthoflow --help-snakemake` to list all
+    All unrecognized arguments will be passed directly to Snakemake. Use `orthoflow --help-snakemake` to list all
     arguments accepted by Snakemake.
     """  # noqa: W605
 
@@ -67,8 +69,15 @@ def run(
     if not mamba_found:
         args.append("--conda-frontend=conda")
         
+    if target:
+        args.append(str(target))
+
     if ctx.args:
         args.extend(ctx.args)
+
+    if files:
+        files = ",".join([str(x) for x in files])
+        args.extend(["--config", f"input_sources={files}"])
 
     typer.secho("Running orthoflow...", fg=typer.colors.GREEN)
     typer.secho(f"snakemake {' '.join(args)}", fg=typer.colors.BLACK)

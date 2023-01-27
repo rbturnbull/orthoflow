@@ -186,6 +186,7 @@ def run_workflow(tmpdir: Path):
         sp.check_output(
             [
                 "orthoflow",
+                "--target",
                 *targets,
                 "--force",
                 "-j1",

@@ -164,13 +164,17 @@ def read_input_source_pandas(input_csv:Path) -> List[OrthoflowInput]:
 
 
 def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInput]:
+    # If files are comma separated then split them
+    if isinstance(input_source, str) and "," in input_source:
+        input_source = input_source.split(",")
+
     # If this is a list, then run the function on all the items in the list
     if isinstance(input_source, list):
         inputs = []
         for i in input_source:
             inputs += read_input_source(i)
         return inputs
-
+    
     # If not a list then it must be a kind of path
     input_source = Path(input_source)
     if not input_source.exists():

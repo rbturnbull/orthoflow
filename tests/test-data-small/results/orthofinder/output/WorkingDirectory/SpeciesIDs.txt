@@ -1,6 +1,6 @@
 0: KX808498-truncated.protein.fa
 1: KY509313-truncated.protein.fa
-2: KY819064.protein.fa
+2: KY819064-truncated-cds.protein.fa
 3: MH591083-truncated.protein.fa
 4: MH591084-truncated.protein.fa
 5: MH591085-truncated.protein.fa

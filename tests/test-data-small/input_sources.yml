@@ -1,0 +1,14 @@
+files:
+  - file: KX808498-truncated.gb
+  - file: KY509313-truncated.gb
+  - file: MH591083-truncated.gb
+    taxon_name: Flabellia_petiolata_HV01202
+  - file: MH591084-truncated.gb
+    taxon_name: Flabellia_petiolata_HV01202
+  - file: MH591085-truncated.gb
+    taxon_name: Flabellia_petiolata_HV01202
+  - file: NC_026795-truncated.txt
+    data_type: Genbank
+  - file: KY819064-truncated.cds.fasta
+    taxon_string: Chlorodesmis_fastigiata_HV03865
+    translation_table: 11

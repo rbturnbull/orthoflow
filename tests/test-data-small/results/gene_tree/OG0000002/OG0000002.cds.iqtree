@@ -2,7 +2,7 @@ IQ-TREE 2.2.0.3 COVID-edition built Sep  5 2022
 
 Input file name: results/alignment/trimmed/OG0000002.trimmed.cds.alignment.fa
 Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
-Random seed number: 145137
+Random seed number: 753904
 
 REFERENCES
 ----------
@@ -218,7 +218,7 @@ Consensus tree in newick format:
 TIME STAMP
 ----------
 
-Date and time: Mon Jan 16 23:35:43 2023
-Total CPU time used: 0.713389 seconds (0h:0m:0s)
-Total wall-clock time used: 0.5623981953 seconds (0h:0m:0s)
+Date and time: Fri Jan 27 23:03:18 2023
+Total CPU time used: 0.670388 seconds (0h:0m:0s)
+Total wall-clock time used: 0.7065169811 seconds (0h:0m:0s)
 
