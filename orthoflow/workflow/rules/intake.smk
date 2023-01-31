@@ -63,18 +63,18 @@ rule extract_cds:
     params:
         is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower()
         in ["genbank", "gb", "gbk"],
-    logs:
-        
+    log:
+        "logs/intake/extract_cds/{source}.txt"
     shell:
         """
         if [ "{params.is_genbank}" = "True" ] ; then
-            python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} Genbank
+            python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} Genbank &> {log}
         else
-            python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} fasta
+            python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} fasta &> {log}
         fi
 
         # Sanitize the IDs
-        # sed '/^>/s/;/_/g;s/ //g;s/\[/_/g;s/\]/_/g' {output} > {output}.tmp && mv {output}.tmp {output}
+        # {{ sed '/^>/s/;/_/g;s/ //g;s/\[/_/g;s/\]/_/g' {output} > {output}.tmp && mv {output}.tmp {output} ; }} &>> {log}
         """
 
 rule add_taxon:
@@ -89,8 +89,10 @@ rule add_taxon:
         ENV_DIR / "typer.yaml"
     params:
         taxon=lambda wildcards: input_sources_item(wildcards.source, 'taxon_string'),
+    log:
+        "logs/intake/add_taxon/{source}.txt"
     shell:
-        "python {SCRIPT_DIR}/add_taxon.py --unique-counter {params.taxon} {input} {output}"
+        "python {SCRIPT_DIR}/add_taxon.py --unique-counter {params.taxon} {input} {output} &> {log}"
 
 
 rule translate:
@@ -113,5 +115,7 @@ rule translate:
         ENV_DIR / "biokit.yaml"
     params:
         translation_table=lambda wildcards: input_sources_item(wildcards.source, 'translation_table'),
+    log:
+        "logs/intake/translate/{source}.txt"
     shell:
-        "biokit translate_sequence {input} --output {output} --translation_table {params.translation_table}"
+        "biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} &> {log}"
