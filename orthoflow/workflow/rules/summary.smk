@@ -10,10 +10,12 @@ rule summarize_information_content:
         plot=report("results/summary/information_content.svg", category="Summary"),
     conda:
         "../envs/summary.yaml"
+    logs:
+        LOG_DIR / "summary/summarize_information_content.log"
     shell:
         """
         python {SCRIPT_DIR}/summarize_information_content.py \
             {input.alignments} \
             {output.csv} \
-            {output.plot}
+            {output.plot} &> {log}
         """
