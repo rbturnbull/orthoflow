@@ -38,7 +38,7 @@ rule supermatrix_alignment_summary:
     log:
         LOG_DIR / "supermatrix/alignment_summary.log"
     shell:
-        "biokit alignment_summary {input} > {output} &> {log}"
+        "{{ biokit alignment_summary {input} > {output} ; }} &> {log}"
 
 
 supermatrix_outgroup = config.get("supermatrix_outgroup", SUPERMATRIX_OUTGROUP_DEFAULT)
