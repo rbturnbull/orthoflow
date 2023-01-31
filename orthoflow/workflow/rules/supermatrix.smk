@@ -15,7 +15,7 @@ rule concatenate_alignments:
     bibs:
         "../bibs/phykit.bib"
     log:
-        "logs/supermatrix/supermatrix.log"
+        LOG_DIR / "supermatrix/supermatrix.log"
     shell:
         "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{alignment_type} &> {log}"
 
@@ -36,7 +36,7 @@ rule supermatrix_alignment_summary:
     bibs:
         "../bibs/biokit.bib",
     log:
-        "logs/supermatrix/alignment_summary.log"
+        LOG_DIR / "supermatrix/alignment_summary.log"
     shell:
         "biokit alignment_summary {input} > {output} &> {log}"
 
@@ -63,7 +63,7 @@ rule supermatrix_iqtree:
         "../bibs/ultrafast-bootstrap.bib",
         "../bibs/modelfinder.ris",
     log:
-        "logs/supermatrix/iqtree.log"
+        LOG_DIR / "supermatrix/iqtree.log"
     params:
         bootstrap_string=config.get("bootstrap_string", BOOTSTRAP_STRING_DEFAULT),
         model_string=config.get("model_string", MODEL_STRING_DEFAULT),
@@ -85,7 +85,7 @@ rule supermatrix_ascii:
     bibs:
         "../bibs/phykit.bib",
     log:
-        "logs/supermatrix/print_ascii_tree.log"
+        LOG_DIR / "supermatrix/print_ascii_tree.log"
     shell:
         "{{ phykit print_tree {input} > {output} ; }} &> {log}"
 
@@ -104,7 +104,7 @@ rule supermatrix_tree_render:
     bibs:
         "../bibs/toytree.bib",
     log:
-        "logs/supermatrix/render_tree.log"
+        LOG_DIR / "supermatrix/render_tree.log"
     shell:
         "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
 
@@ -123,7 +123,7 @@ rule supermatrix_consensus_tree_render:
     bibs:
         "../bibs/toytree.bib",
     log:
-        "logs/supermatrix/render_tree.log"
+        LOG_DIR / "supermatrix/render_tree.log"
     shell:
         "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
 

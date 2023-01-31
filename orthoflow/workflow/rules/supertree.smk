@@ -49,7 +49,7 @@ rule astral:
     bibs:
         "../bibs/astral-iii.ris",
     log:
-        "logs/supertree/astral.log"
+        LOG_DIR / "supertree/astral.log"
     shell:
         """
         java -jar $CONDA_PREFIX/share/astral-tree-5.7.8-0/astral.5.7.8.jar -i {input} -o {output} &> {log}
@@ -69,7 +69,7 @@ rule supertree_ascii:
     bibs:
         "../bibs/phykit.bib",
     log:
-        "logs/supertree/print_ascii_tree.log"
+        LOG_DIR / "supertree/print_ascii_tree.log"
     shell:
         "{{ phykit print_tree {input} > {output} ; }} &> {log}"
 
@@ -88,7 +88,7 @@ rule supertree_render:
     bibs:
         "../bibs/toytree.bib",
     log:
-        "logs/supertree/supertree_render.log"
+        LOG_DIR / "supertree/supertree_render.log"
     shell:
         "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
 

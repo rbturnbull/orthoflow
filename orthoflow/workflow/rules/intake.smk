@@ -64,7 +64,7 @@ rule extract_cds:
         is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower()
         in ["genbank", "gb", "gbk"],
     log:
-        "logs/intake/extract_cds/{source}.txt"
+        LOG_DIR / "intake/extract_cds/{source}.txt"
     shell:
         """
         if [ "{params.is_genbank}" = "True" ] ; then
@@ -90,7 +90,7 @@ rule add_taxon:
     params:
         taxon=lambda wildcards: input_sources_item(wildcards.source, 'taxon_string'),
     log:
-        "logs/intake/add_taxon/{source}.txt"
+        LOG_DIR / "intake/add_taxon/{source}.txt"
     shell:
         "python {SCRIPT_DIR}/add_taxon.py --unique-counter {params.taxon} {input} {output} &> {log}"
 
@@ -116,6 +116,6 @@ rule translate:
     params:
         translation_table=lambda wildcards: input_sources_item(wildcards.source, 'translation_table'),
     log:
-        "logs/intake/translate/{source}.txt"
+        LOG_DIR / "intake/translate/{source}.txt"
     shell:
         "biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} &> {log}"

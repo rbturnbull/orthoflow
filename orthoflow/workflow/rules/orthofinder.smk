@@ -20,7 +20,7 @@ rule orthofinder:
     conda:
         ENV_DIR / "orthofinder.yaml"
     log:
-        "logs/orthofinder/orthofinder.log"
+        LOG_DIR / "orthofinder/orthofinder.log"
     bibs:
         "../bibs/orthofinder.ris",
     params:
@@ -49,7 +49,7 @@ checkpoint orthogroup_classification:
         min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
         min_taxa=config.get("ortholog_min_taxa", ORTHOLOG_MIN_TAXA_DEFAULT),
     log:
-        "logs/orthofinder/orthogroup_classification.log"
+        LOG_DIR / "orthofinder/orthogroup_classification.log"
     shell:
         """
         python {SCRIPT_DIR}/orthogroup_classification.py \
@@ -87,7 +87,7 @@ checkpoint orthosnap:
     conda:
         ENV_DIR / "orthosnap.yaml"
     log:
-        "logs/orthofinder/orthosnap/{og}.log"
+        LOG_DIR / "orthofinder/orthosnap/{og}.log"
     shell:
         r"""
         {{ mafft {input} > {output.alignment} ; }} &> {log}
@@ -112,7 +112,7 @@ rule orthofinder_report_components:
     conda:
         ENV_DIR / "summary.yaml"
     log:
-        "logs/orthofinder/orthofinder_report_components.log"
+        LOG_DIR / "orthofinder/orthofinder_report_components.log"
     shell:
         "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output} &> {log}"
 
@@ -195,7 +195,7 @@ checkpoint orthofinder_all:
     params:
         min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
     log:
-        "logs/orthofinder/orthofinder_all.log"
+        LOG_DIR / "orthofinder/orthofinder_all.log"
     shell:
         """
         mkdir -p {output} &> {log}

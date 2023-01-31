@@ -28,7 +28,7 @@ rule mafft:
     bibs:
         "../bibs/mafft7.bib"
     log:
-        "logs/alignment/mafft/mafft-{og}.log"
+        LOG_DIR / "alignment/mafft/mafft-{og}.log"
     threads: 4
     resources:
         time="00:10:00",
@@ -58,7 +58,7 @@ rule get_cds_seq:
     conda:
         ENV_DIR / "biopython.yaml"
     log:
-        "logs/get_cds_seq/{og}.log"
+        LOG_DIR / "get_cds_seq/{og}.log"
     shell:
         "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
 
@@ -77,7 +77,7 @@ checkpoint taxon_only:
     conda:
         ENV_DIR / "typer.yaml"
     log:
-        "logs/alignment/taxon_only/{og}.log"
+        LOG_DIR / "alignment/taxon_only/{og}.log"
     shell:
         "python {SCRIPT_DIR}/taxon_only.py {input} {output} &> {log}"
 
@@ -100,7 +100,7 @@ rule thread_dna:
     conda:
         ENV_DIR / "phykit.yaml"
     log:
-        "logs/alignment/thread_dna/{og}.log"
+        LOG_DIR / "alignment/thread_dna/{og}.log"
     shell:
         """
         {{ phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output} ; }} &> {log}
@@ -122,7 +122,7 @@ checkpoint trim_alignments:
     conda:
         ENV_DIR / "clipkit.yaml"
     log:
-        "logs/alignment/trim_alignments/{og}.log"
+        LOG_DIR / "alignment/trim_alignments/{og}.log"
     shell:
         """
         clipkit {input} -m smart-gap -o {output} &> {log}
@@ -199,7 +199,7 @@ rule list_alignments:
     output:
         f"results/alignment/alignments_list.{alignment_type}.txt",
     log:
-        "logs/alignment/list_alignments/{og}.log"
+        LOG_DIR / "alignment/list_alignments/{og}.log"
     shell:
         """
         {{ ls -1 {input} > {output} ; }} &> {log}
