@@ -25,8 +25,8 @@ rule gene_tree_iqtree:
         model_string=config.get("model_string", MODEL_STRING_DEFAULT),
     shell:
         """
-        mkdir -p results/gene_tree/{wildcards.og}
-        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{alignment_type} -redo
+        mkdir -p results/gene_tree/{wildcards.og} &> {log}
+        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{alignment_type} -redo 2>> {log}
         """
 
 
@@ -45,7 +45,7 @@ rule gene_tree_ascii:
     log:
         "logs/supermatrix/print_ascii_tree-{og}.log"
     shell:
-        "phykit print_tree {input} > {output}"
+        "{{ phykit print_tree {input} > {output} ; }} &> {log}"
 
 
 rule gene_tree_render:
@@ -61,8 +61,10 @@ rule gene_tree_render:
         ENV_DIR / "toytree.yaml"
     bibs:
         "../bibs/toytree.bib",
+    log:
+        "logs/gene_tree/gene_tree_render-{og}.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
 
 
 rule gene_tree_consensus_render:
@@ -78,5 +80,7 @@ rule gene_tree_consensus_render:
         ENV_DIR / "toytree.yaml"
     bibs:
         "../bibs/toytree.bib",
+    log:
+        "logs/gene_tree/gene_tree_consensus_render-{og}.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"

@@ -57,6 +57,8 @@ rule get_cds_seq:
         "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
+    log:
+        "logs/get_cds_seq/{og}.log"
     shell:
         "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
 
@@ -74,6 +76,8 @@ checkpoint taxon_only:
         f"results/alignment/taxon_only/{{og}}.taxon_only.{alignment_type}.alignment.fa"
     conda:
         ENV_DIR / "typer.yaml"
+    log:
+        "logs/taxon_only/{og}.log"
     shell:
         "python {SCRIPT_DIR}/taxon_only.py {input} {output} &> {log}"
 
@@ -95,6 +99,8 @@ rule thread_dna:
         "../bibs/phykit.bib"
     conda:
         ENV_DIR / "phykit.yaml"
+    log:
+        "logs/thread_dna/{og}.log"
     shell:
         """
         {{ phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output} ; }} &> {log}
@@ -115,6 +121,8 @@ checkpoint trim_alignments:
         "../bibs/clipkit.bib"
     conda:
         ENV_DIR / "clipkit.yaml"
+    log:
+        "logs/trim_alignments/{og}.log"
     shell:
         """
         clipkit {input} -m smart-gap -o {output} &> {log}
@@ -190,6 +198,8 @@ rule list_alignments:
         get_alignments
     output:
         f"results/alignment/alignments_list.{alignment_type}.txt",
+    log:
+        "logs/list_alignments/{og}.log"
     shell:
         """
         {{ ls -1 {input} > {output} ; }} &> {log}
