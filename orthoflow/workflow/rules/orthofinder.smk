@@ -20,7 +20,7 @@ rule orthofinder:
     conda:
         ENV_DIR / "orthofinder.yaml"
     log:
-        LOG_DIR / "orthofinder.txt",
+        "logs/orthofinder/orthofinder.log"
     bibs:
         "../bibs/orthofinder.ris",
     params:
@@ -28,9 +28,9 @@ rule orthofinder:
     threads: workflow.cores
     shell:
         """
-        mkdir -p results/orthofinder
-        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X
-        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output}
+        mkdir -p results/orthofinder &> {log}
+        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X &>> {log}
+        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output} &>> {log}
         """
 
 
@@ -48,6 +48,8 @@ checkpoint orthogroup_classification:
     params:
         min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
         min_taxa=config.get("ortholog_min_taxa", ORTHOLOG_MIN_TAXA_DEFAULT),
+    log:
+        "logs/orthofinder/orthogroup_classification.log"
     shell:
         """
         python {SCRIPT_DIR}/orthogroup_classification.py \
@@ -55,7 +57,7 @@ checkpoint orthogroup_classification:
             --mcogs {output.mcogs} \
             --scogs {output.scogs} \
             --min-seqs {params.min_seqs} \
-            --min-taxa {params.min_taxa}
+            --min-taxa {params.min_taxa} &> {log}
         """
 
 
@@ -84,15 +86,17 @@ checkpoint orthosnap:
         occupancy=config.get("orthosnap_occupancy", config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
     conda:
         ENV_DIR / "orthosnap.yaml"
+    log:
+        "logs/orthofinder/orthosnap/{og}.log"
     shell:
         r"""
-        mafft {input} > {output.alignment}
-        fasttree {output.alignment} > {output.tree}
-        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy}
+        {{ mafft {input} > {output.alignment} ; }} &> {log}
+        {{ fasttree {output.alignment} > {output.tree} ; }} &>> {log}
+        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy} &>> {log}
         
-        mkdir -p {output.snap_ogs}
+        mkdir -p {output.snap_ogs} &>> {log}
         for file in $(find results/orthofinder/tmp -name '{wildcards.og}.aln.orthosnap.*.fa') ; do
-            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g')
+            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g') &>> {log}
         done
         """
 
@@ -107,8 +111,10 @@ rule orthofinder_report_components:
         directory("results/orthofinder/report"),   
     conda:
         ENV_DIR / "summary.yaml"
+    log:
+        "logs/orthofinder/orthofinder_report_components.log"
     shell:
-        "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output}"
+        "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output} &> {log}"
 
 
 def list_orthofinder_scogs(wildcards):
@@ -188,17 +194,19 @@ checkpoint orthofinder_all:
         directory("results/orthofinder/all"),
     params:
         min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
+    log:
+        "logs/orthofinder/orthofinder_all.log"
     shell:
         """
-        mkdir -p {output}
+        mkdir -p {output} &> {log}
         for i in {input}; do
             nseq=$(grep ">" $i | wc -l)
 
             if [[ $nseq -ge {params.min_seqs} ]]; then
                 og=$(basename $i)
                 path={output}/$og
-                echo "Symlinking $(pwd)/$i to $path"
-                ln -s ../../../$i $path
+                echo "Symlinking $(pwd)/$i to $path" &>> {log}
+                ln -s ../../../$i $path &>> {log}
             fi
         done
         """
