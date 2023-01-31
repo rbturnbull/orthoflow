@@ -27,10 +27,12 @@ rule create_astral_input:
         list_gene_trees
     output:
         f"results/supertree/astral_input.{alignment_type}.trees"
+    log:
+        LOG_DIR / "supertree/create_astral_input.log"
     shell:
         """
-        echo {input}
-        cat {input} > {output}
+        echo {input} &> {log}
+        {{ cat {input} > {output} ; }} &> {log}
         """
 
 
@@ -50,7 +52,7 @@ rule astral:
         "logs/supertree/astral.log"
     shell:
         """
-        java -jar $CONDA_PREFIX/share/astral-tree-5.7.8-0/astral.5.7.8.jar -i {input} -o {output}
+        java -jar $CONDA_PREFIX/share/astral-tree-5.7.8-0/astral.5.7.8.jar -i {input} -o {output} &> {log}
         """
 
 
@@ -69,7 +71,7 @@ rule supertree_ascii:
     log:
         "logs/supertree/print_ascii_tree.log"
     shell:
-        "phykit print_tree {input} > {output}"
+        "{{ phykit print_tree {input} > {output} ; }} &> {log}"
 
 
 rule supertree_render:
@@ -88,5 +90,5 @@ rule supertree_render:
     log:
         "logs/supertree/supertree_render.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
 
