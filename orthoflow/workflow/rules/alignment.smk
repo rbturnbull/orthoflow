@@ -58,7 +58,7 @@ rule get_cds_seq:
     conda:
         ENV_DIR / "biopython.yaml"
     log:
-        LOG_DIR / "get_cds_seq/{og}.log"
+        LOG_DIR / "alignment/get_cds_seq/{og}.log"
     shell:
         "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
 
@@ -199,7 +199,7 @@ rule list_alignments:
     output:
         f"results/alignment/alignments_list.{alignment_type}.txt",
     log:
-        LOG_DIR / "alignment/list_alignments/{og}.log"
+        LOG_DIR / f"alignment/list_alignments/{alignment_type}.log"
     shell:
         """
         {{ ls -1 {input} > {output} ; }} &> {log}
