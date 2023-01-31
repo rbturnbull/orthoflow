@@ -29,8 +29,8 @@ rule orthofinder:
     shell:
         """
         mkdir -p results/orthofinder &> {log}
-        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X &>> {log}
-        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output} &>> {log}
+        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X 2>> {log}
+        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output} 2>> {log}
         """
 
 
@@ -91,12 +91,12 @@ checkpoint orthosnap:
     shell:
         r"""
         {{ mafft {input} > {output.alignment} ; }} &> {log}
-        {{ fasttree {output.alignment} > {output.tree} ; }} &>> {log}
-        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy} &>> {log}
+        {{ fasttree {output.alignment} > {output.tree} ; }} 2>> {log}
+        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy} 2>> {log}
         
-        mkdir -p {output.snap_ogs} &>> {log}
+        mkdir -p {output.snap_ogs} 2>> {log}
         for file in $(find results/orthofinder/tmp -name '{wildcards.og}.aln.orthosnap.*.fa') ; do
-            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g') &>> {log}
+            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g') 2>> {log}
         done
         """
 
@@ -205,8 +205,8 @@ checkpoint orthofinder_all:
             if [[ $nseq -ge {params.min_seqs} ]]; then
                 og=$(basename $i)
                 path={output}/$og
-                echo "Symlinking $(pwd)/$i to $path" &>> {log}
-                ln -s ../../../$i $path &>> {log}
+                echo "Symlinking $(pwd)/$i to $path" 2>> {log}
+                ln -s ../../../$i $path 2>> {log}
             fi
         done
         """
