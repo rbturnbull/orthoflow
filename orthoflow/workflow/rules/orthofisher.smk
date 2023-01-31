@@ -14,11 +14,11 @@ rule orthofisher_input_generation:
     params:
         hmm_files="\n".join(config["orthofisher_hmmer_files"]),
     log:
-        LOG_DIR / "orthofisher_input_generation.txt",
+        LOG_DIR / "orthofisher/orthofisher_input_generation.txt",
     shell:
         """
-        echo "{params.hmm_files}" > {output.hmm}
-        echo {input} | tr " " "\n" > {output.tsv}
+        {{ echo "{params.hmm_files}" > {output.hmm} ; }} &> {log}
+        {{ echo {input} | tr " " "\n" > {output.tsv} ; }} &>> {log}
         """
 
 
@@ -34,12 +34,12 @@ checkpoint orthofisher:
     conda:
         ENV_DIR / "orthofisher.yaml"
     log:
-        LOG_DIR / "orthofisher.txt",
+        LOG_DIR / "orthofisher/orthofisher.txt",
     bibs:
         "../bibs/orthofisher.nbib",
     shell:
         """
-        orthofisher -m {input.hmm} -f {input.tsv} -o {output}
+        orthofisher -m {input.hmm} -f {input.tsv} -o {output} &> {log}
         """
 
 
@@ -66,15 +66,15 @@ checkpoint min_seq_filter_orthofisher:
         min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
     shell:
         """
-        mkdir -p {output}
+        mkdir -p {output} &> {log}
         for i in {input}; do
             nseq=$(grep ">" $i | wc -l)
 
             if [[ $nseq -ge {params.min_seqs} ]]; then
                 og=$(basename $i | sed 's/\..*//g')
                 path={output}/$og.fa
-                echo "Copying $i to $path and editing IDs"
-                cat $i | cut -f1,2,3,4 -d'|' > $path
+                echo "Copying $i to $path and editing IDs" &>> {log}
+                {{ cat $i | cut -f1,2,3,4 -d'|' > $path ; }} &>> {log}
             fi
         done
         """
