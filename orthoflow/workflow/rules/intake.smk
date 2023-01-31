@@ -63,6 +63,8 @@ rule extract_cds:
     params:
         is_genbank=lambda wildcards: input_sources_item(wildcards.source, 'data_type').lower()
         in ["genbank", "gb", "gbk"],
+    logs:
+        
     shell:
         """
         if [ "{params.is_genbank}" = "True" ] ; then
