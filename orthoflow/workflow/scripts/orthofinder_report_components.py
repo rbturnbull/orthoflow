@@ -1,7 +1,7 @@
+#!/usr/bin/env python3
 from pathlib import Path
 import pandas as pd
 import typer
-from rich.progress import track
 
 
 def pandas_to_bootstrap(df, output:Path = None):
