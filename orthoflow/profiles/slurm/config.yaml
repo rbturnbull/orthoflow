@@ -1,0 +1,35 @@
+# Note that we use `threads` here as SLURM `--cpus-per-task`.
+cluster: >-
+  mkdir -p logs && sbatch
+  $(if [[ '{resources.account}' ]]; then echo '-A {resources.account}'; fi)
+  $(if [[ '{resources.partition}' ]]; then echo '-p {resources.partition}'; fi)
+  --time={resources.runtime}
+  --mem={resources.mem_mb}
+  -N {resources.nodes}
+  -n {resources.tasks_per_node}
+  -c 2
+  -o logs/{rule}-{wildcards}.out -e logs/{rule}-{wildcards}.err
+  $(if [[ '{resources.qos}' ]]; then echo '-q {resources.qos}'; fi)
+  $(if [[ '{resources.gres}' ]]; then echo '--gres={resources.gres}'; fi)
+  {resources.extra}
+default-resources:
+  - account='punim1293'
+  - partition=''
+  - runtime=15
+  - mem_mb=4000
+  - nodes=1
+  - tasks_per_node=1
+  - qos=''
+  - gres=''
+  - extra=''
+cluster-cancel: slurm-cancel
+jobs: 50
+use-conda: true
+use-envmodules: true
+printshellcmds: true
+rerun-incomplete: true
+keep-going: true
+local-cores: 1
+max-jobs-per-second: 10
+max-status-checks-per-second: 1
+latency-wait: 30
