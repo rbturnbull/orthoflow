@@ -101,7 +101,7 @@ class Workflow:
             for pattern in patterns:
                 if not re.search(pattern, text):
                     raise SnakemakePytestException(
-                        f"The file '{generated_path}' does match with pattern '{pattern}':\n" + 
+                        f"The file '{generated_path}' does not match with pattern '{pattern}':\n" + 
                         text
                     )
 

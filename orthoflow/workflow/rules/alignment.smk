@@ -28,7 +28,7 @@ rule mafft:
     bibs:
         "../bibs/mafft7.bib"
     log:
-        "logs/mafft/mafft-{og}.log"
+        LOG_DIR / "alignment/mafft/mafft-{og}.log"
     threads: 4
     resources:
         time="00:10:00",
@@ -38,7 +38,7 @@ rule mafft:
         ENV_DIR / "mafft.yaml"
     shell:
         """
-        mafft --thread {threads} --auto {input} > {output}
+        {{ mafft --thread {threads} --auto {input} > {output} ; }} &> {log}
         """
 
 
@@ -57,8 +57,10 @@ rule get_cds_seq:
         "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
+    log:
+        LOG_DIR / "alignment/get_cds_seq/{og}.log"
     shell:
-        "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output}"
+        "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
 
 
 checkpoint taxon_only:
@@ -74,8 +76,10 @@ checkpoint taxon_only:
         f"results/alignment/taxon_only/{{og}}.taxon_only.{alignment_type}.alignment.fa"
     conda:
         ENV_DIR / "typer.yaml"
+    log:
+        LOG_DIR / "alignment/taxon_only/{og}.log"
     shell:
-        "python {SCRIPT_DIR}/taxon_only.py {input} {output}"
+        "python {SCRIPT_DIR}/taxon_only.py {input} {output} &> {log}"
 
 
 rule thread_dna:
@@ -95,9 +99,11 @@ rule thread_dna:
         "../bibs/phykit.bib"
     conda:
         ENV_DIR / "phykit.yaml"
+    log:
+        LOG_DIR / "alignment/thread_dna/{og}.log"
     shell:
         """
-        phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output}
+        {{ phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output} ; }} &> {log}
         """
 
 
@@ -115,9 +121,11 @@ checkpoint trim_alignments:
         "../bibs/clipkit.bib"
     conda:
         ENV_DIR / "clipkit.yaml"
+    log:
+        LOG_DIR / "alignment/trim_alignments/{og}.log"
     shell:
         """
-        clipkit {input} -m smart-gap -o {output}
+        clipkit {input} -m smart-gap -o {output} &> {log}
         """
 
 
@@ -190,7 +198,9 @@ rule list_alignments:
         get_alignments
     output:
         f"results/alignment/alignments_list.{alignment_type}.txt",
+    log:
+        LOG_DIR / f"alignment/list_alignments/{alignment_type}.log"
     shell:
         """
-        ls -1 {input} > {output}
+        {{ ls -1 {input} > {output} ; }} &> {log}
         """
