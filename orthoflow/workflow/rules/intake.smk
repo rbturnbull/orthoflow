@@ -28,7 +28,7 @@ rule extract_cds:
     params:
         data_type=lambda wildcards: input_dictionary[wildcards.stub].data_type
     log:
-        LOG_DIR / "intake/extract_cds/{source}.log"
+        LOG_DIR / "intake/extract_cds/{stub}.log"
     shell:
         """
         python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} {params.data_type} &> {log}
@@ -48,7 +48,7 @@ rule add_taxon:
     params:
         taxon=lambda wildcards: input_dictionary[wildcards.stub].taxon_string
     log:
-        LOG_DIR / "intake/add_taxon/{source}.log"
+        LOG_DIR / "intake/add_taxon/{stub}.log"
     shell:
         "python {SCRIPT_DIR}/add_taxon.py --unique-counter {params.taxon} {input} {output} &> {log}"
 
@@ -74,7 +74,7 @@ rule translate:
     params:
         translation_table=lambda wildcards: input_dictionary[wildcards.stub].translation_table
     log:
-        LOG_DIR / "intake/translate/{source}.log"
+        LOG_DIR / "intake/translate/{stub}.log"
     shell:
         "biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} &> {log}"
 
