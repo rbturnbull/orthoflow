@@ -1,4 +1,4 @@
-from collections import Counter
+#!/usr/bin/env python3
 from pathlib import Path
 import re
 
