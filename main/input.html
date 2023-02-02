@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input &mdash; orthoflow 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Workflow" href="workflow.html" />
+    <link rel="prev" title="Advanced Tutorial" href="advanced_tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> orthoflow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html#quick-start-guide">Quick start guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">orthoflow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Input</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/main/input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="input">
+<h1>Input<a class="headerlink" href="#input" title="Permalink to this headline"></a></h1>
+<p>The default input filename expected by Orthoflow is <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code>.
+This default filename can be set in the config:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">input_sources</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;input_sources2.csv&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This default can be overridden in the command line arguments for orthoflow:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow --files input_sources3.csv
+</pre></div>
+</div>
+<p>For the analysis to work, Orthoflow requires the following information for each input source:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code>: The path to the particular input source file. This is path is relative to whatever file lists this source file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taxon_string</span></code>: A name for the taxon which is associated with all the sequences in the input file. If this value is not given then, the taxon string will be taken from the organism specified in the metadata of the source file if it is in GenBank format or it will be taken from the filename if it is not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">translation_table</span></code>: For each input file, the user can give the translation table number which corresponds with the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes">NCBI genetic codes</a>. If it is not given, then Orthoflow looks in the GenBank file for a translation table otherwise it uses the <code class="docutils literal notranslate"><span class="pre">default_translation_table</span></code> config variable (which by default is set to 1).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>: To indicate whether the file is in GenBank format or in CDS format in a Fasta file. If it is not given, then it is inferred from the file extension.</p></li>
+</ul>
+<p>All this input information can be explicitly stated in a CSV file. Like this:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">input_sources.csv</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>file</p></th>
+<th class="head"><p>taxon_string</p></th>
+<th class="head"><p>data_type</p></th>
+<th class="head"><p>translation_table</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KY509313.gb</p></td>
+<td><p>Avrainvillea_mazei_HV02664</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>NC_026795.txt</p></td>
+<td><p>Bryopsis_plumosa_WEST4718</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>KX808498.gb</p></td>
+<td><p>Caulerpa_cliftonii_HV03798</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>KY819064.cds.fasta</p></td>
+<td><p>Chlorodesmis_fastigiata_HV03865</p></td>
+<td><p>CDS</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>KX808497.fa</p></td>
+<td><p>Derbesia_sp_WEST4838</p></td>
+<td><p>CDS</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>MH591079.gbk</p></td>
+<td><p>Dichotomosiphon_tuberosus_HV03781</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>MH591080.gbk</p></td>
+<td><p>Dichotomosiphon_tuberosus_HV03781</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>MH591081.gbk</p></td>
+<td><p>Dichotomosiphon_tuberosus_HV03781</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>MH591083.gb</p></td>
+<td><p>Flabellia_petiolata_HV01202</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>MH591084.gb</p></td>
+<td><p>Flabellia_petiolata_HV01202</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>MH591085.gb</p></td>
+<td><p>Flabellia_petiolata_HV01202</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>MH591086.gb</p></td>
+<td><p>Flabellia_petiolata_HV01202</p></td>
+<td><p>GenBank</p></td>
+<td><p>11</p></td>
+</tr>
+</tbody>
+</table>
+<p>This file can also be given in YAML format:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">files</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KY509313.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Avrainvillea_mazei_HV02664</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NC_026795.txt</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bryopsis_plumosa_WEST4718</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KX808498.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Caulerpa_cliftonii_HV03798</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KY819064.cds.fasta</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Chlorodesmis_fastigiata_HV03865</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CDS</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KX808497.fa</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Derbesia_sp_WEST4838</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CDS</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591079.gbk</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dichotomosiphon_tuberosus_HV03781</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591080.gbk</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dichotomosiphon_tuberosus_HV03781</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591081.gbk</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dichotomosiphon_tuberosus_HV03781</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591083.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flabellia_petiolata_HV01202</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591084.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flabellia_petiolata_HV01202</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591085.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flabellia_petiolata_HV01202</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591086.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flabellia_petiolata_HV01202</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenBank</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Or TOML:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;KY509313.gb&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Avrainvillea_mazei_HV02664&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;NC_026795.txt&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bryopsis_plumosa_WEST4718&quot;</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;KX808498.gb&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Caulerpa_cliftonii_HV03798&quot;</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;KY819064.cds.fasta&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Chlorodesmis_fastigiata_HV03865&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;CDS&quot;</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;KX808497.fa&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Derbesia_sp_WEST4838&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;CDS&quot;</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MH591079.gbk&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Dichotomosiphon_tuberosus_HV03781&quot;</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MH591080.gbk&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Dichotomosiphon_tuberosus_HV03781&quot;</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MH591081.gbk&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Dichotomosiphon_tuberosus_HV03781&quot;</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MH591083.gb&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Flabellia_petiolata_HV01202&quot;</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MH591084.gb&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Flabellia_petiolata_HV01202&quot;</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MH591085.gb&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Flabellia_petiolata_HV01202&quot;</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+
+<span class="k">[[files]]</span><span class="w"></span>
+<span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MH591086.gb&quot;</span><span class="w"></span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Flabellia_petiolata_HV01202&quot;</span><span class="w"></span>
+<span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Or JSON:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;KY509313.gb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Avrainvillea_mazei_HV02664&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NC_026795.txt&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bryopsis_plumosa_WEST4718&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;KX808498.gb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Caulerpa_cliftonii_HV03798&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;KY819064.cds.fasta&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chlorodesmis_fastigiata_HV03865&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CDS&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;KX808497.fa&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Derbesia_sp_WEST4838&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CDS&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MH591079.gbk&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dichotomosiphon_tuberosus_HV03781&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MH591080.gbk&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dichotomosiphon_tuberosus_HV03781&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MH591081.gbk&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dichotomosiphon_tuberosus_HV03781&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MH591083.gb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Flabellia_petiolata_HV01202&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MH591084.gb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Flabellia_petiolata_HV01202&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MH591085.gb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Flabellia_petiolata_HV01202&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MH591086.gb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;taxon_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Flabellia_petiolata_HV01202&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;data_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GenBank&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;translation_table&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Since some of the values can be inferred from the files themselves, the ame input can be specified more concisely as follows (here in YAML format):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">files</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KY509313.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Avrainvillea_mazei_HV02664</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NC_026795.txt</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bryopsis_plumosa_WEST4718</span><span class="w"></span>
+<span class="w">    </span><span class="nt">data_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Genbank</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KX808498.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Caulerpa_cliftonii_HV03798</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KY819064.cds.fasta</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Chlorodesmis_fastigiata_HV03865</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KX808497.fa</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Derbesia_sp_WEST4838</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translation_table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591079.gbk</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dichotomosiphon_tuberosus_HV03781</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591080.gbk</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dichotomosiphon_tuberosus_HV03781</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591081.gbk</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dichotomosiphon_tuberosus_HV03781</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591083.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flabellia_petiolata_HV01202</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591084.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flabellia_petiolata_HV01202</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591085.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flabellia_petiolata_HV01202</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MH591086.gb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">taxon_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flabellia_petiolata_HV01202</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">input_sources</span></code> can also be a list of files. For example, this command will include all the GenBank files in a particular directory and the translation_table, taxon_string, and data_type will all be inferred from the files themselves:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow --files *.gb
+</pre></div>
+</div>
+<p>If some of the input files are in Fasta format and so the translation table is not easily inferred, then you can create an individal TOML/YAML/JSON or CSV file for that input source like this:</p>
+<p>Then these files can be included as part of the list of Orthoflow input sources:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow --files *.gb *.toml
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="advanced_tutorial.html" class="btn btn-neutral float-left" title="Advanced Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="workflow.html" class="btn btn-neutral float-right" title="Workflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 University of Melbourne.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
