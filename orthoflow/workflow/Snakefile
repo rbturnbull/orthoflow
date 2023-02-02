@@ -22,6 +22,7 @@ USE_ORTHOFISHER_DEFAULT = False
 BOOTSTRAP_STRING_DEFAULT = "-bb 1000"
 MODEL_STRING_DEFAULT = "-m TEST"
 SUPERMATRIX_OUTGROUP_DEFAULT = ""
+TRANSLATION_TABLE_DEFAULT = "1"
 
 # Get the path to the default config file.
 # This can be overridden on the command line

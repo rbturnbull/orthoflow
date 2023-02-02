@@ -7,7 +7,7 @@ rule orthofisher_input_generation:
     :config orthofisher_hmmer_files: list of hmmer files for orthofisher
     """
     input:
-        input_csv['file'].map(lambda f: f"results/intake/translated/{f.split('.')[0]}.protein.fa"),
+        translated_files
     output:
         tsv="results/orthofisher/input_protein_files.tsv",
         hmm="results/orthofisher/hmms.txt",

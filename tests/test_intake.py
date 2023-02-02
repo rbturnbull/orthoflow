@@ -11,8 +11,8 @@ def test_add_taxon_MH591083(run_workflow):
 
 
 def test_add_taxon_KY819064(run_workflow):
-    w = run_workflow("results/intake/taxon-added/KY819064.cds.fasta")
-    w.assert_contains(">Chlorodesmis_fastigiata_HV03865|0|KY819064.cds.fasta|0")
+    w = run_workflow("results/intake/taxon-added/KY819064-truncated-cds.cds.fasta")
+    w.assert_contains(">Chlorodesmis_fastigiata_HV03865|0|KY819064-truncated.cds.fasta|0")
 
 
 def test_translate(run_workflow):
