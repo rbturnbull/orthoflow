@@ -57,7 +57,7 @@ rule translate:
     """
     Translates coding sequences to amino acid sequences using BioKIT.
 
-    It relies on the `translation_table` column in the input CSV.
+    It relies on the `translation_table` field in the input.
     It expects a number there which corresponds with the NCBI genetic codes:
     https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes
 

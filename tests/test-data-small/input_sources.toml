@@ -6,15 +6,15 @@ file = "KY509313-truncated.gb"
 
 [[files]]
 file = "MH591083-truncated.gb"
-taxon_name = "Flabellia_petiolata_HV01202"
+taxon_string = "Flabellia_petiolata_HV01202"
 
 [[files]]
 file = "MH591084-truncated.gb"
-taxon_name = "Flabellia_petiolata_HV01202"
+taxon_string = "Flabellia_petiolata_HV01202"
 
 [[files]]
 file = "MH591085-truncated.gb"
-taxon_name = "Flabellia_petiolata_HV01202"
+taxon_string = "Flabellia_petiolata_HV01202"
 
 [[files]]
 file = "NC_026795-truncated.txt"

@@ -19,6 +19,7 @@ Welcome to orthoflow's documentation!
    main/installation
    main/beginner_tutorial
    main/advanced_tutorial
+   main/input
    main/workflow
    .. main/workflow_dev
    .. main/rules

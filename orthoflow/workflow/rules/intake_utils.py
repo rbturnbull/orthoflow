@@ -20,6 +20,17 @@ class OrthoflowInput():
     translation_table: str = ""
     data_type: str = ""
 
+    def __eq__(self, other): 
+        if not isinstance(other, OrthoflowInput):
+            return False
+
+        return all([
+            self.file.absolute() == other.file.absolute(),
+            self.taxon_string == other.taxon_string,
+            self.translation_table == other.translation_table,
+            self.is_genbank() == other.is_genbank(),
+        ])
+
     def validate(self):
         self.file = Path(self.file)
         if not self.file.exists():

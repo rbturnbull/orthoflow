@@ -1,0 +1,76 @@
+{
+    "files": [
+      {
+        "file": "KY509313.gb",
+        "taxon_string": "Avrainvillea_mazei_HV02664",
+        "translation_table": 11,
+        "data_type": "GenBank"
+      },
+      {
+        "file": "NC_026795.txt",
+        "taxon_string": "Bryopsis_plumosa_WEST4718",
+        "data_type": "GenBank",
+        "translation_table": 11
+      },
+      {
+        "file": "KX808498.gb",
+        "taxon_string": "Caulerpa_cliftonii_HV03798",
+        "data_type": "GenBank",
+        "translation_table": 11
+      },
+      {
+        "file": "KY819064.cds.fasta",
+        "taxon_string": "Chlorodesmis_fastigiata_HV03865",
+        "translation_table": 11,
+        "data_type": "CDS"
+      },
+      {
+        "file": "KX808497.fa",
+        "taxon_string": "Derbesia_sp_WEST4838",
+        "translation_table": 11,
+        "data_type": "CDS"
+      },
+      {
+        "file": "MH591079.gbk",
+        "taxon_string": "Dichotomosiphon_tuberosus_HV03781",
+        "data_type": "GenBank",
+        "translation_table": 11
+      },
+      {
+        "file": "MH591080.gbk",
+        "taxon_string": "Dichotomosiphon_tuberosus_HV03781",
+        "data_type": "GenBank",
+        "translation_table": 11
+      },
+      {
+        "file": "MH591081.gbk",
+        "taxon_string": "Dichotomosiphon_tuberosus_HV03781",
+        "data_type": "GenBank",
+        "translation_table": 11
+      },
+      {
+        "file": "MH591083.gb",
+        "taxon_string": "Flabellia_petiolata_HV01202",
+        "data_type": "GenBank",
+        "translation_table": 11
+      },
+      {
+        "file": "MH591084.gb",
+        "taxon_string": "Flabellia_petiolata_HV01202",
+        "data_type": "GenBank",
+        "translation_table": 11
+      },
+      {
+        "file": "MH591085.gb",
+        "taxon_string": "Flabellia_petiolata_HV01202",
+        "data_type": "GenBank",
+        "translation_table": 11
+      },
+      {
+        "file": "MH591086.gb",
+        "taxon_string": "Flabellia_petiolata_HV01202",
+        "data_type": "GenBank",
+        "translation_table": 11
+      }
+    ]
+  }

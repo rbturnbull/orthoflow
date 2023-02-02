@@ -30,6 +30,48 @@ def test_input_csv_test_data():
         assert data.file.parent == TEST_DATA
         
 
+def test_input_csv_test_data_yaml():
+    input_dictionary_yaml = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.yml")
+    input_dictionary_csv = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.csv")
+
+    assert input_dictionary_yaml == input_dictionary_csv
+
+
+def test_input_csv_test_data_yaml_consise():
+    input_dictionary_yaml = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.concise.yml")
+    input_dictionary_csv = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.csv")
+
+    assert input_dictionary_yaml == input_dictionary_csv
+
+
+def test_input_csv_test_data_toml():
+    input_dictionary_toml = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.toml")
+    input_dictionary_csv = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.csv")
+
+    assert input_dictionary_toml == input_dictionary_csv
+
+
+def test_input_csv_test_data_toml_concise():
+    input_dictionary_toml = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.concise.toml")
+    input_dictionary_csv = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.csv")
+
+    assert input_dictionary_toml == input_dictionary_csv
+
+
+def test_input_csv_test_data_json():
+    input_dictionary_json = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.json")
+    input_dictionary_csv = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.csv")
+
+    assert input_dictionary_json == input_dictionary_csv
+
+
+def test_input_csv_test_data_json_concise():
+    input_dictionary_json = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.concise.json")
+    input_dictionary_csv = intake_utils.create_input_dictionary(TEST_DATA/"input_sources.csv")
+
+    assert input_dictionary_json == input_dictionary_csv
+
+
 def test_input_csv_genbank():
     input_dictionary = intake_utils.create_input_dictionary(TEST_DATA_SMALL/"MH591083-truncated.gb")
     assert len(input_dictionary) == 1
