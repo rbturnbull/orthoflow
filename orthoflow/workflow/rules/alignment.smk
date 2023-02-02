@@ -63,7 +63,7 @@ rule get_cds_seq:
         "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
 
 
-checkpoint taxon_only:
+rule taxon_only:
     """
     Trim sequence IDs to taxon.
 
