@@ -7,15 +7,15 @@ rule concatenate_alignments:
     input:
         rules.list_alignments.output
     output:
-        fasta=f"results/supermatrix/supermatrix.{alignment_type}.fa",
-        partition=f"results/supermatrix/supermatrix.{alignment_type}.partition",
-        occupancy=f"results/supermatrix/supermatrix.{alignment_type}.occupancy",
+        fasta="results/supermatrix/supermatrix.{alignment_type}.fa",
+        partition="results/supermatrix/supermatrix.{alignment_type}.partition",
+        occupancy="results/supermatrix/supermatrix.{alignment_type}.occupancy",
     conda:
         ENV_DIR / "phykit.yaml"
     bibs:
         "../bibs/phykit.bib"
     log:
-        LOG_DIR / "supermatrix/supermatrix.log"
+        LOG_DIR / "supermatrix/supermatrix.{alignment_type}.log"
     shell:
         "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{alignment_type} &> {log}"
 
@@ -30,13 +30,13 @@ rule supermatrix_alignment_summary:
     input:
         rules.concatenate_alignments.output.fasta
     output:
-        f"results/supermatrix/alignment_summary.{alignment_type}.txt"
+        "results/supermatrix/alignment_summary.{alignment_type}.txt"
     conda:
         ENV_DIR / "biokit.yaml"
     bibs:
         "../bibs/biokit.bib",
     log:
-        LOG_DIR / "supermatrix/alignment_summary.log"
+        LOG_DIR / "supermatrix/alignment_summary.{alignment_type}.log"
     shell:
         "{{ biokit alignment_summary {input} > {output} ; }} &> {log}"
 
@@ -50,10 +50,10 @@ rule supermatrix_iqtree:
     input:
         rules.concatenate_alignments.output.fasta
     output:
-        treefile=f"results/supermatrix/supermatrix.{alignment_type}.fa.treefile",
-        consensus_tree=f"results/supermatrix/supermatrix.{alignment_type}.fa.contree",
-        iqtree_report=f"results/supermatrix/supermatrix.{alignment_type}.fa.iqtree",
-        iqtree_log=f"results/supermatrix/supermatrix.{alignment_type}.fa.log",
+        treefile="results/supermatrix/supermatrix.{alignment_type}.fa.treefile",
+        consensus_tree="results/supermatrix/supermatrix.{alignment_type}.fa.contree",
+        iqtree_report="results/supermatrix/supermatrix.{alignment_type}.fa.iqtree",
+        iqtree_log="results/supermatrix/supermatrix.{alignment_type}.fa.log",
     threads: 
         workflow.cores
     conda:
@@ -63,7 +63,7 @@ rule supermatrix_iqtree:
         "../bibs/ultrafast-bootstrap.bib",
         "../bibs/modelfinder.ris",
     log:
-        LOG_DIR / "supermatrix/iqtree.log"
+        LOG_DIR / "supermatrix/iqtree.{alignment_type}.log"
     params:
         bootstrap_string=config.get("bootstrap_string", BOOTSTRAP_STRING_DEFAULT),
         model_string=config.get("model_string", MODEL_STRING_DEFAULT),
@@ -79,13 +79,13 @@ rule supermatrix_ascii:
     input:
         rules.supermatrix_iqtree.output.treefile
     output:
-        f"results/supermatrix/supermatrix_tree_ascii.{alignment_type}.txt"
+        "results/supermatrix/supermatrix_tree_ascii.{alignment_type}.txt"
     conda:
         ENV_DIR / "phykit.yaml"
     bibs:
         "../bibs/phykit.bib",
     log:
-        LOG_DIR / "supermatrix/print_ascii_tree.log"
+        LOG_DIR / "supermatrix/print_ascii_tree.{alignment_type}.log"
     shell:
         "{{ phykit print_tree {input} > {output} ; }} &> {log}"
 
@@ -97,14 +97,14 @@ rule supermatrix_tree_render:
     input:
         rules.supermatrix_iqtree.output.treefile
     output:
-        svg=f"results/supermatrix/supermatrix_tree_render.{alignment_type}.svg",
-        png=f"results/supermatrix/supermatrix_tree_render.{alignment_type}.png"
+        svg="results/supermatrix/supermatrix_tree_render.{alignment_type}.svg",
+        png="results/supermatrix/supermatrix_tree_render.{alignment_type}.png"
     conda:
         ENV_DIR / "toytree.yaml"
     bibs:
         "../bibs/toytree.bib",
     log:
-        LOG_DIR / "supermatrix/render_tree.log"
+        LOG_DIR / "supermatrix/render_tree.{alignment_type}.log"
     shell:
         "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
 
@@ -116,14 +116,14 @@ rule supermatrix_consensus_tree_render:
     input:
         rules.supermatrix_iqtree.output.consensus_tree
     output:
-        svg=f"results/supermatrix/supermatrix_consensus_tree_render.{alignment_type}.svg",
-        png=f"results/supermatrix/supermatrix_consensus_tree_render.{alignment_type}.png"
+        svg="results/supermatrix/supermatrix_consensus_tree_render.{alignment_type}.svg",
+        png="results/supermatrix/supermatrix_consensus_tree_render.{alignment_type}.png"
     conda:
         ENV_DIR / "toytree.yaml"
     bibs:
         "../bibs/toytree.bib",
     log:
-        LOG_DIR / "supermatrix/render_tree.log"
+        LOG_DIR / "supermatrix/render_tree.{alignment_type}.log"
     shell:
         "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
 
