@@ -1,12 +1,12 @@
 def test_mafft(run_workflow):
     w = run_workflow("results/alignment/aligned_proteins/OG0000000_orthosnap_0.protein.alignment.fa")
-    w.assert_contains(">Caulerpa_cliftonii_HV03798|0|KX808498-truncated.gb|28|psbE")
+    w.assert_contains(">Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|28|psbE")
     w.assert_contains("TDRLNALKQINKNL---")
 
 
 def test_get_cds_seq(run_workflow):
     w = run_workflow("results/alignment/seqs_cds/OG0000001.cds.seqs.fa")
-    w.assert_contains(">Caulerpa_cliftonii_HV03798|0|KX808498-truncated.gb|22|rpl23")
+    w.assert_contains(">Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|22|rpl23")
     w.assert_contains("ATGTTTGATTTTTTAAATAAACCATTAATAACAGAAAAAGCAACTCAACTTATTGAA")
 
 

@@ -17,18 +17,18 @@ FORMAT labels=no weights=yes confidences=no intervals=no;
 MATRIX
 	100	 2,
 	100	 5,
-	97	 2 5,
+	98	 2 5,
 	100	 3,
-	100	 4,
-	72	 3 4,
-	100	 1,
 	7	 1 4,
-	20	 1 3,
-	0	 4 5,
-	1	 1 2,
+	100	 4,
+	100	 1,
+	71	 3 4,
+	21	 1 3,
 	2	 1 5,
-	0	 2 3,
 	1	 2 4,
+	0	 1 2,
+	0	 4 5,
+	0	 2 3,
 ;
 END; [Splits]
 

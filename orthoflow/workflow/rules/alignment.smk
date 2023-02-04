@@ -45,7 +45,7 @@ rule get_cds_seq:
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
     """
     input:
-        cds_dir=Path(rules.add_taxon.output[0]).parent,
+        cds_dir=Path(rules.extract_cds.output[0]).parent,
         alignment=rules.mafft.output
     output:
         "results/alignment/seqs_cds/{og}.cds.seqs.fa"
@@ -56,7 +56,8 @@ rule get_cds_seq:
     log:
         LOG_DIR / "alignment/get_cds_seq/{og}.log"
     shell:
-        "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
+        "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output}"
+        # "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
 
 
 rule taxon_only:

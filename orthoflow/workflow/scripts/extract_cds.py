@@ -2,7 +2,6 @@
 import logging
 from pathlib import Path
 from typing import Optional
-
 import typer
 from Bio import SeqIO
 
@@ -10,17 +9,28 @@ logging.basicConfig(level="INFO")
 logger = logging.getLogger("extract_cds")
 
 
+
 def extract_cds(
     infile: Path = typer.Argument(..., file_okay=True, dir_okay=False, exists=True),
     outfile: Path = typer.Argument(..., file_okay=True, dir_okay=False, exists=False),
-    data_type: str = typer.Argument(...),
+    data_type: str = typer.Option(...),
+    taxon_string: str = typer.Option(..., help="The taxon string to be prepended to the description."),
     debug: Optional[bool] = typer.Option(False, "--debug", "-d"),
 ):
     if debug:
         logger.setLevel("DEBUG")
     
     counter = 0
+
     with outfile.open("w") as fout:
+        def write_seq(sequence, counter, gene = ""):
+            seq_id = f"{taxon_string}|{infile.name}|{counter}"
+            if gene:
+                seq_id += f"|{gene}"
+
+            print(f">{seq_id}", file=fout)
+            print(sequence, file=fout)
+
         if data_type.lower() == "genbank":
             for seq in SeqIO.parse(infile, "genbank"):
                 for feat in seq.features:
@@ -45,17 +55,17 @@ def extract_cds(
                             seq_str = seq_str[0:len(seq_str)-modulo]
                             logger.debug(f"CDS of length not divisible by 3 encountered in {infile}; sequence has been trimmed at end")
                         
-                        print(f">{infile.name}|{counter}|{gene}", file=fout)
-                        print(seq_str, file=fout)
+                        write_seq(seq_str, counter=counter, gene=gene)
                         counter += 1
         else:
             # Assume that non-genbank files are Fasta format
             for seq in SeqIO.parse(infile, "fasta"):
-                print(f">{infile.name}|{counter}", file=fout)
-                print(seq.seq, file=fout)
+                write_seq(seq.seq, counter=counter)
                 counter += 1
 
+
     logger.debug(f"Extracted {counter} CDS from {infile} → {outfile}.")
+
 
 if __name__ == "__main__":
     typer.run(extract_cds)
