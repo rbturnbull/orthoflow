@@ -1,7 +1,8 @@
 
 
 def list_gene_tree_files(wildcards, extension):
-    alignments = get_alignments(wildcards)
+    alignments_text_file = checkpoints.list_alignments.get(**wildcards).output[0]
+    alignments = Path(alignments_text_file).read_text().strip().split("\n")
 
     gene_trees = []
     for alignment in alignments:

@@ -17,7 +17,7 @@ rule concatenate_alignments:
     log:
         LOG_DIR / "supermatrix/supermatrix.{alignment_type}.log"
     shell:
-        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{alignment_type} &> {log}"
+        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{wildcards.alignment_type} &> {log}"
 
 
 rule supermatrix_alignment_summary:

@@ -1,7 +1,5 @@
 
 
-# infer_tree_with_protein_seqs = config.get("infer_tree_with_protein_seqs", INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT)
-
 def get_orthologs_path(wildcards):
     orthologs_checkpoint = checkpoints.min_seq_filter_orthofisher if config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT) else checkpoints.orthofinder_all
     orthologs_path = orthologs_checkpoint.get(**wildcards).output[0]
@@ -121,7 +119,7 @@ rule trim_alignments:
     input:
         get_alignments_to_trim
     output:
-        "results/alignment/trimmed-{alignment_type}/{og}.trimmed.{alignment_type}.alignment.fa"
+        "results/alignment/trimmed_{alignment_type}/{og}.trimmed.{alignment_type}.alignment.fa"
     bibs:
         "../bibs/clipkit.bib"
     conda:
@@ -132,48 +130,6 @@ rule trim_alignments:
         """
         clipkit {input} -m smart-gap -o {output} &> {log}
         """
-
-
-def list_cds_alignments(wildcards):
-    """
-    Returns a list of all the trimmed CDS alignments which have a minimum length and the proportion of sites retained after trimming.
-    """
-    orthologs_path = get_orthologs_path(wildcards)
-    all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
-    # for og in all_ogs:
-    #     checkpoints.trim_alignments.get(og=og)
-    return filter_alignments(
-        untrimmed_alignments=expand(rules.thread_dna.output, og=all_ogs),
-        trimmed_alignments=expand(rules.trim_alignments.output, og=all_ogs),
-        min_length=config.get("minimum_trimmed_alignment_length_cds", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS_DEFAULT),
-        max_trimmed_proportion=config.get("max_trimmed_proportion", MAX_TRIMMED_PROPORTION_DEFAULT),
-    )
-
-
-def list_protein_alignments(wildcards):
-    """
-    Returns a list of all the trimmed protein alignments which have a minimum length and the proportion of sites retained after trimming.
-    """
-    orthologs_path = get_orthologs_path(wildcards)
-    all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
-    # for og in all_ogs:
-    #     checkpoints.trim_alignments.get(og=og)
-    return filter_alignments(
-        untrimmed_alignments=expand(rules.taxon_only.output, og=all_ogs),
-        trimmed_alignments=expand(rules.trim_alignments.output, og=all_ogs),
-        min_length=config.get("minimum_trimmed_alignment_length_proteins", MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS_DEFAULT),
-        max_trimmed_proportion=config.get("max_trimmed_proportion", MAX_TRIMMED_PROPORTION_DEFAULT),
-    )
-
-
-def get_alignments(wildcards):
-    """
-    Chooses either the protein or CDS alignments depending on the infer_tree_with_protein_seqs setting in the config.
-    """
-    if infer_tree_with_protein_seqs:
-        return list_protein_alignments(wildcards)
-    return list_cds_alignments(wildcards)
-
 
 def get_trimmed_alignments(wildcards):
     orthologs_path = get_orthologs_path(wildcards)

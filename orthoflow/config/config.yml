@@ -19,7 +19,8 @@ minimum_trimmed_alignment_length_proteins: 167  # Any protein alignments shorter
 max_trimmed_proportion: 0.5  # Any alignments for which more than this fraction of sites was removed during alignment trimming will not be used for phylogeny inference
 
 # tree inference settings
-infer_tree_with_protein_seqs: True  # If True, the tree will be inferred from protein alignments, if False, it will be inferred from nucleotide alignments
+infer_tree_with_protein_seqs: True  # If True, trees will be inferred from protein alignments
+infer_tree_with_cds_seqs: True  # If True, trees will be inferred from nucleotide alignments
 bootstrap_string: "-bb 1000"  # Use IQ-tree syntax, e.g. "-b 100" for 100 nonparametric bootstraps or "-bb 1000" for 1000 ultrafast bootstraps
 model_string: "-m TEST"  # Use IQ-tree syntax, e.g. "-m TEST" to activate ModelFinder or "-m GTR+F+G" for a nucleotide GTR model with empirical base frequencies and discrete gamma model for rate heterogeneity
 #supermatrix_outgroup: "Derbesia_sp_WEST4838"  # Uncomment this line if you wish to specify an outgroup for tree inference

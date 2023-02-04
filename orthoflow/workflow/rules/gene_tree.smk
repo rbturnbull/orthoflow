@@ -26,7 +26,7 @@ rule gene_tree_iqtree:
     shell:
         """
         mkdir -p results/gene_tree/{wildcards.og} &> {log}
-        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{alignment_type} -redo 2>> {log}
+        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{wildcards.alignment_type} -redo 2>> {log}
         """
 
 
