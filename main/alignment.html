@@ -160,7 +160,7 @@
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-taxon_only">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">taxon_only</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L62"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-taxon_only" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">taxon_only</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L63"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-taxon_only" title="Permalink to this definition"></a></dt>
 <dd><p>Trim sequence IDs to taxon.</p>
 <p>At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier
 and produce clean output for the next stages.</p>
@@ -184,7 +184,7 @@ and produce clean output for the next stages.</p>
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-thread_dna">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">thread_dna</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L81"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-thread_dna" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">thread_dna</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L82"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-thread_dna" title="Permalink to this definition"></a></dt>
 <dd><p>Back-translates the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.</p>
 <p><a class="reference external" href="https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment">https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment</a></p>
 <p>The –stop argument keeps in stop codons which are otherwise removed.</p>
@@ -209,7 +209,7 @@ and produce clean output for the next stages.</p>
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-trim_alignments">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">trim_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L113"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-trim_alignments" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">trim_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L114"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-trim_alignments" title="Permalink to this definition"></a></dt>
 <dd><p>Trim multiple-sequence alignments using ClipKIT.</p>
 <p><a class="reference external" href="https://jlsteenwyk.com/ClipKIT">https://jlsteenwyk.com/ClipKIT</a></p>
 <dl class="field-list">
@@ -233,7 +233,7 @@ and produce clean output for the next stages.</p>
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-list_alignments">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">list_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L156"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-list_alignments" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">list_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L157"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-list_alignments" title="Permalink to this definition"></a></dt>
 <dd><p>List path to alignment files into a single text file for use in PhyKIT.</p>
 </dd></dl>
 

@@ -120,6 +120,7 @@
 <dt class="sig sig-object smk" id="rule-extract_cds">
 <span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">extract_cds</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L16"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-extract_cds" title="Permalink to this definition"></a></dt>
 <dd><p>Extracts CDS features from GenBank or fasta files.</p>
+<p>It also adds the taxon name to the sequence ID.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
 <dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
@@ -137,30 +138,8 @@
 <div class="line"><br /></div>
 </div>
 <dl class="smk rule">
-<dt class="sig sig-object smk" id="rule-add_taxon">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">add_taxon</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L38"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-add_taxon" title="Permalink to this definition"></a></dt>
-<dd><p>Prepends the taxon name to the description of each sequence in a CDS file.</p>
-<dl class="field-list">
-<dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
-
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-translate">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">translate</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L56"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-translate" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">translate</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L41"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-translate" title="Permalink to this definition"></a></dt>
 <dd><p>Translates coding sequences to amino acid sequences using BioKIT.</p>
 <p>It relies on the <cite>translation_table</cite> field in the input.
 It expects a number there which corresponds with the NCBI genetic codes:
