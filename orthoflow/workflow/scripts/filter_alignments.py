@@ -8,7 +8,6 @@ import typer
 
 app = typer.Typer()
 
-
 def filter_alignment(trimmed_alignment_path:Path, untrimmed_alignment_path:Path, min_length:int, max_trimmed_proportion:float) -> bool:
     """
     Determines whether or not this trimmed alignment should be included for downstream analysis.
@@ -25,11 +24,13 @@ def filter_alignment(trimmed_alignment_path:Path, untrimmed_alignment_path:Path,
     """
     trimmed_length = AlignIO.read(trimmed_alignment_path, "fasta").get_alignment_length()
     if trimmed_length < min_length:
+        print(f"{trimmed_alignment_path} of length {trimmed_length} which is below the minimum length {min_length}")
         return False
 
     untrimmed_length = AlignIO.read(untrimmed_alignment_path, "fasta").get_alignment_length()
     print(trimmed_alignment_path, trimmed_length, untrimmed_length)
     if trimmed_length <= max_trimmed_proportion * untrimmed_length:
+        print(f"{trimmed_alignment_path} of length {trimmed_length} which is below {max_trimmed_proportion} of the untrimmed length {untrimmed_length}")
         return False
 
     return True
@@ -74,14 +75,17 @@ def filter_alignments(
 
 
 if "snakemake" in locals():
-    filter_alignments(
-        trimmed_alignment_paths=snakemake.input['trimmed'], 
-        untrimmed_alignment_paths=snakemake.input['untrimmed'], 
-        output_txt=snakemake.output[0],
-        min_length=snakemake.params['min_length'],
-        max_trimmed_proportion=snakemake.params['max_trimmed_proportion'],
-        n_jobs=snakemake.threads, 
-    )
+    with open(snakemake.log[0], "w") as f:
+        sys.stderr = sys.stdout = f
+
+        filter_alignments(
+            trimmed_alignment_paths=snakemake.input['trimmed'], 
+            untrimmed_alignment_paths=snakemake.input['untrimmed'], 
+            output_txt=snakemake.output[0],
+            min_length=snakemake.params['min_length'],
+            max_trimmed_proportion=snakemake.params['max_trimmed_proportion'],
+            n_jobs=snakemake.threads, 
+        )
 elif __name__ == "__main__":
     app()
 

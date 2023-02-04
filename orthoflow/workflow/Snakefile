@@ -9,7 +9,7 @@ SNAKE_DIR = Path(workflow.basedir)
 SCRIPT_DIR = SNAKE_DIR/ "scripts"
 ENV_DIR = SNAKE_DIR / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
-LOG_DIR = SNAKE_DIR.parent / "logs"
+LOG_DIR = Path("logs")
 
 # Defaults for config
 ORTHOLOG_MIN_SEQS_DEFAULT = 5

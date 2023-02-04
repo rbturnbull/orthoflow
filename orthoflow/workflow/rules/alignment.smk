@@ -131,6 +131,7 @@ rule trim_alignments:
         clipkit {input} -m smart-gap -o {output} &> {log}
         """
 
+
 def get_trimmed_alignments(wildcards):
     orthologs_path = get_orthologs_path(wildcards)
     all_ogs = glob_wildcards(os.path.join(orthologs_path, "{og}.fa")).og
@@ -161,11 +162,11 @@ checkpoint list_alignments:
         untrimmed=get_untrimmed_alignments,
     output:
         "results/alignment/alignments_list.{alignment_type}.txt",
-    log:
-        LOG_DIR / "alignment/list_alignments/{alignment_type}.log"
     params:
         min_length=get_min_length,
         max_trimmed_proportion=config.get("max_trimmed_proportion", MAX_TRIMMED_PROPORTION_DEFAULT),
     threads: workflow.cores
+    log:
+        LOG_DIR / "alignment/list_alignments.{alignment_type}.log"
     script:
         f"{SCRIPT_DIR}/filter_alignments.py"
