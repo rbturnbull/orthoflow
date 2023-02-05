@@ -27,6 +27,7 @@ biopython = "^1.79"
 Jinja2 = "^3.1.2"
 pydot = "^1.4.2"
 appdirs = "^1.4.4"
+joblib = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
 Sphinx = "^4.4.0"
@@ -42,7 +43,6 @@ isort = "^5.10.1"
 pre-commit = "^2.17.0"
 sphinxcontrib-bibtex = "^2.4.1"
 ipdb = "^0.13.9"
-conda-lock = {extras = ["pip_support"], version = "^1.0.5"}
 phytest = "^1.0.0"
 snakedoc = { git = "https://github.com/smutch/snakedoc.git", branch = "deps/smk-bibtex" }
 
