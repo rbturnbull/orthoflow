@@ -1,0 +1,5 @@
+cores: all
+use-conda: true
+use-envmodules: true
+printshellcmds: true
+rerun-incomplete: true

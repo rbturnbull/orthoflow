@@ -54,7 +54,7 @@ def get_cds_seq(
     """
 
     # HACK This should be done once per directory and saved
-    multifastaindex = MultiFastaIndex(cds_dir.glob("*.cds.fasta"))
+    multifastaindex = MultiFastaIndex(cds_dir.glob("*.cds.fa"))
 
     with open(output_file, 'w') as f:
         alignment = AlignIO.read(alignment, "fasta")

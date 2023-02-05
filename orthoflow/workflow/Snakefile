@@ -9,7 +9,7 @@ SNAKE_DIR = Path(workflow.basedir)
 SCRIPT_DIR = SNAKE_DIR/ "scripts"
 ENV_DIR = SNAKE_DIR / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
-LOG_DIR = SNAKE_DIR.parent / "logs"
+LOG_DIR = Path("logs")
 
 # Defaults for config
 ORTHOLOG_MIN_SEQS_DEFAULT = 5
@@ -18,6 +18,7 @@ MINIMUM_TRIMMED_ALIGNMENT_LENGTH_CDS_DEFAULT = 501
 MINIMUM_TRIMMED_ALIGNMENT_LENGTH_PROTEINS_DEFAULT = 167
 MAX_TRIMMED_PROPORTION_DEFAULT = 0.5
 INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT = True
+INFER_TREE_WITH_CDS_SEQS_DEFAULT = False
 USE_ORTHOFISHER_DEFAULT = False
 BOOTSTRAP_STRING_DEFAULT = "-bb 1000"
 MODEL_STRING_DEFAULT = "-m TEST"
@@ -66,6 +67,16 @@ onstart:
         globals()[name].mkdir(exist_ok=True)
         assert globals()[name].exists()
 
+def get_final_reports(wildcards):
+    reports = []
+    if config.get("infer_tree_with_protein_seqs", INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT):
+        reports.append(rules.report.output[0].format(alignment_type="protein"))
+    
+    if config.get("infer_tree_with_cds_seqs", INFER_TREE_WITH_CDS_SEQS_DEFAULT):
+        reports.append(rules.report.output[0].format(alignment_type="cds"))
+    
+    return reports
+
 
 rule all:
-    input: rules.report.output
+    input: get_final_reports

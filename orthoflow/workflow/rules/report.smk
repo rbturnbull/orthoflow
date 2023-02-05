@@ -38,7 +38,7 @@ rule report:
         genetree_svgs=partial(list_gene_tree_files, extension="tree.svg") if use_supertree else ".",
         genetree_consensus_svgs=partial(list_gene_tree_files, extension="consensus-tree.svg") if use_supertree else ".",
     output:
-        f"results/report.{alignment_type}.html"
+        "results/report.{alignment_type}.html"
     run:
         report_dir = SNAKE_DIR/"report"
         print('report_dir', report_dir)

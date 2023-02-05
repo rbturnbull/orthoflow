@@ -1,3 +1,4 @@
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -29,6 +30,7 @@ def run(
     directory: Optional[Path] = typer.Option(Path("."), file_okay=False, exists=True, dir_okay=True),
     cores: Optional[int] = typer.Option(1, "--cores", "-c", help="Number of cores to request for the workflow"),
     conda_prefix:Path = typer.Option(None, envvar="ORTHOFLOW_CONDA_PREFIX"),
+    hpc: bool = typer.Option(False, help="Run on an HPC cluster (with the SLURM scheduler)?"),
     help_snakemake: Optional[bool] = typer.Option(
         False,
         "--help-snakemake",
@@ -71,6 +73,12 @@ def run(
         
     if target:
         args.append(str(target))
+
+    if all(('profile' not in re.split(r' |=', arg)[0] for arg in ctx.args)):
+        if hpc:
+            args.append(f"--profile={Path(__file__).parent.resolve()/'profiles/slurm'}")
+        else:
+            args.append(f"--profile={Path(__file__).parent.resolve()/'profiles/local'}")
 
     if ctx.args:
         args.extend(ctx.args)

@@ -16,41 +16,26 @@ rule input_sources_csv:
 rule extract_cds:
     """
     Extracts CDS features from GenBank or fasta files.
+
+    It also adds the taxon name to the sequence ID.
     """
     input:
         file=lambda wildcards: input_dictionary[wildcards.stub].file.resolve(),
     output:
-        "results/intake/{stub}.cds.fa",
+        "results/intake/cds/{stub}.cds.fa",
     bibs:
         "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
     params:
-        data_type=lambda wildcards: input_dictionary[wildcards.stub].data_type
+        data_type=lambda wildcards: input_dictionary[wildcards.stub].data_type,
+        taxon_string=lambda wildcards: input_dictionary[wildcards.stub].taxon_string,
     log:
         LOG_DIR / "intake/extract_cds/{stub}.log"
     shell:
         """
-        python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} {params.data_type} &> {log}
+        python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} --data-type {params.data_type} --taxon-string  {params.taxon_string} &> {log}
         """
-
-
-rule add_taxon:
-    """
-    Prepends the taxon name to the description of each sequence in a CDS file.
-    """
-    input:
-        rules.extract_cds.output,
-    output:
-        "results/intake/taxon-added/{stub}.cds.fasta",
-    conda:
-        ENV_DIR / "typer.yaml"
-    params:
-        taxon=lambda wildcards: input_dictionary[wildcards.stub].taxon_string
-    log:
-        LOG_DIR / "intake/add_taxon/{stub}.log"
-    shell:
-        "python {SCRIPT_DIR}/add_taxon.py --unique-counter {params.taxon} {input} {output} &> {log}"
 
 
 rule translate:
@@ -66,7 +51,7 @@ rule translate:
     output:
         "results/intake/translated/{stub}.protein.fa",
     input:
-        rules.add_taxon.output
+        rules.extract_cds.output
     bibs:
         "../bibs/biokit.bib"
     conda:
