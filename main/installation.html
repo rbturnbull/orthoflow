@@ -75,8 +75,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Installation</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/main/installation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -135,24 +135,24 @@
 <section id="source-installation">
 <h2>Source Installation<a class="headerlink" href="#source-installation" title="Permalink to this headline"></a></h2>
 <p>To install from the source code, first ensure that the dependency manager <a class="reference external" href="https://python-poetry.org/">poetry</a> is installed on the system. You can <a class="reference external" href="https://python-poetry.org/docs/master/#installing-with-the-official-installer">install the latest version of poetry</a> on Mac and Linux like this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -sSL https://install.python-poetry.org <span class="p">|</span> python3 -
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-sSL<span class="w"> </span>https://install.python-poetry.org<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-
 </pre></div>
 </div>
 <p>On windows, it can be installed with this command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing<span class="o">)</span>.Content <span class="p">|</span> python -
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>Invoke-WebRequest<span class="w"> </span>-Uri<span class="w"> </span>https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py<span class="w"> </span>-UseBasicParsing<span class="o">)</span>.Content<span class="w"> </span><span class="p">|</span><span class="w"> </span>python<span class="w"> </span>-
 </pre></div>
 </div>
 <p>Then clone the orthoflow repository from github:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/rbturnbull/orthoflow.git
-<span class="nb">cd</span> orthoflow
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rbturnbull/orthoflow.git
+<span class="nb">cd</span><span class="w"> </span>orthoflow
 </pre></div>
 </div>
 <p>Install the code into a virtual environment managed by poetry as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>install
 </pre></div>
 </div>
 <p>Enter into the virtual environment as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry shell
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>shell
 </pre></div>
 </div>
 <div class="admonition note">

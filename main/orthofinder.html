@@ -78,9 +78,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="workflow.html">Workflow</a> &raquo;</li>
-      <li>Orthofinder Module</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="workflow.html">Workflow</a></li>
+      <li class="breadcrumb-item active">Orthofinder Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/main/orthofinder.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -120,15 +120,17 @@
 <dt class="sig sig-object smk" id="rule-orthofinder">
 <span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L9"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder" title="Permalink to this definition"></a></dt>
 <dd><p>Runs <a class="reference external" href="https://github.com/davidemms/OrthoFinder">OrthoFinder</a> on fasta files from the intake rule.</p>
-<p>OrthoFinder runs to the point of orthogroup inference.</p>
+<blockquote>
+<div><p>OrthoFinder runs to the point of orthogroup inference.</p>
+</div></blockquote>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthofinder==2.5.4</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy==1.8.1</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthofinder==2.5.4</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy==1.8.1</span>
 </pre></div>
 </div>
 </dd>
@@ -144,14 +146,14 @@
 <dd><p>Classifies orthogroups as single-copy or multi-copy or rejects them for not having enough sequences or taxa.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joblib==1.1.1</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joblib==1.1.1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span>
 </pre></div>
 </div>
 </dd>
@@ -167,20 +169,20 @@
 <dd><p>Converts the orthofinder output to HTML components that will be used in the Orthoflow report.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seaborn</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy==1.8.1</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas==1.4.3</span><span class="w"></span>
-<span class="w">    </span><span class="c1"># - seaborn==0.11.2</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib==3.5.2</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phykit&gt;=1.11.10</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seaborn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy==1.8.1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas==1.4.3</span>
+<span class="w">    </span><span class="c1"># - seaborn==0.11.2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib==3.5.2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phykit&gt;=1.11.10</span>
 </pre></div>
 </div>
 </dd>
@@ -194,28 +196,32 @@
 <dt class="sig sig-object smk" id="rule-orthosnap">
 <span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthosnap</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L71"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthosnap" title="Permalink to this definition"></a></dt>
 <dd><p>Run Orthosnap to retrieve single-copy orthologs.</p>
-<dl class="field-list">
-<dt class="field-odd">Output</dt>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">output</dt>
 <dd class="field-odd"><p>A directory with an unknown number of fasta files.</p>
 </dd>
-<dt class="field-even">Config</dt>
-<dd class="field-even"><p><strong>orthosnap_occupancy</strong> – by default it uses ortholog_min_seqs<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<dt class="field-even">config orthosnap_occupancy</dt>
+<dd class="field-even"><p>by default it uses ortholog_min_seqs<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </p>
 </dd>
+</dl>
+</div></blockquote>
+<dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># WARNING: The below versions **must** match the dependencies of orthosnap to allow the build to work on M1 macs.</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy=1.20.1</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tqdm=4.58.0</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biopython=1.78</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># WARNING: The below versions **must** match the dependencies of orthosnap to allow the build to work on M1 macs.</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy=1.20.1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tqdm=4.58.0</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biopython=1.78</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mafft=7.490</span><span class="w"> </span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fasttree=2.1.11</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthosnap==0.0.2</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fasttree=2.1.11</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthosnap==0.0.2</span>
 </pre></div>
 </div>
 </dd>
@@ -229,12 +235,14 @@
 <dt class="sig sig-object smk" id="rule-orthofinder_all">
 <span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthofinder_all</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L184"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_all" title="Permalink to this definition"></a></dt>
 <dd><p>Collects all the SC-OGs and the SNAP OGs and creates symlinks for each in a single directory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Config</dt>
-<dd class="field-odd"><p><strong>ortholog_min_seqs</strong> – Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">5</span></code></p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">config ortholog_min_seqs</dt>
+<dd class="field-odd"><p>Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">5</span></code></p>
 </p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <div class="line-block">

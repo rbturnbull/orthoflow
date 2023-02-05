@@ -78,9 +78,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="workflow.html">Workflow</a> &raquo;</li>
-      <li>Orthofisher Module</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="workflow.html">Workflow</a></li>
+      <li class="breadcrumb-item active">Orthofisher Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/main/orthofisher.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -120,12 +120,14 @@
 <dt class="sig sig-object smk" id="rule-orthofisher_input_generation">
 <span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofisher_input_generation</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofisher.smk#L3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofisher_input_generation" title="Permalink to this definition"></a></dt>
 <dd><p>Runs <a class="reference external" href="https://github.com/JLSteenwyk/orthofisher">orthofisher</a> on input files of FASTA file and pHMM paths the intake rule.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Config</dt>
-<dd class="field-odd"><p><strong>orthofisher_hmmer_files</strong> – list of hmmer files for orthofisher<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">['../tests/test-datat/hmms/1080at3041.hmm']</span></code></p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">config orthofisher_hmmer_files</dt>
+<dd class="field-odd"><p>list of hmmer files for orthofisher<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">['../tests/test-datat/hmms/1080at3041.hmm']</span></code></p>
 </p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <div class="line-block">
@@ -137,17 +139,17 @@
 <dd><p>Runs <a class="reference external" href="https://github.com/JLSteenwyk/orthofisher">orthofisher</a> on input files of FASTA file and pHMM paths the intake rule.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthofisher</span><span class="w"></span>
-<span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hmmer=3.3.2</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthofisher&gt;=1.0.4</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthofisher</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hmmer=3.3.2</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">orthofisher&gt;=1.0.4</span>
 </pre></div>
 </div>
 </dd>
@@ -161,14 +163,16 @@
 <dt class="sig sig-object smk" id="rule-min_seq_filter_orthofisher">
 <span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">min_seq_filter_orthofisher</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofisher.smk#L52"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-min_seq_filter_orthofisher" title="Permalink to this definition"></a></dt>
 <dd><p>List all the ortholog ids and puts them in a file.</p>
-<p>Only keeps the orthologs with a minimum number of sequences.
+<blockquote>
+<div><p>Only keeps the orthologs with a minimum number of sequences.
 It also removes suffixes added to the IDs by orthofisher.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Config</dt>
-<dd class="field-odd"><p><strong>ortholog_min_seqs</strong> – Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">5</span></code></p>
+<dt class="field-odd">config ortholog_min_seqs</dt>
+<dd class="field-odd"><p>Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis<p><em>default: </em><code class="docutils literal notranslate"><span class="pre">5</span></code></p>
 </p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <div class="line-block">

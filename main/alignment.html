@@ -78,9 +78,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="workflow.html">Workflow</a> &raquo;</li>
-      <li>Alignment Module</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="workflow.html">Workflow</a></li>
+      <li class="breadcrumb-item active">Alignment Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/main/alignment.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -122,12 +122,12 @@
 <dd><p>Aligns the protein (amino acid) ortholog with MAFFT.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mafft</span><span class="w"></span>
-<span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mafft=7.490</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mafft</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mafft=7.490</span>
 </pre></div>
 </div>
 </dd>
@@ -141,14 +141,16 @@
 <dt class="sig sig-object smk" id="rule-get_cds_seq">
 <span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">get_cds_seq</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L41"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-get_cds_seq" title="Permalink to this definition"></a></dt>
 <dd><p>This rule creates an unaligned mfasta file of the corresponding nucleotide sequences.</p>
-<p>Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.</p>
+<blockquote>
+<div><p>Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.</p>
+</div></blockquote>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biopython</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biopython</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span>
 </pre></div>
 </div>
 </dd>
@@ -162,17 +164,19 @@
 <dt class="sig sig-object smk" id="rule-taxon_only">
 <span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">taxon_only</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L63"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-taxon_only" title="Permalink to this definition"></a></dt>
 <dd><p>Trim sequence IDs to taxon.</p>
-<p>At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier
+<blockquote>
+<div><p>At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier
 and produce clean output for the next stages.</p>
+</div></blockquote>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span>
 </pre></div>
 </div>
 </dd>
@@ -186,18 +190,20 @@ and produce clean output for the next stages.</p>
 <dt class="sig sig-object smk" id="rule-thread_dna">
 <span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">thread_dna</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L82"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-thread_dna" title="Permalink to this definition"></a></dt>
 <dd><p>Back-translates the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.</p>
-<p><a class="reference external" href="https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment">https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment</a></p>
+<blockquote>
+<div><p><a class="reference external" href="https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment">https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment</a></p>
 <p>The –stop argument keeps in stop codons which are otherwise removed.</p>
+</div></blockquote>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phykit&gt;=1.11.10</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phykit&gt;=1.11.10</span>
 </pre></div>
 </div>
 </dd>
@@ -211,17 +217,19 @@ and produce clean output for the next stages.</p>
 <dt class="sig sig-object smk" id="rule-trim_alignments">
 <span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">trim_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L114"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-trim_alignments" title="Permalink to this definition"></a></dt>
 <dd><p>Trim multiple-sequence alignments using ClipKIT.</p>
-<p><a class="reference external" href="https://jlsteenwyk.com/ClipKIT">https://jlsteenwyk.com/ClipKIT</a></p>
+<blockquote>
+<div><p><a class="reference external" href="https://jlsteenwyk.com/ClipKIT">https://jlsteenwyk.com/ClipKIT</a></p>
+</div></blockquote>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
-<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clipkit&gt;=1.3.0</span><span class="w"></span>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clipkit&gt;=1.3.0</span>
 </pre></div>
 </div>
 </dd>
