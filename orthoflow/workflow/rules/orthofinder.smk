@@ -140,7 +140,10 @@ def list_orthofinder_mcogs(wildcards):
         return []
 
     checkpoint_output = checkpoints.orthogroup_classification.get(**wildcards).output.mcogs
-    return Path(checkpoint_output).read_text().strip().split("\n")
+    mcogs = Path(checkpoint_output).read_text().strip().split("\n")
+    
+    mcog_str = Path(checkpoint_output).read_text().strip()
+    return mcog_str.split("\n") if mcog_str else []
 
 
 def list_orthosnap_snap_ogs(wildcards):
@@ -174,7 +177,9 @@ def combine_scogs_and_snap_ogs(wildcards):
             "in the configuration file so that at least some orthologs can be used."
         )
     
-    all_ogs = list_orthofinder_scogs(wildcards) + list_orthosnap_snap_ogs(wildcards)
+    all_ogs = list_orthofinder_scogs(wildcards)
+    all_ogs += list_orthosnap_snap_ogs(wildcards)
+
     if len(all_ogs) == 0:
         raise Exception("No orthogroups found. Please check your input file.")
 
