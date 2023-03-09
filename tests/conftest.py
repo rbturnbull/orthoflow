@@ -166,19 +166,19 @@ class Workflow:
 
 @pytest.fixture
 def run_workflow(tmpdir: Path):
-    def _run_workflow(targets: TargetsType, *args) -> Workflow:
+    def _run_workflow(targets: TargetsType, *args, expected_dir=None) -> Workflow:
         targets = _targets_to_pathlist(targets)
-
         work_dir = Path(tmpdir) / "work_dir"
         tests_dir = Path(__file__).parent.resolve()
-        expected_dir = tests_dir / "test-data-small"
+        expected_dir = expected_dir or tests_dir / "test-data-small"
+
 
         if not expected_dir.exists():
             raise FileNotFoundError(f"Cannot find expected dir '{expected_dir}'.")
 
         shutil.copytree(
             expected_dir,
-            work_dir,
+            work_dir,\
             ignore=shutil.ignore_patterns('.snakemake'),
             symlinks=True,
         )

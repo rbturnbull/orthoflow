@@ -6,6 +6,7 @@ from Bio import GenBank, SeqIO
 import json
 import yaml
 import toml
+from phytest.bio.sequence import Sequence
 
 if "config" not in locals():
     config = {}
@@ -39,6 +40,16 @@ class OrthoflowInput():
         self.data_type = self.data_type or "Fasta"
         self.validate_taxon_string()
         self.validate_translation_table()
+
+        if not self.is_genbank():
+            sequences = Sequence.parse(self.file, "fasta")
+            count = 0
+            for sequence in sequences:
+                sequence.assert_valid_alphabet()
+                sequence.assert_length(min=1)
+                count += 1
+            if count == 0:
+                raise Exception(f"file {self.file} does not contain any valid sequences.")
 
     def stub(self):
         suffix = self.file.suffix
@@ -97,6 +108,8 @@ class OrthoflowInputDictionary(dict):
                 raise ValueError(f"Multiple input sources with same stub '{stub}': {self[stub].file} and {source.file}")
 
             self[stub] = source
+
+
 
     def write_csv(self, csv):
         with open(csv, "w") as f:
@@ -211,7 +224,7 @@ def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInpu
         return read_input_source_yaml(input_source)
 
     return [OrthoflowInput(file=input_source)]
-
+        
 
 def create_input_dictionary(input_source:Union[Path, str, List]) -> OrthoflowInputDictionary:
     input_list = read_input_source(input_source)
