@@ -14,12 +14,14 @@ if "config" not in locals():
 if "TRANSLATION_TABLE_DEFAULT" not in locals():
     TRANSLATION_TABLE_DEFAULT = 1
 
+
 @dataclass
 class OrthoflowInput():
     file: Path
     taxon_string: str = ""
     translation_table: str = ""
     data_type: str = ""
+    valid_file: bool = True
 
     def __eq__(self, other): 
         if not isinstance(other, OrthoflowInput):
@@ -32,7 +34,7 @@ class OrthoflowInput():
             self.is_genbank() == other.is_genbank(),
         ])
 
-    def validate(self):
+    def validate(self, ignore_non_valid_files):
         self.file = Path(self.file)
         if not self.file.exists():
             raise FileNotFoundError(f"Cannot find input file {self.file}")
@@ -40,16 +42,7 @@ class OrthoflowInput():
         self.data_type = self.data_type or "Fasta"
         self.validate_taxon_string()
         self.validate_translation_table()
-
-        if not self.is_genbank():
-            sequences = Sequence.parse(self.file, "fasta")
-            count = 0
-            for sequence in sequences:
-                sequence.assert_valid_alphabet()
-                sequence.assert_length(min=1)
-                count += 1
-            if count == 0:
-                raise Exception(f"file {self.file} does not contain any valid sequences.")
+        self.validate_sequence(ignore_non_valid_files)
 
     def stub(self):
         suffix = self.file.suffix
@@ -96,12 +89,44 @@ class OrthoflowInput():
                 f"Translation table {self.translation_table} not valid. "
                 "See values here: https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes"
             )
+        
+    def validate_sequence(self, ignore_non_valid_files):
+        if self.is_genbank():
+
+            #check whether file contains valid nucleotides only
+            sequences = Sequence.parse(self.file, "genbank")
+            for sequence in sequences:
+                sequence.assert_valid_alphabet(warning = ignore_non_valid_files)
+                sequence.assert_length(min=1, warning = ignore_non_valid_files)
+
+            #check whether file contains annotated genes 
+            count = 0
+            for seq in SeqIO.parse(self.file, "genbank"):
+                for feat in seq.features:
+                    if feat.type == "CDS":
+                        count += 1
+            if count == 0:
+                self.valid_file = False
+                if not ignore_non_valid_files:
+                    raise Exception(f"file {self.file} does not contain any valid sequences.")
+                 
+        if not self.is_genbank():
+            sequences = Sequence.parse(self.file, "fasta")
+            count = 0
+            for sequence in sequences:
+                sequence.assert_valid_alphabet(warning = ignore_non_valid_files)
+                sequence.assert_length(min=1, warning = ignore_non_valid_files)
+                count += 1
+            if count == 0:
+                self.valid_file = False
+                if not ignore_non_valid_files:
+                    raise Exception(f"file {self.file} does not contain any valid sequences.")
 
 
 class OrthoflowInputDictionary(dict):
-    def __init__(self, sources:List[OrthoflowInput]):
+    def __init__(self, sources:List[OrthoflowInput], ignore_non_valid_files):
         for source in sources:
-            source.validate()
+            source.validate(ignore_non_valid_files)
             stub = source.stub()
 
             if stub in self:
@@ -226,7 +251,23 @@ def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInpu
     return [OrthoflowInput(file=input_source)]
         
 
-def create_input_dictionary(input_source:Union[Path, str, List]) -> OrthoflowInputDictionary:
+def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files) -> OrthoflowInputDictionary:
     input_list = read_input_source(input_source)
-    return OrthoflowInputDictionary(input_list)
+
+    #delete non valid files (containing no sequences) from workflow
+    if ignore_non_valid_files:
+        InputDictionaryIgnore = OrthoflowInputDictionary(input_list, ignore_non_valid_files)
+        non_valid_files = []
+        for key in InputDictionaryIgnore:
+            if not InputDictionaryIgnore.get(key).valid_file:
+                non_valid_files.append(key)
+        for item in non_valid_files:
+            print(f"{item} deleted")
+            InputDictionaryIgnore.pop(item)
+        #report non_valid_files
+
+        return InputDictionaryIgnore
+    
+    else:
+        return OrthoflowInputDictionary(input_list, ignore_non_valid_files)
 
