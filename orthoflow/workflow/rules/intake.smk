@@ -62,30 +62,7 @@ rule translate:
     log:
         LOG_DIR / "intake/translate/{stub}.log"
     shell:
-        """
-        biokit translate_sequence {input} --output results/intake/translated/{wildcards.stub}.protein.fa --translation_table {params.translation_table} &> {log}
-        """
-
-rule clean:
-    """
-    Delete empty sequences from fasta files to keep them from showing up in the analysis
-    """
-    output:
-        "results/intake/clean/{stub}.protein.fa",
-    input:
-        rules.translate.output
-    bibs:
-        "../bibs/biokit.bib"
-    conda:
-        ENV_DIR / "biokit.yaml"
-    params:
-        translation_table=lambda wildcards: input_dictionary[wildcards.stub].translation_table
-    log:
-        LOG_DIR / "intake/clean/{stub}.log"
-    shell:
-        """
-        perl -e '$/="\n>"; while (<>) {{ s/>//g; my ($id, $seq) = split /\n/; print ">$_" if length $seq; }}' < {input} > {output}
-        """
+        "biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} &> {log}"
 
 def translated_files(*args):
-    return [f"results/intake/clean/{stub}.protein.fa" for stub in input_dictionary.keys()]
+    return [f"results/intake/translated/{stub}.protein.fa" for stub in input_dictionary.keys()]

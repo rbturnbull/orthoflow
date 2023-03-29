@@ -63,6 +63,10 @@ def get_cds_seq(
             if row.id not in multifastaindex:
                 raise Exception(f"cannot find {row.id} in multifastaindex")
             f.write(f">{row.id}\n{multifastaindex[row.id]}\n")
+        
+
+
+
 
 
 if __name__ == "__main__":

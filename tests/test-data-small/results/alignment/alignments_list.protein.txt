@@ -1,2 +1,1 @@
-results/alignment/trimmed_protein/OG0000002.trimmed.protein.alignment.fa
-results/alignment/trimmed_protein/OG0000005.trimmed.protein.alignment.fa
+
