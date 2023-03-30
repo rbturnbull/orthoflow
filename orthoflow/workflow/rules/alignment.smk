@@ -56,7 +56,9 @@ rule get_cds_seq:
     log:
         LOG_DIR / "alignment/get_cds_seq/{og}.log"
     shell:
-        "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output}"
+        """
+        python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output}
+        """
         # "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
 
 
