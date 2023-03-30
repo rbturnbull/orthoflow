@@ -10,7 +10,7 @@ supertree: True  # Infer a tree using the supertree (ASTRAL) method
 summarize_information_content: True
 
 # gene and alignment filtering
-orthofinder_use_scogs: False  # Use the single-copy orthogroups (when using de novo ortholog analysis path)
+orthofinder_use_scogs: True  # Use the single-copy orthogroups (when using de novo ortholog analysis path)
 orthofinder_use_snap_ogs: False  # Use the SNAP orthogroups (when using de novo ortholog analysis path)
 ortholog_min_seqs: 5  # Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
 ortholog_min_taxa: 5  # Minimum number of taxa that needs to be in an orthogroup
