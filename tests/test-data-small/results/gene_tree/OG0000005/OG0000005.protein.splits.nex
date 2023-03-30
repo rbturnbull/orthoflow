@@ -1,0 +1,31 @@
+#nexus
+
+BEGIN Taxa;
+DIMENSIONS ntax=5;
+TAXLABELS
+[1] 'Caulerpa_cliftonii_HV03798'
+[2] 'Avrainvillea_mazei_HV02664'
+[3] 'Chlorodesmis_fastigiata_HV03865'
+[4] 'Flabellia_petiolata_HV01202'
+[5] 'Bryopsis_plumosa_WEST4718'
+;
+END; [Taxa]
+
+BEGIN Splits;
+DIMENSIONS ntax=5 nsplits=11;
+FORMAT labels=no weights=yes confidences=no intervals=no;
+MATRIX
+	100	 2,
+	100	 5,
+	99	 2 5,
+	100	 3,
+	100	 4,
+	88	 3 4,
+	100	 1,
+	11	 1 4,
+	1	 1 5,
+	2	 1 3,
+	0	 1 2,
+;
+END; [Splits]
+
