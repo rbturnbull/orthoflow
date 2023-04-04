@@ -5,7 +5,6 @@ import typer
 import pickle
 import linecache
 
-
 class MultiFastaIndex():
     def __init__(self, files):
         self.files = list(files)
@@ -15,7 +14,7 @@ class MultiFastaIndex():
             with open(file) as f:
                 for line_number, line in enumerate(f):
                     if line.startswith(">"):
-                        seq_id = line[1:].strip()
+                        seq_id = "|".join(line[1:].split("|")[0:3]).strip()
 
                         if seq_id in self.id_refs:
                             print(f"duplicate seq_id {seq_id}")
@@ -60,14 +59,10 @@ def get_cds_seq(
         alignment = AlignIO.read(alignment, "fasta")
         
         for row in alignment:
-            if row.id not in multifastaindex:
-                raise Exception(f"cannot find {row.id} in multifastaindex")
-            f.write(f">{row.id}\n{multifastaindex[row.id]}\n")
-        
-
-
-
-
+            row_id = "|".join(row.id.split("|")[0:3])
+            if row_id not in multifastaindex:
+                raise Exception(f"cannot find {row_id} in multifastaindex")
+            f.write(f">{row.id}\n{multifastaindex[row_id]}\n")
 
 if __name__ == "__main__":
     typer.run(get_cds_seq)

@@ -60,7 +60,7 @@ def extract_cds(
         else:
             # Assume that non-genbank files are Fasta format
             for seq in SeqIO.parse(infile, "fasta"):
-                write_seq(seq.seq, counter=counter)
+                write_seq(seq.seq, counter=counter, gene=seq.id)
                 counter += 1
 
 

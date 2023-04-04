@@ -1,6 +1,6 @@
 # input
 input_sources: "input_sources.csv" # Specify the CSV file containing the input sources
-ignore_non_valid_files: False # Delete and ignore file from workflow if no valid sequence present in the file, instead of error message
+ignore_non_valid_files: False # Ignore file from workflow if no valid sequence present in the file, instead of error message
 
 # flow of operations
 use_orthofisher: False  # Set to True to use OrthoFisher analysis path. When False, the will OrthoFinder+OrthoSNAP path will be used.
