@@ -34,7 +34,7 @@ FEATURES             Location/Qualifiers
      gene            1..86
                      /gene="trnL"
 ORIGIN      
-        1 dadadadada tgaaatcggt agacacacag gcttgaggtg cctggggctt cttttagcct
+        1 tgaaatcggt tgaaatcggt agacacacag gcttgaggtg cctggggctt cttttagcct
        61 tcccggttca aatccgggta gcaatagctt tcgcctattt agctcaagtg gttagagctt
       121 ccgtttcata cgcgggaggg tgctagttca aatctagtag taggcatggc ttcaccaaag
       181 cttcggccgc gccacggccg cgccacggcc gcgccacggc cgcgccacag gatctggcag

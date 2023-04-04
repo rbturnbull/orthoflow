@@ -1,0 +1,3 @@
+stub,file,data_type,taxon_string,translation_table
+invalid,invalid.gb,GenBank,Caulerpa_cliftonii,1
+MH591083-truncated,../test-data-small/MH591083-truncated.gb,GenBank,Flabellia_petiolata,11

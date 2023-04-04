@@ -55,7 +55,7 @@ def extract_cds(
                             seq_str = seq_str[0:len(seq_str)-modulo]
                             logger.debug(f"CDS of length not divisible by 3 encountered in {infile} {counter}_{gene}; sequence has been trimmed at end")
                         
-                        write_seq(seq_str, counter=counter)
+                        write_seq(seq_str, counter=counter, gene=gene)
                         counter += 1
         else:
             # Assume that non-genbank files are Fasta format

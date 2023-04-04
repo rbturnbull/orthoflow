@@ -5,6 +5,8 @@ from dataclasses import dataclass
 from Bio import GenBank, SeqIO
 import json
 import yaml
+from rich.console import Console
+console = Console()
 import toml
 from phytest.bio.sequence import Sequence
 
@@ -134,8 +136,6 @@ class OrthoflowInputDictionary(dict):
 
             self[stub] = source
 
-
-
     def write_csv(self, csv):
         with open(csv, "w") as f:
             print("stub", "file", "data_type", "taxon_string", "translation_table", file=f, sep=",")
@@ -251,23 +251,32 @@ def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInpu
     return [OrthoflowInput(file=input_source)]
         
 
-def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files) -> OrthoflowInputDictionary:
+def print_warning(text):
+    warning_style = "bold white on red"  
+    console.print("-"*len(text), style=warning_style)
+    console.print(text, style=warning_style)
+    console.print("-"*len(text), style=warning_style)
+
+
+def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files, warnings_dir=None) -> OrthoflowInputDictionary:
     input_list = read_input_source(input_source)
 
-    #delete non valid files (containing no sequences) from workflow
-    if ignore_non_valid_files:
-        InputDictionaryIgnore = OrthoflowInputDictionary(input_list, ignore_non_valid_files)
-        non_valid_files = []
-        for key in InputDictionaryIgnore:
-            if not InputDictionaryIgnore.get(key).valid_file:
-                non_valid_files.append(key)
-        for item in non_valid_files:
-            print(f"{item} deleted")
-            InputDictionaryIgnore.pop(item)
-        #report non_valid_files
-
-        return InputDictionaryIgnore
+    input_dictionary = OrthoflowInputDictionary(input_list, ignore_non_valid_files)
     
-    else:
-        return OrthoflowInputDictionary(input_list, ignore_non_valid_files)
+    # remove non valid files (containing no sequences) from workflow
+    non_valid_files = []
+    if ignore_non_valid_files:    
+        for item in input_dictionary.values():
+            if not item.valid_file:
+                non_valid_files.append(item)
+        for item in non_valid_files:
+            print_warning(f" WARNING: '{item.file}' removed from list of files. ")
+
+    # report non_valid_files
+    if warnings_dir:
+        non_valid_files_warning_file = warnings_dir/"non_valid_files.txt"
+        non_valid_files_warning_file.write_text("\n".join([str(item.file) for item in non_valid_files]))
+
+    return input_dictionary
+    
 

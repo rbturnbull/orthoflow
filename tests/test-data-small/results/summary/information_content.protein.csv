@@ -1,6 +1,6 @@
 metric,value,alignment
 alignment_length,320,results/alignment/trimmed_protein/OG0000002.trimmed.protein.alignment.fa
-relative_composition_variability,0.1033,results/alignment/trimmed_protein/OG0000002.trimmed.protein.alignment.fa
+relative_composition_variability,0.1032,results/alignment/trimmed_protein/OG0000002.trimmed.protein.alignment.fa
 pairwise_identity,0.6834,results/alignment/trimmed_protein/OG0000002.trimmed.protein.alignment.fa
 parsimony_informative_sites,29,results/alignment/trimmed_protein/OG0000002.trimmed.protein.alignment.fa
 variable_sites,156,results/alignment/trimmed_protein/OG0000002.trimmed.protein.alignment.fa

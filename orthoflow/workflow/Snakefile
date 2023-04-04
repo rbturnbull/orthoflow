@@ -10,6 +10,9 @@ SCRIPT_DIR = SNAKE_DIR/ "scripts"
 ENV_DIR = SNAKE_DIR / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = Path("logs")
+WARNINGS_DIR = LOG_DIR/"warnings"
+WARNINGS_DIR.mkdir(parents=True, exist_ok=True)
+
 
 # Defaults for config
 ORTHOLOG_MIN_SEQS_DEFAULT = 5

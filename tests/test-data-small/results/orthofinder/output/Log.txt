@@ -1,4 +1,4 @@
-2023-03-30 15:51:41 : Started OrthoFinder version 2.5.4
+2023-04-04 22:41:54 : Started OrthoFinder version 2.5.4
 Command Line: /Users/rturnbull/Library/Caches/orthoflow/conda/480214afa9cd0fde1f2e444dcbb98d02/bin/orthofinder -f results/intake/translated -t 1 -n orthoflow -og -X
 
 WorkingDirectory_Base: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data-small/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/
@@ -13,4 +13,4 @@ Species used:
 6: NC_026795-truncated.protein.fa
 
 FN_Orthogroups: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data-small/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/clusters_OrthoFinder_I1.5.txt_id_pairs.txt
-2023-03-30 15:51:54 : OrthoFinder run completed
+2023-04-04 22:42:06 : OrthoFinder run completed
