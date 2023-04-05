@@ -9,6 +9,7 @@ from rich.console import Console
 console = Console()
 import toml
 from phytest.bio.sequence import Sequence
+from dataclasses import dataclass, field
 
 if "config" not in locals():
     config = {}
@@ -24,6 +25,7 @@ class OrthoflowInput():
     translation_table: str = ""
     data_type: str = ""
     valid_file: bool = True
+    faulty_list: list = field(default_factory=list)
 
     def __eq__(self, other): 
         if not isinstance(other, OrthoflowInput):
@@ -36,15 +38,17 @@ class OrthoflowInput():
             self.is_genbank() == other.is_genbank(),
         ])
 
-    def validate(self, ignore_non_valid_files):
+    def validate(self):
         self.file = Path(self.file)
         if not self.file.exists():
-            raise FileNotFoundError(f"Cannot find input file {self.file}")
+            self.faulty_list(f"Cannot find input file {self.file}")
+            self.valid_file = False
+            return
         
         self.data_type = self.data_type or "Fasta"
         self.validate_taxon_string()
         self.validate_translation_table()
-        self.validate_sequence(ignore_non_valid_files)
+        self.validate_sequence()
 
     def stub(self):
         suffix = self.file.suffix
@@ -92,14 +96,16 @@ class OrthoflowInput():
                 "See values here: https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes"
             )
         
-    def validate_sequence(self, ignore_non_valid_files):
+    def validate_sequence(self):
         if self.is_genbank():
-
             #check whether file contains valid nucleotides only
             sequences = Sequence.parse(self.file, "genbank")
             for sequence in sequences:
-                sequence.assert_valid_alphabet(warning = ignore_non_valid_files)
-                sequence.assert_length(min=1, warning = ignore_non_valid_files)
+                try:
+                    sequence.assert_valid_alphabet()
+                    sequence.assert_length(min=1)
+                except:
+                    self.faulty_list.append(f"Sequence {sequence.id} in file {self.file} is not valid")
 
             #check whether file contains annotated genes 
             count = 0
@@ -109,32 +115,63 @@ class OrthoflowInput():
                         count += 1
             if count == 0:
                 self.valid_file = False
-                if not ignore_non_valid_files:
-                    raise Exception(f"file {self.file} does not contain any valid sequences.")
+                self.faulty_list.append(f"File {self.file} does not contain any sequences")
                  
         if not self.is_genbank():
             sequences = Sequence.parse(self.file, "fasta")
             count = 0
             for sequence in sequences:
-                sequence.assert_valid_alphabet(warning = ignore_non_valid_files)
-                sequence.assert_length(min=1, warning = ignore_non_valid_files)
+                try:
+                    sequence.assert_valid_alphabet()
+                    sequence.assert_length(min=1)
+                except:
+                    self.faulty_list.append(f"Sequence {sequence.id} in file {self.file} is not valid")
                 count += 1
             if count == 0:
                 self.valid_file = False
-                if not ignore_non_valid_files:
-                    raise Exception(f"file {self.file} does not contain any valid sequences.")
+                self.faulty_list.append(f"File {self.file} does not contain any sequences")
 
 
 class OrthoflowInputDictionary(dict):
-    def __init__(self, sources:List[OrthoflowInput], ignore_non_valid_files):
+    def __init__(self, sources:List[OrthoflowInput], ignore_non_valid_files, warnings_dir=None):
+
+        faulty_object_present = False
+
+        extra_text = ""
+        if ignore_non_valid_files:
+            extra_text = " and has been ignored"
+        
+
+        list_of_faulty_lists = []
+
         for source in sources:
-            source.validate(ignore_non_valid_files)
             stub = source.stub()
 
             if stub in self:
                 raise ValueError(f"Multiple input sources with same stub '{stub}': {self[stub].file} and {source.file}")
+            
+            source.validate()
 
-            self[stub] = source
+            # add file to list if valid
+            if source.valid_file:
+                self[stub] = source
+
+            # print warning to warning file if present
+            if source.faulty_list:
+                faulty_object_present = True
+                list_of_faulty_lists.append("\n".join(source.faulty_list) + extra_text + "\n")
+
+                # report non_valid_objects
+        if warnings_dir:
+            non_valid_files_warning_file = warnings_dir/"non_valid_objects.txt"
+            non_valid_files_warning_file.write_text("\n".join(str(item) for item in list_of_faulty_lists))
+
+        if faulty_object_present:
+            if not ignore_non_valid_files:
+                raise ValueError(f"File(s) and/or sequence(s) not valid, check the warning folder to see the faulty objects")
+            else:
+                print_warning(f"File(s) and/or sequence(s) not valid, these are ignored. Check the warning folder in logs or the Warnings tab in the report to see the faulty objects.")
+            
 
     def write_csv(self, csv):
         with open(csv, "w") as f:
@@ -250,33 +287,13 @@ def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInpu
 
     return [OrthoflowInput(file=input_source)]
         
-
 def print_warning(text):
     warning_style = "bold white on red"  
     console.print("-"*len(text), style=warning_style)
     console.print(text, style=warning_style)
     console.print("-"*len(text), style=warning_style)
 
-
 def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files, warnings_dir=None) -> OrthoflowInputDictionary:
     input_list = read_input_source(input_source)
-
-    input_dictionary = OrthoflowInputDictionary(input_list, ignore_non_valid_files)
-    
-    # remove non valid files (containing no sequences) from workflow
-    non_valid_files = []
-    if ignore_non_valid_files:    
-        for item in input_dictionary.values():
-            if not item.valid_file:
-                non_valid_files.append(item)
-        for item in non_valid_files:
-            print_warning(f" WARNING: '{item.file}' removed from list of files. ")
-
-    # report non_valid_files
-    if warnings_dir:
-        non_valid_files_warning_file = warnings_dir/"non_valid_files.txt"
-        non_valid_files_warning_file.write_text("\n".join([str(item.file) for item in non_valid_files]))
-
-    return input_dictionary
-    
-
+    return OrthoflowInputDictionary(input_list, ignore_non_valid_files, warnings_dir)
+  
