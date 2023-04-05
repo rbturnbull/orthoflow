@@ -1,3 +1,0 @@
-/Users/mac/Library/Caches/orthoflow/conda/118d41716d1dfa34400166621f348dbd_/lib/python3.11/site-packages/Bio/GenBank/__init__.py:756: BiopythonParserWarning: The NCBI states double-quote characters like " should be escaped as "" (two double - quotes), but here it was not: 'hypothetical protein"f /protein_id="AOP19297.1'
-  warnings.warn(
-DEBUG:extract_cds:Extracted 31 CDS from /Users/mac/orthoflow/tests/test-data-invalid/alphabet.gb → results/intake/cds/alphabet.cds.fa.

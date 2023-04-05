@@ -1,6 +1,0 @@
-﻿file,taxon_string,data_type,translation_table
-alphabet.gb,Caulerpa_cliftonii_HV03798,GenBank,11
-codons.fa,Avrainvillea_mazei_HV02664,CDS,11
-fasta_alphabet.fa,Flabellia_petiolata_HV01202,CDS,11
-invalid.fa,Bryopsis_plumosa_WEST4718,CDS,11
-invalid.gb,Chlorodesmis_fastigiata_HV03865,GenBank,11
