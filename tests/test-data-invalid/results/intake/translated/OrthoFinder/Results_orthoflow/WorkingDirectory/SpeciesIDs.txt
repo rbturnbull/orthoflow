@@ -1,0 +1,3 @@
+0: alphabet.protein.fa
+1: codons.protein.fa
+2: fasta_alphabet.protein.fa

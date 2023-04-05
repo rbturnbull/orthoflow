@@ -1,0 +1,9 @@
+Sequence KX808498.1 in file alphabet.gb is not valid and has been ignored
+
+Sequence emptysequence in file codons.fa is not valid and has been ignored
+
+Sequence fakesequence in file fasta_alphabet.fa is not valid and has been ignored
+
+File invalid.fa does not contain any sequences and has been ignored
+
+File invalid.gb does not contain any sequences and has been ignored

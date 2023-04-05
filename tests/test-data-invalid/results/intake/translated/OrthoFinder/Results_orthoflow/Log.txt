@@ -1,4 +1,4 @@
-2023-03-30 21:46:23 : Started OrthoFinder version 2.5.4
-Command Line: /Users/rturnbull/Library/Caches/orthoflow/conda/480214afa9cd0fde1f2e444dcbb98d02/bin/orthofinder -f results/intake/translated -t 1 -n orthoflow -og -X
+2023-04-05 15:48:31 : Started OrthoFinder version 2.5.4
+Command Line: /Users/mac/Library/Caches/orthoflow/conda/92217b70c463dd37e8c030d428c1dc0e_/bin/orthofinder -f results/intake/translated -t 1 -n orthoflow -og -X
 
-WorkingDirectory_Base: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data-invalid/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/
+WorkingDirectory_Base: /Users/mac/orthoflow/tests/test-data-invalid/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/
