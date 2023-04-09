@@ -5,7 +5,7 @@ rule concatenate_alignments:
     https://jlsteenwyk.com/PhyKIT/usage/index.html#create-concatenation-matrix
     """
     input:
-        rules.check_presence_after_filtering.output
+        rules.list_alignments.output
     output:
         fasta="results/supermatrix/supermatrix.{alignment_type}.fa",
         partition="results/supermatrix/supermatrix.{alignment_type}.partition",

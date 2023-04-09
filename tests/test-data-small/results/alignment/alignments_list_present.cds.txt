@@ -1,2 +1,0 @@
-results/alignment/trimmed_cds/OG0000002.trimmed.cds.alignment.fa
-results/alignment/trimmed_cds/OG0000005.trimmed.cds.alignment.fa

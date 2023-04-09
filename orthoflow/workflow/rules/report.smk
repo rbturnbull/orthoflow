@@ -95,6 +95,12 @@ rule report:
 
         template = env.get_template("report-template.html")
 
+        warnings = []
+        for warnings_file in WARNINGS_DIR.glob("*.txt"):
+            warning = warnings_file.read_text()
+            if warning:
+                warnings.append(warning)
+
         try:        
             result = template.render(
                 input=input,
@@ -103,6 +109,7 @@ rule report:
                 use_supermatrix=use_supermatrix,
                 bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
                 bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
+                warnings=warnings,
             )
         except Exception as err:
             print(f"failed to render {err}")
