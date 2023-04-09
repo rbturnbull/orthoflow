@@ -96,10 +96,10 @@ rule report:
         template = env.get_template("report-template.html")
 
         warnings = []
-         for warnings_file in WARNINGS_DIR.glob("*.txt"):
-             warning = warnings_file.read_text()
-             if warning:
-                 warnings.append(warning)
+        for warnings_file in WARNINGS_DIR.glob("*.txt"):
+            warning = warnings_file.read_text()
+            if warning:
+                warnings.append(warning)
 
         try:        
             result = template.render(

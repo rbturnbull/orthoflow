@@ -48,7 +48,7 @@ class OrthoflowInput():
         self.data_type = self.data_type or "Fasta"
         self.validate_taxon_string()
         self.validate_translation_table()
-        #self.validate_sequence()
+        self.validate_sequence()
 
     def stub(self):
         suffix = self.file.suffix
