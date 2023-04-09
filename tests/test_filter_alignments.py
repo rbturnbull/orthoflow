@@ -26,7 +26,3 @@ def test_filter_alignments_test_data_small_cds():
         output_lines = output_txt.read_text().strip().split("\n")
         assert len(output_lines) == 1
         assert output_lines[0].endswith(expected_names[0])
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 2d18db3 (:bug: proper error message if there are no alignments left after filtering)
