@@ -2,7 +2,7 @@ IQ-TREE 2.2.0.3 COVID-edition built Sep  5 2022
 
 Input file name: results/alignment/trimmed_cds/OG0000002.trimmed.cds.alignment.fa
 Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
-Random seed number: 519045
+Random seed number: 783220
 
 REFERENCES
 ----------
@@ -182,12 +182,12 @@ Numbers in parentheses are  ultrafast bootstrap support (%)
 |               +------------------------------------Bryopsis_plumosa_WEST4718
 |
 |    +---------------------Chlorodesmis_fastigiata_HV03865
-+----| (81)
++----| (82)
      +----------Flabellia_petiolata_HV01202
 
 Tree in newick format:
 
-(Caulerpa_cliftonii_HV03798:0.2433653295,(Avrainvillea_mazei_HV02664:0.2945145430,Bryopsis_plumosa_WEST4718:0.2555570167)99:0.1139180326,(Chlorodesmis_fastigiata_HV03865:0.1528511029,Flabellia_petiolata_HV01202:0.0782435884)81:0.0357608500);
+(Caulerpa_cliftonii_HV03798:0.2433651032,(Avrainvillea_mazei_HV02664:0.2945144790,Bryopsis_plumosa_WEST4718:0.2555568991)99:0.1139178890,(Chlorodesmis_fastigiata_HV03865:0.1528510547,Flabellia_petiolata_HV01202:0.0782435790)82:0.0357609162);
 
 CONSENSUS TREE
 --------------
@@ -207,18 +207,18 @@ Numbers in parentheses are bootstrap supports (%)
 |               +------------------------------------Bryopsis_plumosa_WEST4718
 |
 |    +---------------------Chlorodesmis_fastigiata_HV03865
-+----| (81)
++----| (82)
      +----------Flabellia_petiolata_HV01202
 
 
 Consensus tree in newick format: 
 
-(Caulerpa_cliftonii_HV03798:0.2432495788,(Avrainvillea_mazei_HV02664:0.2944773425,Bryopsis_plumosa_WEST4718:0.2555873321)99:0.1137995384,(Chlorodesmis_fastigiata_HV03865:0.1528361680,Flabellia_petiolata_HV01202:0.0782502764)81:0.0357896672);
+(Caulerpa_cliftonii_HV03798:0.2432495783,(Avrainvillea_mazei_HV02664:0.2944773593,Bryopsis_plumosa_WEST4718:0.2555873196)99:0.1137995467,(Chlorodesmis_fastigiata_HV03865:0.1528361705,Flabellia_petiolata_HV01202:0.0782502709)82:0.0357896768);
 
 TIME STAMP
 ----------
 
-Date and time: Sat Apr  8 15:47:27 2023
-Total CPU time used: 0.520672 seconds (0h:0m:0s)
-Total wall-clock time used: 0.8809669018 seconds (0h:0m:0s)
+Date and time: Sun Apr  9 17:24:53 2023
+Total CPU time used: 0.463117 seconds (0h:0m:0s)
+Total wall-clock time used: 0.693156004 seconds (0h:0m:0s)
 
