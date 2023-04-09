@@ -122,11 +122,16 @@ def list_orthofinder_scogs(wildcards):
     
     Returns an empty list if the config species to use Orthofisher instead of OrthoFinder or if the config says to not use SC-OGs.
     """
+    
     if use_orthofisher or not orthofinder_use_scogs:
         return []
 
     checkpoint_output = checkpoints.orthogroup_classification.get(**wildcards).output.scogs
     results = Path(checkpoint_output).read_text().strip().split("\n")
+
+    if Path(checkpoint_output).stat().st_size == 0:
+        return []
+    
     return results
 
 
@@ -184,7 +189,6 @@ def combine_scogs_and_snap_ogs(wildcards):
         raise Exception("No orthogroups found. Please check your input file.")
 
     return all_ogs
-
 
 checkpoint orthofinder_all:
     """

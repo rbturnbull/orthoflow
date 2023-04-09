@@ -2,6 +2,8 @@ import tempfile
 from pathlib import Path
 from orthoflow.workflow.scripts.filter_alignments import filter_alignments
 from typer.testing import CliRunner
+from subprocess import CalledProcessError
+import pytest
 
 TEST_DATA_SMALL = Path(__file__).parent/"test-data-small"
 
@@ -26,4 +28,9 @@ def test_filter_alignments_test_data_small_cds():
         output_lines = output_txt.read_text().strip().split("\n")
         assert len(output_lines) == 1
         assert output_lines[0].endswith(expected_names[0])
+
+def test_no_alignments_after_filtering(run_workflow):
+    with pytest.raises(EOFError) as err:
+        w = run_workflow("results/alignment/alignments_list_present.protein.txt", "--config", "minimum_trimmed_alignment_length_proteins=100000")
+
 

@@ -48,7 +48,7 @@ class OrthoflowInput():
         self.data_type = self.data_type or "Fasta"
         self.validate_taxon_string()
         self.validate_translation_table()
-        self.validate_sequence()
+        #self.validate_sequence()
 
     def stub(self):
         suffix = self.file.suffix
@@ -105,7 +105,7 @@ class OrthoflowInput():
                     sequence.assert_valid_alphabet()
                     sequence.assert_length(min=1)
                 except:
-                    self.faulty_list.append(f"Sequence {sequence.id} in file {self.file} is not valid")
+                    self.faulty_list.append(f"Sequence in file {self.file} is not valid")
 
             #check whether file contains annotated genes 
             count = 0
