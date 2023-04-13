@@ -159,6 +159,8 @@ class OrthoflowInputDictionary(dict):
 
             # print warning to warning file if present
             if source.faulty_list:
+                if len(list_of_faulty_lists) == 0:
+                    list_of_faulty_lists.append("File(s) and/or sequence(s) not valid, these are ignored")
                 faulty_object_present = True
                 list_of_faulty_lists.append("\n".join(source.faulty_list) + extra_text + "\n")
 
@@ -170,8 +172,6 @@ class OrthoflowInputDictionary(dict):
         if faulty_object_present:
             if not ignore_non_valid_files:
                 raise ValueError(f"File(s) and/or sequence(s) not valid, check the warning folder to see the faulty objects")
-            else:
-                print_warning(f"File(s) and/or sequence(s) not valid, these are ignored. Check the warning folder in logs or the Warnings tab in the report to see the faulty objects.")
             
 
     def write_csv(self, csv):
@@ -287,12 +287,6 @@ def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInpu
         return read_input_source_yaml(input_source)
 
     return [OrthoflowInput(file=input_source)]
-        
-def print_warning(text):
-    warning_style = "bold white on red"  
-    console.print("-"*len(text), style=warning_style)
-    console.print(text, style=warning_style)
-    console.print("-"*len(text), style=warning_style)
 
 def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files, warnings_dir=None) -> OrthoflowInputDictionary:
     input_list = read_input_source(input_source)

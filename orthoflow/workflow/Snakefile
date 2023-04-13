@@ -3,6 +3,9 @@ from pathlib import Path
 
 import subprocess
 
+from rich.console import Console
+console = Console()
+
 min_version("6.0")
 
 SNAKE_DIR = Path(workflow.basedir)
@@ -84,3 +87,23 @@ def get_final_reports(wildcards):
 
 rule all:
     input: get_final_reports
+
+def print_warning(text, warning_style=None):
+    if not warning_style:
+        warning_style = "bold white on red"  
+    console.print("-"*len(text), style=warning_style)
+    console.print(text, style=warning_style)
+    console.print("-"*len(text), style=warning_style)
+
+onsuccess:
+    warning_message = ""
+    for warnings_file in WARNINGS_DIR.glob("*.txt"):
+        temp = warnings_file.read_text()
+        warning = temp.split("\n")[0]
+        if warning:
+            if len(warning_message) > 0:
+                warning_message += "\n"
+            warning_message += "WARNING: " + str(warning)
+    if len(warning_message) > 0:
+        print_warning("There are warnings. Please check the warnings tab in the report or the warnings folder in the log.")
+        print_warning(warning_message, warning_style="bold white")
