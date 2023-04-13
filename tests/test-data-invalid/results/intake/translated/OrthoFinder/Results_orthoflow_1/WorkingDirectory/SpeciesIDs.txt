@@ -1,2 +1,0 @@
-0: MH591083-truncated.protein.fa
-1: invalid.protein.fa

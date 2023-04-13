@@ -28,3 +28,10 @@ def test_ignore_files(run_workflow):
     w = run_workflow("results/intake/input_sources.csv", "--files", "alphabet.gb", "--config", "ignore_non_valid_files=1", expected_dir=invalid_expected_dir)
     w.assert_exists(expected_files="logs/warnings/non_valid_objects.txt")
     w.assert_contains("alphabet.gb", expected_files="logs/warnings/non_valid_objects.txt")
+
+def test_missing_taxa_warning(run_workflow):
+    w = run_workflow("logs/warnings/missing_taxa.txt", "--config", "ignore_non_valid_files=1", expected_dir=invalid_expected_dir)
+    w.assert_exists(expected_files="logs/warnings/missing_taxa.txt")
+    w.assert_contains("alphabetfasta", expected_files="logs/warnings/missing_taxa.txt")
+    w.assert_contains("codonsfasta", expected_files="logs/warnings/missing_taxa.txt")
+    w.assert_contains("the following taxa have no orthogroups and will not appear in the phylogenetic tree with the current configurations:", expected_files="logs/warnings/missing_taxa.txt")

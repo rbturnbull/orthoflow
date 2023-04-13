@@ -186,7 +186,7 @@ def combine_scogs_and_snap_ogs(wildcards):
     all_ogs += list_orthosnap_snap_ogs(wildcards)
 
     if len(all_ogs) == 0:
-        raise Exception("No orthogroups found. Please check your input file.")
+        raise Exception("No orthogroups found with the current configurations. Please check your input files or configurations.")
 
     return all_ogs
 

@@ -105,7 +105,8 @@ class OrthoflowInput():
                     sequence.assert_valid_alphabet()
                     sequence.assert_length(min=1)
                 except:
-                    self.faulty_list.append(f"Sequence in file {self.file} is not valid")
+                    self.valid_file = False
+                    self.faulty_list.append(f"Sequence in file {self.file} {self.taxon_string} is not valid")
 
             #check whether file contains annotated genes 
             count = 0
@@ -115,7 +116,7 @@ class OrthoflowInput():
                         count += 1
             if count == 0:
                 self.valid_file = False
-                self.faulty_list.append(f"File {self.file} does not contain any sequences")
+                self.faulty_list.append(f"File {self.file} {self.taxon_string} does not contain any sequences")
                  
         if not self.is_genbank():
             sequences = Sequence.parse(self.file, "fasta")
@@ -125,11 +126,11 @@ class OrthoflowInput():
                     sequence.assert_valid_alphabet()
                     sequence.assert_length(min=1)
                 except:
-                    self.faulty_list.append(f"Sequence {sequence.id} in file {self.file} is not valid")
+                    self.faulty_list.append(f"Sequence {sequence.id} in file {self.file} {self.taxon_string} is not valid")
                 count += 1
             if count == 0:
                 self.valid_file = False
-                self.faulty_list.append(f"File {self.file} does not contain any sequences")
+                self.faulty_list.append(f"File {self.file} {self.taxon_string} does not contain any sequences")
 
 
 class OrthoflowInputDictionary(dict):

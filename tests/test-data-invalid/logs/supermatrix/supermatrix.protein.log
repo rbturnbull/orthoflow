@@ -1,0 +1,17 @@
+
+--------------------
+| General features |
+--------------------
+Total number of taxa: 5
+Total number of alignments: 2
+
+
+----------------
+| Output files |
+----------------
+Partition file output: results/supermatrix/supermatrix.protein.partition
+Concatenated fasta output: results/supermatrix/supermatrix.protein.fa
+Occupancy report: results/supermatrix/supermatrix.protein.occupancy
+
+Complete!
+

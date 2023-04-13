@@ -1,0 +1,9 @@
+File invalid.gb invalidgenbank does not contain any sequences and has been ignored
+
+Sequence in file alphabet.gb alphabetgenbank is not valid and has been ignored
+
+File invalid.fa invalidfasta does not contain any sequences and has been ignored
+
+Sequence emptysequence in file codons.fa codonsfasta is not valid and has been ignored
+
+Sequence fakesequence in file fasta_alphabet.fa alphabetfasta is not valid and has been ignored

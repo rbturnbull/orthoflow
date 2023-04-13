@@ -5,6 +5,7 @@ rule summarize_information_content:
     """
     input:
         alignments=rules.list_alignments.output,
+        report_warning=rules.report_taxa_presence.output,
     output:
         csv="results/summary/information_content.{alignment_type}.csv",
         plot=report("results/summary/information_content.{alignment_type}.svg", category="Summary"),
