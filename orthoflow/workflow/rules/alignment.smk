@@ -194,46 +194,62 @@ checkpoint check_presence_after_filtering:
         cat {input} > {output} && [[ -s {output} ]]
         """
 
+def get_alignment_files(wildcards):
+    files = []
+    if config.get('infer_tree_with_protein_seqs', INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT):
+        files.append("results/alignment/alignments_list.protein.txt")
+    if config.get('infer_tree_with_cds_seqs', INFER_TREE_WITH_CDS_SEQS_DEFAULT):
+        files.append("results/alignment/alignments_list.cds.txt")
+
+    return files
+
 
 rule report_taxa_presence:
     input:
         "results/intake/input_sources.csv",
-
+        get_alignment_files,
     output:
         "logs/warnings/missing_taxa.txt",
+    params:
+        use_protein=config.get('infer_tree_with_protein_seqs', INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT),
+        use_cds=config.get('infer_tree_with_cds_seqs', INFER_TREE_WITH_CDS_SEQS_DEFAULT),
     shell:
         """
 
-        touch results/alignment/missing_taxa.txt
+        touch logs/warnings/missing_taxa.txt
 
         cut -d "," -f4 results/intake/input_sources.csv | tail +2 | sort | uniq | sort > results/alignment/taxa_in_input.txt
 
         cat results/alignment/taxon_only/* | grep ">" | sort | uniq | cut -c 2- | sort > results/alignment/taxa_in_ogs.txt
         no_og_taxa=$(comm -13 results/alignment/taxa_in_ogs.txt results/alignment/taxa_in_input.txt)
         if [ "$no_og_taxa" ]; then
-            echo "the following taxa have no orthogroups and will not appear in the phylogenetic tree with the current configurations:" >> results/alignment/missing_taxa.txt
-            for item in $no_og_taxa; do echo $item >> results/alignment/missing_taxa.txt; done
+            echo "Taxon/taxa is/are missing from phylogenetic tree.\n\nThe following taxon/taxa has/have no orthougroups with current configurations:" >> logs/warnings/missing_taxa.txt
+            for item in $no_og_taxa; do echo $item >> logs/warnings/missing_taxa.txt; done
+        fi
+        
+        if [ {params.use_protein} == True ]; then
+            cat `cat results/alignment/alignments_list.protein.txt` | grep ">" | sort | uniq | cut -c 2- | sort > results/alignment/taxa_protein_alignment.txt
+            if [ -f "results/alignment/taxa_protein_alignment.txt" ]; then 
+                no_protein_alignment_taxa=$(comm -13 results/alignment/taxa_protein_alignment.txt results/alignment/taxa_in_ogs.txt)
+                if [ "$no_protein_alignment_taxa" ]; then
+                    if ! [ -s "logs/warnings/missing_taxa.txt" ]; then echo "Taxon/taxa is/are missing from phylogenetic tree.\n" >> logs/warnings/missing_taxa.txt; fi
+                    echo "\nThe Following taxon/taxa is/are missing from protein alignment after filtering:" >> logs/warnings/missing_taxa.txt
+                    for item in $no_protein_alignment_taxa; do echo $item >> logs/warnings/missing_taxa.txt; done
+                fi  
+            fi
         fi
 
-        cat `cat results/alignment/alignments_list.protein.txt` | grep ">" | sort | uniq | cut -c 2- | sort > results/alignment/taxa_protein_alignment.txt
-        if [ -f "results/alignment/taxa_protein_alignment.txt" ]; then 
-            no_protein_alignment_taxa=$(comm -13 results/alignment/taxa_protein_alignment.txt results/alignment/taxa_in_ogs.txt)
-            if [ "$no_protein_alignment_taxa" ]; then
-                echo "the following taxa are missing from the protein alignment after filtering and will not appear in the phylogenetic tree:" >> results/alignment/missing_taxa.txt
-                for item in $no_protein_alignment_taxa; do echo $item >> results/alignment/missing_taxa.txt; done
-            fi  
+        if [ {params.use_cds} == True ]; then
+            cat `cat results/alignment/alignments_list.cds.txt` | grep ">" | sort | uniq | cut -c 2- | sort > results/alignment/taxa_cds_alignment.txt
+            if [ -f "results/alignment/taxa_cds_alignment.txt" ]; then 
+                no_cds_alignment_taxa=$(comm -13 results/alignment/taxa_cds_alignment.txt results/alignment/taxa_in_ogs.txt)
+                if [ "$no_cds_alignment_taxa" ]; then
+                    if ! [ -s "logs/warnings/missing_taxa.txt" ]; then echo "Taxon/taxa is/are missing from phylogenetic tree.\n" >> logs/warnings/missing_taxa.txt; fi
+                    echo "\nThe Following taxon/taxa is/are missing from CDS alignment after filtering:" >> logs/warnings/missing_taxa.txt
+                    for item in $no_cds_alignment_taxa; do echo $item >> logs/warnings/missing_taxa.txt; done
+                fi  
+            fi
         fi
-
-        cat `cat results/alignment/alignments_list.cds.txt` | grep ">" | sort | uniq | cut -c 2- | sort > results/alignment/taxa_cds_alignment.txt
-        if [ -f "results/alignment/taxa_cds_alignment.txt" ]; then 
-            no_cds_alignment_taxa=$(comm -13 results/alignment/taxa_cds_alignment.txt results/alignment/taxa_in_ogs.txt)
-            if [ "$no_cds_alignment_taxa" ]; then
-                echo "the following taxa are missing from the cds alignment after filtering and will not appear in the phylogenetic tree:" >> results/alignment/missing_taxa.txt
-                for item in $no_cds_alignment_taxa; do echo $item >> results/alignment/missing_taxa.txt; done
-            fi  
-        fi
-
-        cat results/alignment/missing_taxa.txt > {output}
 
         """
 

@@ -97,13 +97,15 @@ def print_warning(text, warning_style=None):
 
 onsuccess:
     warning_message = ""
+    count = 0
     for warnings_file in WARNINGS_DIR.glob("*.txt"):
         temp = warnings_file.read_text()
         warning = temp.split("\n")[0]
         if warning:
-            if len(warning_message) > 0:
+            count += 1
+            if count > 1:
                 warning_message += "\n"
-            warning_message += "WARNING: " + str(warning)
+            warning_message += "WARNING " + str(count) + " --> " + str(warning)
     if len(warning_message) > 0:
         print_warning("There are warnings. Please check the warnings tab in the report or the warnings folder in the log.")
         print_warning(warning_message, warning_style="bold white")
