@@ -107,3 +107,5 @@ onsuccess:
     if len(warning_message) > 0:
         print_warning("There are warnings. Please check the warnings tab in the report or the warnings folder in the log.")
         print_warning(warning_message, warning_style="bold white")
+    else:
+        print_warning("Program ended without warnings", warning_style="bold white")
