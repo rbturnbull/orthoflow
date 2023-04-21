@@ -19,7 +19,7 @@ rule report:
     input:
         input_sources_csv=rules.input_sources_csv.output[0],
         orthofinder_scogs=list_orthofinder_scogs,
-        orthofinder_report_components=rules.orthofinder_report_components.output,
+        orthofinder_report_components=rules.orthofinder_report_components.output if not use_orthofisher else ".",
         orthosnap_snap_ogs=list_orthosnap_snap_ogs,
         # Alignment
         list_alignments=rules.list_alignments.output,
