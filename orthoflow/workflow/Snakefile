@@ -91,9 +91,12 @@ rule all:
 def print_warning(text, warning_style=None):
     if not warning_style:
         warning_style = "bold white on red"  
-    console.print("-"*len(text), style=warning_style)
+    
+    longest = max(text.split("\n"), key=len)
+    
+    console.print("-"*len(longest), style=warning_style)
     console.print(text, style=warning_style)
-    console.print("-"*len(text), style=warning_style)
+    console.print("-"*len(longest), style=warning_style)
 
 onsuccess:
     warning_message = ""
