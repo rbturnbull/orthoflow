@@ -2,7 +2,7 @@ IQ-TREE 2.2.0.3 COVID-edition built Sep  5 2022
 
 Input file name: results/supermatrix/supermatrix.cds.fa
 Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
-Random seed number: 654712
+Random seed number: 679974
 
 REFERENCES
 ----------
@@ -218,7 +218,7 @@ Consensus tree in newick format:
 TIME STAMP
 ----------
 
-Date and time: Thu Apr 13 16:45:50 2023
-Total CPU time used: 0.581826 seconds (0h:0m:0s)
-Total wall-clock time used: 0.5031268597 seconds (0h:0m:0s)
+Date and time: Fri Apr 21 18:07:15 2023
+Total CPU time used: 0.64404 seconds (0h:0m:0s)
+Total wall-clock time used: 0.5773949623 seconds (0h:0m:0s)
 

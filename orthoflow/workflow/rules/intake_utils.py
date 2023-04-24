@@ -179,7 +179,7 @@ class OrthoflowInputDictionary(dict):
 
                 if source.suffix_unknown:
                     if len(list_of_unknown_suffix) == 0:
-                        list_of_unknown_suffix.append(f"File(s) not Fasta or Genbank file. File assumed to be in Fasta format.\n")     
+                        list_of_unknown_suffix.append(f"File(s) not Fasta or Genbank file.\n")     
                     list_of_unknown_suffix.append(f"Suffix from file '{source.file}' is not Fasta or Genbank. File is assumed to be in Fasta format.")
 
         # Write warnings to warning files
@@ -219,7 +219,6 @@ def read_input_source_dictionary(data:Dict, directory:Path=None):
         file = Path(data["file"])
     except:
         raise ValueError(f"File name is empty, please check your input file:\n{data}")
-    
 
     #if not file.is_file():
     #    raise ValueError(f"File name is empty, please check your input file:\n{data}")
@@ -240,7 +239,7 @@ def read_input_source_dictionary(data:Dict, directory:Path=None):
 
         if "data_type" in data and not input_object.data_type:
             input_object.data_type = data["data_type"]
-            input_object.suffix_unknown = False
+            #input_object.suffix_unknown = False
 
         if "translation_table" in data and not input_object.translation_table:
             input_object.translation_table = data["translation_table"]
@@ -254,7 +253,6 @@ def read_input_source_json(input_source:Path) -> List[OrthoflowInput]:
     with open(input_source) as json_file:
         try:
             data = json.load(json_file)
-            data != {}
         except:
             raise ValueError(f"{input_source} is invalid and cannot be read, please check the file.")
         if not data:

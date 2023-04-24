@@ -34,12 +34,12 @@ Threshold 0.3333333333333333:
 max k is :0
 Number of Clusters after addition by greedy: 15
 gradient0 in heuristiic: 15
-partitions formed in 0.028 secs
-Dynamic Programming starting after 0.028 secs
+partitions formed in 0.02 secs
+Dynamic Programming starting after 0.02 secs
 Using tree-based weight calculation.
 Using polytree-based weight calculation.
 Polytree max score: 10
-Polytree building time: 0.004 seconds.
+Polytree building time: 0.002 seconds.
 Number of quartet trees in the gene trees: 10
 Size of largest cluster: 5
 Greedy score: 10
@@ -48,7 +48,7 @@ Sub-optimal score: 10
 Total Number of elements weighted: 13
 Normalized score (portion of input quartet trees satisfied before correcting for multiple individuals): 1.0
 Optimization score: 10
-Optimal tree inferred in 0.081 secs.
+Optimal tree inferred in 0.049 secs.
 (Avrainvillea_mazei_HV02664,(Bryopsis_plumosa_WEST4718,(Caulerpa_cliftonii_HV03798,(Chlorodesmis_fastigiata_HV03865,Flabellia_petiolata_HV01202))));
 Final quartet score is: 10
 Final normalized quartet score is: 1.0
@@ -58,5 +58,5 @@ You may want to ignore posterior probabilities and other statistics related to t
 	{Avrainvillea_mazei_HV02664, Bryopsis_plumosa_WEST4718}
 Extended species tree:
 (Caulerpa_cliftonii_HV03798,((Chlorodesmis_fastigiata_HV03865,Flabellia_petiolata_HV01202)0.87:0.6931471805599453,(Bryopsis_plumosa_WEST4718,Avrainvillea_mazei_HV02664)0.87:0.6931471805599453));
-Weight calculation took 4.54133E-4 secs
-ASTRAL finished in 0.17 secs
+Weight calculation took 1.22103E-4 secs
+ASTRAL finished in 0.109 secs

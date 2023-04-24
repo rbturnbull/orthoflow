@@ -1,3 +1,5 @@
-the following taxa have no orthogroups and will not appear in the phylogenetic tree with the current configurations:
+Taxon/taxa is/are missing from phylogenetic tree.
+
+The following taxon/taxa has/have no orthougroups with current configurations:
 alphabetfasta
 codonsfasta
