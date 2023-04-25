@@ -23,3 +23,7 @@ def test_gnb_invalid(run_workflow):
 def test_gnb_alphabet(run_workflow):
     with pytest.raises(CalledProcessError) as err:
         w = run_workflow("results/intake/input_sources.csv", "--files", "alphabet.gb", expected_dir=invalid_expected_dir)
+
+def test_infinite_loop(run_workflow):
+    with pytest.raises(CalledProcessError) as err:
+        w = run_workflow("results/intake/input_sources.csv", "--files", "input_sources_infinite.csv", expected_dir=invalid_expected_dir)
