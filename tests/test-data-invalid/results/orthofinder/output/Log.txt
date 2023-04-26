@@ -1,4 +1,4 @@
-2023-04-21 18:05:41 : Started OrthoFinder version 2.5.4
+2023-04-26 11:56:11 : Started OrthoFinder version 2.5.4
 Command Line: /Users/mac/Library/Caches/orthoflow/conda/92217b70c463dd37e8c030d428c1dc0e_/bin/orthofinder -f results/intake/translated -t 1 -n orthoflow -og -X
 
 WorkingDirectory_Base: /Users/mac/orthoflow/tests/test-data-invalid/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/
@@ -15,4 +15,4 @@ Species used:
 8: fasta_alphabet.protein.fa
 
 FN_Orthogroups: /Users/mac/orthoflow/tests/test-data-invalid/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/clusters_OrthoFinder_I1.5.txt_id_pairs.txt
-2023-04-21 18:05:56 : OrthoFinder run completed
+2023-04-26 11:56:27 : OrthoFinder run completed

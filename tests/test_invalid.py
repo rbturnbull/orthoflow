@@ -27,3 +27,15 @@ def test_gnb_alphabet(run_workflow):
 def test_infinite_loop(run_workflow):
     with pytest.raises(CalledProcessError) as err:
         w = run_workflow("results/intake/input_sources.csv", "--files", "input_sources_infinite.csv", expected_dir=invalid_expected_dir)
+
+def test_ignore_faulty_file(run_workflow):
+    w = run_workflow("results/intake/input_sources.csv", "--files", "input_sources.csv", "--config", "ignore_non_valid_files=1", expected_dir=invalid_expected_dir)
+    with pytest.raises(Exception) as err:
+        w.assert_contains("alphabet.gb")
+
+def test_ignore_faulty_sequence(run_workflow):
+    w = run_workflow("results/intake/cds/codons.cds.fa", "--files", "input_sources.csv", "--config", "ignore_non_valid_files=1", expected_dir=invalid_expected_dir)
+    with pytest.raises(Exception) as err:
+        w.assert_contains("emptysequence")
+
+

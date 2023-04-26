@@ -115,5 +115,3 @@ onsuccess:
     else:
         print_warning("Program ended without warnings", warning_style="bold white")
 
-onerror:
-    print_warning("Program ended without warnings", warning_style="bold white")

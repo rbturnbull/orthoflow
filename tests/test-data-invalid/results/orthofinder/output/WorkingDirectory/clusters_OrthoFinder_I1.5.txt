@@ -1,7 +1,7 @@
 # cline: mcl /Users/mac/orthoflow/tests/test-data-invalid/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/OrthoFinder_graph.txt "-I" "1.5" "-o" "/Users/mac/orthoflow/tests/test-data-invalid/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/clusters_OrthoFinder_I1.5.txt" "-te" "1" "-V" "all"
 (mclheader
 mcltype matrix
-dimensions 63x34
+dimensions 61x32
 )
 (mclmatrix
 begin
@@ -37,6 +37,4 @@ begin
 29 25 $
 30 59 $
 31 60 $
-32 61 $
-33 62 $
 )

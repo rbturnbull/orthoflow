@@ -307,7 +307,6 @@ def read_input_source_pandas(input_csv:Path, file_list) -> List[OrthoflowInput]:
 
 
 def read_input_source(input_source:Union[Path, str, List], file_list) -> List[OrthoflowInput]:
-    
     # Check for infinite loops due to self reference
     if str(input_source) in file_list:
         raise AssertionError(f"File {input_source} refers to itself and the program has been ended to prevent an infinite loop. Please check the file.")

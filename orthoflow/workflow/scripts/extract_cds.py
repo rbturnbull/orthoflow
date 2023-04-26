@@ -16,11 +16,18 @@ def extract_cds(
     data_type: str = typer.Option(...),
     taxon_string: str = typer.Option(..., help="The taxon string to be prepended to the description."),
     debug: Optional[bool] = typer.Option(False, "--debug", "-d"),
+    warnings_dir: Path = None
 ):
     if debug:
         logger.setLevel("DEBUG")
     
     counter = 0
+
+    #Open warning file to read faulty sequences
+    warning_file = warnings_dir/"non_valid_objects.txt"
+    wf = open(warning_file, "r")
+    wf_text = wf.read()
+
 
     with outfile.open("w") as fout:
         def write_seq(sequence, counter, gene = ""):
@@ -60,7 +67,9 @@ def extract_cds(
         else:
             # Assume that non-genbank files are Fasta format
             for seq in SeqIO.parse(infile, "fasta"):
-                write_seq(seq.seq, counter=counter, gene=seq.id)
+                #Only add sequence of not present in warning file
+                if not f"{seq.id} in file {infile.name}" in wf_text:
+                    write_seq(seq.seq, counter=counter, gene=seq.id)
                 counter += 1
 
 

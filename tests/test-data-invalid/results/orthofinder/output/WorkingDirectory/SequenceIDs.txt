@@ -57,7 +57,5 @@
 6_4: Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|4|rbcL
 6_5: Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|5|psbE
 6_6: Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|6|rps18
-7_0: codonsfasta|codons.fa|0|emptysequence
-7_1: codonsfasta|codons.fa|1|Sequence
-8_0: alphabetfasta|fasta_alphabet.fa|0|fakesequence
-8_1: alphabetfasta|fasta_alphabet.fa|1|Sequence
+7_0: codonsfasta|codons.fa|1|Sequence
+8_0: alphabetfasta|fasta_alphabet.fa|1|Sequence

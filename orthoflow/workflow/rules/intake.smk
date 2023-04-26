@@ -34,7 +34,7 @@ rule extract_cds:
         LOG_DIR / "intake/extract_cds/{stub}.log"
     shell:
         """
-        python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} --data-type {params.data_type} --taxon-string  {params.taxon_string} &> {log}
+        python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} --data-type {params.data_type} --taxon-string  {params.taxon_string} --warnings-dir {WARNINGS_DIR} &> {log}
         """
 
 
