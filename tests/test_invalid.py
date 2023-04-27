@@ -38,4 +38,7 @@ def test_ignore_faulty_sequence(run_workflow):
     with pytest.raises(Exception) as err:
         w.assert_contains("emptysequence")
 
+def test_error_no_alignments(run_workflow):
+    with pytest.raises(CalledProcessError) as err:
+        w = run_workflow("results/alignment/alignments_list_present.cds.txt", "--files", "input_sources.csv", "--config", "ignore_non_valid_files=1", "ortholog_min_seqs=20", "ortholog_min_taxa=20", expected_dir=invalid_expected_dir)
 

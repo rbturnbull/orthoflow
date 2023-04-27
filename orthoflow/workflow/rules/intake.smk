@@ -3,6 +3,21 @@ from orthoflow.workflow.rules.intake_utils import create_input_dictionary
 ignore_non_valid_files = config.get('ignore_non_valid_files', IGNORE_NON_VALID_FILES_DEFAULT)
 input_dictionary = create_input_dictionary(config["input_sources"], ignore_non_valid_files, warnings_dir=WARNINGS_DIR)
 
+def check_configurations():
+    configuration_warnings = []
+    min_seqs = config["ortholog_min_seqs"]
+    if min_seqs < 3:
+        configuration_warnings.append(f"The variable ortholog_min_seqs is {min_seqs} and should be 3 or larger. It has been automatically set to 3.")
+
+    if not config["supermatrix"] and not config["supertree"]:
+        configuration_warnings.append("Both the 'supermatrix' and 'supertree' variable are False in the configuration. No tree will be made.")
+
+    with open(WARNINGS_DIR/"configuration_warnings.txt", "w") as f:
+        if len(configuration_warnings) < 0:
+            config_warning_file = warnings_dir/"configuration_warnings.txt"
+            config_warning_file.write_text("\n".join(str(item) for item in configuration_warnings))
+ 
+
 rule input_sources_csv:
     """
     Writes the input dictionary as a CSV file.
@@ -10,6 +25,7 @@ rule input_sources_csv:
     output:
         "results/intake/input_sources.csv",
     run:
+        check_configurations()
         input_dictionary.write_csv(output[0])
 
 

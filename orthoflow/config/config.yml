@@ -12,8 +12,8 @@ summarize_information_content: True
 # gene and alignment filtering
 orthofinder_use_scogs: True  # Use the single-copy orthogroups (when using de novo ortholog analysis path)
 orthofinder_use_snap_ogs: True  # Use the SNAP orthogroups (when using de novo ortholog analysis path)
-ortholog_min_seqs: 5  # Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
-ortholog_min_taxa: 5  # Minimum number of taxa that needs to be in an orthogroup
+ortholog_min_seqs: 5  # Needs to be 3 or larger. Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis.
+ortholog_min_taxa: 5  # Minimum number of taxa that needs to be in an orthogroup.
 # orthosnap_occupancy: 5 # Uncomment this line if you wish to set the orthosnap_occupancy to be something other than ortholog_min_seqs
 minimum_trimmed_alignment_length_cds: 501  # Any CDS alignments shorter than this will not be used for phylogeny inference
 minimum_trimmed_alignment_length_proteins: 167  # Any protein alignments shorter than this will not be used for phylogeny inference

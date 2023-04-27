@@ -45,7 +45,7 @@ checkpoint orthogroup_classification:
     conda:
         ENV_DIR / "joblib.yaml"
     params:
-        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
+        min_seqs=max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
         min_taxa=config.get("ortholog_min_taxa", ORTHOLOG_MIN_TAXA_DEFAULT),
     log:
         LOG_DIR / "orthofinder/orthogroup_classification.log"
@@ -82,7 +82,7 @@ checkpoint orthosnap:
         tree=temp("results/orthofinder/tmp/{og}.nwk"),
         snap_ogs=directory("results/orthofinder/orthosnap/{og}")
     params:
-        occupancy=config.get("orthosnap_occupancy", config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
+        occupancy=config.get("orthosnap_occupancy", max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT))),
     conda:
         ENV_DIR / "orthosnap.yaml"
     log:
@@ -201,7 +201,7 @@ checkpoint orthofinder_all:
     output:
         directory("results/orthofinder/all"),
     params:
-        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
+        min_seqs=max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
     log:
         LOG_DIR / "orthofinder/orthofinder_all.log"
     shell:
