@@ -81,6 +81,9 @@ def get_final_reports(wildcards):
     
     if config.get("infer_tree_with_cds_seqs", INFER_TREE_WITH_CDS_SEQS_DEFAULT):
         reports.append(rules.report.output[0].format(alignment_type="cds"))
+
+    if not config.get("infer_tree_with_protein_seqs", INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT) and not config.get("infer_tree_with_cds_seqs", INFER_TREE_WITH_CDS_SEQS_DEFAULT):
+        reports.append(rules.report.output[0].format(alignment_type="protein"))
     
     return reports
 

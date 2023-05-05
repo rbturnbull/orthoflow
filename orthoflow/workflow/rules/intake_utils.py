@@ -10,7 +10,6 @@ console = Console()
 import toml
 from phytest.bio.sequence import Sequence
 from dataclasses import dataclass, field
-import os
 
 if "config" not in locals():
     config = {}
@@ -146,7 +145,7 @@ class OrthoflowInputDictionary(dict):
         # Extra test for warning message if ignore_non_valid_files=True
         extra_text = ""
         if ignore_non_valid_files:
-            extra_text = " and has been ignored"
+            extra_text = " and is/are ignored"
         
         # Create lists for warning messages per category
         list_of_faulty_lists = []

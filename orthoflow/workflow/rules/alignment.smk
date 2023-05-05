@@ -178,8 +178,11 @@ def list_filtered(wildcards):
     alignments_text_file = checkpoints.list_alignments.get(**wildcards).output[0]
     alignments = Path(alignments_text_file).read_text().strip().split("\n")
 
+
     if len(alignments[0]) == 0:
-        raise EOFError(f"No {wildcards.alignment_type} alignments present after filtering.\nCheck input or change minimum_trimmed_alignment_length_{wildcards.alignment_type} or max_trimmed_proportion")
+        if config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT):
+            raise EOFError(f"No {wildcards.alignment_type} alignments present after filtering.\nCheck input or change minimum_trimmed_alignment_length_{wildcards.alignment_type} or max_trimmed_proportion.\nAlso check the hmm files and the orthofisher logs.")
+        raise EOFError(f"No {wildcards.alignment_type} alignments present after filtering.\nCheck input or change minimum_trimmed_alignment_length_{wildcards.alignment_type} or max_trimmed_proportion.")
 
     return alignments_text_file
 
