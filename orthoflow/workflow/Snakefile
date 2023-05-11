@@ -31,6 +31,7 @@ MODEL_STRING_DEFAULT = "-m TEST"
 SUPERMATRIX_OUTGROUP_DEFAULT = ""
 TRANSLATION_TABLE_DEFAULT = "1"
 IGNORE_NON_VALID_FILES_DEFAULT = False
+PROTEIN_INPUT_DEFAULT = False
 
 # Get the path to the default config file.
 # This can be overridden on the command line

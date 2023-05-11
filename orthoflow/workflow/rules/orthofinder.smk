@@ -13,7 +13,7 @@ rule orthofinder:
     OrthoFinder runs to the point of orthogroup inference.
     """
     input:
-        translated_files
+        protein_files
     output:
         directory("results/orthofinder/output"),
     conda:
@@ -23,7 +23,7 @@ rule orthofinder:
     bibs:
         "../bibs/orthofinder.ris",
     params:
-        input_dir=lambda wildcards, input: Path(input[0]).parent,
+        input_dir="results/intake/protein",
     threads: workflow.cores
     shell:
         """

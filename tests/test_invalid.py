@@ -37,3 +37,7 @@ def test_ignore_faulty_sequence(run_workflow):
     w = run_workflow("results/intake/cds/codons.cds.fa", "--files", "input_sources.csv", "--config", "ignore_non_valid_files=1", expected_dir=invalid_expected_dir)
     with pytest.raises(Exception) as err:
         w.assert_contains("emptysequence")
+
+def test_protein_input_error(run_workflow):
+    with pytest.raises(CalledProcessError):
+        w = run_workflow("orthofinder", "--files", "input_sources_protein.csv", "--config", "ignore_non_valid_files=1", expected_dir=invalid_expected_dir)

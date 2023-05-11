@@ -17,7 +17,7 @@ Create log file: False
 | Processing Alignment |
 ------------------------
 
-  0%|          | 0/36 [00:00<?, ?it/s]100%|██████████| 36/36 [00:00<00:00, 48520.23it/s]
+  0%|          | 0/36 [00:00<?, ?it/s]100%|██████████| 36/36 [00:00<00:00, 48582.67it/s]
 
 
 ------------------------
@@ -36,5 +36,5 @@ Number of sites trimmed: 0
 
 Percentage of alignment trimmed: 0.0%
 
-Execution time: 0.019s
+Execution time: 0.018s
 

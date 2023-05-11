@@ -88,7 +88,7 @@ class OrthoflowInput():
         if not self.translation_table:
             self.translation_table = config.get("default_translation_table", TRANSLATION_TABLE_DEFAULT) 
             self.trans_table_default = True
-      
+    
 
         if not str(self.translation_table).isdigit():
             raise ValueError(f"Translation table {self.translation_table} not numeric")
@@ -127,7 +127,10 @@ class OrthoflowInput():
             count = 0
             for sequence in sequences:
                 try:
-                    sequence.assert_valid_alphabet()
+                    if self.data_type == "Protein":
+                        sequence.assert_valid_alphabet(alphabet = "ACDEFGHIKLMNPQRSTVWYX*")
+                    else:
+                        sequence.assert_valid_alphabet()
                     sequence.assert_length(min=1)
                 except:
                     self.faulty_list.append(f"Sequence {sequence.id} in file {self.file} {self.taxon_string} is not valid")
@@ -160,7 +163,7 @@ class OrthoflowInputDictionary(dict):
             
             source.validate()
 
-            # add file to list if valid
+            # add file to dict if valid
             if source.valid_file:
                 self[stub] = source
 
@@ -173,7 +176,7 @@ class OrthoflowInputDictionary(dict):
 
             # Add warning messages for translation tables and suffices. Only when file is valid or files can be ignored.
             if source.valid_file or not ignore_non_valid_files:
-                if source.trans_table_default:
+                if source.trans_table_default and not source.data_type == 'Protein':
                     if len(list_of_default_trans_tables) == 0:
                         list_of_default_trans_tables.append("Translation table value missing and unable to retrieve from file, default has been used.\n")
                     list_of_default_trans_tables.append(f"Translation table for file {source.file} {source.taxon_string} is missing \nand could not be retrieved from text so default '{source.translation_table}' has been used.")
@@ -321,7 +324,7 @@ def read_input_source(input_source:Union[Path, str, List], file_list) -> List[Or
         for i in input_source:
             inputs += read_input_source(i, file_list)
         return inputs
-    
+
     # If not a list then it must be a kind of path
     input_source = Path(input_source)
     if not input_source.exists():
@@ -335,7 +338,7 @@ def read_input_source(input_source:Union[Path, str, List], file_list) -> List[Or
         return [OrthoflowInput(file=input_source, data_type="GenBank")]
 
     if suffix in [".fasta", ".fa"]:
-        return [OrthoflowInput(file=input_source, data_type="Fasta")]
+        return [OrthoflowInput(file=input_source)]#, data_type="Fasta"
 
     if suffix == ".json":
         return read_input_source_json(input_source, file_list)

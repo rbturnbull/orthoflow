@@ -1,38 +1,9 @@
-import os
 from orthoflow.workflow.rules.intake_utils import create_input_dictionary
+from orthoflow.workflow.scripts.check_config import check_configurations
+from itertools import chain
 
 ignore_non_valid_files = config.get('ignore_non_valid_files', IGNORE_NON_VALID_FILES_DEFAULT)
 input_dictionary = create_input_dictionary(config["input_sources"], ignore_non_valid_files, warnings_dir=WARNINGS_DIR)
-
-def check_configurations():
-    configuration_warnings = []
-
-    min_seqs = config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)
-    if min_seqs < 3:
-        configuration_warnings.append(f"The variable ortholog_min_seqs is {min_seqs} and should be 3 or larger. It has been automatically set to 3.")
-
-    if not config["supermatrix"] and not config["supertree"]:
-        configuration_warnings.append("Both the 'supermatrix' and 'supertree' variable are False in the configuration file. No tree will be made.")
-
-    if not config["infer_tree_with_protein_seqs"] and not config["infer_tree_with_cds_seqs"]:
-        configuration_warnings.append("Both the 'infer_tree_with_protein_seqs' and 'infer_tree_with_cds_seqs' variable are False in the configuration file.\nDefault method protein sequence is used.")
-
-    # check whether configurations are present and not faulty
-    config_dict = {"orthofinder_use_scogs" : bool, "orthofinder_use_snap_ogs" : bool, "ortholog_min_seqs" : int, "ortholog_min_taxa" : int, "minimum_trimmed_alignment_length_cds" : int, "minimum_trimmed_alignment_length_proteins" : int, "max_trimmed_proportion" : float, "use_orthofisher" : bool, "supermatrix" : bool, "supertree" : bool, "ignore_non_valid_files" : bool, "infer_tree_with_protein_seqs" : bool, "infer_tree_with_cds_seqs" : bool}
-    for key in config_dict.keys():
-        if not isinstance(config.get(key),config_dict[key]) and config.get(key) not in [0,1]:
-            configuration_warnings.append(f"'{key}' configuration is missing from configuration file or faulty, so default has been assumed.")
-
-    # check hmm files in configuration file
-    if config["use_orthofisher"] == True:
-        for file in config["orthofisher_hmmer_files"]:
-            if not os.path.isfile(file):
-                configuration_warnings.append(f"hmm file {file} does not exist and is not used as an hmm profile.")
-
-    if len(configuration_warnings) > 0:
-        configuration_warnings.insert(0, "Configuration file has raised warnings due to uncommon configurations.\n")
-    config_warning_file = WARNINGS_DIR/"configuration_warnings.txt"
-    config_warning_file.write_text("\n".join(str(item) for item in configuration_warnings))
 
 rule input_sources_csv:
     """
@@ -41,7 +12,6 @@ rule input_sources_csv:
     output:
         "results/intake/input_sources.csv",
     run:
-        check_configurations()
         input_dictionary.write_csv(output[0])
 
 
@@ -79,6 +49,8 @@ rule translate:
     https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes
 
     BioKIT is found here: https://github.com/JLSteenwyk/BioKIT
+
+    It also copies the translated files to the protein intake foler.
     """
     output:
         "results/intake/translated/{stub}.protein.fa",
@@ -93,7 +65,32 @@ rule translate:
     log:
         LOG_DIR / "intake/translate/{stub}.log"
     shell:
-        "biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} &> {log}"
+        """
+        biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} &> {log}
+        if [ ! -d "results/intake/protein" ]; then mkdir results/intake/protein; fi
+        cp {output} results/intake/protein
+        """
 
-def translated_files(*args):
-    return [f"results/intake/translated/{stub}.protein.fa" for stub in input_dictionary.keys()]
+rule get_protein_sequence:
+    """
+    Gets protein Sequence from input files and copies them to intake files.
+    """
+    input:
+        file=lambda wildcards: input_dictionary[wildcards.stub].file.resolve(),
+    output:
+        "results/intake/protein/{stub}.protein.fa",
+    shell:
+        "cp {input} {output}"
+
+def protein_files(*args):
+    check_configurations(input_dictionary, WARNINGS_DIR, ORTHOLOG_MIN_SEQS_DEFAULT, config)
+
+    list_of_protein_sequences = []
+
+    for key, value in input_dictionary.items():
+        if value.data_type == 'Protein':
+            list_of_protein_sequences.append(f"results/intake/protein/{key}.protein.fa")
+        else:
+            list_of_protein_sequences.append(f"results/intake/translated/{key}.protein.fa")
+            
+    return list_of_protein_sequences
