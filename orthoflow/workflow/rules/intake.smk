@@ -1,6 +1,5 @@
 from orthoflow.workflow.rules.intake_utils import create_input_dictionary
 from orthoflow.workflow.scripts.check_config import check_configurations
-from itertools import chain
 
 ignore_non_valid_files = config.get('ignore_non_valid_files', IGNORE_NON_VALID_FILES_DEFAULT)
 input_dictionary = create_input_dictionary(config["input_sources"], ignore_non_valid_files, warnings_dir=WARNINGS_DIR)

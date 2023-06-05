@@ -100,6 +100,8 @@ rule report:
             warning = warnings_file.read_text()
             if warning:
                 warnings.append(warning)
+        if len(warnings) == 0:
+            warnings.append("No warnings found.")
 
         try:        
             result = template.render(

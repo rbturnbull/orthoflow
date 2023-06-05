@@ -25,6 +25,8 @@ rule orthofinder:
     params:
         input_dir="results/intake/protein",
     threads: workflow.cores
+    benchmark:
+        "bench/orthofinder.benchmark.txt"
     shell:
         """
         mkdir -p results/orthofinder &> {log}
@@ -49,6 +51,8 @@ checkpoint orthogroup_classification:
         min_taxa=config.get("ortholog_min_taxa", ORTHOLOG_MIN_TAXA_DEFAULT),
     log:
         LOG_DIR / "orthofinder/orthogroup_classification.log"
+    benchmark:
+        "bench/orthogroup_classification.benchmark.txt"
     shell:
         """
         python {SCRIPT_DIR}/orthogroup_classification.py \
@@ -87,8 +91,10 @@ checkpoint orthosnap:
         ENV_DIR / "orthosnap.yaml"
     log:
         LOG_DIR / "orthofinder/orthosnap/{og}.log"
+    benchmark:
+        "bench/orthosnap.{og}.benchmark.txt"
     shell:
-        r"""
+        """
         {{ mafft {input} > {output.alignment} ; }} &> {log}
         {{ fasttree {output.alignment} > {output.tree} ; }} 2>> {log}
         orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy} 2>> {log}
@@ -112,6 +118,8 @@ rule orthofinder_report_components:
         ENV_DIR / "summary.yaml"
     log:
         LOG_DIR / "orthofinder/orthofinder_report_components.log"
+    benchmark:
+        "bench/orthofinder_report_components.benchmark.txt"
     shell:
         "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output} &> {log}"
 
@@ -204,6 +212,8 @@ checkpoint orthofinder_all:
         min_seqs=max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
     log:
         LOG_DIR / "orthofinder/orthofinder_all.log"
+    benchmark:
+        "bench/orthofinder_all.benchmark.txt"
     shell:
         """
         mkdir -p {output} &> {log}

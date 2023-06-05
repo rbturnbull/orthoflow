@@ -91,6 +91,13 @@ def get_final_reports(wildcards):
 
 rule all:
     input: get_final_reports
+    shell:
+        """
+        rm -rf results/orthofinder/tmp/
+        rm -rf results/orthofinder/output/WorkingDirectory/
+        rm -rf results/orthofisher/output/hmmsearch_output/
+        rm -rf results/orthofisher/output/scog/
+        """
 
 def print_warning(text, warning_style=None):
     if not warning_style:
