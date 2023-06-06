@@ -92,7 +92,7 @@ def run(
             config_index = args.index("--config")
             args.insert(config_index+1, files_arg)
         else:
-            args.extend("--config", files_arg)
+            args.extend(["--config", files_arg])
 
     typer.secho("Running orthoflow...", fg=typer.colors.GREEN)
     typer.secho(f"snakemake {' '.join(args)}", fg=typer.colors.BLACK)
