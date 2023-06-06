@@ -22,7 +22,5 @@ OG0000026	Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|19|rps3
 OG0000027	Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|20|rps19								
 OG0000028	Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|21|rpl2								
 OG0000029	Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|25|ycf20								
-OG0000030								codonsfasta|codons.fa|0|emptysequence	
-OG0000031								codonsfasta|codons.fa|1|Sequence	
-OG0000032									alphabetfasta|fasta_alphabet.fa|0|fakesequence
-OG0000033									alphabetfasta|fasta_alphabet.fa|1|Sequence
+OG0000030								codonsfasta|codons.fa|1|Sequence	
+OG0000031									alphabetfasta|fasta_alphabet.fa|1|Sequence

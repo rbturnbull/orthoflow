@@ -10,7 +10,6 @@ console = Console()
 import toml
 from phytest.bio.sequence import Sequence
 from dataclasses import dataclass, field
-import os
 
 if "config" not in locals():
     config = {}
@@ -143,10 +142,12 @@ class OrthoflowInputDictionary(dict):
 
         faulty_object_present = False
 
+        # Extra test for warning message if ignore_non_valid_files=True
         extra_text = ""
         if ignore_non_valid_files:
-            extra_text = " and has been ignored"
+            extra_text = " and is/are ignored"
         
+        # Create lists for warning messages per category
         list_of_faulty_lists = []
         list_of_default_trans_tables = []
         list_of_unknown_suffix = []
@@ -163,15 +164,15 @@ class OrthoflowInputDictionary(dict):
             if source.valid_file:
                 self[stub] = source
 
-            # Make lists of warnings per category
+            # Add warnings for faulty objects
             if source.faulty_list:
                 if len(list_of_faulty_lists) == 0:
                     list_of_faulty_lists.append("File(s) and/or sequence(s) not valid" +  extra_text)
                 faulty_object_present = True
                 list_of_faulty_lists.append("\n".join(source.faulty_list) + extra_text + "\n")
 
+            # Add warning messages for translation tables and suffices. Only when file is valid or files can be ignored.
             if source.valid_file or not ignore_non_valid_files:
-
                 if source.trans_table_default:
                     if len(list_of_default_trans_tables) == 0:
                         list_of_default_trans_tables.append("Translation table value missing and unable to retrieve from file, default has been used.\n")
@@ -179,7 +180,7 @@ class OrthoflowInputDictionary(dict):
 
                 if source.suffix_unknown:
                     if len(list_of_unknown_suffix) == 0:
-                        list_of_unknown_suffix.append(f"File(s) not Fasta or Genbank file. File assumed to be in Fasta format.\n")     
+                        list_of_unknown_suffix.append(f"File(s) not Fasta or Genbank file.\n")     
                     list_of_unknown_suffix.append(f"Suffix from file '{source.file}' is not Fasta or Genbank. File is assumed to be in Fasta format.")
 
         # Write warnings to warning files
@@ -203,26 +204,23 @@ class OrthoflowInputDictionary(dict):
                 print(stub, data.file, data.data_type, data.taxon_string, data.translation_table, file=f, sep=",")
 
 
-def read_input_source_dictionary(data:Dict, directory:Path=None):
+def read_input_source_dictionary(data:Dict, file_list, directory:Path=None):
     # Check to see if multiple files are given
     if "files" in data:
         inputs = []
         for i in data["files"]:
-            inputs += read_input_source_dictionary(i, directory=directory)
+            inputs += read_input_source_dictionary(i, file_list, directory=directory)
         return inputs
 
     # If no "files" key is in the dictionary, then this dictionary is for a single file
     if "file" not in data:
         raise ValueError(f"The 'file' attribute is not given in {data}.\nPlease check the formatting of your input file.")
 
+    # Open file if name is not empty
     try:
         file = Path(data["file"])
     except:
         raise ValueError(f"File name is empty, please check your input file:\n{data}")
-    
-
-    #if not file.is_file():
-    #    raise ValueError(f"File name is empty, please check your input file:\n{data}")
     
     # Make relative to directory if given
     if directory:
@@ -231,7 +229,7 @@ def read_input_source_dictionary(data:Dict, directory:Path=None):
     if not Path(file).exists():
         raise FileNotFoundError(f"File '{file}' does not exist.")
 
-    input_objects_data = read_input_source(file)
+    input_objects_data = read_input_source(file, file_list)
 
     # Override values from dictionary
     for input_object in input_objects_data:
@@ -240,7 +238,6 @@ def read_input_source_dictionary(data:Dict, directory:Path=None):
 
         if "data_type" in data and not input_object.data_type:
             input_object.data_type = data["data_type"]
-            input_object.suffix_unknown = False
 
         if "translation_table" in data and not input_object.translation_table:
             input_object.translation_table = data["translation_table"]
@@ -249,20 +246,19 @@ def read_input_source_dictionary(data:Dict, directory:Path=None):
     return input_objects_data
 
 
-def read_input_source_json(input_source:Path) -> List[OrthoflowInput]:
+def read_input_source_json(input_source:Path, file_list) -> List[OrthoflowInput]:
     input_source = Path(input_source)
     with open(input_source) as json_file:
         try:
             data = json.load(json_file)
-            data != {}
         except:
             raise ValueError(f"{input_source} is invalid and cannot be read, please check the file.")
         if not data:
             raise ValueError(f"{input_source} is empty, please check the file.")
-        return read_input_source_dictionary(data, directory=input_source.parent)
+        return read_input_source_dictionary(data, file_list, directory=input_source.parent)
     
 
-def read_input_source_yaml(input_source:Path) -> List[OrthoflowInput]:
+def read_input_source_yaml(input_source:Path, file_list) -> List[OrthoflowInput]:
     input_source = Path(input_source)
     try:
         data = yaml.safe_load(input_source.read_text())
@@ -271,10 +267,10 @@ def read_input_source_yaml(input_source:Path) -> List[OrthoflowInput]:
         raise ValueError(f"{input_source} is invalid and cannot be read, please check the file.")
     if not data:
         raise ValueError(f"{input_source} is empty, please check the file.")
-    return read_input_source_dictionary(data, directory=input_source.parent)
+    return read_input_source_dictionary(data, file_list, directory=input_source.parent)
 
 
-def read_input_source_toml(input_source:Path) -> List[OrthoflowInput]:
+def read_input_source_toml(input_source:Path, file_list) -> List[OrthoflowInput]:
     input_source = Path(input_source)
     try:
         data = toml.loads(input_source.read_text())
@@ -282,12 +278,14 @@ def read_input_source_toml(input_source:Path) -> List[OrthoflowInput]:
         raise ValueError(f"{input_source} is invalid and cannot be read, please check the file.")
     if not data:
         raise ValueError(f"{input_source} is empty, please check the file.")
-    return read_input_source_dictionary(data, directory=input_source.parent)
+    return read_input_source_dictionary(data, file_list, directory=input_source.parent)
 
 
-def read_input_source_pandas(input_csv:Path) -> List[OrthoflowInput]:
+def read_input_source_pandas(input_csv:Path, file_list) -> List[OrthoflowInput]:
     input_csv = Path(input_csv)
 
+    # Open and read CSV file. Fill missing variables with '0' and make sure translation table values are integers, as a missing
+    # value will turn them into floats.
     try: 
         df = pd.read_csv(input_csv)
         df.fillna(0, inplace=True)
@@ -301,13 +299,18 @@ def read_input_source_pandas(input_csv:Path) -> List[OrthoflowInput]:
     input_objects = []
     for _, data in df.iterrows():
 
-        input_objects += read_input_source_dictionary(data, directory=input_csv.parent)
+        input_objects += read_input_source_dictionary(data, file_list, directory=input_csv.parent)
 
     
     return input_objects
 
 
-def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInput]:
+def read_input_source(input_source:Union[Path, str, List], file_list) -> List[OrthoflowInput]:
+    # Check for infinite loops due to self reference
+    if str(input_source) in file_list:
+        raise AssertionError(f"File {input_source} refers to itself and the program has been ended to prevent an infinite loop. Please check the file.")
+    file_list.append(str(input_source))
+
     # If files are comma separated then split them
     if isinstance(input_source, str) and "," in input_source:
         input_source = input_source.split(",")
@@ -316,7 +319,7 @@ def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInpu
     if isinstance(input_source, list):
         inputs = []
         for i in input_source:
-            inputs += read_input_source(i)
+            inputs += read_input_source(i, file_list)
         return inputs
     
     # If not a list then it must be a kind of path
@@ -326,7 +329,7 @@ def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInpu
   
     suffix = input_source.suffix.lower()
     if suffix in [".csv", ".tsv"]:
-        return read_input_source_pandas(input_source)
+        return read_input_source_pandas(input_source, file_list)
     
     if suffix in [".genbank", ".gb", ".gbk"]:
         return [OrthoflowInput(file=input_source, data_type="GenBank")]
@@ -335,19 +338,19 @@ def read_input_source(input_source:Union[Path, str, List]) -> List[OrthoflowInpu
         return [OrthoflowInput(file=input_source, data_type="Fasta")]
 
     if suffix == ".json":
-        return read_input_source_json(input_source)
+        return read_input_source_json(input_source, file_list)
 
     if suffix == ".toml":
-        return read_input_source_toml(input_source)
+        return read_input_source_toml(input_source, file_list)
 
     if suffix in [".yaml", ".yml"]:
-        return read_input_source_yaml(input_source)
+        return read_input_source_yaml(input_source, file_list)
     
     return [OrthoflowInput(file=input_source, suffix_unknown=True)]
 
 def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files, warnings_dir=None) -> OrthoflowInputDictionary:
     if len(str(input_source)) == 0:
         raise FileNotFoundError("No input source given, please check the config file.")
-    input_list = read_input_source(input_source)
+    input_list = read_input_source(input_source, [])
     return OrthoflowInputDictionary(input_list, ignore_non_valid_files, warnings_dir)
   

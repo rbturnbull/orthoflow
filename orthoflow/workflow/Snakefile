@@ -81,6 +81,9 @@ def get_final_reports(wildcards):
     
     if config.get("infer_tree_with_cds_seqs", INFER_TREE_WITH_CDS_SEQS_DEFAULT):
         reports.append(rules.report.output[0].format(alignment_type="cds"))
+
+    if not config.get("infer_tree_with_protein_seqs", INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT) and not config.get("infer_tree_with_cds_seqs", INFER_TREE_WITH_CDS_SEQS_DEFAULT):
+        reports.append(rules.report.output[0].format(alignment_type="protein"))
     
     return reports
 
@@ -93,7 +96,7 @@ def print_warning(text, warning_style=None):
         warning_style = "bold white on red"  
     
     longest = max(text.split("\n"), key=len)
-    
+
     console.print("-"*len(longest), style=warning_style)
     console.print(text, style=warning_style)
     console.print("-"*len(longest), style=warning_style)
@@ -114,3 +117,4 @@ onsuccess:
         print_warning(warning_message, warning_style="bold white")
     else:
         print_warning("Program ended without warnings", warning_style="bold white")
+

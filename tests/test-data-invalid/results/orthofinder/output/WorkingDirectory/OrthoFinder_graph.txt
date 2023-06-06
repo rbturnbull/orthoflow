@@ -1,6 +1,6 @@
 (mclheader
 mcltype matrix
-dimensions 63x63
+dimensions 61x61
 )
 
 (mclmatrix
@@ -67,6 +67,4 @@ begin
 58    29:1.429 36:1.837 45:1.241 $
 59    $
 60    $
-61    $
-62    $
 )

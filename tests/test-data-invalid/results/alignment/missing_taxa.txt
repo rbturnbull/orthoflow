@@ -1,3 +1,0 @@
-the following taxa have no orthogroups and will not appear in the phylogenetic tree with the current configurations:
-alphabetfasta
-codonsfasta

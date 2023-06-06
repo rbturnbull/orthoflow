@@ -12,12 +12,16 @@ rule orthofisher_input_generation:
         tsv="results/orthofisher/input_protein_files.tsv",
         hmm="results/orthofisher/hmms.txt",
     params:
-        hmm_files="\n".join(config["orthofisher_hmmer_files"]),
+        hmm_list=config["orthofisher_hmmer_files"],
     log:
         LOG_DIR / "orthofisher/orthofisher_input_generation.log",
     shell:
         """
-        {{ echo "{params.hmm_files}" > {output.hmm} ; }} &> {log}
+        for FILE in {params.hmm_list}; do
+        if [ -s "$FILE" ]; then
+        echo "$FILE" >> {output.hmm} ; &> {log}
+        fi
+        done
         {{ echo {input} | tr " " "\n" > {output.tsv} ; }} 2>> {log}
         """
 
@@ -63,7 +67,7 @@ checkpoint min_seq_filter_orthofisher:
     output:
         directory("results/orthofisher/min-seq-filtered"),
     params:
-        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
+        min_seqs=max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
     log:
         LOG_DIR / "orthofisher/min_seq_filter_orthofisher.log"
     shell:

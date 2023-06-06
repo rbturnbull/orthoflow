@@ -131,7 +131,6 @@ def test_input_json_yaml_toml():
         ], ignore_non_valid_files=False
     )
     assert len(input_dictionary) == 3
-
     item = input_dictionary["MH591084-truncated"]
     assert item.file == TEST_DATA_SMALL/"MH591084-truncated.gb"
     assert item.data_type == "GenBank"

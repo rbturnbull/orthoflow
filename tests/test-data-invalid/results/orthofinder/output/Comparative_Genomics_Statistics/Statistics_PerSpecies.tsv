@@ -1,7 +1,7 @@
 	KX808498-truncated.protein	KY509313-truncated.protein	KY819064-truncated-cds.protein	MH591083-truncated.protein	MH591084-truncated.protein	MH591085-truncated.protein	NC_026795-truncated.protein	codons.protein	fasta_alphabet.protein
-Number of genes	31	8	7	3	2	1	7	2	2
+Number of genes	31	8	7	3	2	1	7	1	1
 Number of genes in orthogroups	8	8	7	3	2	1	7	0	0
-Number of unassigned genes	23	0	0	0	0	0	0	2	2
+Number of unassigned genes	23	0	0	0	0	0	0	1	1
 Percentage of genes in orthogroups	25.8	100.0	100.0	100.0	100.0	100.0	100.0	0.0	0.0
 Percentage of unassigned genes	74.2	0.0	0.0	0.0	0.0	0.0	0.0	100.0	100.0
 Number of orthogroups containing species	7	7	7	3	2	1	7	0	0
