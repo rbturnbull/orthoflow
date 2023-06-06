@@ -80,12 +80,19 @@ def run(
         else:
             args.append(f"--profile={Path(__file__).parent.resolve()/'profiles/local'}")
 
+    # breakpoint()
+
     if ctx.args:
         args.extend(ctx.args)
 
     if files:
         files = ",".join([str(x) for x in files])
-        args.extend(["--config", f"input_sources={files}"])
+        files_arg = f"input_sources={files}"
+        if "--config" in args:
+            config_index = args.index("--config")
+            args.insert(config_index+1, files_arg)
+        else:
+            args.extend(["--config", files_arg])
 
     typer.secho("Running orthoflow...", fg=typer.colors.GREEN)
     typer.secho(f"snakemake {' '.join(args)}", fg=typer.colors.BLACK)

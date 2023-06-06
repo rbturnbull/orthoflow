@@ -1,5 +1,8 @@
 # input
 input_sources: "input_sources.csv" # Specify the CSV file containing the input sources
+ignore_non_valid_files: False # Ignore file from workflow if no valid sequence present in the file, instead of error message
+amino_acid_input: False # Set to True if any of your input files contains protein sequences instead of nucleotide sequences.
+# If amino_acid_input = True, set infer_tree_with_cds_seqs to False
 
 # flow of operations
 use_orthofisher: False  # Set to True to use OrthoFisher analysis path. When False, the will OrthoFinder+OrthoSNAP path will be used.
@@ -11,8 +14,8 @@ summarize_information_content: True
 # gene and alignment filtering
 orthofinder_use_scogs: True  # Use the single-copy orthogroups (when using de novo ortholog analysis path)
 orthofinder_use_snap_ogs: True  # Use the SNAP orthogroups (when using de novo ortholog analysis path)
-ortholog_min_seqs: 5  # Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
-ortholog_min_taxa: 5  # Minimum number of taxa that needs to be in an orthogroup
+ortholog_min_seqs: 5  # Needs to be 3 or larger. Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis.
+ortholog_min_taxa: 5  # Minimum number of taxa that needs to be in an orthogroup.
 # orthosnap_occupancy: 5 # Uncomment this line if you wish to set the orthosnap_occupancy to be something other than ortholog_min_seqs
 minimum_trimmed_alignment_length_cds: 501  # Any CDS alignments shorter than this will not be used for phylogeny inference
 minimum_trimmed_alignment_length_proteins: 167  # Any protein alignments shorter than this will not be used for phylogeny inference
@@ -20,7 +23,7 @@ max_trimmed_proportion: 0.5  # Any alignments for which more than this fraction 
 
 # tree inference settings
 infer_tree_with_protein_seqs: True  # If True, trees will be inferred from protein alignments
-infer_tree_with_cds_seqs: False  # If True, trees will be inferred from nucleotide alignments
+infer_tree_with_cds_seqs: True  # If True, trees will be inferred from nucleotide alignments
 bootstrap_string: "-bb 1000"  # Use IQ-tree syntax, e.g. "-b 100" for 100 nonparametric bootstraps or "-bb 1000" for 1000 ultrafast bootstraps
 model_string: "-m TEST"  # Use IQ-tree syntax, e.g. "-m TEST" to activate ModelFinder or "-m GTR+F+G" for a nucleotide GTR model with empirical base frequencies and discrete gamma model for rate heterogeneity
 #supermatrix_outgroup: "Derbesia_sp_WEST4838"  # Uncomment this line if you wish to specify an outgroup for tree inference

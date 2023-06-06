@@ -1,7 +1,7 @@
-2023-02-04 13:44:07 : Started OrthoFinder version 2.5.4
-Command Line: /Users/rturnbull/Library/Caches/orthoflow/conda/480214afa9cd0fde1f2e444dcbb98d02/bin/orthofinder -f results/intake/translated -t 1 -n orthoflow -og -X
+2023-05-11 14:46:58 : Started OrthoFinder version 2.5.4
+Command Line: /Users/mac/Library/Caches/orthoflow/conda/92217b70c463dd37e8c030d428c1dc0e_/bin/orthofinder -f results/intake/protein -t 1 -n orthoflow -og -X
 
-WorkingDirectory_Base: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data-small/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/
+WorkingDirectory_Base: /Users/mac/orthoflow/tests/test-data-small/results/intake/protein/OrthoFinder/Results_orthoflow/WorkingDirectory/
 
 Species used: 
 0: KX808498-truncated.protein.fa
@@ -12,5 +12,5 @@ Species used:
 5: MH591085-truncated.protein.fa
 6: NC_026795-truncated.protein.fa
 
-FN_Orthogroups: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data-small/results/intake/translated/OrthoFinder/Results_orthoflow/WorkingDirectory/clusters_OrthoFinder_I1.5.txt_id_pairs.txt
-2023-02-04 13:44:18 : OrthoFinder run completed
+FN_Orthogroups: /Users/mac/orthoflow/tests/test-data-small/results/intake/protein/OrthoFinder/Results_orthoflow/WorkingDirectory/clusters_OrthoFinder_I1.5.txt_id_pairs.txt
+2023-05-11 14:47:10 : OrthoFinder run completed

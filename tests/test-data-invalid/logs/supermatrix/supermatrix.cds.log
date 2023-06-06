@@ -1,0 +1,17 @@
+
+--------------------
+| General features |
+--------------------
+Total number of taxa: 5
+Total number of alignments: 2
+
+
+----------------
+| Output files |
+----------------
+Partition file output: results/supermatrix/supermatrix.cds.partition
+Concatenated fasta output: results/supermatrix/supermatrix.cds.fa
+Occupancy report: results/supermatrix/supermatrix.cds.occupancy
+
+Complete!
+

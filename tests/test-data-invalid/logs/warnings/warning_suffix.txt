@@ -1,0 +1,4 @@
+File(s) not Fasta or Genbank file.
+
+Suffix from file 'KY819064-truncated.cds.fafafafa' is not Fasta or Genbank. File is assumed to be in Fasta format.
+Suffix from file 'NC_026795-truncated.txt' is not Fasta or Genbank. File is assumed to be in Fasta format.

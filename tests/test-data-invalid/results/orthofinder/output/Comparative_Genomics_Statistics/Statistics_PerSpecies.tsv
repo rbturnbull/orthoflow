@@ -1,0 +1,100 @@
+	KX808498-truncated.protein	KY509313-truncated.protein	KY819064-truncated-cds.protein	MH591083-truncated.protein	MH591084-truncated.protein	MH591085-truncated.protein	NC_026795-truncated.protein	codons.protein	fasta_alphabet.protein
+Number of genes	31	8	7	3	2	1	7	1	1
+Number of genes in orthogroups	8	8	7	3	2	1	7	0	0
+Number of unassigned genes	23	0	0	0	0	0	0	1	1
+Percentage of genes in orthogroups	25.8	100.0	100.0	100.0	100.0	100.0	100.0	0.0	0.0
+Percentage of unassigned genes	74.2	0.0	0.0	0.0	0.0	0.0	0.0	100.0	100.0
+Number of orthogroups containing species	7	7	7	3	2	1	7	0	0
+Percentage of orthogroups containing species	100.0	100.0	100.0	42.9	28.6	14.3	100.0	0.0	0.0
+Number of species-specific orthogroups	0	0	0	0	0	0	0	0	0
+Number of genes in species-specific orthogroups	0	0	0	0	0	0	0	0	0
+Percentage of genes in species-specific orthogroups	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+
+
+Number of genes per-species in orthogroup	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups	Number of orthogroups
+'0	0	0	0	4	5	6	0	7	7
+'1	6	6	7	3	2	1	7	0	0
+'2	1	1	0	0	0	0	0	0	0
+'3	0	0	0	0	0	0	0	0	0
+'4	0	0	0	0	0	0	0	0	0
+'5	0	0	0	0	0	0	0	0	0
+'6	0	0	0	0	0	0	0	0	0
+'7	0	0	0	0	0	0	0	0	0
+'8	0	0	0	0	0	0	0	0	0
+'9	0	0	0	0	0	0	0	0	0
+'10	0	0	0	0	0	0	0	0	0
+11-15	0	0	0	0	0	0	0	0	0
+16-20	0	0	0	0	0	0	0	0	0
+21-50	0	0	0	0	0	0	0	0	0
+51-100	0	0	0	0	0	0	0	0	0
+101-150	0	0	0	0	0	0	0	0	0
+151-200	0	0	0	0	0	0	0	0	0
+201-500	0	0	0	0	0	0	0	0	0
+501-1000	0	0	0	0	0	0	0	0	0
+'1001+	0	0	0	0	0	0	0	0	0
+
+Number of genes per-species in orthogroup	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups	Percentage of orthogroups
+'0	0.0	0.0	0.0	57.1	71.4	85.7	0.0	100.0	100.0
+'1	85.7	85.7	100.0	42.9	28.6	14.3	100.0	0.0	0.0
+'2	14.3	14.3	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'3	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'4	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'5	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'6	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'7	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'8	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'9	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'10	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+11-15	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+16-20	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+21-50	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+51-100	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+101-150	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+151-200	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+201-500	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+501-1000	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'1001+	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+
+Number of genes per-species in orthogroup	Number of genes	Number of genes	Number of genes	Number of genes	Number of genes	Number of genes	Number of genes	Number of genes	Number of genes
+'0	0	0	0	0	0	0	0	0	0
+'1	6	6	7	3	2	1	7	0	0
+'2	2	2	0	0	0	0	0	0	0
+'3	0	0	0	0	0	0	0	0	0
+'4	0	0	0	0	0	0	0	0	0
+'5	0	0	0	0	0	0	0	0	0
+'6	0	0	0	0	0	0	0	0	0
+'7	0	0	0	0	0	0	0	0	0
+'8	0	0	0	0	0	0	0	0	0
+'9	0	0	0	0	0	0	0	0	0
+'10	0	0	0	0	0	0	0	0	0
+11-15	0	0	0	0	0	0	0	0	0
+16-20	0	0	0	0	0	0	0	0	0
+21-50	0	0	0	0	0	0	0	0	0
+51-100	0	0	0	0	0	0	0	0	0
+101-150	0	0	0	0	0	0	0	0	0
+151-200	0	0	0	0	0	0	0	0	0
+201-500	0	0	0	0	0	0	0	0	0
+501-1000	0	0	0	0	0	0	0	0	0
+'1001+	0	0	0	0	0	0	0	0	0
+
+Number of genes per-species in orthogroup	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes	Percentage of genes
+'0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'1	19.4	75.0	100.0	100.0	100.0	100.0	100.0	0.0	0.0
+'2	6.5	25.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'3	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'4	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'5	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'6	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'7	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'8	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'9	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'10	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+11-15	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+16-20	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+21-50	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+51-100	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+101-150	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+151-200	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+201-500	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+501-1000	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+'1001+	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0

@@ -1,0 +1,271 @@
+IQ-TREE 2.2.0.3 COVID-edition built Sep  5 2022
+
+Input file name: results/alignment/trimmed_protein/OG0000002.trimmed.protein.alignment.fa
+Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 694293
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 5 sequences with 320 amino-acid sites
+Number of constant sites: 164 (= 51.25% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 164 (= 51.25% of all sites)
+Number of parsimony informative sites: 29
+Number of distinct site patterns: 169
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: LG+F+G4
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+LG+F+G4           -2139.504    4333.009 +    0.504    4338.187 +    0.518    4434.753 +    0.573
+Q.plant+F+G4      -2140.148    4334.296 +    0.265    4339.474 +    0.272    4436.041 +    0.301
+Q.pfam+F+G4       -2141.339    4336.677 +   0.0805    4341.855 +   0.0827    4438.422 +   0.0916
+LG+F+I+G4         -2140.335    4336.670 +   0.0808    4342.250 +   0.0679    4442.183 -    0.014
+Q.plant+F+I+G4    -2140.860    4337.720 -   0.0478    4343.301 -   0.0401    4443.233 -  0.00826
+WAG+F+G4          -2144.517    4343.034 -  0.00335    4348.213 -  0.00344    4444.779 -  0.00381
+mtInv+F+G4        -2144.643    4343.286 -  0.00296    4348.464 -  0.00304    4445.030 -  0.00336
+Q.pfam+F+I+G4     -2142.228    4340.456 -   0.0122    4346.037 -   0.0102    4445.969 -   0.0021
+mtZOA+F+G4        -2145.829    4345.658 - 0.000903    4350.836 - 0.000927    4447.403 -  0.00103
+Q.yeast+F+G4      -2146.140    4346.280 - 0.000662    4351.458 - 0.000679    4448.025 - 0.000753
+cpREV+F+G4        -2147.331    4348.662 - 0.000201    4353.840 - 0.000207    4450.406 - 0.000229
+WAG+F+I+G4        -2145.049    4346.098 - 0.000725    4351.679 - 0.000609    4451.611 - 0.000125
+Q.yeast+G4        -2202.838    4421.677 - 2.81e-20    4422.140 - 3.05e-19    4451.823 - 0.000113
+mtInv+F+I+G4      -2145.557    4347.114 - 0.000436    4352.694 - 0.000366    4452.627 - 7.54e-05
+rtREV+F+G4        -2148.672    4351.344 - 5.26e-05    4356.522 -  5.4e-05    4453.089 - 5.98e-05
+cpREV+G4          -2204.073    4424.147 - 8.17e-21    4424.610 - 8.86e-20    4454.293 - 3.28e-05
+mtZOA+F+I+G4      -2146.664    4349.328 - 0.000144    4354.909 - 0.000121    4454.841 - 2.49e-05
+Q.yeast+F+I+G4    -2146.877    4349.753 - 0.000117    4355.334 - 9.78e-05    4455.266 - 2.01e-05
+JTTDCMut+F+G4     -2150.355    4354.709 - 9.78e-06    4359.888 -    1e-05    4456.454 - 1.11e-05
+JTT+F+G4          -2150.533    4355.066 - 8.18e-06    4360.244 -  8.4e-06    4456.811 -  9.3e-06
+Dayhoff+F+G4      -2150.632    4355.263 - 7.41e-06    4360.441 - 7.61e-06    4457.008 - 8.43e-06
+cpREV+F+I+G4      -2147.755    4351.510 - 4.84e-05    4357.091 - 4.06e-05    4457.023 - 8.37e-06
+Q.insect+F+G4     -2150.641    4355.281 - 7.35e-06    4360.459 - 7.54e-06    4457.026 - 8.35e-06
+DCMut+F+G4        -2150.722    4355.444 - 6.77e-06    4360.622 - 6.95e-06    4457.189 -  7.7e-06
+VT+F+G4           -2151.012    4356.024 - 5.07e-06    4361.202 -  5.2e-06    4457.769 - 5.76e-06
+mtMet+F+G4        -2151.426    4356.852 - 3.35e-06    4362.031 - 3.44e-06    4458.597 - 3.81e-06
+Q.yeast+I+G4      -2203.415    4424.829 - 5.81e-21    4425.410 - 5.94e-20    4458.744 - 3.54e-06
+rtREV+F+I+G4      -2149.374    4354.747 -  9.6e-06    4360.328 - 8.06e-06    4460.260 - 1.66e-06
+cpREV+I+G4        -2204.337    4426.673 - 2.31e-21    4427.254 - 2.36e-20    4460.588 - 1.41e-06
+mtREV+F+G4        -2153.165    4360.331 - 5.88e-07    4365.509 - 6.04e-07    4462.075 - 6.69e-07
+mtART+F+G4        -2153.847    4361.693 - 2.98e-07    4366.871 - 3.06e-07    4463.438 - 3.39e-07
+JTTDCMut+F+I+G4   -2150.995    4357.989 -  1.9e-06    4363.570 - 1.59e-06    4463.502 - 3.28e-07
+JTT+F+I+G4        -2151.139    4358.278 - 1.64e-06    4363.859 - 1.38e-06    4463.791 - 2.84e-07
+Q.insect+F+I+G4   -2151.385    4358.770 - 1.28e-06    4364.350 - 1.08e-06    4464.283 - 2.22e-07
+VT+F+I+G4         -2151.597    4359.194 - 1.04e-06    4364.775 - 8.72e-07    4464.707 - 1.79e-07
+Dayhoff+F+I+G4    -2151.633    4359.267 -    1e-06    4364.848 - 8.41e-07    4464.780 - 1.73e-07
+DCMut+F+I+G4      -2151.720    4359.441 - 9.18e-07    4365.021 - 7.71e-07    4464.953 - 1.59e-07
+LG+G4             -2209.634    4435.268 - 3.14e-23    4435.731 - 3.41e-22    4465.415 - 1.26e-07
+mtMet+F+I+G4      -2152.450    4360.899 - 4.43e-07    4366.480 - 3.72e-07    4466.412 - 7.65e-08
+rtREV+G4          -2210.606    4437.213 - 1.19e-23    4437.676 - 1.29e-22    4467.359 - 4.77e-08
+mtREV+F+I+G4      -2153.710    4363.420 - 1.26e-07    4369.001 - 1.05e-07    4468.933 - 2.17e-08
+mtART+F+I+G4      -2154.379    4364.758 - 6.43e-08    4370.338 -  5.4e-08    4470.271 - 1.11e-08
+FLU+F+G4          -2157.746    4369.491 - 6.03e-09    4374.669 - 6.19e-09    4471.236 - 6.86e-09
+Blosum62+F+G4     -2157.797    4369.595 - 5.73e-09    4374.773 - 5.88e-09    4471.339 - 6.51e-09
+PMB+F+G4          -2158.039    4370.078 -  4.5e-09    4375.256 - 4.62e-09    4471.822 - 5.12e-09
+LG+I+G4           -2210.291    4438.581 - 5.99e-24    4439.162 - 6.13e-23    4472.496 - 3.65e-09
+HIVb+F+G4         -2159.166    4372.332 - 1.46e-09    4377.510 -  1.5e-09    4474.077 - 1.66e-09
+rtREV+I+G4        -2211.149    4440.297 - 2.54e-24    4440.878 -  2.6e-23    4474.212 - 1.55e-09
+Q.mammal+F+G4     -2160.859    4375.718 - 2.68e-10    4380.896 - 2.75e-10    4477.462 - 3.05e-10
+VT+G4             -2215.970    4447.940 - 5.57e-26    4448.403 - 6.04e-25    4478.086 - 2.23e-10
+Blosum62+F+I+G4   -2158.372    4372.743 - 1.19e-09    4378.324 - 9.96e-10    4478.256 - 2.05e-10
+PMB+F+I+G4        -2158.621    4373.241 - 9.25e-10    4378.822 - 7.77e-10    4478.754 -  1.6e-10
+FLU+F+I+G4        -2158.731    4373.462 - 8.28e-10    4379.043 - 6.95e-10    4478.975 - 1.43e-10
+mtVer+F+G4        -2162.232    4378.463 -  6.8e-11    4383.641 - 6.98e-11    4480.208 - 7.73e-11
+Q.bird+F+G4       -2162.412    4378.824 - 5.68e-11    4384.002 - 5.83e-11    4480.568 - 6.45e-11
+Q.insect+G4       -2217.374    4450.749 - 1.37e-26    4451.212 - 1.48e-25    4480.895 - 5.48e-11
+HIVb+F+I+G4       -2159.718    4375.435 - 3.09e-10    4381.016 - 2.59e-10    4480.948 - 5.34e-11
+Q.pfam+G4         -2217.854    4451.707 - 8.46e-27    4452.170 - 9.18e-26    4481.854 - 3.39e-11
+Q.plant+G4        -2218.541    4453.082 - 4.26e-27    4453.545 - 4.62e-26    4483.229 - 1.71e-11
+mtMAM+F+G4        -2163.960    4381.920 - 1.21e-11    4387.098 - 1.24e-11    4483.664 - 1.37e-11
+VT+I+G4           -2216.411    4450.821 - 1.32e-26    4451.402 - 1.35e-25    4484.736 - 8.03e-12
+Q.mammal+F+I+G4   -2161.755    4379.510 - 4.03e-11    4385.091 - 3.38e-11    4485.023 - 6.96e-12
+mtVer+F+I+G4      -2163.179    4382.358 - 9.69e-12    4387.939 - 8.14e-12    4487.871 - 1.68e-12
+Q.insect+I+G4     -2218.054    4454.109 - 2.55e-27    4454.689 -  2.6e-26    4488.024 - 1.55e-12
+Q.bird+F+I+G4     -2163.284    4382.569 - 8.72e-12    4388.149 - 7.32e-12    4488.082 - 1.51e-12
+Q.pfam+I+G4       -2218.526    4455.053 - 1.59e-27    4455.633 - 1.62e-26    4488.968 - 9.68e-13
+Q.plant+I+G4      -2219.203    4456.407 - 8.07e-28    4456.987 - 8.26e-27    4490.322 - 4.92e-13
+mtMAM+F+I+G4      -2165.070    4386.140 - 1.46e-12    4391.721 - 1.23e-12    4491.653 - 2.53e-13
+LG+I              -2224.155    4464.311 - 1.55e-29    4464.774 - 1.68e-28    4494.458 - 6.22e-14
+WAG+G4            -2227.498    4470.995 - 5.48e-31    4471.458 - 5.95e-30    4501.142 -  2.2e-15
+Blosum62+G4       -2228.352    4472.703 - 2.33e-31    4473.166 - 2.53e-30    4502.850 - 9.36e-16
+JTT+G4            -2228.810    4473.621 - 1.48e-31    4474.084 -  1.6e-30    4503.768 - 5.92e-16
+JTTDCMut+G4       -2228.850    4473.699 - 1.42e-31    4474.162 - 1.54e-30    4503.846 - 5.69e-16
+WAG+I+G4          -2227.820    4473.640 - 1.46e-31    4474.220 - 1.49e-30    4507.555 - 8.91e-17
+Blosum62+I+G4     -2228.813    4475.626 - 5.42e-32    4476.206 - 5.54e-31    4509.540 -  3.3e-17
+JTT+I+G4          -2229.299    4476.597 - 3.33e-32    4477.178 - 3.41e-31    4510.512 - 2.03e-17
+JTTDCMut+I+G4     -2229.365    4476.731 - 3.12e-32    4477.311 - 3.19e-31    4510.646 -  1.9e-17
+FLU+G4            -2234.339    4484.678 - 5.86e-34    4485.141 - 6.36e-33    4514.824 - 2.35e-18
+FLAVI+F+G4        -2179.713    4413.427 - 1.74e-18    4418.605 - 1.78e-18    4515.171 - 1.98e-18
+HIVb+G4           -2237.859    4491.718 - 1.73e-35    4492.181 - 1.88e-34    4521.864 - 6.96e-20
+FLU+I+G4          -2235.190    4488.381 -  9.2e-35    4488.962 - 9.41e-34    4522.296 - 5.61e-20
+PMB+G4            -2238.259    4492.519 - 1.16e-35    4492.982 - 1.26e-34    4522.665 - 4.66e-20
+FLAVI+F+I+G4      -2180.767    4417.534 - 2.23e-19    4423.115 - 1.87e-19    4523.047 - 3.85e-20
+HIVb+I+G4         -2238.233    4494.466 - 4.39e-36    4495.047 - 4.49e-35    4528.381 - 2.68e-21
+PMB+I+G4          -2238.755    4495.509 - 2.61e-36    4496.090 - 2.67e-35    4529.424 - 1.59e-21
+Dayhoff+G4        -2246.730    4509.460 - 2.44e-39    4509.923 - 2.64e-38    4539.606 - 9.77e-24
+DCMut+G4          -2246.756    4509.511 - 2.37e-39    4509.974 - 2.57e-38    4539.658 - 9.52e-24
+Dayhoff+I+G4      -2247.252    4512.504 - 5.32e-40    4513.085 - 5.44e-39    4546.419 - 3.24e-25
+DCMut+I+G4        -2247.278    4512.555 - 5.18e-40    4513.136 -  5.3e-39    4546.470 - 3.16e-25
+Q.bird+G4         -2252.867    4521.734 - 5.26e-42    4522.197 - 5.71e-41    4551.881 - 2.11e-26
+HIVw+F+G4         -2198.836    4451.672 - 8.61e-27    4456.851 - 8.84e-27    4553.417 - 9.79e-27
+Q.mammal+G4       -2254.708    4525.416 - 8.35e-43    4525.879 - 9.06e-42    4555.562 - 3.35e-27
+Q.bird+I+G4       -2253.695    4525.391 - 8.46e-43    4525.972 - 8.65e-42    4559.306 - 5.15e-28
+HIVw+F+I+G4       -2199.499    4454.998 - 1.63e-27    4460.578 - 1.37e-27    4560.511 - 2.82e-28
+Q.mammal+I+G4     -2255.528    4529.056 - 1.35e-43    4529.636 - 1.38e-42    4562.971 - 8.25e-29
+HIVw+G4           -2264.253    4544.507 - 5.97e-47    4544.970 - 6.48e-46    4574.653 -  2.4e-31
+mtMet+G4          -2266.188    4548.376 - 8.63e-48    4548.839 - 9.36e-47    4578.523 - 3.46e-32
+HIVw+I+G4         -2264.680    4547.359 - 1.44e-47    4547.940 - 1.47e-46    4581.274 - 8.75e-33
+LG                -2270.878    4555.757 - 2.15e-49    4556.116 - 2.46e-48    4582.135 - 5.69e-33
+mtMet+I+G4        -2267.850    4553.699 - 6.03e-49    4554.280 - 6.17e-48    4587.614 - 3.67e-34
+mtZOA+G4          -2275.238    4566.476 - 1.01e-51    4566.939 -  1.1e-50    4596.623 - 4.06e-36
+mtInv+G4          -2277.082    4570.163 -  1.6e-52    4570.626 - 1.74e-51    4600.310 - 6.43e-37
+mtART+G4          -2278.372    4572.745 - 4.41e-53    4573.208 - 4.78e-52    4602.891 - 1.77e-37
+mtZOA+I+G4        -2276.953    4571.907 - 6.71e-53    4572.487 - 6.86e-52    4605.822 - 4.09e-38
+mtREV+G4          -2280.948    4577.896 - 3.36e-54    4578.359 - 3.64e-53    4608.042 - 1.35e-38
+mtInv+I+G4        -2278.656    4575.312 - 1.22e-53    4575.892 - 1.25e-52    4609.227 - 7.45e-39
+mtART+I+G4        -2280.018    4578.035 - 3.13e-54    4578.616 -  3.2e-53    4611.950 - 1.91e-39
+mtREV+I+G4        -2282.283    4582.566 - 3.25e-55    4583.147 - 3.32e-54    4616.481 - 1.98e-40
+mtVer+G4          -2288.704    4593.408 - 1.44e-57    4593.871 - 1.56e-56    4623.555 - 5.76e-42
+FLAVI+G4          -2292.021    4600.041 - 5.21e-59    4600.504 - 5.65e-58    4630.188 - 2.09e-43
+mtVer+I+G4        -2290.278    4598.557 -  1.1e-58    4599.137 - 1.12e-57    4632.472 - 6.67e-44
+FLAVI+I+G4        -2293.589    4605.179 -    4e-60    4605.759 - 4.09e-59    4639.094 - 2.43e-45
+mtMAM+G4          -2297.666    4611.333 - 1.84e-61    4611.796 -    2e-60    4641.479 - 7.39e-46
+mtMAM+I+G4        -2299.067    4616.133 - 1.67e-62    4616.714 - 1.71e-61    4650.048 - 1.02e-47
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: LG+F+G4
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.0464
+  pi(R) = 0.0264
+  pi(N) = 0.0741
+  pi(D) = 0.0303
+  pi(C) = 0.0077
+  pi(Q) = 0.0856
+  pi(E) = 0.0476
+  pi(G) = 0.0683
+  pi(H) = 0.0032
+  pi(I) = 0.0959
+  pi(L) = 0.0934
+  pi(K) = 0.0805
+  pi(M) = 0.0090
+  pi(F) = 0.0573
+  pi(P) = 0.0773
+  pi(S) = 0.0464
+  pi(T) = 0.0341
+  pi(W) = 0.0000
+  pi(Y) = 0.0367
+  pi(V) = 0.0798
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 0.4283
+
+ Category  Relative_rate  Proportion
+  1         0.0210         0.2500
+  2         0.2025         0.2500
+  3         0.7602         0.2500
+  4         3.0163         0.2500
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -2139.5044 (s.e. 72.4910)
+Unconstrained log-likelihood (without tree): -1450.6920
+Number of free parameters (#branches + #model parameters): 27
+Akaike information criterion (AIC) score: 4333.0088
+Corrected Akaike information criterion (AICc) score: 4338.1868
+Bayesian information criterion (BIC) score: 4434.7534
+
+Total tree length (sum of branch lengths): 1.7026
+Sum of internal branch lengths: 0.2335 (13.7167% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'Caulerpa_cliftonii_HV03798' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++-----------------------------Caulerpa_cliftonii_HV03798
+|
+|              +-------------------------------------------Avrainvillea_mazei_HV02664
++--------------| (98)
+|              +-------------------------Bryopsis_plumosa_WEST4718
+|
+|  +-----------------Chlorodesmis_fastigiata_HV03865
++--| (73)
+   +--Flabellia_petiolata_HV01202
+
+Tree in newick format:
+
+(Caulerpa_cliftonii_HV03798:0.3598384931,(Avrainvillea_mazei_HV02664:0.5313138426,Bryopsis_plumosa_WEST4718:0.3205486276)98:0.1864326811,(Chlorodesmis_fastigiata_HV03865:0.2199922326,Flabellia_petiolata_HV01202:0.0373247646)73:0.0471003386);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -2139.504390
+Robinson-Foulds distance between ML tree and consensus tree: 0
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++-----------------------------Caulerpa_cliftonii_HV03798
+|
+|              +-------------------------------------------Avrainvillea_mazei_HV02664
++--------------| (98)
+|              +-------------------------Bryopsis_plumosa_WEST4718
+|
+|  +-----------------Chlorodesmis_fastigiata_HV03865
++--| (73)
+   +--Flabellia_petiolata_HV01202
+
+
+Consensus tree in newick format: 
+
+(Caulerpa_cliftonii_HV03798:0.3597293210,(Avrainvillea_mazei_HV02664:0.5309728333,Bryopsis_plumosa_WEST4718:0.3204814710)98:0.1863537797,(Chlorodesmis_fastigiata_HV03865:0.2199328291,Flabellia_petiolata_HV01202:0.0373547920)73:0.0470775659);
+
+TIME STAMP
+----------
+
+Date and time: Thu May 11 16:33:19 2023
+Total CPU time used: 1.096339 seconds (0h:0m:1s)
+Total wall-clock time used: 1.051482201 seconds (0h:0m:1s)
+

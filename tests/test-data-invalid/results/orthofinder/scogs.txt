@@ -1,0 +1,5 @@
+results/orthofinder/output/Orthogroup_Sequences/OG0000001.fa
+results/orthofinder/output/Orthogroup_Sequences/OG0000002.fa
+results/orthofinder/output/Orthogroup_Sequences/OG0000003.fa
+results/orthofinder/output/Orthogroup_Sequences/OG0000004.fa
+results/orthofinder/output/Orthogroup_Sequences/OG0000005.fa

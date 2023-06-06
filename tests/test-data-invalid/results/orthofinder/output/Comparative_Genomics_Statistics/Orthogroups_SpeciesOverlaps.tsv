@@ -1,0 +1,10 @@
+	KX808498-truncated.protein	KY509313-truncated.protein	KY819064-truncated-cds.protein	MH591083-truncated.protein	MH591084-truncated.protein	MH591085-truncated.protein	NC_026795-truncated.protein	codons.protein	fasta_alphabet.protein
+KX808498-truncated.protein	7	7	7	3	2	1	7	0	0
+KY509313-truncated.protein	7	7	7	3	2	1	7	0	0
+KY819064-truncated-cds.protein	7	7	7	3	2	1	7	0	0
+MH591083-truncated.protein	3	3	3	3	0	0	3	0	0
+MH591084-truncated.protein	2	2	2	0	2	0	2	0	0
+MH591085-truncated.protein	1	1	1	0	0	1	1	0	0
+NC_026795-truncated.protein	7	7	7	3	2	1	7	0	0
+codons.protein	0	0	0	0	0	0	0	0	0
+fasta_alphabet.protein	0	0	0	0	0	0	0	0	0

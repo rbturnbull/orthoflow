@@ -30,6 +30,7 @@ appdirs = "^1.4.4"
 joblib = "^1.2.0"
 toml = "^0.10.2"
 phytest = "^1.2.0"
+rich = "^13.3.3"
 
 [tool.poetry.dev-dependencies]
 Sphinx = "^4.4.0"

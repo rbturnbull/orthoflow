@@ -16,11 +16,18 @@ def extract_cds(
     data_type: str = typer.Option(...),
     taxon_string: str = typer.Option(..., help="The taxon string to be prepended to the description."),
     debug: Optional[bool] = typer.Option(False, "--debug", "-d"),
+    warnings_dir: Path = None
 ):
     if debug:
         logger.setLevel("DEBUG")
     
     counter = 0
+
+    #Open warning file to read faulty sequences
+    warning_file = warnings_dir/"non_valid_objects.txt"
+    wf = open(warning_file, "r")
+    wf_text = wf.read()
+
 
     with outfile.open("w") as fout:
         def write_seq(sequence, counter, gene = ""):
@@ -42,25 +49,27 @@ def extract_cds(
                         try:
                             gene = feat.qualifiers["gene"][0]
                         except:
-                            logger.debug(f"CDS without gene name encountered in {infile}")
+                            logger.debug(f"CDS without gene name encountered in {infile} {counter}_{gene}")
                         try:
                             codon_start = int(feat.qualifiers["codon_start"][0])
                         except:
-                            logger.debug(f"CDS without codon start position specification encountered in {infile}")
+                            logger.debug(f"CDS without codon start position specification encountered in {infile} {counter}_{gene}")
                         if codon_start != 1:
                             seq_str = seq_str[codon_start-1:len(seq_str)]
-                            logger.debug(f"CDS with codon start position different from 1 encountered in {infile}; sequence has been trimmed at start")
+                            logger.debug(f"CDS with codon start position different from 1 encountered in {infile} {counter}_{gene}; sequence has been trimmed at start")
                         modulo = len(seq_str) % 3
                         if modulo != 0:
                             seq_str = seq_str[0:len(seq_str)-modulo]
-                            logger.debug(f"CDS of length not divisible by 3 encountered in {infile}; sequence has been trimmed at end")
+                            logger.debug(f"CDS of length not divisible by 3 encountered in {infile} {counter}_{gene}; sequence has been trimmed at end")
                         
                         write_seq(seq_str, counter=counter, gene=gene)
                         counter += 1
         else:
             # Assume that non-genbank files are Fasta format
             for seq in SeqIO.parse(infile, "fasta"):
-                write_seq(seq.seq, counter=counter)
+                #Only add sequence of not present in warning file
+                if not f"{seq.id} in file {infile.name}" in wf_text:
+                    write_seq(seq.seq, counter=counter, gene=seq.id)
                 counter += 1
 
 

@@ -1,0 +1,32 @@
+OG0000000: Avrainvillea_mazei_HV02664|KY509313-truncated.gb|6|psbE Avrainvillea_mazei_HV02664|KY509313-truncated.gb|7|orf100 Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|5|psbE Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|28|psbE Chlorodesmis_fastigiata_HV03865|KY819064-truncated.cds.fafafafa|5|KY819064.1|psbE Flabellia_petiolata_HV01202|MH591085-truncated.gb|0|psbE
+OG0000001: Avrainvillea_mazei_HV02664|KY509313-truncated.gb|3|rpl23 Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|1|rpl23 Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|22|rpl23 Chlorodesmis_fastigiata_HV03865|KY819064-truncated.cds.fafafafa|1|KY819064.1|rpl23 Flabellia_petiolata_HV01202|MH591084-truncated.gb|1|rpl23
+OG0000002: Avrainvillea_mazei_HV02664|KY509313-truncated.gb|0|petA Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|0|petA Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|23|petA Chlorodesmis_fastigiata_HV03865|KY819064-truncated.cds.fafafafa|0|KY819064.1|petA Flabellia_petiolata_HV01202|MH591084-truncated.gb|0|petA
+OG0000003: Avrainvillea_mazei_HV02664|KY509313-truncated.gb|1|psaI Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|2|psaI Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|24|psaI Chlorodesmis_fastigiata_HV03865|KY819064-truncated.cds.fafafafa|2|KY819064.1|psaI Flabellia_petiolata_HV01202|MH591083-truncated.gb|1|psaI
+OG0000004: Avrainvillea_mazei_HV02664|KY509313-truncated.gb|2|petG Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|3|petG Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|26|petG Chlorodesmis_fastigiata_HV03865|KY819064-truncated.cds.fafafafa|3|KY819064.1|petG Flabellia_petiolata_HV01202|MH591083-truncated.gb|0|petG
+OG0000005: Avrainvillea_mazei_HV02664|KY509313-truncated.gb|4|rbcL Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|4|rbcL Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|27|rbcL Chlorodesmis_fastigiata_HV03865|KY819064-truncated.cds.fafafafa|4|KY819064.1|rbcL Flabellia_petiolata_HV01202|MH591083-truncated.gb|2|rbcL
+OG0000006: Avrainvillea_mazei_HV02664|KY509313-truncated.gb|5|rps18 Bryopsis_plumosa_WEST4718|NC_026795-truncated.txt|6|rps18 Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|29|rps18 Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|30|orf179 Chlorodesmis_fastigiata_HV03865|KY819064-truncated.cds.fafafafa|6|KY819064.1|rps18
+OG0000007: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|0|rps9
+OG0000008: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|1|rpoC1
+OG0000009: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|2|rpoC2
+OG0000010: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|3|psaB
+OG0000011: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|4|psbZ
+OG0000012: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|5|orf180
+OG0000013: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|6|orf116
+OG0000014: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|7|orf144
+OG0000015: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|8|orf519
+OG0000016: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|9|psbA
+OG0000017: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|10|orf128
+OG0000018: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|11|rpoA
+OG0000019: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|12|rps11
+OG0000020: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|13|rpl36
+OG0000021: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|14|infA
+OG0000022: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|15|rps8
+OG0000023: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|16|rpl5
+OG0000024: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|17|rpl14
+OG0000025: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|18|rpl16
+OG0000026: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|19|rps3
+OG0000027: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|20|rps19
+OG0000028: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|21|rpl2
+OG0000029: Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|25|ycf20
+OG0000030: codonsfasta|codons.fa|1|Sequence
+OG0000031: alphabetfasta|fasta_alphabet.fa|1|Sequence

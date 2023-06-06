@@ -7,7 +7,7 @@ TEST_DATA_SMALL = Path(__file__).parent/"test-data-small"
 
 def test_filter_alignments_test_data_small_cds():
     trimmed_dir = TEST_DATA_SMALL/"results/alignment/trimmed_cds"
-    untrimmed_dir = TEST_DATA_SMALL/"results/alignment/threaded_cds"    
+    untrimmed_dir = TEST_DATA_SMALL/"results/alignment/threaded_cds"
 
     trimmed = sorted(trimmed_dir.glob("*.cds.alignment.fa"))
     untrimmed = sorted(untrimmed_dir.glob("*.cds.alignment.fa"))
@@ -26,4 +26,3 @@ def test_filter_alignments_test_data_small_cds():
         output_lines = output_txt.read_text().strip().split("\n")
         assert len(output_lines) == 1
         assert output_lines[0].endswith(expected_names[0])
-

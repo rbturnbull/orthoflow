@@ -1,0 +1,40 @@
+
+Determining smart-gap threshold...
+
+-------------
+| Arguments |
+-------------
+Input file: results/alignment/threaded_cds/OG0000000_orthosnap_0.cds.alignment.fa (format: fasta)
+Output file: results/alignment/trimmed_cds/OG0000000_orthosnap_0.trimmed.cds.alignment.fa (format: fasta)
+Sequence type: Nucleotides
+Gaps threshold: 0.8
+Trimming mode: smart-gap
+Create complementary output: False
+Create log file: False
+
+
+------------------------
+| Processing Alignment |
+------------------------
+
+  0%|          | 0/249 [00:00<?, ?it/s]100%|██████████| 249/249 [00:00<00:00, 62564.05it/s]
+
+
+------------------------
+| Writing output files |
+------------------------
+trimmed alignment: results/alignment/trimmed_cds/OG0000000_orthosnap_0.trimmed.cds.alignment.fa
+complement file: False
+log file: False
+
+
+---------------------
+| Output Statistics |
+---------------------
+Number of sites kept: 246
+Number of sites trimmed: 3
+
+Percentage of alignment trimmed: 1.205%
+
+Execution time: 0.025s
+

@@ -3,6 +3,9 @@ from pathlib import Path
 
 import subprocess
 
+from rich.console import Console
+console = Console()
+
 min_version("6.0")
 
 SNAKE_DIR = Path(workflow.basedir)
@@ -10,6 +13,9 @@ SCRIPT_DIR = SNAKE_DIR/ "scripts"
 ENV_DIR = SNAKE_DIR / "envs"
 CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = Path("logs")
+WARNINGS_DIR = LOG_DIR/"warnings"
+WARNINGS_DIR.mkdir(parents=True, exist_ok=True)
+
 
 # Defaults for config
 ORTHOLOG_MIN_SEQS_DEFAULT = 5
@@ -24,6 +30,8 @@ BOOTSTRAP_STRING_DEFAULT = "-bb 1000"
 MODEL_STRING_DEFAULT = "-m TEST"
 SUPERMATRIX_OUTGROUP_DEFAULT = ""
 TRANSLATION_TABLE_DEFAULT = "1"
+IGNORE_NON_VALID_FILES_DEFAULT = False
+PROTEIN_INPUT_DEFAULT = False
 
 # Get the path to the default config file.
 # This can be overridden on the command line
@@ -74,9 +82,47 @@ def get_final_reports(wildcards):
     
     if config.get("infer_tree_with_cds_seqs", INFER_TREE_WITH_CDS_SEQS_DEFAULT):
         reports.append(rules.report.output[0].format(alignment_type="cds"))
+
+    if not config.get("infer_tree_with_protein_seqs", INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT) and not config.get("infer_tree_with_cds_seqs", INFER_TREE_WITH_CDS_SEQS_DEFAULT):
+        reports.append(rules.report.output[0].format(alignment_type="protein"))
     
     return reports
 
 
 rule all:
     input: get_final_reports
+    shell:
+        """
+        rm -rf results/orthofinder/tmp/
+        rm -rf results/orthofinder/output/WorkingDirectory/
+        rm -rf results/orthofisher/output/hmmsearch_output/
+        rm -rf results/orthofisher/output/scog/
+        """
+
+def print_warning(text, warning_style=None):
+    if not warning_style:
+        warning_style = "bold white on red"  
+    
+    longest = max(text.split("\n"), key=len)
+
+    console.print("-"*len(longest), style=warning_style)
+    console.print(text, style=warning_style)
+    console.print("-"*len(longest), style=warning_style)
+
+onsuccess:
+    warning_message = ""
+    count = 0
+    for warnings_file in WARNINGS_DIR.glob("*.txt"):
+        temp = warnings_file.read_text()
+        warning = temp.split("\n")[0]
+        if warning:
+            count += 1
+            if count > 1:
+                warning_message += "\n"
+            warning_message += "WARNING " + str(count) + " --> " + str(warning)
+    if len(warning_message) > 0:
+        print_warning("There are warnings. Please check the warnings tab in the report or the warnings folder in the log.")
+        print_warning(warning_message, warning_style="bold white")
+    else:
+        print_warning("Program ended without warnings", warning_style="bold white")
+

@@ -13,7 +13,7 @@ rule orthofinder:
     OrthoFinder runs to the point of orthogroup inference.
     """
     input:
-        translated_files
+        protein_files
     output:
         directory("results/orthofinder/output"),
     conda:
@@ -23,8 +23,10 @@ rule orthofinder:
     bibs:
         "../bibs/orthofinder.ris",
     params:
-        input_dir=lambda wildcards, input: Path(input[0]).parent,
+        input_dir="results/intake/protein",
     threads: workflow.cores
+    benchmark:
+        "bench/orthofinder.benchmark.txt"
     shell:
         """
         mkdir -p results/orthofinder &> {log}
@@ -45,10 +47,12 @@ checkpoint orthogroup_classification:
     conda:
         ENV_DIR / "joblib.yaml"
     params:
-        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
+        min_seqs=max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
         min_taxa=config.get("ortholog_min_taxa", ORTHOLOG_MIN_TAXA_DEFAULT),
     log:
         LOG_DIR / "orthofinder/orthogroup_classification.log"
+    benchmark:
+        "bench/orthogroup_classification.benchmark.txt"
     shell:
         """
         python {SCRIPT_DIR}/orthogroup_classification.py \
@@ -82,13 +86,15 @@ checkpoint orthosnap:
         tree=temp("results/orthofinder/tmp/{og}.nwk"),
         snap_ogs=directory("results/orthofinder/orthosnap/{og}")
     params:
-        occupancy=config.get("orthosnap_occupancy", config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
+        occupancy=config.get("orthosnap_occupancy", max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT))),
     conda:
         ENV_DIR / "orthosnap.yaml"
     log:
         LOG_DIR / "orthofinder/orthosnap/{og}.log"
+    benchmark:
+        "bench/orthosnap.{og}.benchmark.txt"
     shell:
-        r"""
+        """
         {{ mafft {input} > {output.alignment} ; }} &> {log}
         {{ fasttree {output.alignment} > {output.tree} ; }} 2>> {log}
         orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy} 2>> {log}
@@ -112,6 +118,8 @@ rule orthofinder_report_components:
         ENV_DIR / "summary.yaml"
     log:
         LOG_DIR / "orthofinder/orthofinder_report_components.log"
+    benchmark:
+        "bench/orthofinder_report_components.benchmark.txt"
     shell:
         "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output} &> {log}"
 
@@ -122,11 +130,16 @@ def list_orthofinder_scogs(wildcards):
     
     Returns an empty list if the config species to use Orthofisher instead of OrthoFinder or if the config says to not use SC-OGs.
     """
+    
     if use_orthofisher or not orthofinder_use_scogs:
         return []
 
     checkpoint_output = checkpoints.orthogroup_classification.get(**wildcards).output.scogs
     results = Path(checkpoint_output).read_text().strip().split("\n")
+
+    if Path(checkpoint_output).stat().st_size == 0:
+        return []
+    
     return results
 
 
@@ -181,10 +194,9 @@ def combine_scogs_and_snap_ogs(wildcards):
     all_ogs += list_orthosnap_snap_ogs(wildcards)
 
     if len(all_ogs) == 0:
-        raise Exception("No orthogroups found. Please check your input file.")
+        raise Exception("No orthogroups found with the current configurations. Please check your input files or configurations.")
 
     return all_ogs
-
 
 checkpoint orthofinder_all:
     """
@@ -197,9 +209,11 @@ checkpoint orthofinder_all:
     output:
         directory("results/orthofinder/all"),
     params:
-        min_seqs=config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT),
+        min_seqs=max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
     log:
         LOG_DIR / "orthofinder/orthofinder_all.log"
+    benchmark:
+        "bench/orthofinder_all.benchmark.txt"
     shell:
         """
         mkdir -p {output} &> {log}

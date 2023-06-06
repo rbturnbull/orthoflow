@@ -19,7 +19,7 @@ rule report:
     input:
         input_sources_csv=rules.input_sources_csv.output[0],
         orthofinder_scogs=list_orthofinder_scogs,
-        orthofinder_report_components=rules.orthofinder_report_components.output,
+        orthofinder_report_components=rules.orthofinder_report_components.output if not use_orthofisher else ".",
         orthosnap_snap_ogs=list_orthosnap_snap_ogs,
         # Alignment
         list_alignments=rules.list_alignments.output,
@@ -95,6 +95,14 @@ rule report:
 
         template = env.get_template("report-template.html")
 
+        warnings = []
+        for warnings_file in WARNINGS_DIR.glob("*.txt"):
+            warning = warnings_file.read_text()
+            if warning:
+                warnings.append(warning)
+        if len(warnings) == 0:
+            warnings.append("No warnings found.")
+
         try:        
             result = template.render(
                 input=input,
@@ -103,6 +111,7 @@ rule report:
                 use_supermatrix=use_supermatrix,
                 bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
                 bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
+                warnings=warnings,
             )
         except Exception as err:
             print(f"failed to render {err}")

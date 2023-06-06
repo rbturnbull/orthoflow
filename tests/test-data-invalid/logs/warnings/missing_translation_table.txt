@@ -1,0 +1,4 @@
+Translation table value missing and unable to retrieve from file, default has been used.
+
+Translation table for file fasta_alphabet.fa alphabetfasta is missing 
+and could not be retrieved from text so default '1' has been used.
