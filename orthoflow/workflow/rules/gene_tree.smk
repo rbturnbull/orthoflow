@@ -11,7 +11,7 @@ rule gene_tree_iqtree:
         iqtree_report="results/gene_tree/{og}/{og}.{alignment_type}.iqtree",
         iqtree_log="results/gene_tree/{og}/{og}.{alignment_type}.log",
     threads: 
-        workflow.cores
+        1
     conda:
         ENV_DIR / "iqtree.yaml"
     bibs:
@@ -26,7 +26,7 @@ rule gene_tree_iqtree:
     shell:
         """
         mkdir -p results/gene_tree/{wildcards.og} &> {log}
-        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -ntmax {threads} -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{wildcards.alignment_type} -redo 2>> {log}
+        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -nt {threads} -mset mrbayes -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{wildcards.alignment_type} -redo 2>> {log}
         """
 
 
