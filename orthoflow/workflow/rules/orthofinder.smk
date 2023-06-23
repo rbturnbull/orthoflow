@@ -64,15 +64,7 @@ checkpoint orthogroup_classification:
         """
 
 
-def list_orthofinder_ogs(wildcards):
-    checkpoint_output = checkpoints.orthofinder.get(**wildcards).output
-    sequences_dir = Path(checkpoint_output[0])/"Orthogroup_Sequences"
-    ogs = [path.name.split(".")[0] for path in sequences_dir.glob("*.fa")]
-    filtered_reports = [f"results/orthofinder/filtered-report/{og}.txt" for og in ogs]
-    return filtered_reports
-
-
-checkpoint orthosnap:
+rule orthosnap:
     """
     Run Orthosnap to retrieve single-copy orthologs.
 
@@ -124,25 +116,6 @@ rule orthofinder_report_components:
         "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output} &> {log}"
 
 
-def list_orthofinder_scogs(wildcards):
-    """ 
-    Returns a list of all the single copy orthogroups available for downstream analysis.
-    
-    Returns an empty list if the config species to use Orthofisher instead of OrthoFinder or if the config says to not use SC-OGs.
-    """
-    
-    if use_orthofisher or not orthofinder_use_scogs:
-        return []
-
-    checkpoint_output = checkpoints.orthogroup_classification.get(**wildcards).output.scogs
-    results = Path(checkpoint_output).read_text().strip().split("\n")
-
-    if Path(checkpoint_output).stat().st_size == 0:
-        return []
-    
-    return results
-
-
 def list_orthofinder_mcogs(wildcards):
     """ 
     Returns a list of all the multi copy orthogroups available for downstream analysis.
@@ -159,7 +132,7 @@ def list_orthofinder_mcogs(wildcards):
     return mcog_str.split("\n") if mcog_str else []
 
 
-def list_orthosnap_snap_ogs(wildcards):
+def list_snap_og_dirs(wildcards):
     """ 
     Returns a list of all the SNAP orthogroups available for downstream analysis.
     
@@ -170,33 +143,33 @@ def list_orthosnap_snap_ogs(wildcards):
         return []
 
     multi_copy_ogs = list_orthofinder_mcogs(wildcards)
-
-    snap_ogs = []
+    snap_og_dirs = []
     for multi_copy_og_path in multi_copy_ogs:
         og = Path(multi_copy_og_path).name.split(".")[0]
-        checkpoint_output = checkpoints.orthosnap.get(og=og).output.snap_ogs
-        snap_ogs += list(Path(checkpoint_output).glob("*.fa"))
-
-    return snap_ogs
+        snap_og_dirs.append(f"results/orthofinder/orthosnap/{og}")
+    return snap_og_dirs
 
 
-def combine_scogs_and_snap_ogs(wildcards):
-    """ 
-    Returns a list of all single copy orthogroups or SNAP orthogroups to use in downstream analysis.
+rule write_snap_ogs_list:
     """
-    if not orthofinder_use_scogs and not orthofinder_use_snap_ogs:
-        raise Exception(
-            "You need to set either `orthofinder_use_scogs` or `orthofinder_use_snap_ogs` or both "
-            "in the configuration file so that at least some orthologs can be used."
-        )
-    
-    all_ogs = list_orthofinder_scogs(wildcards)
-    all_ogs += list_orthosnap_snap_ogs(wildcards)
+    Lists all the SNAP OGs and lists them in a file.
+    """
+    input:
+        list_snap_og_dirs
+    output:
+        snap_ogs="results/orthofinder/orthosnap/snap-ogs.txt",
+    log:
+        LOG_DIR / "orthofinder/write_snap_ogs_list.log"
+    benchmark:
+        "bench/write_snap_ogs_list.benchmark.txt"
+    shell:
+        """
+        for SNAPOG_DIR in {input} ; do 
+            echo ${{SNAPOG_DIR}}
+            find ${{SNAPOG_DIR}} -name '*.fa' >> {output}
+        done
+        """
 
-    if len(all_ogs) == 0:
-        raise Exception("No orthogroups found with the current configurations. Please check your input files or configurations.")
-
-    return all_ogs
 
 checkpoint orthofinder_all:
     """
@@ -205,7 +178,8 @@ checkpoint orthofinder_all:
     :config ortholog_min_seqs: Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis
     """
     input:
-        combine_scogs_and_snap_ogs
+        scogs=rules.orthogroup_classification.output.scogs,
+        snap_ogs=rules.write_snap_ogs_list.output.snap_ogs,
     output:
         directory("results/orthofinder/all"),
     params:
@@ -217,14 +191,16 @@ checkpoint orthofinder_all:
     shell:
         """
         mkdir -p {output} &> {log}
-        for i in {input}; do
-            nseq=$(grep ">" $i | wc -l)
+        for LIST in {input}; do
+            for i in $(cat $LIST); do
+                nseq=$(grep ">" $i | wc -l)
 
-            if [[ $nseq -ge {params.min_seqs} ]]; then
-                og=$(basename $i)
-                path={output}/$og
-                echo "Symlinking $(pwd)/$i to $path" 2>> {log}
-                ln -s ../../../$i $path 2>> {log}
-            fi
+                if [[ $nseq -ge {params.min_seqs} ]]; then
+                    og=$(basename $i)
+                    path={output}/$og
+                    echo "Symlinking $(pwd)/$i to $path" 2>> {log}
+                    ln -s ../../../$i $path 2>> {log}
+                fi
+            done
         done
         """
