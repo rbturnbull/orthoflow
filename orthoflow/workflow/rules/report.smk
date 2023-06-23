@@ -18,9 +18,9 @@ rule report:
     """
     input:
         input_sources_csv=rules.input_sources_csv.output[0],
-        orthofinder_scogs=list_orthofinder_scogs,
+        orthofinder_scogs=rules.orthogroup_classification.output.scogs,
         orthofinder_report_components=rules.orthofinder_report_components.output if not use_orthofisher else ".",
-        orthosnap_snap_ogs=list_orthosnap_snap_ogs,
+        orthosnap_snap_ogs=rules.write_snap_ogs_list.output.snap_ogs,
         # Alignment
         list_alignments=rules.list_alignments.output,
         summary_plot=rules.summarize_information_content.output.plot if summarize_information_content else ".",
