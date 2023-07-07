@@ -23,7 +23,6 @@ rule report:
         orthosnap_snap_ogs=rules.write_snap_ogs_list.output.snap_ogs,
         # Alignment
         list_alignments=rules.list_alignments.output,
-        summary_plot=rules.summarize_information_content.output.plot if summarize_information_content else ".",
         # Supermatrix
         supermatrix_tree_svg=rules.supermatrix_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_consensus_tree_svg=rules.supermatrix_consensus_tree_render.output.svg if use_supermatrix else ".",
@@ -34,6 +33,7 @@ rule report:
         supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
         supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
         genetree_iqtree_reports=partial(list_gene_tree_files, extension="iqtree") if use_supertree else ".",
+        summary_plot=rules.summarize_information_content.output.plot if use_supertree else ".",
         genetree_iqtree_logs=partial(list_gene_tree_files, extension="log") if use_supertree else ".",
         genetree_svgs=partial(list_gene_tree_files, extension="tree.svg") if use_supertree else ".",
         genetree_consensus_svgs=partial(list_gene_tree_files, extension="consensus-tree.svg") if use_supertree else ".",

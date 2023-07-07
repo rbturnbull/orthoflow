@@ -4,7 +4,7 @@ rule summarize_information_content:
     """
     """
     input:
-        alignments=rules.list_alignments.output,
+        genetree_iqtree_reports=partial(list_gene_tree_files, extension="iqtree"),
         report_warning=rules.report_taxa_presence.output,
     output:
         csv="results/summary/information_content.{alignment_type}.csv",
@@ -16,7 +16,7 @@ rule summarize_information_content:
     shell:
         """
         python {SCRIPT_DIR}/summarize_information_content.py \
-            {input.alignments} \
+            {input.genetree_iqtree_reports} \
             {output.csv} \
             {output.plot} &> {log}
         """

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-import subprocess
+import re
 from pathlib import Path
+from typing import List
 
 import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
@@ -11,46 +12,34 @@ from rich.progress import track
 
 
 def summarize_information_content(
-    alignment_list:Path, 
-    # gene_trees_list:Path, 
+    genetree_iqtree_reports:List[Path], 
     output_csv:Path, 
     output_plot:Path
 ):
-
-    # read in file paths
-    aln_file_paths = [alignment for alignment in alignment_list.read_text().split("\n") if alignment]
-
     # initialize arrays to hold summary information content
-    res_arr = []
+    result_array = []
+    for gene_tree_iqtree_report_path in genetree_iqtree_reports:
+        gene_tree_iqtree_report_path = Path(gene_tree_iqtree_report_path)
+        gene_tree_iqtree_report = gene_tree_iqtree_report_path.read_text()
+        name = gene_tree_iqtree_report_path.with_suffix('').name
 
-    # define the metrics to calculate
-    metrics_all_aln = [
-        "alignment_length",
-        "relative_composition_variability",
-        "pairwise_identity", # get mean
-        "parsimony_informative_sites",
-        "variable_sites",
-    ]
+        def match_pattern(pattern, metric_name):
+            if isinstance(metric_name, str):
+                metric_name = [metric_name]
 
-    # metrics_all_tre = [
-    #     "treeness",
-    #     "robinson_foulds_distance",
-    #     "bipartition_support_stats", # get mean
-    # ]
+            match = re.search(pattern, gene_tree_iqtree_report)
+            if match:
+                for i, metric in enumerate(metric_name):
+                    result_array.append([metric, match.group(i+1), name])
 
-    # loop through files, evaluate information content, and save to arr
-    for aln in track(aln_file_paths, description="Processing..."):        
-        for metric in metrics_all_aln:
-            res_arr.append(
-                eval_info_content(
-                    metric,
-                    aln,
-                )
-            )
+        match_pattern(r"Input data: (\d+) sequences with (\d+) ", ["number_of_sequences", "alignment_length"])
+        match_pattern(r"Number of constant sites: (\d+) ", "constant_sites")
+        match_pattern(r"Number of parsimony informative sites: (\d+)\n", "parsimony_informative_sites")
+        match_pattern(r"Number of distinct site patterns: (\d+)\n", "distinct_site_patterns")
 
     # write out dataframes of information content
     df = write_df_to_csv_file(
-        res_arr, 
+        result_array, 
         output_csv,
     )
 
@@ -72,11 +61,11 @@ def generate_pairplot(
     # replace column names
     df = df.astype(
         {
-            "alignment_length" : "float",
-            "relative_composition_variability" : "float",
-            "pairwise_identity" : "float",
-            "parsimony_informative_sites" : "float",
-            "variable_sites" : "float"
+            "number_of_sequences" : "int",
+            "alignment_length" : "int",
+            "constant_sites" : "int",
+            "parsimony_informative_sites" : "int",
+            "distinct_site_patterns" : "int",
         }
     )
 
@@ -118,26 +107,6 @@ def write_df_to_csv_file(
 
     return df
 
-
-def eval_info_content(
-    metric: str,
-    aln_name: str,
-):
-
-    res_line = []
-    _phykit_cmd = ['phykit', metric, str(aln_name).strip()]
-    res_line.append(metric)
-    # handle outputs with multiple columns otherwise take all output
-    if metric in ["parsimony_informative_sites", "variable_sites"]:
-        res_line.append(subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8').split("\t")[0])
-    elif metric == "pairwise_identity":
-        temp_res = subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8')
-        res_line.append(temp_res.replace("mean: ", ""))
-    else:
-        res_line.append(subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8'))
-    res_line.append(aln_name)
-
-    return res_line
 
 def corrfunc(
     x,

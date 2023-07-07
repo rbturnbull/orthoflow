@@ -8,7 +8,11 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="metrics" role="tabpanel" aria-labelledby="metrics-tab">
-     {{ include_file(input.summary_plot)|safe }}
+    {% if input.summary_plot == '.' %}
+      <p>No summary plot available. Use the supertree module to create the summary plot.</p>
+    {% else %}
+      {{ include_file(input.summary_plot)|safe }}
+    {% endif %}
   </div>
   <div class="tab-pane fade" id="Files" role="tabpanel" aria-labelledby="Files-tab">
     <pre>{{ include_file(input.list_alignments)|safe }}</pre>

@@ -11,4 +11,3 @@ dependencies:
     - pandas==1.4.3
     # - seaborn==0.11.2
     - matplotlib==3.5.2
-    - phykit>=1.11.10
