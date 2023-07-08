@@ -9,6 +9,10 @@ rule summarize_information_content:
     output:
         csv="results/summary/information_content.{alignment_type}.csv",
         plot=report("results/summary/information_content.{alignment_type}.svg", category="Summary"),
+        model_plot_html=report("results/summary/model.{alignment_type}.html", category="Summary"),
+        model_plot_image=report("results/summary/model.{alignment_type}.pdf", category="Summary"),
+        state_frequencies_plot_html=report("results/summary/state_frequencies.{alignment_type}.html", category="Summary"),
+        state_frequencies_plot_image=report("results/summary/state_frequencies.{alignment_type}.pdf", category="Summary"),
     conda:
         "../envs/summary.yaml"
     log:
@@ -18,5 +22,9 @@ rule summarize_information_content:
         python {SCRIPT_DIR}/summarize_information_content.py \
             {input.genetree_iqtree_reports} \
             {output.csv} \
-            {output.plot} &> {log}
+            {output.plot} \
+            {output.model_plot_html} \
+            {output.model_plot_image} \
+            {output.state_frequencies_plot_html} \
+            {output.state_frequencies_plot_image} &> {log}
         """

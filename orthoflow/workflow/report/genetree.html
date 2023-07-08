@@ -1,15 +1,27 @@
 <h1>Gene Tree</h1>
 
-
 <div class="d-flex align-items-start">
-  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+  <div class="nav flex-column nav-pills me-3" id="v-pills-tab-genetrees" role="tablist" aria-orientation="vertical">
+    <button class="nav-link active" id="v-pills-og-model-tab" data-bs-toggle="pill" data-bs-target="#v-pills-og-model" type="button" role="tab" aria-controls="v-pills-og-model" aria-selected="true">
+      Best fit model
+    </button>
+    <button class="nav-link" id="v-pills-og-state-freq-tab" data-bs-toggle="pill" data-bs-target="#v-pills-og-state-freq" type="button" role="tab" aria-controls="v-pills-og-state-freq" aria-selected="true">
+      State Frequencies
+    </button>
+
     {% for iqtree_report in input.genetree_iqtree_reports %}
-      <button class="nav-link {% if loop.first %}active{% endif %}" id="v-pills-og-{{loop.index}}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-og-{{loop.index}}" type="button" role="tab" aria-controls="v-pills-og-{{loop.index}}" aria-selected="{% if loop.first %}true{%else%}false{%endif%}">{{ parent_name(iqtree_report) }}</button>
+      <button class="nav-link" id="v-pills-og-{{loop.index}}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-og-{{loop.index}}" type="button" role="tab" aria-controls="v-pills-og-{{loop.index}}" aria-selected="{% if loop.first %}true{%else%}false{%endif%}">{{ parent_name(iqtree_report) }}</button>
     {% endfor %}
   </div>
   <div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-og-model" role="tabpanel" aria-labelledby="v-pills-og-model-tab">
+      {{ include_file(input.model_plot_html)|safe }}
+    </div>
+    <div class="tab-pane fade" id="v-pills-og-state-freq" role="tabpanel" aria-labelledby="v-pills-og-state-freq-tab">
+      {{ include_file(input.state_frequencies_plot_html)|safe }}
+    </div>
     {% for iqtree_report, iqtree_log, svg, consensus_tree_svg in zip(input.genetree_iqtree_reports, input.genetree_iqtree_logs, input.genetree_svgs, input.genetree_consensus_svgs) %}
-      <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="v-pills-og-{{loop.index}}" role="tabpanel" aria-labelledby="v-pills-og-{{loop.index}}-tab">
+      <div class="tab-pane fade" id="v-pills-og-{{loop.index}}" role="tabpanel" aria-labelledby="v-pills-og-{{loop.index}}-tab">
         <h2>{{ parent_name(iqtree_report) }}</h2>
 
         <nav>

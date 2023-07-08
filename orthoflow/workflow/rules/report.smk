@@ -34,6 +34,8 @@ rule report:
         supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
         genetree_iqtree_reports=partial(list_gene_tree_files, extension="iqtree") if use_supertree else ".",
         summary_plot=rules.summarize_information_content.output.plot if use_supertree else ".",
+        model_plot_html=rules.summarize_information_content.output.model_plot_html if use_supertree else ".",
+        state_frequencies_plot_html=rules.summarize_information_content.output.state_frequencies_plot_html if use_supertree else ".",
         genetree_iqtree_logs=partial(list_gene_tree_files, extension="log") if use_supertree else ".",
         genetree_svgs=partial(list_gene_tree_files, extension="tree.svg") if use_supertree else ".",
         genetree_consensus_svgs=partial(list_gene_tree_files, extension="consensus-tree.svg") if use_supertree else ".",
@@ -113,10 +115,10 @@ rule report:
                 bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
                 warnings=warnings,
             )
+            with open(str(output), 'w') as f:
+                print(f"Writing result to {output}")
+                f.write(result)        
         except Exception as err:
-            print(f"failed to render {err}")
+            print_warning(f"Failed to render report:\n{err}")
             
 
-        with open(str(output), 'w') as f:
-            print(f"Writing result to {output}")
-            f.write(result)        
