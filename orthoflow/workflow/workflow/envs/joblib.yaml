@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+dependencies:
+  - coreutils
+  - rich==12.4.1
+  - joblib==1.1.1
+  - python=3.9
+  - typer
+

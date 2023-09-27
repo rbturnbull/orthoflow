@@ -1,0 +1,5 @@
+name: astral
+channels:
+  - bioconda
+dependencies:
+  - astral-tree=5.7.8-0

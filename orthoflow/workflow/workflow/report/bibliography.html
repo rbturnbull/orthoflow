@@ -1,0 +1,16 @@
+<h1>Bibliography</h1>
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="formatted-tab" data-bs-toggle="tab" data-bs-target="#formatted" type="button" role="tab" aria-controls="formatted" aria-selected="true">Formatted</button>
+    <button class="nav-link" id="BibTeX-tab" data-bs-toggle="tab" data-bs-target="#BibTeX" type="button" role="tab" aria-controls="BibTeX" aria-selected="false">BibTeX</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="formatted" role="tabpanel" aria-labelledby="formatted-tab">
+    {{ bibliography|safe }}
+  </div>
+  <div class="tab-pane fade" id="BibTeX" role="tabpanel" aria-labelledby="BibTeX-tab">
+    <pre><code class="language-bib">{{ bibtex|safe }}</code></pre>
+  </div>
+</div>

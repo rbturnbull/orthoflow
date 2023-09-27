@@ -8,8 +8,6 @@ There are two options to infer orthologs from this, the OrthoFinder stream perfo
 
 The orthologs then get passed into the alignment module where they are aligned based on their amino acid sequences.
 
-The phylogenetic inference can be based on the nucleotide sequences and/or the amino acid sequences. 
-
 Two paths exist for phylogenetic inference. The supermatrix module uses a concatenated alignment of all orthologs to infer a tree. The gene tree + supertree path infers trees for all orthologs separately and infers a species tree from them (Astral).
 
 .. image:: ../_static/images/orthoflow-workflow-diagram.svg

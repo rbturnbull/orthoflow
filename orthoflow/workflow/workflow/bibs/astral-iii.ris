@@ -1,0 +1,18 @@
+TY  - JOUR
+AU  - Zhang, Chao
+AU  - Rabiee, Maryam
+AU  - Sayyari, Erfan
+AU  - Mirarab, Siavash
+PY  - 2018
+DA  - 2018/05/08
+TI  - ASTRAL-III: polynomial time species tree reconstruction from partially resolved gene trees
+JO  - BMC Bioinformatics
+SP  - 153
+VL  - 19
+IS  - 6
+AB  - Evolutionary histories can be discordant across the genome, and such discordances need to be considered in reconstructing the species phylogeny. ASTRAL is one of the leading methods for inferring species trees from gene trees while accounting for gene tree discordance. ASTRAL uses dynamic programming to search for the tree that shares the maximum number of quartet topologies with input gene trees, restricting itself to a predefined set of bipartitions.
+SN  - 1471-2105
+UR  - https://doi.org/10.1186/s12859-018-2129-y
+DO  - 10.1186/s12859-018-2129-y
+ID  - Zhang2018
+ER  - 
