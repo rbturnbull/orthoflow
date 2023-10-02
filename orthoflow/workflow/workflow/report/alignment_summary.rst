@@ -1,1 +1,0 @@
-This is a summary of the alignment.

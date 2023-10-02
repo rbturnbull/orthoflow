@@ -1,8 +1,0 @@
-channels:
-  - conda-forge
-dependencies:
-  - coreutils
-  - python=3.9
-  - pip
-  - pip:
-    - phykit>=1.11.10

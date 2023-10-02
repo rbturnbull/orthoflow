@@ -1,6 +1,0 @@
-channels:
-  - bioconda
-  - conda-forge
-dependencies:
-  - orthofinder==2.5.4
-  - scipy==1.8.1

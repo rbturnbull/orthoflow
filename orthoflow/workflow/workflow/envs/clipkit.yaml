@@ -1,8 +1,0 @@
-channels:
-  - conda-forge
-dependencies:
-  - coreutils
-  - python=3.9
-  - pip
-  - pip:
-    - clipkit>=1.3.0
