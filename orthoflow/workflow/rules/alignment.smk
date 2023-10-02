@@ -21,8 +21,8 @@ rule mafft:
         get_alignment_inputs
     output:
         "results/alignment/aligned_proteins/{og}.protein.alignment.fa"
-    bibs:
-        "../bibs/mafft7.bib"
+    # bibs:
+    #     "../bibs/mafft7.bib"
     log:
         LOG_DIR / "alignment/mafft/mafft-{og}.log"
     threads: 4
@@ -49,8 +49,8 @@ rule get_cds_seq:
         alignment=rules.mafft.output
     output:
         "results/alignment/seqs_cds/{og}.cds.seqs.fa"
-    bibs:
-        "../bibs/biopython.bib"
+    # bibs:
+    #     "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
     log:
@@ -94,8 +94,8 @@ rule thread_dna:
         cds=rules.get_cds_seq.output
     output:
         "results/alignment/threaded_cds/{og}.cds.alignment.fa"
-    bibs:
-        "../bibs/phykit.bib"
+    # bibs:
+    #     "../bibs/phykit.bib"
     conda:
         ENV_DIR / "phykit.yaml"
     log:
@@ -123,8 +123,8 @@ rule trim_alignments:
         get_alignments_to_trim
     output:
         "results/alignment/trimmed_{alignment_type}/{og}.trimmed.{alignment_type}.alignment.fa"
-    bibs:
-        "../bibs/clipkit.bib"
+    # bibs:
+    #     "../bibs/clipkit.bib"
     conda:
         ENV_DIR / "clipkit.yaml"
     log:

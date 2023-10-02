@@ -39,8 +39,8 @@ checkpoint orthofisher:
         ENV_DIR / "orthofisher.yaml"
     log:
         LOG_DIR / "orthofisher/orthofisher.log",
-    bibs:
-        "../bibs/orthofisher.nbib",
+    # bibs:
+    #     "../bibs/orthofisher.nbib",
     shell:
         """
         orthofisher -m {input.hmm} -f {input.tsv} -o {output} &> {log}

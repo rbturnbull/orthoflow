@@ -12,8 +12,8 @@ rule concatenate_alignments:
         occupancy="results/supermatrix/supermatrix.{alignment_type}.occupancy",
     conda:
         ENV_DIR / "phykit.yaml"
-    bibs:
-        "../bibs/phykit.bib"
+    # bibs:
+    #     "../bibs/phykit.bib"
     log:
         LOG_DIR / "supermatrix/supermatrix.{alignment_type}.log"
     shell:
@@ -33,8 +33,8 @@ rule supermatrix_alignment_summary:
         "results/supermatrix/alignment_summary.{alignment_type}.txt"
     conda:
         ENV_DIR / "biokit.yaml"
-    bibs:
-        "../bibs/biokit.bib",
+    # bibs:
+    #     "../bibs/biokit.bib",
     log:
         LOG_DIR / "supermatrix/alignment_summary.{alignment_type}.log"
     shell:
@@ -58,10 +58,10 @@ rule supermatrix_iqtree:
         workflow.cores
     conda:
         ENV_DIR / "iqtree.yaml"
-    bibs:
-        "../bibs/iqtree2.bib",
-        "../bibs/ultrafast-bootstrap.bib",
-        "../bibs/modelfinder.ris",
+    # bibs:
+    #     "../bibs/iqtree2.bib",
+    #     "../bibs/ultrafast-bootstrap.bib",
+    #     "../bibs/modelfinder.ris",
     log:
         LOG_DIR / "supermatrix/iqtree.{alignment_type}.log"
     params:
@@ -82,8 +82,8 @@ rule supermatrix_ascii:
         "results/supermatrix/supermatrix_tree_ascii.{alignment_type}.txt"
     conda:
         ENV_DIR / "phykit.yaml"
-    bibs:
-        "../bibs/phykit.bib",
+    # bibs:
+    #     "../bibs/phykit.bib",
     log:
         LOG_DIR / "supermatrix/print_ascii_tree.{alignment_type}.log"
     shell:
@@ -101,8 +101,8 @@ rule supermatrix_tree_render:
         png="results/supermatrix/supermatrix_tree_render.{alignment_type}.png"
     conda:
         ENV_DIR / "toytree.yaml"
-    bibs:
-        "../bibs/toytree.bib",
+    # bibs:
+    #     "../bibs/toytree.bib",
     log:
         LOG_DIR / "supermatrix/render_tree.{alignment_type}.log"
     shell:
@@ -120,8 +120,8 @@ rule supermatrix_consensus_tree_render:
         png="results/supermatrix/supermatrix_consensus_tree_render.{alignment_type}.png"
     conda:
         ENV_DIR / "toytree.yaml"
-    bibs:
-        "../bibs/toytree.bib",
+    # bibs:
+    #     "../bibs/toytree.bib",
     log:
         LOG_DIR / "supermatrix/render_tree.{alignment_type}.log"
     shell:

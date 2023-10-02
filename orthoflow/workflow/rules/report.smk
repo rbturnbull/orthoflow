@@ -111,8 +111,10 @@ rule report:
                 use_orthofisher=use_orthofisher,
                 use_supertree=use_supertree,
                 use_supermatrix=use_supermatrix,
-                bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
-                bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
+                bibliography=(report_dir/"bibliography-context.html").read_text(),
+                bibtex=(report_dir/"bibliography-context.bib").read_text(),
+                # bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
+                # bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
                 warnings=warnings,
             )
             with open(str(output), 'w') as f:

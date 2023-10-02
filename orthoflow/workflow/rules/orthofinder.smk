@@ -20,8 +20,8 @@ rule orthofinder:
         ENV_DIR / "orthofinder.yaml"
     log:
         LOG_DIR / "orthofinder/orthofinder.log"
-    bibs:
-        "../bibs/orthofinder.ris",
+    # bibs:
+    #     "../bibs/orthofinder.ris",
     params:
         input_dir="results/intake/protein",
     threads: workflow.cores
