@@ -1,8 +1,8 @@
-IQ-TREE 2.2.0.3 COVID-edition built Sep  5 2022
+IQ-TREE 2.2.0.3 COVID-edition built Aug  2 2022
 
 Input file name: results/alignment/trimmed_cds/OG0000005.trimmed.cds.alignment.fa
 Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
-Random seed number: 569553
+Random seed number: 29709
 
 REFERENCES
 ----------
@@ -130,7 +130,7 @@ Numbers in parentheses are  ultrafast bootstrap support (%)
 +---------------------------------Caulerpa_cliftonii_HV03798
 |
 |             +------------------------------------------Avrainvillea_mazei_HV02664
-+-------------| (96)
++-------------| (94)
 |             +--------------------------------------------Bryopsis_plumosa_WEST4718
 |
 |           +-----------------Chlorodesmis_fastigiata_HV03865
@@ -139,13 +139,13 @@ Numbers in parentheses are  ultrafast bootstrap support (%)
 
 Tree in newick format:
 
-(Caulerpa_cliftonii_HV03798:0.1182267004,(Avrainvillea_mazei_HV02664:0.1499108866,Bryopsis_plumosa_WEST4718:0.1558503816)96:0.0519142446,(Chlorodesmis_fastigiata_HV03865:0.0624695650,Flabellia_petiolata_HV01202:0.0709881075)97:0.0431046276);
+(Caulerpa_cliftonii_HV03798:0.1182267020,(Avrainvillea_mazei_HV02664:0.1499108882,Bryopsis_plumosa_WEST4718:0.1558503834)94:0.0519142452,(Chlorodesmis_fastigiata_HV03865:0.0624695653,Flabellia_petiolata_HV01202:0.0709881079)97:0.0431046277);
 
 CONSENSUS TREE
 --------------
 
 Consensus tree is constructed from 1000 bootstrap trees
-Log-likelihood of consensus tree: -4700.956028
+Log-likelihood of consensus tree: -4700.956027
 Robinson-Foulds distance between ML tree and consensus tree: 0
 
 Branches with support >0.000000% are kept (extended consensus)
@@ -155,7 +155,7 @@ Numbers in parentheses are bootstrap supports (%)
 +---------------------------------Caulerpa_cliftonii_HV03798
 |
 |             +------------------------------------------Avrainvillea_mazei_HV02664
-+-------------| (96)
++-------------| (94)
 |             +--------------------------------------------Bryopsis_plumosa_WEST4718
 |
 |           +-----------------Chlorodesmis_fastigiata_HV03865
@@ -165,12 +165,12 @@ Numbers in parentheses are bootstrap supports (%)
 
 Consensus tree in newick format: 
 
-(Caulerpa_cliftonii_HV03798:0.1182189511,(Avrainvillea_mazei_HV02664:0.1499087044,Bryopsis_plumosa_WEST4718:0.1558512519)96:0.0519137712,(Chlorodesmis_fastigiata_HV03865:0.0624651128,Flabellia_petiolata_HV01202:0.0709877626)97:0.0431029000);
+(Caulerpa_cliftonii_HV03798:0.1182189528,(Avrainvillea_mazei_HV02664:0.1499087060,Bryopsis_plumosa_WEST4718:0.1558512537)94:0.0519137718,(Chlorodesmis_fastigiata_HV03865:0.0624651131,Flabellia_petiolata_HV01202:0.0709877630)97:0.0431029002);
 
 TIME STAMP
 ----------
 
-Date and time: Fri Jun 23 20:09:15 2023
-Total CPU time used: 0.650249 seconds (0h:0m:0s)
-Total wall-clock time used: 0.6648890972 seconds (0h:0m:0s)
+Date and time: Mon Oct  2 04:11:46 2023
+Total CPU time used: 0.732793 seconds (0h:0m:0s)
+Total wall-clock time used: 0.7460586429 seconds (0h:0m:0s)
 

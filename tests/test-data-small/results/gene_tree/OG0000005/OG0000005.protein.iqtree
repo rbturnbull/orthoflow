@@ -1,8 +1,8 @@
-IQ-TREE 2.2.0.3 COVID-edition built Sep  5 2022
+IQ-TREE 2.2.0.3 COVID-edition built Aug  2 2022
 
 Input file name: results/alignment/trimmed_protein/OG0000005.trimmed.protein.alignment.fa
 Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
-Random seed number: 793758
+Random seed number: 609633
 
 REFERENCES
 ----------
@@ -142,7 +142,7 @@ Numbers in parentheses are  ultrafast bootstrap support (%)
 +----------------------Caulerpa_cliftonii_HV03798
 |
 |                        +-------------------------Avrainvillea_mazei_HV02664
-+------------------------| (99)
++------------------------| (98)
 |                        +---------------------------------Bryopsis_plumosa_WEST4718
 |
 |                   +-------------------Chlorodesmis_fastigiata_HV03865
@@ -151,7 +151,7 @@ Numbers in parentheses are  ultrafast bootstrap support (%)
 
 Tree in newick format:
 
-(Caulerpa_cliftonii_HV03798:0.0348409091,(Avrainvillea_mazei_HV02664:0.0394632024,Bryopsis_plumosa_WEST4718:0.0515166969)99:0.0372351395,(Chlorodesmis_fastigiata_HV03865:0.0306138910,Flabellia_petiolata_HV01202:0.0125454445)87:0.0300868625);
+(Caulerpa_cliftonii_HV03798:0.0348409091,(Avrainvillea_mazei_HV02664:0.0394632024,Bryopsis_plumosa_WEST4718:0.0515166969)98:0.0372351395,(Chlorodesmis_fastigiata_HV03865:0.0306138910,Flabellia_petiolata_HV01202:0.0125454445)87:0.0300868625);
 
 CONSENSUS TREE
 --------------
@@ -167,7 +167,7 @@ Numbers in parentheses are bootstrap supports (%)
 +----------------------Caulerpa_cliftonii_HV03798
 |
 |                        +-------------------------Avrainvillea_mazei_HV02664
-+------------------------| (99)
++------------------------| (98)
 |                        +---------------------------------Bryopsis_plumosa_WEST4718
 |
 |                   +-------------------Chlorodesmis_fastigiata_HV03865
@@ -177,12 +177,12 @@ Numbers in parentheses are bootstrap supports (%)
 
 Consensus tree in newick format: 
 
-(Caulerpa_cliftonii_HV03798:0.0347767217,(Avrainvillea_mazei_HV02664:0.0394424138,Bryopsis_plumosa_WEST4718:0.0515126560)99:0.0372686269,(Chlorodesmis_fastigiata_HV03865:0.0306386021,Flabellia_petiolata_HV01202:0.0124962389)87:0.0301160048);
+(Caulerpa_cliftonii_HV03798:0.0347767217,(Avrainvillea_mazei_HV02664:0.0394424138,Bryopsis_plumosa_WEST4718:0.0515126560)98:0.0372686269,(Chlorodesmis_fastigiata_HV03865:0.0306386021,Flabellia_petiolata_HV01202:0.0124962389)87:0.0301160048);
 
 TIME STAMP
 ----------
 
-Date and time: Fri Jun 23 20:08:55 2023
-Total CPU time used: 0.614744 seconds (0h:0m:0s)
-Total wall-clock time used: 0.6232168674 seconds (0h:0m:0s)
+Date and time: Mon Oct  2 04:09:14 2023
+Total CPU time used: 0.739444 seconds (0h:0m:0s)
+Total wall-clock time used: 0.7762097195 seconds (0h:0m:0s)
 
