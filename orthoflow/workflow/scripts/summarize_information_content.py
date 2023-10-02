@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-import subprocess
+import re
 from pathlib import Path
+from typing import List
+import plotly.express as px
 
 import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
@@ -10,47 +12,69 @@ import typer
 from rich.progress import track
 
 
+def format_fig(fig):
+    """Formats a plotly figure in a nicer way."""
+    fig.update_layout(
+        width=1000,
+        height=600,
+        plot_bgcolor="white",
+        title_font_color="black",
+        font=dict(
+            family="Linus Libertinus",        
+            size=18,
+            color="black",
+        ),
+    )
+    gridcolor = "#dddddd"
+    fig.update_xaxes(gridcolor=gridcolor)
+    fig.update_yaxes(gridcolor=gridcolor)
+
+    fig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True, ticks='outside', zeroline=True, zerolinewidth=1, zerolinecolor='black')
+    fig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True, ticks='outside', zeroline=True, zerolinewidth=1, zerolinecolor='black')
+
+    return fig
+
+
 def summarize_information_content(
-    alignment_list:Path, 
-    # gene_trees_list:Path, 
+    genetree_iqtree_reports:List[Path], 
     output_csv:Path, 
-    output_plot:Path
+    output_plot:Path,
+    model_plot_html:Path,    
+    model_plot_image:Path,
+    state_frequencies_plot_html:Path,
+    state_frequencies_plot_image:Path,
 ):
-
-    # read in file paths
-    aln_file_paths = [alignment for alignment in alignment_list.read_text().split("\n") if alignment]
-
     # initialize arrays to hold summary information content
-    res_arr = []
+    alignment_array = []
+    model_array = []
+    state_frequencies_array = []
+    for gene_tree_iqtree_report_path in genetree_iqtree_reports:
+        gene_tree_iqtree_report_path = Path(gene_tree_iqtree_report_path)
+        gene_tree_iqtree_report = gene_tree_iqtree_report_path.read_text()
+        name = gene_tree_iqtree_report_path.with_suffix('').name
 
-    # define the metrics to calculate
-    metrics_all_aln = [
-        "alignment_length",
-        "relative_composition_variability",
-        "pairwise_identity", # get mean
-        "parsimony_informative_sites",
-        "variable_sites",
-    ]
+        def match_pattern(pattern, metric_name, array):
+            if isinstance(metric_name, str):
+                metric_name = [metric_name]
 
-    # metrics_all_tre = [
-    #     "treeness",
-    #     "robinson_foulds_distance",
-    #     "bipartition_support_stats", # get mean
-    # ]
+            match = re.search(pattern, gene_tree_iqtree_report)
+            if match:
+                for i, metric in enumerate(metric_name):
+                    array.append([metric, match.group(i+1), name])
 
-    # loop through files, evaluate information content, and save to arr
-    for aln in track(aln_file_paths, description="Processing..."):        
-        for metric in metrics_all_aln:
-            res_arr.append(
-                eval_info_content(
-                    metric,
-                    aln,
-                )
-            )
+        match_pattern(r"Input data: (\d+) sequences with (\d+) ", ["number_of_sequences", "alignment_length"], alignment_array)
+        match_pattern(r"Number of constant sites: (\d+) ", "constant_sites", alignment_array)
+        match_pattern(r"Number of parsimony informative sites: (\d+)\n", "parsimony_informative_sites", alignment_array)
+        match_pattern(r"Number of distinct site patterns: (\d+)\n", "distinct_site_patterns", alignment_array)
+
+        match_pattern(r"Model of substitution: (.+)\n", "best_fit_model", model_array)
+
+        for match in re.findall(r"pi\((.+)\) = (\d*\.?\d+)", gene_tree_iqtree_report):
+            state_frequencies_array.append([match[0], float(match[1]), name])
 
     # write out dataframes of information content
     df = write_df_to_csv_file(
-        res_arr, 
+        alignment_array, 
         output_csv,
     )
 
@@ -60,6 +84,47 @@ def summarize_information_content(
         "Information content",
         output_plot,
     )
+
+    generate_model_plot(model_array, model_plot_html, model_plot_image)
+    generate_state_frequencies_plot(state_frequencies_array, state_frequencies_plot_html, state_frequencies_plot_image)
+
+
+def generate_model_plot(model_array, model_plot_html:Path, model_plot_image:Path, max_models=10):
+    model_df = pd.DataFrame(model_array, columns = ['metric', 'value', 'alignment'])
+
+    value_counts = model_df['value'].value_counts()
+    if len(value_counts) > max_models:
+        other_count = value_counts[max_models:].sum()
+        value_counts = value_counts[:max_models]
+        value_counts['Other'] = other_count
+
+    fig = px.histogram(
+        x=value_counts.index, 
+        y=value_counts, 
+        title="Best fit model",
+    )
+    format_fig(fig)
+    fig.update_xaxes(title_text="Model")
+    fig.update_yaxes(title_text="Count")
+    fig.update_traces(marker_color="#003d86")
+    fig.write_html(model_plot_html)
+    fig.write_image(model_plot_image)
+    return fig
+
+
+def generate_state_frequencies_plot(state_frequencies_array, state_frequencies_plot_html:Path, state_frequencies_plot_image:Path):
+    frequency_df = pd.DataFrame(state_frequencies_array, columns = ['Character', 'Frequency', 'alignment'])
+    fig = px.box(
+        frequency_df, 
+        x="Character", 
+        y="Frequency", 
+        title="State Frequencies",
+    )
+    format_fig(fig)
+    fig.update_traces(marker_color="#003d86")
+    fig.write_html(state_frequencies_plot_html)
+    fig.write_image(state_frequencies_plot_image)
+    return fig
 
 
 def generate_pairplot(
@@ -72,11 +137,11 @@ def generate_pairplot(
     # replace column names
     df = df.astype(
         {
-            "alignment_length" : "float",
-            "relative_composition_variability" : "float",
-            "pairwise_identity" : "float",
-            "parsimony_informative_sites" : "float",
-            "variable_sites" : "float"
+            "number_of_sequences" : "int",
+            "alignment_length" : "int",
+            "constant_sites" : "int",
+            "parsimony_informative_sites" : "int",
+            "distinct_site_patterns" : "int",
         }
     )
 
@@ -118,26 +183,6 @@ def write_df_to_csv_file(
 
     return df
 
-
-def eval_info_content(
-    metric: str,
-    aln_name: str,
-):
-
-    res_line = []
-    _phykit_cmd = ['phykit', metric, str(aln_name).strip()]
-    res_line.append(metric)
-    # handle outputs with multiple columns otherwise take all output
-    if metric in ["parsimony_informative_sites", "variable_sites"]:
-        res_line.append(subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8').split("\t")[0])
-    elif metric == "pairwise_identity":
-        temp_res = subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8')
-        res_line.append(temp_res.replace("mean: ", ""))
-    else:
-        res_line.append(subprocess.check_output(_phykit_cmd).splitlines()[0].decode('utf-8'))
-    res_line.append(aln_name)
-
-    return res_line
 
 def corrfunc(
     x,

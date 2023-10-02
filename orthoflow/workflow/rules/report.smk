@@ -18,12 +18,11 @@ rule report:
     """
     input:
         input_sources_csv=rules.input_sources_csv.output[0],
-        orthofinder_scogs=list_orthofinder_scogs,
+        orthofinder_scogs=rules.orthogroup_classification.output.scogs,
         orthofinder_report_components=rules.orthofinder_report_components.output if not use_orthofisher else ".",
-        orthosnap_snap_ogs=list_orthosnap_snap_ogs,
+        orthosnap_snap_ogs=rules.write_snap_ogs_list.output.snap_ogs,
         # Alignment
         list_alignments=rules.list_alignments.output,
-        summary_plot=rules.summarize_information_content.output.plot if summarize_information_content else ".",
         # Supermatrix
         supermatrix_tree_svg=rules.supermatrix_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_consensus_tree_svg=rules.supermatrix_consensus_tree_render.output.svg if use_supermatrix else ".",
@@ -34,6 +33,9 @@ rule report:
         supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
         supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
         genetree_iqtree_reports=partial(list_gene_tree_files, extension="iqtree") if use_supertree else ".",
+        summary_plot=rules.summarize_information_content.output.plot if use_supertree else ".",
+        model_plot_html=rules.summarize_information_content.output.model_plot_html if use_supertree else ".",
+        state_frequencies_plot_html=rules.summarize_information_content.output.state_frequencies_plot_html if use_supertree else ".",
         genetree_iqtree_logs=partial(list_gene_tree_files, extension="log") if use_supertree else ".",
         genetree_svgs=partial(list_gene_tree_files, extension="tree.svg") if use_supertree else ".",
         genetree_consensus_svgs=partial(list_gene_tree_files, extension="consensus-tree.svg") if use_supertree else ".",
@@ -109,14 +111,16 @@ rule report:
                 use_orthofisher=use_orthofisher,
                 use_supertree=use_supertree,
                 use_supermatrix=use_supermatrix,
-                bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
-                bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
+                bibliography=(report_dir/"bibliography-content.html").read_text(),
+                bibtex=(report_dir/"bibliography-content.bib").read_text(),
+                # bibliography=workflow.persistence.dag.bibliography(output_backend="html"),
+                # bibtex=workflow.persistence.dag.bibliography(format="bibtex"),
                 warnings=warnings,
             )
+            with open(str(output), 'w') as f:
+                print(f"Writing result to {output}")
+                f.write(result)        
         except Exception as err:
-            print(f"failed to render {err}")
+            print_warning(f"Failed to render report:\n{err}")
             
 
-        with open(str(output), 'w') as f:
-            print(f"Writing result to {output}")
-            f.write(result)        

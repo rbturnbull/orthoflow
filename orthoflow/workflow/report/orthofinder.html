@@ -23,17 +23,10 @@
     {{ include_file(input.orthofinder_report_components, "Orthogroups_SpeciesOverlaps.html")|safe }}
   </div>
   <div class="tab-pane fade" id="SCOGs" role="tabpanel" aria-labelledby="SCOGs-tab">
-    <ul>
-      {% for og in input.orthofinder_scogs %}
-        <li>{{og}}</li>
-      {% endfor %}
-    </ul>
-    
+    <pre>{{ include_file(input.orthofinder_scogs)|safe }}</pre>    
   </div>
   <div class="tab-pane fade" id="SNAP-OGs" role="tabpanel" aria-labelledby="SNAP-OGs-tab">
-    {% for og in input.orthosnap_snap_ogs %}
-      <li>{{og}}</li>
-    {% endfor %}
+    <pre>{{ include_file(input.orthosnap_snap_ogs)|safe }}</pre>    
   </div>
   
 </div>

@@ -47,8 +47,8 @@ rule astral:
         "results/supertree/supertree.{alignment_type}.tre"
     conda:
         ENV_DIR / "astral.yaml"
-    bibs:
-        "../bibs/astral-iii.ris",
+    # bibs:
+    #     "../bibs/astral-iii.ris",
     log:
         LOG_DIR / "supertree/astral.{alignment_type}.log"
     shell:
@@ -67,8 +67,8 @@ rule supertree_ascii:
         "results/supertree/supertree_ascii.{alignment_type}.txt"
     conda:
         ENV_DIR / "phykit.yaml"
-    bibs:
-        "../bibs/phykit.bib",
+    # bibs:
+    #     "../bibs/phykit.bib",
     log:
         LOG_DIR / "supertree/print_ascii_tree.{alignment_type}.log"
     shell:
@@ -86,8 +86,8 @@ rule supertree_render:
         png="results/supertree/supertree_render.{alignment_type}.png"
     conda:
         ENV_DIR / "toytree.yaml"
-    bibs:
-        "../bibs/toytree.bib",
+    # bibs:
+    #     "../bibs/toytree.bib",
     log:
         LOG_DIR / "supertree/supertree_render.{alignment_type}.log"
     shell:

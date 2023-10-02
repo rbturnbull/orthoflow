@@ -128,7 +128,7 @@ Credits and Attribution
 
 .. start-credits
 
-Orthoflow was created by Robert Turnbull, Jacob Steenwyk, Simon Mutch, Vinícius Salazar, and Heroen Verbruggen.
+Orthoflow was created by Robert Turnbull, Jacob Steenwyk, Simon Mutch, Vinícius Salazar, Pelle Scholten and Heroen Verbruggen.
 
 Citation details to follow.
 

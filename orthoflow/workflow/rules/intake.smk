@@ -24,8 +24,8 @@ rule extract_cds:
         file=lambda wildcards: input_dictionary[wildcards.stub].file.resolve(),
     output:
         "results/intake/cds/{stub}.cds.fa",
-    bibs:
-        "../bibs/biopython.bib"
+    # bibs:
+    #     "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
     params:
@@ -55,8 +55,8 @@ rule translate:
         "results/intake/translated/{stub}.protein.fa",
     input:
         rules.extract_cds.output
-    bibs:
-        "../bibs/biokit.bib"
+    # bibs:
+    #     "../bibs/biokit.bib"
     conda:
         ENV_DIR / "biokit.yaml"
     params:

@@ -17,3 +17,5 @@ tests/test-data/results/
 tests/.conda
 docs/_build/
 .conda
+tests/test-data-small/bench/
+tests/test-data/bench/

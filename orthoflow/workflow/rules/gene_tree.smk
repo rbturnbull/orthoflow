@@ -14,10 +14,10 @@ rule gene_tree_iqtree:
         1
     conda:
         ENV_DIR / "iqtree.yaml"
-    bibs:
-        "../bibs/iqtree2.bib",
-        "../bibs/ultrafast-bootstrap.bib",
-        "../bibs/modelfinder.ris",
+    # bibs:
+    #     "../bibs/iqtree2.bib",
+    #     "../bibs/ultrafast-bootstrap.bib",
+    #     "../bibs/modelfinder.ris",
     log:
         LOG_DIR / "gene_tree/iqtree-{og}.{alignment_type}.log"
     params:
@@ -40,8 +40,8 @@ rule gene_tree_ascii:
         "results/gene_tree/{og}/{og}_tree_ascii.{alignment_type}.txt",
     conda:
         ENV_DIR / "phykit.yaml"
-    bibs:
-        "../bibs/phykit.bib",
+    # bibs:
+    #     "../bibs/phykit.bib",
     log:
         LOG_DIR / "gene_tree/print_ascii_tree-{og}.{alignment_type}.log"
     shell:
@@ -59,8 +59,8 @@ rule gene_tree_render:
         png="results/gene_tree/{og}/{og}.{alignment_type}.tree.png",
     conda:
         ENV_DIR / "toytree.yaml"
-    bibs:
-        "../bibs/toytree.bib",
+    # bibs:
+    #     "../bibs/toytree.bib",
     log:
         LOG_DIR / "gene_tree/gene_tree_render-{og}.{alignment_type}.log"
     shell:
@@ -78,8 +78,8 @@ rule gene_tree_consensus_render:
         png="results/gene_tree/{og}/{og}.{alignment_type}.consensus-tree.png",
     conda:
         ENV_DIR / "toytree.yaml"
-    bibs:
-        "../bibs/toytree.bib",
+    # bibs:
+    #     "../bibs/toytree.bib",
     log:
         LOG_DIR / "gene_tree/gene_tree_consensus_render-{og}.{alignment_type}.log"
     shell:

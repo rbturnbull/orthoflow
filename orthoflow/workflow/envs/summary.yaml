@@ -5,10 +5,12 @@ dependencies:
   - pip
   - seaborn
   - typer
+  - open-fonts
   - rich==12.4.1
   - pip:
     - scipy==1.8.1
     - pandas==1.4.3
     # - seaborn==0.11.2
     - matplotlib==3.5.2
-    - phykit>=1.11.10
+    - plotly==5.15.0
+    - kaleido==0.2.1
