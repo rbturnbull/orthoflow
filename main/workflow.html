@@ -122,6 +122,7 @@
 <p>The workflow starts with a data intake module that converts the input data to a uniform data format.</p>
 <p>There are two options to infer orthologs from this, the OrthoFinder stream performing de novo ortholog inference and the OrthoFisher stream using HMM profiles to extract orthologs.</p>
 <p>The orthologs then get passed into the alignment module where they are aligned based on their amino acid sequences.</p>
+<p>The phylogenetic inference can be based on the nucleotide sequences and/or the amino acid sequences.</p>
 <p>Two paths exist for phylogenetic inference. The supermatrix module uses a concatenated alignment of all orthologs to infer a tree. The gene tree + supertree path infers trees for all orthologs separately and infers a species tree from them (Astral).</p>
 <img alt="../_images/orthoflow-workflow-diagram.svg" src="../_images/orthoflow-workflow-diagram.svg" /><div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Modules:</span></p>

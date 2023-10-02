@@ -123,7 +123,7 @@ This default filename can be set in the config:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">file</span></code>: The path to the particular input source file. This is path is relative to whatever file lists this source file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">taxon_string</span></code>: A name for the taxon which is associated with all the sequences in the input file. If this value is not given then, the taxon string will be taken from the organism specified in the metadata of the source file if it is in GenBank format or it will be taken from the filename if it is not.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">translation_table</span></code>: For each input file, the user can give the translation table number which corresponds with the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes">NCBI genetic codes</a>. If it is not given, then Orthoflow looks in the GenBank file for a translation table otherwise it uses the <code class="docutils literal notranslate"><span class="pre">default_translation_table</span></code> config variable (which by default is set to 1).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>: To indicate whether the file is in GenBank format or in CDS format in a Fasta file. If it is not given, then it is inferred from the file extension.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>: To indicate the format of the file. This column should be <code class="docutils literal notranslate"><span class="pre">GenBank</span></code> when providing a GenBank-formatted file with CDS annotations, or <code class="docutils literal notranslate"><span class="pre">CDS</span></code> or <code class="docutils literal notranslate"><span class="pre">Protein</span></code> when providing a FASTA file with coding sequences consisting of nucleotides or amino acids respectively.</p></li>
 </ul>
 <p>All this input information can be explicitly stated in a CSV file. Like this:</p>
 <table class="docutils align-default" id="id1">
@@ -449,6 +449,7 @@ This default filename can be set in the config:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow<span class="w"> </span>--files<span class="w"> </span>*.gb<span class="w"> </span>*.toml
 </pre></div>
 </div>
+<p>It is possible to ignore files that are not valid. The default setting is to stop the workflow when a file does not meet the program requirements. When it is desired that the program ignores these non-valid files and analysises the other files <code class="docutils literal notranslate"><span class="pre">ignore_non_valid_files</span></code> can be set to <code class="docutils literal notranslate"><span class="pre">True</span></code>. A warning will be displayed in the report stating which files have been ignored.</p>
 </section>
 
 
