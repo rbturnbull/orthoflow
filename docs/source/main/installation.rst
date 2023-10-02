@@ -9,18 +9,21 @@ Conda Installation
 
 Information coming soon.
 
-PyPI Installation
+pip Installation
 ==================
 
-.. note::
-
-    The code is not available on PyPI yet. This will be available soon!
-
-(Soon) Orthoflow can be installed with pip from the Python Package Index as follows.
+Orthoflow can be installed with pip from the Python Package Index (PyPI) as follows.
 
 .. code-block::
 
     pip install orthoflow
+
+Orthoflow can also be installed directly from Github using pip as follows.
+
+.. code-block::
+
+    pip install git+https://github.com/rbturnbull/orthoflow.git
+
 
 .. note::
 
