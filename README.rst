@@ -70,7 +70,7 @@ It needs the columns ``file``, ``taxon_string``, ``data_type`` and ``translation
 
 - The ``file`` column is the path to the file relative to the working directory.
 - The ``taxon_string`` is the name of the taxon from which the data was obtained.
-- The ``data_type`` column should be either `CDS` when providing a FASTA file with coding sequences, or ``GenBank`` when providing a GenBank-formatted file with CDS annotations.
+- The ``data_type`` column should be ``GenBank`` when providing a GenBank-formatted file with CDS annotations, or ``CDS`` or ``Protein`` when providing a FASTA file with coding sequences consisting of nucleotides or amino acids respectively.
 - The ``translation_table`` column should have the translation table (genetic code) number for the data as given `here <https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=c>`_.
 
 Let's look at the demonstration dataset distributed with the code: ``tests/test-data/input_sources.csv``.
@@ -124,7 +124,7 @@ All output files are saved in the ``results`` directory. Output files are subdiv
 
 Report and diagnostics
 ----------------------
-The report provides an overview of the results, the analysis settings used and citations of the software used to produce the results. This report is found in the ``results/report.html``
+The report provides an overview of the results, the analysis settings used and citations of the software used to produce the results. This report is found in the ``results/report.cds.html`` and/or ``results/report.protein.html``, depending on the method used to infer the phylogeny.
 
 Output logs
 -----------
