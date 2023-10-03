@@ -20,7 +20,8 @@ For the analysis to work, Orthoflow requires the following information for each 
 - ``file``: The path to the particular input source file. This is path is relative to whatever file lists this source file.
 - ``taxon_string``: A name for the taxon which is associated with all the sequences in the input file. If this value is not given then, the taxon string will be taken from the organism specified in the metadata of the source file if it is in GenBank format or it will be taken from the filename if it is not.
 - ``translation_table``: For each input file, the user can give the translation table number which corresponds with the `NCBI genetic codes <https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes>`_. If it is not given, then Orthoflow looks in the GenBank file for a translation table otherwise it uses the ``default_translation_table`` config variable (which by default is set to 1).
-- ``data_type``: To indicate the format of the file. This column should be ``GenBank`` when providing a GenBank-formatted file with CDS annotations, or ``CDS`` or ``Protein`` when providing a FASTA file with coding sequences consisting of nucleotides or amino acids respectively.
+- ``data_type``: To indicate whether the file is in GenBank format or in CDS format in a Fasta file. If it is not given, then it is inferred from the file extension.
+
 
 All this input information can be explicitly stated in a CSV file. Like this:
 
@@ -66,4 +67,3 @@ Then these files can be included as part of the list of Orthoflow input sources:
 
     orthoflow --files *.gb *.toml
 
-It is possible to ignore files that are not valid. The default setting is to stop the workflow when a file does not meet the program requirements. When it is desired that the program ignores these non-valid files and analysises the other files ``ignore_non_valid_files`` can be set to ``True``. A warning will be displayed in the report stating which files have been ignored.

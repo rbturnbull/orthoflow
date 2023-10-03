@@ -77,11 +77,11 @@ There are several steps in the workflow that filter out genes not meeting partic
 
 Minimum taxa
 ------------
-One important setting is the minimum number of taxa that need to be in a gene dataset in order for it to be retained. This can be set with the ``ortholog_min_seqs`` setting in the configuration file. The default value is 5. The value should not be set to less than 3. The occupancy setting for OrthoSNAP can be changed with ``orthosnap_occupancy``; by default we use the same value as that for ``ortholog_min_seqs``.
+One important setting is the minimum number of taxa that need to be in a gene dataset in order for it to be retained. This can be set with the ``ortholog_min_seqs`` setting in the configuration file. The default value is 5. The occupancy setting for OrthoSNAP can be changed with ``orthosnap_occupancy``; by default we use the same value as that for ``ortholog_min_seqs``.
 
 Using SC-OGs and/or SNAP-OGs
 ----------------------------
-The traditional approach towards inferring species trees from genome data is to select single-copy orthogroups (SC-OGs). One of the innovations we've implemented in this workflow is the use of SNAP-OGs, sets of orthologous sequences derived from multi-copy gene families, which can yield orders of magnitude more data. You can set whether you want to build a phylogeny from just the SC-OGs, just the SNAP-OGs or both combined by setting the ``orthofinder_use_scogs`` and ``orthofinder_use_snap_ogs`` in the configuration file. In this example both SC-OGs and SNAP-OGs are combined for phylogenetic inference:
+The traditional approach towards inferring species trees from genome data is to select single-copy orthogroups (SC-OGs). One of the innovations we've implemented in this workflow is the use of SNAP-OGs, sets of orthologous sequences derived from multi-copy gene families, which can yield orders of magnitude more data. You can set whether you want to build a phylogeny from just the SC-OGs, just the SNAP-OGs or both combined by setting the ``use_scogs`` and ``use_snap_ogs`` in the configuration file. In this example both SC-OGs and SNAP-OGs are combined for phylogenetic inference:
 
 .. code-block::
 
@@ -103,7 +103,7 @@ In some cases, it may make more sense to remove genes that have been decimated b
 Tree inference settings
 =======================
 
-The phylogenetic analysis can be run on protein and/or nucleotide sequences. This can be set in the config file with ``infer_tree_with_cds_seqs`` and ``infer_tree_with_protein_seqs``. The default setting is to do 2 different analyses with protein and nucleotide sequences. ``infer_tree_with_cds_seqs`` should be set to ``False`` when 1 or more amino acid input files are used in the input.
+An important choice to make is whether to run the phylogenetic analysis on protein or nucleotide sequences. This can be set in the config file ``infer_tree_with_protein_seqs``. The default setting (``True``) is to use protein sequences.
 
 To use an outgroup in the phylogenetic analysis, specify an outgroup taxon (using its value in the ``taxon_string`` column in the input sources file). For example, for the demonstration dataset ``outgroup: "Derbesia_sp_WEST4838"``. The outgroup will only be used in the supermatrix path. We are not including this functionality for the gene tree path as the outgroup might not be present in each alignment.
 
