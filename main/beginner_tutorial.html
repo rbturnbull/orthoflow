@@ -125,7 +125,7 @@
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">file</span></code> column is the path to the file relative to the working directory.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code> is the name of the taxon from which the data was obtained.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">data_type</span></code> column should be either <cite>CDS</cite> when providing a FASTA file with coding sequences, or <code class="docutils literal notranslate"><span class="pre">GenBank</span></code> when providing a GenBank-formatted file with CDS annotations.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">data_type</span></code> column should be <code class="docutils literal notranslate"><span class="pre">GenBank</span></code> when providing a GenBank-formatted file with CDS annotations, or <code class="docutils literal notranslate"><span class="pre">CDS</span></code> or <code class="docutils literal notranslate"><span class="pre">Protein</span></code> when providing a FASTA file with coding sequences consisting of nucleotides or amino acids respectively.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">translation_table</span></code> column should have the translation table (genetic code) number for the data as given <a class="reference external" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=c">here</a>.</p></li>
 </ul>
 <p>Let’s look at the demonstration dataset distributed with the code: <code class="docutils literal notranslate"><span class="pre">tests/test-data/input_sources.csv</span></code>.</p>
@@ -228,7 +228,7 @@
 </section>
 <section id="report-and-diagnostics">
 <h3>Report and diagnostics<a class="headerlink" href="#report-and-diagnostics" title="Permalink to this headline"></a></h3>
-<p>The report provides an overview of the results, the analysis settings used and citations of the software used to produce the results. This report is found in the <code class="docutils literal notranslate"><span class="pre">results/report.html</span></code></p>
+<p>The report provides an overview of the results, the analysis settings used and citations of the software used to produce the results. This report is found in the <code class="docutils literal notranslate"><span class="pre">results/report.cds.html</span></code> and/or <code class="docutils literal notranslate"><span class="pre">results/report.protein.html</span></code>, depending on the method used to infer the phylogeny.</p>
 </section>
 <section id="output-logs">
 <h3>Output logs<a class="headerlink" href="#output-logs" title="Permalink to this headline"></a></h3>
