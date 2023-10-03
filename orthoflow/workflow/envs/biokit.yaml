@@ -5,4 +5,4 @@ dependencies:
   - python=3.9
   - pip
   - pip:
-    - jlsteenwyk-biokit
+    - jlsteenwyk-biokit>=0.1.2
