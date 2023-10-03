@@ -44,12 +44,22 @@ Documentation
 
 Detailed documentation can be found at https://rbturnbull.github.io/orthoflow/
 
-
-.. start-beginner-tutorial
-
 =================
 Quick start guide
 =================
+
+Installation
+============
+
+You can install orthoflow with pip:
+
+.. code-block::
+
+    pip install orthoflow
+
+More information about installation is available here: https://rbturnbull.github.io/orthoflow/main/installation.html
+
+.. start-beginner-tutorial
 
 Input data
 ==========

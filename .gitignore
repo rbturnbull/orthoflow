@@ -21,3 +21,4 @@ tests/test-data-small/bench/
 tests/test-data/bench/
 
 dist/
+docs/logs/
