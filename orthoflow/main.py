@@ -29,7 +29,11 @@ def run(
     target: Optional[Path] = typer.Option(None, help="The target file to create"),
     directory: Optional[Path] = typer.Option(Path("."), file_okay=False, exists=True, dir_okay=True),
     cores: Optional[int] = typer.Option(1, "--cores", "-c", help="Number of cores to request for the workflow"),
-    conda_prefix:Path = typer.Option(None, envvar="ORTHOFLOW_CONDA_PREFIX"),
+    conda_prefix:Path = typer.Option(
+        None, 
+        envvar="ORTHOFLOW_CONDA_PREFIX", 
+        help="A directory to use for created conda environments. If none given then it will use the user cache directory.",
+    ),
     hpc: bool = typer.Option(False, help="Run on an HPC cluster (with the SLURM scheduler)?"),
     help_snakemake: Optional[bool] = typer.Option(
         False,
