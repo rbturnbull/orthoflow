@@ -15,7 +15,7 @@ cluster: >-
 default-resources:
   - account='punim1293'
   - partition=''
-  - runtime=15
+  - runtime=120
   - mem_mb=4000
   - nodes=1
   - tasks_per_node=1
