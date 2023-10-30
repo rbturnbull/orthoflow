@@ -5,4 +5,4 @@ dependencies:
   - python=3.9
   - pip
   - pip:
-    - git+https://github.com/rbturnbull/BioKIT.git
+    - git+https://github.com/JLSteenwyk/BioKIT.git

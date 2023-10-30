@@ -8,4 +8,4 @@ dependencies:
   - fasttree=2.1.11
   - pip
   - pip:
-    - orthosnap>=1.1.0
+    - orthosnap==1.1.0
