@@ -221,7 +221,7 @@ rule report_taxa_presence:
 
         touch logs/warnings/missing_taxa.txt
 
-        cut -d "," -f4 results/intake/input_sources.csv | tail +2 | sort | uniq | sort | cut -d '-' -f1 > results/alignment/taxa_in_input.txt
+        cut -d "," -f4 results/intake/input_sources.csv | tail -n +2 | sort | uniq | sort | cut -d '-' -f1 > results/alignment/taxa_in_input.txt
 
         cat results/alignment/taxon_only/* | grep ">" | sort | uniq | cut -c 2- | sort > results/alignment/taxa_in_ogs.txt
         no_og_taxa=$(comm -13 results/alignment/taxa_in_ogs.txt results/alignment/taxa_in_input.txt)
