@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Report Module &mdash; orthoflow 0.1.0 documentation</title>
+  <title>Reproduction Tutorial &mdash; orthoflow 0.1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contributing" href="contributing.html" />
-    <link rel="prev" title="Supertree Module" href="supertree.html" /> 
+    <link rel="next" title="Input" href="input.html" />
+    <link rel="prev" title="Advanced Tutorial" href="advanced_tutorial.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,19 +52,14 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reproduction_tutorial.html">Reproduction Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="workflow.html">Workflow</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="orthofisher.html">Orthofisher Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="orthofinder.html">Orthofinder Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alignment.html">Alignment Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supermatrix.html">Supermatrix Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gene_tree.html">Gene Tree Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supertree.html">Supertree Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Report Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reproduction Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-the-data">Downloading the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-orthoflow">Running Orthoflow</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
 </ul>
@@ -83,10 +78,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="workflow.html">Workflow</a></li>
-      <li class="breadcrumb-item active">Report Module</li>
+      <li class="breadcrumb-item active">Reproduction Tutorial</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/main/report.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/main/reproduction_tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -118,28 +112,71 @@
     text-align: unset;
 }
 </style>
-<section id="report-module">
-<h1>Report Module<a class="headerlink" href="#report-module" title="Permalink to this headline"></a></h1>
-<dl class="smk rule">
-<dt class="sig sig-object smk" id="rule-report">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">report</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/report.smk#L13"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-report" title="Permalink to this definition"></a></dt>
-<dd><p>Draws together the output of the workflow and presents the results in a stand-alone HTML file.</p>
+<section id="reproduction-tutorial">
+<h1>Reproduction Tutorial<a class="headerlink" href="#reproduction-tutorial" title="Permalink to this headline"></a></h1>
+<p>This tutorial is a step-by-step guide to reproduce the results of the <a class="reference external" href="https://www.researchsquare.com/article/rs-3699210">paper</a>.</p>
+<section id="downloading-the-data">
+<h2>Downloading the data<a class="headerlink" href="#downloading-the-data" title="Permalink to this headline"></a></h2>
+<p>The dataset used in the paper is available at figshare:</p>
 <blockquote>
-<div><p>This serves as the endpoint of the DAG for Snakemake if no targets are explicitly specified.</p>
+<div><p>Shen, Xing-Xing (2018). Tempo and mode of genome evolution in the budding yeast subphylum. figshare. Dataset. <a class="reference external" href="https://doi.org/10.6084/m9.figshare.5854692.v1">https://doi.org/10.6084/m9.figshare.5854692.v1</a></p>
 </div></blockquote>
-</dd></dl>
-
-<div class="line-block">
-<div class="line"><br /></div>
+<p>The data can be downloaded and extracted with this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://ndownloader.figshare.com/files/13092791<span class="w"> </span>-O<span class="w"> </span>0_332yeast_genomes.zip
+unzip<span class="w"> </span>0_332yeast_genomes.zip
+<span class="nb">cd</span><span class="w"> </span>0_332yeast_genomes
+unzip<span class="w"> </span>332_genome_annotations.zip
+<span class="nb">cd</span><span class="w"> </span>pep
+</pre></div>
 </div>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline"></a></h2>
+<p>You can create the input file for the 24 species shown in the paper but saving this text as <code class="docutils literal notranslate"><span class="pre">yeast24.csv</span></code>:</p>
+<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>file,data_type
+ambrosiozyma_kashinagacola.max.pep,Protein
+ambrosiozyma_monospora.max.pep,Protein
+ascoidea_asiatica.max.pep,Protein
+ascoidea_rubescens.max.pep,Protein
+candida_auris.max.pep,Protein
+clavispora_lusitaniae.max.pep,Protein
+cyberlindnera_jadinii.max.pep,Protein
+cyberlindnera_fabianii_JCM3601.max.pep,Protein
+eremothecium_cymbalariae.max.pep,Protein
+eremothecium_gossypii.max.pep,Protein
+hanseniaspora_uvarum.max.pep,Protein
+hanseniaspora_valbyensis.max.pep,Protein
+kluyveromyces_lactis.max.pep,Protein
+kluyveromyces_marxianus.max.pep,Protein
+lachancea_nothofagi.max.pep,Protein
+lachancea_quebecensis.max.pep,Protein
+metschnikowia_hibisci.max.pep,Protein
+metschnikowia_shivogae.max.pep,Protein
+ogataea_methanolica.max.pep,Protein
+ogataea_parapolymorpha.max.pep,Protein
+ogataea_polymorpha.max.pep,Protein
+saccharomycopsis_malanga.max.pep,Protein
+wickerhamomyces_anomalus.max.pep,Protein
+wickerhamomyces_ciferrii.max.pep,Protein
+</pre></div>
+</div>
+</section>
+<section id="running-orthoflow">
+<h2>Running Orthoflow<a class="headerlink" href="#running-orthoflow" title="Permalink to this headline"></a></h2>
+<p>The following command will run Orthoflow with the default parameters:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow<span class="w"> </span>--files<span class="w"> </span>yeast24.csv
+</pre></div>
+</div>
+<p>The results will be saved in the <code class="docutils literal notranslate"><span class="pre">results</span></code> folder.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="supertree.html" class="btn btn-neutral float-left" title="Supertree Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="advanced_tutorial.html" class="btn btn-neutral float-left" title="Advanced Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="input.html" class="btn btn-neutral float-right" title="Input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to orthoflow's documentation!
+Welcome to Orthoflow's documentation!
 =================================================
 
 .. include:: ../../README.rst
@@ -19,6 +19,7 @@ Welcome to orthoflow's documentation!
    main/installation
    main/beginner_tutorial
    main/advanced_tutorial
+   main/reproduction_tutorial
    main/input
    main/workflow
    .. main/workflow_dev
