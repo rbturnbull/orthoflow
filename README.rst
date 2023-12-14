@@ -141,8 +141,12 @@ Credits and Attribution
 
 .. start-credits
 
-Orthoflow was created by Robert Turnbull, Jacob Steenwyk, Simon Mutch, Vinícius Salazar, Pelle Scholten and Heroen Verbruggen.
+Orthoflow was created by Robert Turnbull, Jacob Steenwyk, Simon Mutch, Vinícius Salazar, Pelle Scholten, Joanne L. Birch and Heroen Verbruggen.
 
-Citation details to follow.
+The preprint for Orthoflow is here:
+
+    Robert Turnbull, Jacob L. Steenwyk, Simon J. Mutch, Pelle Scholten, Vinícius W. Salazar, Joanne L. Birch, and Heroen Verbruggen. Orthoflow: phylogenomic analysis and diagnostics with one command, 04 December 2023, PREPRINT available at Research Square [https://doi.org/10.21203/rs.3.rs-3699210/]
+
+More details to come.
 
 .. end-credits
