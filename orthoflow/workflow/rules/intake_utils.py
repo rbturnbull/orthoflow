@@ -292,6 +292,8 @@ def read_input_source_pandas(input_csv:Path, file_list) -> List[OrthoflowInput]:
     try: 
         df = pd.read_csv(input_csv)
         df.fillna(0, inplace=True)
+        if 'translation_table' not in df.columns:
+            df["translation_table"] = TRANSLATION_TABLE_DEFAULT
         df.translation_table = df.translation_table.astype(int)
     except:
         raise IOError(f"File '{input_csv} is empty or not valid, please check the file and its formatting.")
@@ -350,6 +352,7 @@ def read_input_source(input_source:Union[Path, str, List], file_list) -> List[Or
         return read_input_source_yaml(input_source, file_list)
     
     return [OrthoflowInput(file=input_source, suffix_unknown=True)]
+
 
 def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files, warnings_dir=None) -> OrthoflowInputDictionary:
     if len(str(input_source)) == 0:
