@@ -65,8 +65,9 @@ rule translate:
         LOG_DIR / "intake/translate/{stub}.log"
     shell:
         """
+        if [ ! -d "results/intake/translated" ]; then mkdir -p results/intake/translated; fi
+        if [ ! -d "results/intake/protein" ]; then mkdir -p results/intake/protein; fi
         biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} &> {log}
-        if [ ! -d "results/intake/protein" ]; then mkdir results/intake/protein; fi
         cp {output} results/intake/protein
         """
 
