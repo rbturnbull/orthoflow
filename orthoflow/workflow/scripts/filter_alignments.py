@@ -22,7 +22,8 @@ def filter_alignment(trimmed_alignment_path:Path, untrimmed_alignment_path:Path,
     Returns:
         bool: Whether or not this trimmed alignment should be included for downstream analysis.
     """
-    trimmed_length = AlignIO.read(trimmed_alignment_path, "fasta").get_alignment_length()
+    trimmed_alignment= AlignIO.read(trimmed_alignment_path, "fasta")
+    trimmed_length = trimmed_alignment.get_alignment_length()
     if trimmed_length < min_length:
         print(f"{trimmed_alignment_path} of length {trimmed_length} which is below the minimum length {min_length}")
         return False
@@ -31,6 +32,15 @@ def filter_alignment(trimmed_alignment_path:Path, untrimmed_alignment_path:Path,
     print(trimmed_alignment_path, trimmed_length, untrimmed_length)
     if trimmed_length <= max_trimmed_proportion * untrimmed_length:
         print(f"{trimmed_alignment_path} of length {trimmed_length} which is below {max_trimmed_proportion} of the untrimmed length {untrimmed_length}")
+        return False
+
+    # Check for duplicate sequences and filter out alignments where the number of unique sequences is below four
+    unique_seqs = set()
+    for record in trimmed_alignment:
+        unique_seqs.add(str(record.seq))
+    
+    if len(unique_seqs) < 4:
+        print(f"{trimmed_alignment_path} has only {len(unique_seqs)} unique sequences")
         return False
 
     return True
