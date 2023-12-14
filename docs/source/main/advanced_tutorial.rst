@@ -6,11 +6,7 @@ Advanced Tutorial
 Changing workflow settings
 ==========================
 
-Some workflow settings can be changed by passing arguments to the command-line tool (``orthoflow``). Perhaps the most important one is ``--cores`` to specify the number of cores for the workflow to use.
-
-.. code-block::
-
-    orthoflow --cores 24
+Some workflow settings can be changed by passing arguments to the command-line tool (``orthoflow``). 
 
 To see a complete list of command-line arguments, run:
 
@@ -25,6 +21,17 @@ You can pass any snakemake arguments to orthoflow. To list these, run:
     orthoflow --help-snakemake 
 
 Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (``orthoflow/config/config.yml``) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.
+
+Cores
+=====
+
+To manually set the number of cores, set the ``--cores`` flag. For example, to use 24 cores:
+
+.. code-block::
+
+    orthoflow --cores 24    
+
+If ``--cores`` is not set, then it will use all available CPU cores.
 
 
 Setting working directory and specifying targets

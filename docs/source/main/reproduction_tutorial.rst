@@ -68,4 +68,14 @@ The following command will run Orthoflow:
 
     We need to turn off the option ``infer_tree_with_cds_seqs`` because we are using protein sequences.
 
+Results
+=======
+
 The results will be saved in the ``results`` folder.
+
+For example, you should see a file called ``results/supermatrix/supermatrix_tree_render.protein.png``
+
+.. image:: ../_static/images/yeast24_supermatrix_tree_render.protein.png
+
+
+
