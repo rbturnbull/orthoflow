@@ -121,7 +121,7 @@
 <blockquote>
 <div><p>Shen, Xing-Xing (2018). Tempo and mode of genome evolution in the budding yeast subphylum. figshare. Dataset. <a class="reference external" href="https://doi.org/10.6084/m9.figshare.5854692.v1">https://doi.org/10.6084/m9.figshare.5854692.v1</a></p>
 </div></blockquote>
-<p>The data can be downloaded and extracted with this command:</p>
+<p>The data can be downloaded and extracted with these commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://ndownloader.figshare.com/files/13092791<span class="w"> </span>-O<span class="w"> </span>0_332yeast_genomes.zip
 unzip<span class="w"> </span>0_332yeast_genomes.zip
 <span class="nb">cd</span><span class="w"> </span>0_332yeast_genomes
@@ -163,9 +163,13 @@ wickerhamomyces_ciferrii.max.pep,Protein
 </section>
 <section id="running-orthoflow">
 <h2>Running Orthoflow<a class="headerlink" href="#running-orthoflow" title="Permalink to this headline"></a></h2>
-<p>The following command will run Orthoflow with the default parameters:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow<span class="w"> </span>--files<span class="w"> </span>yeast24.csv
+<p>The following command will run Orthoflow:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow<span class="w"> </span>--files<span class="w"> </span>yeast24.csv<span class="w"> </span>--config<span class="w"> </span><span class="nv">infer_tree_with_cds_seqs</span><span class="o">=</span>False
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We need to turn off the option <code class="docutils literal notranslate"><span class="pre">infer_tree_with_cds_seqs</span></code> because we are using protein sequences.</p>
 </div>
 <p>The results will be saved in the <code class="docutils literal notranslate"><span class="pre">results</span></code> folder.</p>
 </section>

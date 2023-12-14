@@ -7,7 +7,11 @@ Orthoflow can be installed using conda, PyPI or from source.
 Conda Installation
 ==================
 
-Information coming soon.
+To install with conda, use the following command:
+
+.. code-block:: bash
+
+    conda install -c bioconda orthoflow
 
 pip Installation
 ==================
@@ -23,7 +27,6 @@ Orthoflow can also be installed directly from Github using pip as follows.
 .. code-block::
 
     pip install git+https://github.com/rbturnbull/orthoflow.git
-
 
 .. note::
 
@@ -68,14 +71,14 @@ Enter into the virtual environment as follows:
     If installing from source, conda needs to be available on the system for the workflow to run.
 
 
-Recommendations for Mac M1 and Windows systems
-==============================================
+.. Recommendations for Mac M1 and Windows systems
+.. ==============================================
 
-Information coming soon.
+.. Information coming soon.
 
 
 
-Setting up on HPC system
-========================
+.. Setting up on HPC system
+.. ========================
 
-Information coming soon.
+.. Information coming soon.
