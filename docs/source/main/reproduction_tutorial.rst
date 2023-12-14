@@ -11,7 +11,7 @@ The dataset used in the paper is available at figshare:
 
     Shen, Xing-Xing (2018). Tempo and mode of genome evolution in the budding yeast subphylum. figshare. Dataset. https://doi.org/10.6084/m9.figshare.5854692.v1
 
-The data can be downloaded and extracted with this command:
+The data can be downloaded and extracted with these commands:
 
 .. code-block:: bash
 
@@ -58,10 +58,14 @@ You can create the input file for the 24 species shown in the paper but saving t
 Running Orthoflow
 =================
 
-The following command will run Orthoflow with the default parameters:
+The following command will run Orthoflow:
 
 .. code-block:: bash
 
-    orthoflow --files yeast24.csv
+    orthoflow --files yeast24.csv --config infer_tree_with_cds_seqs=False
+
+.. note ::
+
+    We need to turn off the option ``infer_tree_with_cds_seqs`` because we are using protein sequences.
 
 The results will be saved in the ``results`` folder.
