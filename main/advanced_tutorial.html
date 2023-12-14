@@ -53,6 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#changing-workflow-settings">Changing workflow settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cores">Cores</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-working-directory-and-specifying-targets">Setting working directory and specifying targets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#controlling-the-flow-of-operations">Controlling the flow of operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gene-and-alignment-filtering-settings">Gene and alignment filtering settings</a><ul>
@@ -124,10 +125,7 @@
 <h1>Advanced Tutorial<a class="headerlink" href="#advanced-tutorial" title="Permalink to this headline"></a></h1>
 <section id="changing-workflow-settings">
 <h2>Changing workflow settings<a class="headerlink" href="#changing-workflow-settings" title="Permalink to this headline"></a></h2>
-<p>Some workflow settings can be changed by passing arguments to the command-line tool (<code class="docutils literal notranslate"><span class="pre">orthoflow</span></code>). Perhaps the most important one is <code class="docutils literal notranslate"><span class="pre">--cores</span></code> to specify the number of cores for the workflow to use.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">cores</span> <span class="mi">24</span>
-</pre></div>
-</div>
+<p>Some workflow settings can be changed by passing arguments to the command-line tool (<code class="docutils literal notranslate"><span class="pre">orthoflow</span></code>).</p>
 <p>To see a complete list of command-line arguments, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
@@ -137,6 +135,14 @@
 </pre></div>
 </div>
 <p>Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (<code class="docutils literal notranslate"><span class="pre">orthoflow/config/config.yml</span></code>) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.</p>
+</section>
+<section id="cores">
+<h2>Cores<a class="headerlink" href="#cores" title="Permalink to this headline"></a></h2>
+<p>To manually set the number of cores, set the <code class="docutils literal notranslate"><span class="pre">--cores</span></code> flag. For example, to use 24 cores:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">cores</span> <span class="mi">24</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">--cores</span></code> is not set, then it will use all available CPU cores.</p>
 </section>
 <section id="setting-working-directory-and-specifying-targets">
 <h2>Setting working directory and specifying targets<a class="headerlink" href="#setting-working-directory-and-specifying-targets" title="Permalink to this headline"></a></h2>
