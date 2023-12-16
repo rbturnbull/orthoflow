@@ -43,12 +43,9 @@ jobs:
         cd tests/test-data-yeast
         source $(poetry env info --path)/bin/activate
         orthoflow --files yeast5.csv --config infer_tree_with_cds_seqs=False
-    - name: Check report
-      run: |
-        if [ -f results/report.protein.html ]; then
+        if [ -s results/report.protein.html ]; then
           echo "Report exists."
         else
           echo "Report does not exist."
           exit 1
         fi
-
