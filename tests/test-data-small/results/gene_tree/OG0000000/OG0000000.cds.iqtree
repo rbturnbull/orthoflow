@@ -1,0 +1,180 @@
+IQ-TREE 2.2.0.3 COVID-edition built Aug  2 2022
+
+Input file name: results/alignment/trimmed_cds/OG0000000.trimmed.cds.alignment.fa
+Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 255357
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 6 sequences with 963 nucleotide sites
+Number of constant sites: 455 (= 47.2482% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 455 (= 47.2482% of all sites)
+Number of parsimony informative sites: 249
+Number of distinct site patterns: 334
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: HKY+F+G4
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+HKY+F+G4          -4555.778    9139.556 -  0.00168    9139.999 -  0.00198    9207.737 +    0.769
+HKY+F+I+G4        -4554.307    9138.614 -  0.00269    9139.121 -  0.00308    9211.665 +    0.108
+HKY+F+I           -4557.943    9143.885 - 0.000193    9144.328 - 0.000228    9212.066 +   0.0883
+F81+F+G4          -4563.103    9152.205 - 3.01e-06    9152.589 - 3.66e-06    9215.516 -   0.0157
+GTR+F+G4          -4546.645    9129.290 +    0.285    9130.015 +    0.292    9216.951 -  0.00768
+F81+F+I           -4564.150    9154.300 - 1.06e-06    9154.683 - 1.28e-06    9217.610 -  0.00552
+F81+F+I+G4        -4561.524    9151.049 - 5.36e-06    9151.492 - 6.33e-06    9219.229 -  0.00246
+GTR+F+I           -4548.126    9132.253 +   0.0647    9132.977 +   0.0664    9219.914 -  0.00175
+GTR+F+I+G4        -4544.825    9127.650 +    0.646    9128.456 +    0.636    9220.181 -  0.00153
+GTR+F             -4657.034    9348.067 - 8.86e-49    9348.715 - 9.44e-49    9430.858 - 2.73e-49
+SYM+I             -4671.878    9373.757 - 2.34e-54    9374.264 - 2.67e-54    9446.808 - 9.39e-53
+SYM+G4            -4672.933    9375.865 - 8.15e-55    9376.372 - 9.32e-55    9448.916 - 3.27e-53
+SYM+I+G4          -4670.387    9372.775 - 3.82e-54    9373.350 - 4.22e-54    9450.696 - 1.34e-53
+JC+I              -4729.397    9478.793 - 3.64e-77    9479.024 - 4.77e-77    9527.494 - 2.83e-70
+JC+G4             -4732.692    9485.384 - 1.35e-78    9485.615 - 1.77e-78    9534.084 - 1.05e-71
+K2P+I             -4729.392    9480.784 - 1.34e-77    9481.062 - 1.72e-77    9534.355 - 9.16e-72
+JC+I+G4           -4730.011    9482.022 - 7.24e-78    9482.300 - 9.28e-78    9535.593 - 4.93e-72
+K2P+G4            -4732.683    9487.367 -    5e-79    9487.644 - 6.41e-79    9540.937 - 3.41e-73
+K2P+I+G4          -4729.987    9483.975 - 2.73e-78    9484.303 - 3.41e-78    9542.415 - 1.63e-73
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: HKY+F+G4
+
+Rate parameter R:
+
+  A-C: 1.0000
+  A-G: 1.5194
+  A-T: 1.0000
+  C-G: 1.0000
+  C-T: 1.5194
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.3722
+  pi(C) = 0.1535
+  pi(G) = 0.1489
+  pi(T) = 0.3253
+
+Rate matrix Q:
+
+  A   -0.8606    0.1874    0.2762    0.3971
+  C    0.4543    -1.239    0.1818    0.6033
+  G    0.6902    0.1874    -1.275    0.3971
+  T    0.4543    0.2847    0.1818   -0.9207
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 0.551
+
+ Category  Relative_rate  Proportion
+  1         0.04318        0.25
+  2         0.2839         0.25
+  3         0.8541         0.25
+  4         2.819          0.25
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -4555.7776 (s.e. 87.9063)
+Unconstrained log-likelihood (without tree): -4137.8401
+Number of free parameters (#branches + #model parameters): 14
+Akaike information criterion (AIC) score: 9139.5551
+Corrected Akaike information criterion (AICc) score: 9139.9982
+Bayesian information criterion (BIC) score: 9207.7359
+
+Total tree length (sum of branch lengths): 1.5812
+Sum of internal branch lengths: 0.2811 (17.7808% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'Derbesia_sp_WEST4838' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++-------------------------------Derbesia_sp_WEST4838
+|
+|                            +-----------------------------Caulerpa_cliftonii_HV03798
+|          +-----------------| (100)
+|          |                 |  +----------------Chlorodesmis_fastigiata_HV03865
+|          |                 +--| (63)
+|          |                    +--------Flabellia_petiolata_HV01202
++----------| (81)
+|          +---------------------------------Avrainvillea_mazei_HV02664
+|
++---------------------Bryopsis_plumosa_WEST4718
+
+Tree in newick format:
+
+(Derbesia_sp_WEST4838:0.2868132891,((Caulerpa_cliftonii_HV03798:0.2728587814,(Chlorodesmis_fastigiata_HV03865:0.1539886901,Flabellia_petiolata_HV01202:0.0808826246)63:0.0223449731)100:0.1607568210,Avrainvillea_mazei_HV02664:0.3080387093)81:0.0980408932,Bryopsis_plumosa_WEST4718:0.1974356044);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -4555.777559
+Robinson-Foulds distance between ML tree and consensus tree: 0
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++-------------------------------Derbesia_sp_WEST4838
+|
+|                            +-----------------------------Caulerpa_cliftonii_HV03798
+|          +-----------------| (100)
+|          |                 |  +----------------Chlorodesmis_fastigiata_HV03865
+|          |                 +--| (63)
+|          |                    +--------Flabellia_petiolata_HV01202
++----------| (81)
+|          +---------------------------------Avrainvillea_mazei_HV02664
+|
++---------------------Bryopsis_plumosa_WEST4718
+
+
+Consensus tree in newick format: 
+
+(Derbesia_sp_WEST4838:0.2868207186,((Caulerpa_cliftonii_HV03798:0.2729562990,(Chlorodesmis_fastigiata_HV03865:0.1540181569,Flabellia_petiolata_HV01202:0.0809055224)63:0.0222753277)100:0.1607877490,Avrainvillea_mazei_HV02664:0.3080731097)81:0.0980499278,Bryopsis_plumosa_WEST4718:0.1974507790);
+
+TIME STAMP
+----------
+
+Date and time: Sat Dec 16 03:42:29 2023
+Total CPU time used: 1.277007 seconds (0h:0m:1s)
+Total wall-clock time used: 1.907408528 seconds (0h:0m:1s)
+

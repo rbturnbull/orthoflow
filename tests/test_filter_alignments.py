@@ -13,16 +13,22 @@ def test_filter_alignments_test_data_small_cds():
     untrimmed = sorted(untrimmed_dir.glob("*.cds.alignment.fa"))
 
     output = filter_alignments(trimmed, untrimmed, min_length=110, max_trimmed_proportion=0.5, n_jobs=-1)
-    expected_names = ["OG0000000_orthosnap_0.trimmed.cds.alignment.fa", "OG0000001.trimmed.cds.alignment.fa", "OG0000002.trimmed.cds.alignment.fa", "OG0000005.trimmed.cds.alignment.fa"]
+    expected_names = [
+        'OG0000000.trimmed.cds.alignment.fa', 
+        'OG0000001.trimmed.cds.alignment.fa', 
+        'OG0000004.trimmed.cds.alignment.fa', 
+        'OG0000005_orthosnap_0.trimmed.cds.alignment.fa', 
+        'OG0000006.trimmed.cds.alignment.fa',
+    ]
     assert [x.name for x in output] == expected_names
 
     with tempfile.TemporaryDirectory() as tmpdir:
         output_txt = Path(tmpdir)/"alignments.txt"
         output = filter_alignments(trimmed, untrimmed, min_length=110, max_trimmed_proportion=0.99, n_jobs=-1, output_txt=output_txt)
-        expected_names = ["OG0000005.trimmed.cds.alignment.fa"]
+        expected_names = ['OG0000000.trimmed.cds.alignment.fa', 'OG0000004.trimmed.cds.alignment.fa']
         assert [x.name for x in output] == expected_names
 
         assert output_txt.exists()
         output_lines = output_txt.read_text().strip().split("\n")
-        assert len(output_lines) == 1
+        assert len(output_lines) == len(expected_names)
         assert output_lines[0].endswith(expected_names[0])

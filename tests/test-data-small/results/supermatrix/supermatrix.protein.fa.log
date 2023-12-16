@@ -3,366 +3,610 @@ Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
 Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams, Ly Trong Nhan.
 
 Host:    herbairumphylo (AVX512, FMA3, 283 GB RAM)
-Command: iqtree2 -s results/supermatrix/supermatrix.protein.fa -bb 1000 -m TEST -nt 1 -redo
-Seed:    310712 (Using SPRNG - Scalable Parallel Random Number Generator)
-Time:    Mon Oct  2 04:09:36 2023
-Kernel:  AVX+FMA - 1 threads (32 CPU cores detected)
-
-HINT: Use -nt option to specify number of threads because your CPU has 32 cores!
-HINT: -nt AUTO will automatically determine the best number of threads to use.
+Command: iqtree2 -s results/supermatrix/supermatrix.protein.fa -bb 1000 -m TEST -nt 32 -redo
+Seed:    413450 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Sat Dec 16 03:40:29 2023
+Kernel:  AVX+FMA - 32 threads (32 CPU cores detected)
 
 Reading alignment file results/supermatrix/supermatrix.protein.fa ... Fasta format detected
-Reading fasta file: done in 9.99868e-05 secs using 98.01% CPU
+Reading fasta file: done in 0.000102289 secs
 Alignment most likely contains protein sequences
-Constructing alignment: done in 0.000666879 secs using 99.87% CPU
-Alignment has 5 sequences with 795 columns, 233 distinct patterns
-59 parsimony-informative, 168 singleton sites, 568 constant sites
+Constructing alignment: done in 0.0012522 secs using 291.5% CPU
+Alignment has 6 sequences with 796 columns, 255 distinct patterns
+100 parsimony-informative, 143 singleton sites, 553 constant sites
                                  Gap/Ambiguity  Composition  p-value
-Analyzing sequences: done in 9.62615e-06 secs using 83.11% CPU
-   1  Avrainvillea_mazei_HV02664         1.01%    passed     99.95%
+Analyzing sequences: done in 0.00294819 secs using 4133% CPU
+   1  Avrainvillea_mazei_HV02664         1.13%    passed     99.95%
    2  Bryopsis_plumosa_WEST4718          0.38%    passed    100.00%
-   3  Caulerpa_cliftonii_HV03798         0.88%    passed    100.00%
-   4  Chlorodesmis_fastigiata_HV03865    1.38%    passed    100.00%
-   5  Flabellia_petiolata_HV01202        2.26%    passed    100.00%
-****  TOTAL                              1.18%  0 sequences failed composition chi2 test (p-value<5%; df=19)
-Checking for duplicate sequences: done in 1.9744e-05 secs using 96.23% CPU
+   3  Caulerpa_cliftonii_HV03798         0.00%    passed    100.00%
+   4  Chlorodesmis_fastigiata_HV03865    1.51%    passed    100.00%
+   5  Derbesia_sp_WEST4838               0.63%    passed    100.00%
+   6  Flabellia_petiolata_HV01202        2.39%    passed    100.00%
+****  TOTAL                              1.01%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Checking for duplicate sequences: done in 0.00191325 secs using 624.9% CPU
 
+WARNING: 32 threads for alignment length 255 will slow down analysis
 
 Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.000 seconds
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
 Perform fast likelihood tree search using LG+I+G model...
 Estimate model parameters (epsilon = 5.000)
 Perform nearest neighbor interchange...
-Optimizing NNI: done in 0.00646721 secs using 99.93% CPU
+Optimizing NNI: done in 0.00980802 secs using 2466% CPU
 Estimate model parameters (epsilon = 1.000)
-1. Initial log-likelihood: -4263.611
-Optimal log-likelihood: -4263.607
-Proportion of invariable sites: 0.358
-Gamma shape alpha: 0.536
-Parameters optimization took 1 rounds (0.007 sec)
-Time for fast ML tree search: 0.041 seconds
+1. Initial log-likelihood: -4763.107
+Optimal log-likelihood: -4763.040
+Proportion of invariable sites: 0.357
+Gamma shape alpha: 0.456
+Parameters optimization took 1 rounds (0.008 sec)
+Time for fast ML tree search: 0.055 seconds
 
-NOTE: ModelFinder requires 1 MB RAM!
-ModelFinder will test up to 224 protein models (sample size: 795) ...
+NOTE: ModelFinder requires 2 MB RAM!
+ModelFinder will test up to 224 protein models (sample size: 796) ...
  No. Model         -LnL         df  AIC          AICc         BIC
-  1  LG            4378.052     7   8770.104     8770.246     8802.852
-  2  LG+I          4274.116     8   8564.233     8564.416     8601.659
-  3  LG+G4         4266.340     8   8548.680     8548.863     8586.107
-  4  LG+I+G4       4263.605     9   8545.210     8545.439     8587.315
-  7  LG+F+G4       4249.084     27  8552.168     8554.139     8678.483
-  8  LG+F+I+G4     4246.511     28  8549.022     8551.142     8680.016
- 11  WAG+G4        4276.694     8   8569.388     8569.572     8606.815
- 12  WAG+I+G4      4275.346     9   8568.692     8568.921     8610.797
- 15  WAG+F+G4      4253.474     27  8560.948     8562.919     8687.263
- 16  WAG+F+I+G4    4252.112     28  8560.224     8562.344     8691.217
- 19  JTT+G4        4290.924     8   8597.849     8598.032     8635.275
- 20  JTT+I+G4      4288.113     9   8594.227     8594.456     8636.332
- 23  JTT+F+G4      4273.601     27  8601.202     8603.173     8727.517
- 24  JTT+F+I+G4    4270.827     28  8597.654     8599.774     8728.647
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  1  LG            4967.424     9   9952.849     9953.078     9994.965
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  2  LG+I          4785.119     10  9590.237     9590.517     9637.033
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  3  LG+G4         4769.787     10  9559.575     9559.855     9606.371
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  4  LG+I+G4       4762.923     11  9547.846     9548.183     9599.322
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  7  LG+F+G4       4752.616     29  9563.233     9565.505     9698.941
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  8  LG+F+I+G4     4746.272     30  9552.545     9554.976     9692.933
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 11  WAG+G4        4782.001     10  9584.002     9584.283     9630.798
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 12  WAG+I+G4      4778.199     11  9578.397     9578.734     9629.873
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 15  WAG+F+G4      4757.613     29  9573.227     9575.498     9708.935
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 16  WAG+F+I+G4    4753.892     30  9567.784     9570.216     9708.172
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 19  JTT+G4        4797.364     10  9614.729     9615.009     9661.525
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 20  JTT+I+G4      4791.124     11  9604.249     9604.585     9655.724
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 23  JTT+F+G4      4778.998     29  9615.995     9618.267     9751.704
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 24  JTT+F+I+G4    4773.051     30  9606.102     9608.534     9746.490
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 27  Q.pfam+G4     4274.081     8   8564.163     8564.346     8601.590
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 27  Q.pfam+G4     4779.840     10  9579.680     9579.960     9626.476
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 28  Q.pfam+I+G4   4271.452     9   8560.904     8561.133     8603.009
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 28  Q.pfam+I+G4   4772.958     11  9567.915     9568.252     9619.391
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 31  Q.pfam+F+G4   4253.010     27  8560.020     8561.991     8686.335
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 31  Q.pfam+F+G4   4758.639     29  9575.278     9577.550     9710.987
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 32  Q.pfam+F+I+G4 4250.465     28  8556.930     8559.050     8687.924
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 32  Q.pfam+F+I+G4 4752.279     30  9564.559     9566.990     9704.947
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 35  Q.bird+G4     4352.531     8   8721.063     8721.246     8758.490
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 35  Q.bird+G4     4863.081     10  9746.163     9746.443     9792.959
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 36  Q.bird+I+G4   4345.555     9   8709.110     8709.339     8751.215
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 36  Q.bird+I+G4   4851.171     11  9724.342     9724.679     9775.818
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 39  Q.bird+F+G4   4318.788     27  8691.576     8693.547     8817.891
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 39  Q.bird+F+G4   4830.313     29  9718.627     9720.898     9854.335
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 40  Q.bird+F+I+G4 4311.654     28  8679.308     8681.428     8810.302
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 40  Q.bird+F+I+G4 4818.887     30  9697.773     9700.205     9838.161
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 43  Q.mammal+G4   4350.388     8   8716.777     8716.960     8754.204
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 43  Q.mammal+G4   4860.506     10  9741.012     9741.293     9787.808
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 44  Q.mammal+I+G4 4344.882     9   8707.764     8707.993     8749.869
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 44  Q.mammal+I+G4 4850.226     11  9722.451     9722.788     9773.927
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 47  Q.mammal+F+G4 4307.577     27  8669.153     8671.124     8795.468
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 47  Q.mammal+F+G4 4818.621     29  9695.242     9697.514     9830.951
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 48  Q.mammal+F+I+G4 4302.004     28  8660.008     8662.128     8791.002
- 51  Q.insect+G4   4303.627     8   8623.254     8623.437     8660.681
- 52  Q.insect+I+G4 4299.971     9   8617.941     8618.171     8660.046
- 55  Q.insect+F+G4 4268.562     27  8591.124     8593.095     8717.439
- 56  Q.insect+F+I+G4 4265.282     28  8586.563     8588.683     8717.557
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 48  Q.mammal+F+I+G4 4808.873     30  9677.746     9680.178     9818.134
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 51  Q.insect+G4   4804.135     10  9628.271     9628.551     9675.067
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 52  Q.insect+I+G4 4795.237     11  9612.475     9612.811     9663.950
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 55  Q.insect+F+G4 4776.671     29  9611.342     9613.614     9747.050
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 56  Q.insect+F+I+G4 4768.958     30  9597.915     9600.347     9738.303
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 59  Q.plant+G4    4291.377     8   8598.753     8598.937     8636.180
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 59  Q.plant+G4    4794.205     10  9608.410     9608.691     9655.206
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 60  Q.plant+I+G4  4286.649     9   8591.299     8591.528     8633.404
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 60  Q.plant+I+G4  4784.005     11  9590.009     9590.346     9641.485
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 63  Q.plant+F+G4  4266.457     27  8586.915     8588.886     8713.230
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 63  Q.plant+F+G4  4771.916     29  9601.831     9604.103     9737.540
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 64  Q.plant+F+I+G4 4261.841     28  8579.682     8581.802     8710.676
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 64  Q.plant+F+I+G4 4762.682     30  9585.365     9587.796     9725.752
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 67  Q.yeast+G4    4296.496     8   8608.992     8609.175     8646.419
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 67  Q.yeast+G4    4793.400     10  9606.800     9607.080     9653.596
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 68  Q.yeast+I+G4  4292.732     9   8603.464     8603.693     8645.569
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 68  Q.yeast+I+G4  4784.243     11  9590.486     9590.823     9641.962
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 71  Q.yeast+F+G4  4261.964     27  8577.929     8579.900     8704.244
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 71  Q.yeast+F+G4  4768.290     29  9594.579     9596.851     9730.288
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
- 72  Q.yeast+F+I+G4 4258.571     28  8573.141     8575.261     8704.135
- 75  JTTDCMut+G4   4290.078     8   8596.156     8596.339     8633.583
- 76  JTTDCMut+I+G4 4287.253     9   8592.507     8592.736     8634.612
- 79  JTTDCMut+F+G4 4272.902     27  8599.804     8601.775     8726.119
- 80  JTTDCMut+F+I+G4 4270.101     28  8596.202     8598.322     8727.195
- 83  DCMut+G4      4313.567     8   8643.135     8643.318     8680.561
- 84  DCMut+I+G4    4310.984     9   8639.968     8640.197     8682.073
- 87  DCMut+F+G4    4273.485     27  8600.970     8602.941     8727.285
- 88  DCMut+F+I+G4  4270.680     28  8597.360     8599.480     8728.353
- 91  VT+G4         4278.977     8   8573.953     8574.136     8611.380
- 92  VT+I+G4       4277.863     9   8573.727     8573.956     8615.832
- 95  VT+F+G4       4267.014     27  8588.028     8589.999     8714.343
- 96  VT+F+I+G4     4266.007     28  8588.013     8590.133     8719.007
- 99  PMB+G4        4296.492     8   8608.984     8609.167     8646.411
-100  PMB+I+G4      4295.845     9   8609.691     8609.920     8651.796
-103  PMB+F+G4      4272.250     27  8598.500     8600.471     8724.815
-104  PMB+F+I+G4    4271.626     28  8599.252     8601.372     8730.246
-107  Blosum62+G4   4290.417     8   8596.834     8597.017     8634.261
-108  Blosum62+I+G4 4289.528     9   8597.055     8597.284     8639.160
-111  Blosum62+F+G4 4276.695     27  8607.391     8609.362     8733.706
-112  Blosum62+F+I+G4 4275.878     28  8607.755     8609.875     8738.749
-115  Dayhoff+G4    4313.542     8   8643.085     8643.268     8680.512
-116  Dayhoff+I+G4  4310.935     9   8639.869     8640.099     8681.974
-119  Dayhoff+F+G4  4273.453     27  8600.906     8602.878     8727.222
-120  Dayhoff+F+I+G4 4270.621     28  8597.242     8599.362     8728.235
-123  mtREV+G4      4452.789     8   8921.578     8921.762     8959.005
-124  mtREV+I+G4    4448.758     9   8915.516     8915.745     8957.621
-127  mtREV+F+G4    4266.466     27  8586.932     8588.903     8713.247
-128  mtREV+F+I+G4  4263.923     28  8583.846     8585.966     8714.839
-131  mtART+G4      4438.666     8   8893.332     8893.515     8930.759
-132  mtART+I+G4    4433.667     9   8885.334     8885.563     8927.439
-135  mtART+F+G4    4258.168     27  8570.336     8572.308     8696.652
-136  mtART+F+I+G4  4253.942     28  8563.884     8566.004     8694.877
-139  mtZOA+G4      4413.222     8   8842.444     8842.627     8879.870
-140  mtZOA+I+G4    4408.102     9   8834.205     8834.434     8876.310
-143  mtZOA+F+G4    4255.408     27  8564.815     8566.786     8691.130
-144  mtZOA+F+I+G4  4251.120     28  8558.239     8560.359     8689.233
-147  mtMet+G4      4468.619     8   8953.238     8953.421     8990.665
-148  mtMet+I+G4    4462.631     9   8943.263     8943.492     8985.368
-151  mtMet+F+G4    4277.978     27  8609.955     8611.927     8736.271
-152  mtMet+F+I+G4  4273.719     28  8603.439     8605.559     8734.432
-155  mtVer+G4      4499.986     8   9015.973     9016.156     9053.400
-156  mtVer+I+G4    4491.737     9   9001.473     9001.703     9043.579
-159  mtVer+F+G4    4308.190     27  8670.379     8672.350     8796.694
-160  mtVer+F+I+G4  4301.125     28  8658.250     8660.370     8789.243
-163  mtInv+G4      4501.408     8   9018.816     9018.999     9056.243
-164  mtInv+I+G4    4497.122     9   9012.243     9012.473     9054.349
-167  mtInv+F+G4    4257.685     27  8569.369     8571.341     8695.685
-168  mtInv+F+I+G4  4254.766     28  8565.531     8567.652     8696.525
-171  mtMAM+G4      4491.262     8   8998.525     8998.708     9035.952
-172  mtMAM+I+G4    4484.229     9   8986.458     8986.687     9028.563
-175  mtMAM+F+G4    4308.475     27  8670.949     8672.921     8797.265
-176  mtMAM+F+I+G4  4302.137     28  8660.274     8662.394     8791.268
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 72  Q.yeast+F+I+G4 4760.383     30  9580.766     9583.198     9721.154
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 75  JTTDCMut+G4   4795.768     10  9611.536     9611.816     9658.332
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 76  JTTDCMut+I+G4 4789.487     11  9600.973     9601.310     9652.449
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 79  JTTDCMut+F+G4 4777.486     29  9612.972     9615.244     9748.681
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 80  JTTDCMut+F+I+G4 4771.470     30  9602.940     9605.371     9743.328
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 83  DCMut+G4      4815.774     10  9651.549     9651.829     9698.345
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 84  DCMut+I+G4    4810.333     11  9642.665     9643.002     9694.141
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 87  DCMut+F+G4    4775.776     29  9609.552     9611.823     9745.260
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 88  DCMut+F+I+G4  4769.947     30  9599.894     9602.325     9740.282
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 91  VT+G4         4783.028     10  9586.055     9586.335     9632.851
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 92  VT+I+G4       4779.908     11  9581.816     9582.153     9633.291
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 95  VT+F+G4       4771.629     29  9601.259     9603.530     9736.967
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 96  VT+F+I+G4     4768.882     30  9597.764     9600.196     9738.152
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+ 99  PMB+G4        4804.054     10  9628.108     9628.388     9674.904
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+100  PMB+I+G4      4801.637     11  9625.275     9625.612     9676.750
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+103  PMB+F+G4      4778.450     29  9614.900     9617.172     9750.609
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+104  PMB+F+I+G4    4776.222     30  9612.445     9614.876     9752.833
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+107  Blosum62+G4   4799.131     10  9618.261     9618.542     9665.057
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+108  Blosum62+I+G4 4796.305     11  9614.610     9614.947     9666.086
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+111  Blosum62+F+G4 4784.806     29  9627.612     9629.884     9763.321
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+112  Blosum62+F+I+G4 4782.259     30  9624.519     9626.950     9764.907
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+115  Dayhoff+G4    4815.703     10  9651.406     9651.687     9698.202
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+116  Dayhoff+I+G4  4810.213     11  9642.426     9642.763     9693.902
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+119  Dayhoff+F+G4  4775.697     29  9609.395     9611.666     9745.103
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+120  Dayhoff+F+I+G4 4769.817     30  9599.634     9602.066     9740.022
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+123  mtREV+G4      4973.869     10  9967.739     9968.019     10014.535
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+124  mtREV+I+G4    4965.210     11  9952.420     9952.756     10003.895
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+127  mtREV+F+G4    4770.353     29  9598.705     9600.977     9734.414
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+128  mtREV+F+I+G4  4763.806     30  9587.612     9590.043     9728.000
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+131  mtART+G4      4943.775     10  9907.550     9907.830     9954.346
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+132  mtART+I+G4    4936.533     11  9895.066     9895.402     9946.541
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+135  mtART+F+G4    4752.459     29  9562.918     9565.189     9698.626
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+136  mtART+F+I+G4  4744.357     30  9548.714     9551.145     9689.102
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+139  mtZOA+G4      4920.530     10  9861.060     9861.341     9907.856
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+140  mtZOA+I+G4    4912.946     11  9847.893     9848.230     9899.369
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+143  mtZOA+F+G4    4754.209     29  9566.418     9568.689     9702.126
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+144  mtZOA+F+I+G4  4745.935     30  9551.870     9554.301     9692.258
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+147  mtMet+G4      4981.233     10  9982.467     9982.747     10029.263
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+148  mtMet+I+G4    4971.840     11  9965.680     9966.017     10017.156
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+151  mtMet+F+G4    4783.430     29  9624.859     9627.131     9760.568
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+152  mtMet+F+I+G4  4775.135     30  9610.270     9612.702     9750.658
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+155  mtVer+G4      5020.644     10  10061.287    10061.567    10108.083
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+156  mtVer+I+G4    5009.382     11  10040.765    10041.102    10092.240
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+159  mtVer+F+G4    4821.298     29  9700.595     9702.867     9836.303
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+160  mtVer+F+I+G4  4808.228     30  9676.457     9678.888     9816.845
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+163  mtInv+G4      5015.079     10  10050.159    10050.439    10096.955
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+164  mtInv+I+G4    5006.654     11  10035.307    10035.644    10086.783
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+167  mtInv+F+G4    4760.247     29  9578.495     9580.766     9714.203
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+168  mtInv+F+I+G4  4753.769     30  9567.537     9569.969     9707.925
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+171  mtMAM+G4      5012.493     10  10044.986    10045.266    10091.782
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+172  mtMAM+I+G4    5003.477     11  10028.953    10029.290    10080.429
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+175  mtMAM+F+G4    4816.650     29  9691.300     9693.572     9827.009
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+176  mtMAM+F+I+G4  4805.644     30  9671.288     9673.719     9811.676
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
-179  FLAVI+G4      4401.151     8   8818.302     8818.486     8855.729
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+179  FLAVI+G4      4921.129     10  9862.258     9862.538     9909.054
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
-180  FLAVI+I+G4    4392.585     9   8803.169     8803.398     8845.274
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+180  FLAVI+I+G4    4909.651     11  9841.303     9841.639     9892.778
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
-183  FLAVI+F+G4    4343.385     27  8740.771     8742.742     8867.086
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+183  FLAVI+F+G4    4859.578     29  9777.156     9779.428     9912.865
+WARNING: 32 threads for alignment length 255 will slow down analysis
 WARNING: Normalizing state frequencies so that sum of them equals to 1
-184  FLAVI+F+I+G4  4334.743     28  8725.486     8727.607     8856.480
-187  HIVb+G4       4337.534     8   8691.069     8691.252     8728.495
-188  HIVb+I+G4     4332.623     9   8683.246     8683.475     8725.351
-191  HIVb+F+G4     4307.488     27  8668.976     8670.947     8795.291
-192  HIVb+F+I+G4   4302.523     28  8661.045     8663.166     8792.039
-195  HIVw+G4       4447.382     8   8910.764     8910.947     8948.191
-196  HIVw+I+G4     4438.926     9   8895.852     8896.081     8937.957
-199  HIVw+F+G4     4389.607     27  8833.215     8835.186     8959.530
-200  HIVw+F+I+G4   4381.920     28  8819.839     8821.959     8950.833
-203  FLU+G4        4346.657     8   8709.314     8709.497     8746.741
-204  FLU+I+G4      4341.240     9   8700.481     8700.710     8742.586
-207  FLU+F+G4      4300.960     27  8655.921     8657.892     8782.236
-208  FLU+F+I+G4    4295.811     28  8647.622     8649.742     8778.616
-211  rtREV+G4      4288.723     8   8593.447     8593.630     8630.874
-212  rtREV+I+G4    4286.522     9   8591.044     8591.273     8633.149
-215  rtREV+F+G4    4259.244     27  8572.489     8574.460     8698.804
-216  rtREV+F+I+G4  4257.099     28  8570.198     8572.318     8701.192
-219  cpREV+G4      4264.235     8   8544.470     8544.653     8581.896
-220  cpREV+I+G4    4262.935     9   8543.870     8544.100     8585.975
-223  cpREV+F+G4    4247.364     27  8548.727     8550.698     8675.042
-224  cpREV+F+I+G4  4246.056     28  8548.113     8550.233     8679.106
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+184  FLAVI+F+I+G4  4846.739     30  9753.479     9755.910     9893.867
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+187  HIVb+G4       4847.221     10  9714.442     9714.722     9761.238
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+188  HIVb+I+G4     4838.442     11  9698.885     9699.221     9750.360
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+191  HIVb+F+G4     4815.656     29  9689.312     9691.583     9825.020
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+192  HIVb+F+I+G4   4806.965     30  9673.931     9676.362     9814.319
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+195  HIVw+G4       4977.561     10  9975.122     9975.402     10021.918
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+196  HIVw+I+G4     4961.731     11  9945.463     9945.799     9996.938
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+199  HIVw+F+G4     4922.673     29  9903.345     9905.617     10039.054
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+200  HIVw+F+I+G4   4907.718     30  9875.435     9877.867     10015.823
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+203  FLU+G4        4856.287     10  9732.574     9732.854     9779.370
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+204  FLU+I+G4      4845.984     11  9713.969     9714.305     9765.444
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+207  FLU+F+G4      4812.951     29  9683.903     9686.174     9819.611
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+208  FLU+F+I+G4    4803.431     30  9666.863     9669.294     9807.251
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+211  rtREV+G4      4791.371     10  9602.742     9603.022     9649.538
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+212  rtREV+I+G4    4785.918     11  9593.835     9594.172     9645.311
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+215  rtREV+F+G4    4761.112     29  9580.224     9582.496     9715.933
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+216  rtREV+F+I+G4  4755.824     30  9571.649     9574.080     9712.037
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+219  cpREV+G4      4757.639     10  9535.278     9535.558     9582.074
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+220  cpREV+I+G4    4754.045     11  9530.090     9530.427     9581.566
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+223  cpREV+F+G4    4741.076     29  9540.152     9542.424     9675.861
+WARNING: 32 threads for alignment length 255 will slow down analysis
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+224  cpREV+F+I+G4  4737.617     30  9535.233     9537.665     9675.621
 Akaike Information Criterion:           cpREV+I+G4
 Corrected Akaike Information Criterion: cpREV+I+G4
-Bayesian Information Criterion:         cpREV+G4
-Best-fit model: cpREV+G4 chosen according to BIC
+Bayesian Information Criterion:         cpREV+I+G4
+Best-fit model: cpREV+I+G4 chosen according to BIC
 
 All model information printed to results/supermatrix/supermatrix.protein.fa.model.gz
-CPU time for ModelFinder: 2.530 seconds (0h:0m:2s)
-Wall-clock time for ModelFinder: 2.550 seconds (0h:0m:2s)
-Generating 1000 samples for ultrafast bootstrap (seed: 310712)...
+CPU time for ModelFinder: 423.657 seconds (0h:7m:3s)
+Wall-clock time for ModelFinder: 42.930 seconds (0h:0m:42s)
+Generating 1000 samples for ultrafast bootstrap (seed: 413450)...
+WARNING: 32 threads for alignment length 255 will slow down analysis
 
-NOTE: 1 MB RAM (0 GB) is required!
+NOTE: 2 MB RAM (0 GB) is required!
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
 Estimate model parameters (epsilon = 0.100)
-1. Initial log-likelihood: -4264.235
-Optimal log-likelihood: -4264.235
-Gamma shape alpha: 0.255
-Parameters optimization took 1 rounds (0.008 sec)
+Thoroughly optimizing +I+G parameters from 10 start values...
+Init pinv, alpha: 0.000, 0.547 / Estimate: 0.000, 0.237 / LogL: -4757.639
+Init pinv, alpha: 0.077, 0.547 / Estimate: 0.080, 0.273 / LogL: -4756.785
+Init pinv, alpha: 0.154, 0.547 / Estimate: 0.158, 0.320 / LogL: -4755.996
+Init pinv, alpha: 0.232, 0.547 / Estimate: 0.236, 0.381 / LogL: -4755.220
+Init pinv, alpha: 0.309, 0.547 / Estimate: 0.314, 0.465 / LogL: -4754.490
+Init pinv, alpha: 0.386, 0.547 / Estimate: 0.390, 0.589 / LogL: -4753.890
+Init pinv, alpha: 0.463, 0.547 / Estimate: 0.463, 0.787 / LogL: -4753.615
+Init pinv, alpha: 0.540, 0.547 / Estimate: 0.524, 1.098 / LogL: -4753.966
+Init pinv, alpha: 0.618, 0.547 / Estimate: 0.531, 1.143 / LogL: -4754.058
+Init pinv, alpha: 0.695, 0.547 / Estimate: 0.528, 1.124 / LogL: -4754.018
+Optimal pinv,alpha: 0.463, 0.787 / LogL: -4753.615
+
+Parameters optimization took 0.226 sec
 Wrote distance file to... 
 Computing ML distances based on estimated model parameters...
-Calculating distance matrix: done in 0.00366101 secs using 99.97% CPU
-Computing ML distances took 0.003710 sec (of wall-clock time) 0.003714 sec (of CPU time)
-Setting up auxiliary I and S matrices: done in 3.97936e-05 secs using 95.49% CPU
-Constructing RapidNJ tree: done in 3.24026e-05 secs using 95.67% CPU
-Computing RapidNJ tree took 0.000122 sec (of wall-clock time) 0.000120 sec (of CPU time)
-Log-likelihood of RapidNJ tree: -4264.235
+Calculating distance matrix: done in 0.00506882 secs using 2506% CPU
+Computing ML distances took 0.014985 sec (of wall-clock time) 0.403967 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.0115662 secs using 10.94% CPU
+Constructing RapidNJ tree: done in 0.0318284 secs using 125.4% CPU
+Computing RapidNJ tree took 0.043559 sec (of wall-clock time) 0.043260 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -4753.615
 --------------------------------------------------------------------
 |             INITIALIZING CANDIDATE TREE SET                      |
 --------------------------------------------------------------------
-Generating 99 parsimony trees... 0.024 second
-Computing log-likelihood of 4 initial trees ... 0.010 seconds
-Current best score: -4264.235
+Generating 99 parsimony trees... 0.031 second
+Computing log-likelihood of 6 initial trees ... 1.552 seconds
+Current best score: -4753.615
 
-Do NNI search on 5 best initial trees
-Optimizing NNI: done in 0.00643805 secs using 99.95% CPU
-Optimizing NNI: done in 0.0146128 secs using 99.84% CPU
-Optimizing NNI: done in 0.0147135 secs using 99.97% CPU
-Optimizing NNI: done in 0.0147399 secs using 99.97% CPU
-Optimizing NNI: done in 0.0146393 secs using 99.97% CPU
-Finish initializing candidate tree set (5)
-Current best tree score: -4264.235 / CPU time: 0.106
-Number of iterations: 5
+Do NNI search on 7 best initial trees
+Optimizing NNI: done in 0.720347 secs using 1784% CPU
+Optimizing NNI: done in 0.138424 secs using 2913% CPU
+Optimizing NNI: done in 0.165715 secs using 3002% CPU
+Optimizing NNI: done in 1.47911 secs using 1114% CPU
+Optimizing NNI: done in 1.08875 secs using 1957% CPU
+Optimizing NNI: done in 0.149227 secs using 2978% CPU
+Optimizing NNI: done in 0.133209 secs using 3047% CPU
+Finish initializing candidate tree set (7)
+Current best tree score: -4753.615 / CPU time: 5.612
+Number of iterations: 7
 --------------------------------------------------------------------
 |               OPTIMIZING CANDIDATE TREE SET                      |
 --------------------------------------------------------------------
-Optimizing NNI: done in 0.0225526 secs using 99.98% CPU
-Optimizing NNI: done in 0.0146354 secs using 99.98% CPU
-Optimizing NNI: done in 0.0226541 secs using 99.98% CPU
-Optimizing NNI: done in 0.014398 secs using 99.97% CPU
-Optimizing NNI: done in 0.0222657 secs using 99.98% CPU
-Iteration 10 / LogL: -4264.247 / Time: 0h:0m:0s
-Optimizing NNI: done in 0.0233306 secs using 99.98% CPU
-Optimizing NNI: done in 0.0228337 secs using 99.99% CPU
-Optimizing NNI: done in 0.0227362 secs using 82.39% CPU
-Optimizing NNI: done in 0.0144051 secs using 99.98% CPU
-UPDATE BEST LOG-LIKELIHOOD: -4264.235
-Optimizing NNI: done in 0.0144137 secs using 99.97% CPU
-Optimizing NNI: done in 0.0230932 secs using 99.99% CPU
-Optimizing NNI: done in 0.0147727 secs using 99.98% CPU
-Optimizing NNI: done in 0.0227327 secs using 99.99% CPU
-Optimizing NNI: done in 0.014368 secs using 99.98% CPU
-Optimizing NNI: done in 0.0225869 secs using 99.98% CPU
-Iteration 20 / LogL: -4264.247 / Time: 0h:0m:0s
-Optimizing NNI: done in 0.0142816 secs using 99.98% CPU
-Optimizing NNI: done in 0.0147616 secs using 99.98% CPU
-Optimizing NNI: done in 0.0142101 secs using 99.98% CPU
-Optimizing NNI: done in 0.014813 secs using 99.98% CPU
-Optimizing NNI: done in 0.0145995 secs using 99.98% CPU
-Optimizing NNI: done in 0.0142692 secs using 99.98% CPU
-Optimizing NNI: done in 0.0233552 secs using 82.81% CPU
-Optimizing NNI: done in 0.0147354 secs using 99.98% CPU
-Optimizing NNI: done in 0.0237579 secs using 99.87% CPU
-Optimizing NNI: done in 0.0236447 secs using 99.93% CPU
-Iteration 30 / LogL: -4264.252 / Time: 0h:0m:0s (0h:0m:1s left)
-Optimizing NNI: done in 0.0236357 secs using 99.98% CPU
-Optimizing NNI: done in 0.0236755 secs using 99.99% CPU
-Optimizing NNI: done in 0.0237768 secs using 99.98% CPU
-Optimizing NNI: done in 0.0149537 secs using 99.82% CPU
-Optimizing NNI: done in 0.0230742 secs using 99.98% CPU
-Optimizing NNI: done in 0.0148502 secs using 99.98% CPU
-Optimizing NNI: done in 0.0236196 secs using 99.89% CPU
-Optimizing NNI: done in 0.0227636 secs using 99.98% CPU
-Optimizing NNI: done in 0.0145436 secs using 99.98% CPU
-Optimizing NNI: done in 0.0142512 secs using 99.96% CPU
-Iteration 40 / LogL: -4264.235 / Time: 0h:0m:0s (0h:0m:1s left)
-Optimizing NNI: done in 0.0226496 secs using 99.98% CPU
-Optimizing NNI: done in 0.0145873 secs using 99.97% CPU
-Optimizing NNI: done in 0.00613552 secs using 99.93% CPU
-Optimizing NNI: done in 0.0231338 secs using 99.98% CPU
-Optimizing NNI: done in 0.0225864 secs using 99.98% CPU
-Optimizing NNI: done in 0.0145549 secs using 99.97% CPU
-Optimizing NNI: done in 0.0226489 secs using 99.98% CPU
-Optimizing NNI: done in 0.0229997 secs using 99.98% CPU
-Optimizing NNI: done in 0.0236141 secs using 99.98% CPU
-Optimizing NNI: done in 0.0236526 secs using 99.98% CPU
-Iteration 50 / LogL: -4264.252 / Time: 0h:0m:1s (0h:0m:1s left)
-Log-likelihood cutoff on original alignment: -4275.593
-Optimizing NNI: done in 0.0239345 secs using 99.98% CPU
-Optimizing NNI: done in 0.023651 secs using 99.98% CPU
-Optimizing NNI: done in 0.0242861 secs using 99.98% CPU
-Optimizing NNI: done in 0.0152543 secs using 99.97% CPU
-Optimizing NNI: done in 0.0236462 secs using 99.98% CPU
-Optimizing NNI: done in 0.0237285 secs using 99.98% CPU
-Optimizing NNI: done in 0.015297 secs using 99.97% CPU
-Optimizing NNI: done in 0.0234602 secs using 99.98% CPU
-Optimizing NNI: done in 0.015403 secs using 99.97% CPU
-Optimizing NNI: done in 0.0238984 secs using 99.98% CPU
-Iteration 60 / LogL: -4264.251 / Time: 0h:0m:1s (0h:0m:1s left)
-Optimizing NNI: done in 0.0150708 secs using 99.97% CPU
-Optimizing NNI: done in 0.0223919 secs using 99.98% CPU
-Optimizing NNI: done in 0.0234641 secs using 99.98% CPU
-Optimizing NNI: done in 0.0150373 secs using 99.97% CPU
-Optimizing NNI: done in 0.0233175 secs using 99.98% CPU
-Optimizing NNI: done in 0.0152887 secs using 99.98% CPU
-Optimizing NNI: done in 0.0234147 secs using 99.98% CPU
-Optimizing NNI: done in 0.0234025 secs using 99.98% CPU
-Optimizing NNI: done in 0.0153002 secs using 99.97% CPU
-Optimizing NNI: done in 0.0235061 secs using 99.98% CPU
-Iteration 70 / LogL: -4264.254 / Time: 0h:0m:1s (0h:0m:0s left)
-Optimizing NNI: done in 0.00650313 secs using 99.94% CPU
-Optimizing NNI: done in 0.0238592 secs using 99.98% CPU
-Optimizing NNI: done in 0.0238583 secs using 99.98% CPU
-Optimizing NNI: done in 0.00658318 secs using 99.94% CPU
-Optimizing NNI: done in 0.0238143 secs using 99.98% CPU
-Optimizing NNI: done in 0.015256 secs using 99.86% CPU
-Optimizing NNI: done in 0.0236835 secs using 99.98% CPU
-Optimizing NNI: done in 0.0238753 secs using 99.98% CPU
-Optimizing NNI: done in 0.0152456 secs using 99.97% CPU
-Optimizing NNI: done in 0.00645531 secs using 99.93% CPU
-Iteration 80 / LogL: -4270.190 / Time: 0h:0m:1s (0h:0m:0s left)
-Optimizing NNI: done in 0.0238838 secs using 99.98% CPU
-Optimizing NNI: done in 0.0233466 secs using 99.98% CPU
-Optimizing NNI: done in 0.0151944 secs using 99.97% CPU
-Optimizing NNI: done in 0.0153577 secs using 99.97% CPU
-Optimizing NNI: done in 0.0154567 secs using 99.98% CPU
-Optimizing NNI: done in 0.0064825 secs using 99.93% CPU
-Optimizing NNI: done in 0.0240996 secs using 99.98% CPU
-Optimizing NNI: done in 0.0236116 secs using 99.98% CPU
-Optimizing NNI: done in 0.0234666 secs using 99.98% CPU
-Optimizing NNI: done in 0.0153355 secs using 99.97% CPU
-Iteration 90 / LogL: -4264.247 / Time: 0h:0m:2s (0h:0m:0s left)
-Optimizing NNI: done in 0.0235866 secs using 99.98% CPU
-Optimizing NNI: done in 0.0234947 secs using 99.98% CPU
-Optimizing NNI: done in 0.0152898 secs using 99.98% CPU
-Optimizing NNI: done in 0.0155536 secs using 99.97% CPU
-Optimizing NNI: done in 0.0152249 secs using 99.97% CPU
-Optimizing NNI: done in 0.0156091 secs using 99.97% CPU
-Optimizing NNI: done in 0.0149741 secs using 99.97% CPU
-Optimizing NNI: done in 0.0153076 secs using 99.97% CPU
-Optimizing NNI: done in 0.014986 secs using 99.97% CPU
-Optimizing NNI: done in 0.0152917 secs using 99.97% CPU
-Iteration 100 / LogL: -4264.245 / Time: 0h:0m:2s (0h:0m:0s left)
-Log-likelihood cutoff on original alignment: -4275.593
+Optimizing NNI: done in 0.135266 secs using 2953% CPU
+Optimizing NNI: done in 0.0985645 secs using 3003% CPU
+Optimizing NNI: done in 0.214924 secs using 2640% CPU
+UPDATE BEST LOG-LIKELIHOOD: -4753.615
+Iteration 10 / LogL: -4753.615 / Time: 0h:0m:6s
+Optimizing NNI: done in 0.0817527 secs using 2936% CPU
+Optimizing NNI: done in 0.755061 secs using 1910% CPU
+Optimizing NNI: done in 1.48548 secs using 1452% CPU
+Optimizing NNI: done in 1.27148 secs using 1544% CPU
+Optimizing NNI: done in 0.771219 secs using 1744% CPU
+Optimizing NNI: done in 0.0794607 secs using 2685% CPU
+Optimizing NNI: done in 0.0861665 secs using 3023% CPU
+Optimizing NNI: done in 0.123241 secs using 2993% CPU
+Optimizing NNI: done in 0.0443138 secs using 2966% CPU
+Optimizing NNI: done in 0.08832 secs using 3056% CPU
+Iteration 20 / LogL: -4753.678 / Time: 0h:0m:11s
+Optimizing NNI: done in 0.10284 secs using 3008% CPU
+Optimizing NNI: done in 0.111081 secs using 3021% CPU
+Optimizing NNI: done in 0.0957037 secs using 3059% CPU
+Optimizing NNI: done in 0.126833 secs using 3030% CPU
+Optimizing NNI: done in 0.0804382 secs using 2655% CPU
+Optimizing NNI: done in 0.105339 secs using 3015% CPU
+Optimizing NNI: done in 0.11242 secs using 3048% CPU
+Optimizing NNI: done in 0.109235 secs using 3005% CPU
+Optimizing NNI: done in 0.0791539 secs using 2993% CPU
+UPDATE BEST LOG-LIKELIHOOD: -4753.615
+Optimizing NNI: done in 0.0688421 secs using 3098% CPU
+Iteration 30 / LogL: -4753.632 / Time: 0h:0m:12s (0h:0m:30s left)
+Optimizing NNI: done in 0.0728304 secs using 3031% CPU
+Optimizing NNI: done in 0.0832651 secs using 3028% CPU
+Optimizing NNI: done in 0.0737372 secs using 3105% CPU
+Optimizing NNI: done in 0.0763942 secs using 2982% CPU
+Optimizing NNI: done in 0.108216 secs using 3027% CPU
+Optimizing NNI: done in 0.110627 secs using 3020% CPU
+Optimizing NNI: done in 0.0899857 secs using 2984% CPU
+Optimizing NNI: done in 0.105611 secs using 2898% CPU
+Optimizing NNI: done in 0.118817 secs using 3024% CPU
+Optimizing NNI: done in 0.9553 secs using 945% CPU
+Iteration 40 / LogL: -4761.550 / Time: 0h:0m:14s (0h:0m:22s left)
+Optimizing NNI: done in 0.336211 secs using 2384% CPU
+Optimizing NNI: done in 0.944855 secs using 1392% CPU
+Optimizing NNI: done in 0.411638 secs using 1397% CPU
+Optimizing NNI: done in 1.47347 secs using 1346% CPU
+Optimizing NNI: done in 2.25614 secs using 1169% CPU
+Optimizing NNI: done in 0.111458 secs using 3026% CPU
+Optimizing NNI: done in 0.0819072 secs using 3004% CPU
+Optimizing NNI: done in 1.30871 secs using 1288% CPU
+Optimizing NNI: done in 2.59779 secs using 1165% CPU
+Optimizing NNI: done in 0.0978691 secs using 3042% CPU
+Iteration 50 / LogL: -4753.643 / Time: 0h:0m:24s (0h:0m:25s left)
+Log-likelihood cutoff on original alignment: -4776.240
+Optimizing NNI: done in 0.0846922 secs using 3068% CPU
+Optimizing NNI: done in 4.27952 secs using 735.3% CPU
+Optimizing NNI: done in 1.73447 secs using 786.6% CPU
+Optimizing NNI: done in 0.341978 secs using 2777% CPU
+Optimizing NNI: done in 0.0830223 secs using 3068% CPU
+Optimizing NNI: done in 0.114455 secs using 2943% CPU
+Optimizing NNI: done in 0.0535858 secs using 3050% CPU
+Optimizing NNI: done in 0.152817 secs using 2473% CPU
+Optimizing NNI: done in 1.14794 secs using 1303% CPU
+Optimizing NNI: done in 0.354029 secs using 1637% CPU
+Iteration 60 / LogL: -4759.702 / Time: 0h:0m:33s (0h:0m:22s left)
+Optimizing NNI: done in 1.70927 secs using 1389% CPU
+Optimizing NNI: done in 2.61792 secs using 1103% CPU
+Optimizing NNI: done in 0.186399 secs using 2015% CPU
+Optimizing NNI: done in 0.739696 secs using 1632% CPU
+Optimizing NNI: done in 2.75194 secs using 967.1% CPU
+Optimizing NNI: done in 0.78255 secs using 2496% CPU
+Optimizing NNI: done in 0.131722 secs using 2975% CPU
+UPDATE BEST LOG-LIKELIHOOD: -4753.615
+Optimizing NNI: done in 0.108147 secs using 3003% CPU
+Optimizing NNI: done in 0.081633 secs using 2962% CPU
+UPDATE BEST LOG-LIKELIHOOD: -4753.615
+Optimizing NNI: done in 5.14366 secs using 689.1% CPU
+Iteration 70 / LogL: -4753.673 / Time: 0h:0m:47s (0h:0m:20s left)
+Optimizing NNI: done in 1.83514 secs using 795.2% CPU
+Optimizing NNI: done in 1.73305 secs using 825.1% CPU
+Optimizing NNI: done in 2.49018 secs using 582% CPU
+Optimizing NNI: done in 3.64304 secs using 824.8% CPU
+Optimizing NNI: done in 3.00808 secs using 997.9% CPU
+Optimizing NNI: done in 1.32291 secs using 2023% CPU
+Optimizing NNI: done in 0.0874452 secs using 3072% CPU
+Optimizing NNI: done in 0.092638 secs using 3050% CPU
+Optimizing NNI: done in 0.0809316 secs using 3018% CPU
+Optimizing NNI: done in 0.0858965 secs using 3042% CPU
+Iteration 80 / LogL: -4753.617 / Time: 0h:1m:2s (0h:0m:15s left)
+Optimizing NNI: done in 0.0696904 secs using 3009% CPU
+Optimizing NNI: done in 0.135512 secs using 2950% CPU
+Optimizing NNI: done in 0.0813792 secs using 3030% CPU
+Optimizing NNI: done in 0.0807351 secs using 3011% CPU
+Optimizing NNI: done in 0.0988241 secs using 3014% CPU
+Optimizing NNI: done in 0.0910111 secs using 2972% CPU
+Optimizing NNI: done in 0.0828082 secs using 2680% CPU
+Optimizing NNI: done in 0.0791119 secs using 3042% CPU
+Optimizing NNI: done in 0.0712579 secs using 3038% CPU
+Optimizing NNI: done in 0.0714126 secs using 3081% CPU
+Iteration 90 / LogL: -4753.624 / Time: 0h:1m:3s (0h:0m:7s left)
+Optimizing NNI: done in 0.751056 secs using 1381% CPU
+Optimizing NNI: done in 0.072715 secs using 3051% CPU
+Optimizing NNI: done in 4.53437 secs using 769.2% CPU
+Optimizing NNI: done in 1.33901 secs using 2243% CPU
+Optimizing NNI: done in 0.410689 secs using 2853% CPU
+Optimizing NNI: done in 0.0802805 secs using 3071% CPU
+Optimizing NNI: done in 0.0876853 secs using 3048% CPU
+Optimizing NNI: done in 0.0875309 secs using 2935% CPU
+Optimizing NNI: done in 0.10691 secs using 2995% CPU
+Optimizing NNI: done in 0.0810742 secs using 3040% CPU
+Iteration 100 / LogL: -4753.615 / Time: 0h:1m:11s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -4776.240
 NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 1.000
-Optimizing NNI: done in 0.00651161 secs using 99.93% CPU
-TREE SEARCH COMPLETED AFTER 101 ITERATIONS / Time: 0h:0m:2s
+Optimizing NNI: done in 0.169753 secs using 2607% CPU
+TREE SEARCH COMPLETED AFTER 101 ITERATIONS / Time: 0h:1m:11s
 
 --------------------------------------------------------------------
 |                    FINALIZING TREE SEARCH                        |
 --------------------------------------------------------------------
 Performs final model parameters optimization
 Estimate model parameters (epsilon = 0.010)
-1. Initial log-likelihood: -4264.235
-Optimal log-likelihood: -4264.235
-Gamma shape alpha: 0.255
-Parameters optimization took 1 rounds (0.010 sec)
-BEST SCORE FOUND : -4264.235
+1. Initial log-likelihood: -4753.615
+Optimal log-likelihood: -4753.615
+Proportion of invariable sites: 0.463
+Gamma shape alpha: 0.787
+Parameters optimization took 1 rounds (0.256 sec)
+BEST SCORE FOUND : -4753.615
 Creating bootstrap support values...
 Split supports printed to NEXUS file results/supermatrix/supermatrix.protein.fa.splits.nex
-Total tree length: 0.657
+Total tree length: 0.870
 
 Total number of iterations: 101
-CPU time used for tree search: 2.431 sec (0h:0m:2s)
-Wall-clock time used for tree search: 2.443 sec (0h:0m:2s)
-Total CPU time used: 2.497 sec (0h:0m:2s)
-Total wall-clock time used: 2.511 sec (0h:0m:2s)
+CPU time used for tree search: 942.632 sec (0h:15m:42s)
+Wall-clock time used for tree search: 71.376 sec (0h:1m:11s)
+Total CPU time used: 956.280 sec (0h:15m:56s)
+Total wall-clock time used: 72.023 sec (0h:1m:12s)
 
 Computing bootstrap consensus tree...
 Reading input file results/supermatrix/supermatrix.protein.fa.splits.nex...
-5 taxa and 9 splits.
+6 taxa and 13 splits.
 Consensus tree written to results/supermatrix/supermatrix.protein.fa.contree
 Reading input trees file results/supermatrix/supermatrix.protein.fa.contree
-Log-likelihood of consensus tree: -4264.235
+Log-likelihood of consensus tree: -4753.615
 
 Analysis results written to: 
   IQ-TREE report:                results/supermatrix/supermatrix.protein.fa.iqtree
@@ -376,6 +620,6 @@ Ultrafast bootstrap approximation results written to:
 
 ALISIM COMMAND
 --------------
---alisim simulated_MSA -t results/supermatrix/supermatrix.protein.fa.treefile -m "cpREV+G4{0.255214}" --length 795
+--alisim simulated_MSA -t results/supermatrix/supermatrix.protein.fa.treefile -m "cpREV+I{0.462593}+G4{0.787278}" --length 796
 
-Date and Time: Mon Oct  2 04:09:41 2023
+Date and Time: Sat Dec 16 03:42:26 2023

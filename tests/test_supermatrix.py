@@ -15,13 +15,13 @@ def test_alignment_summary_cds(run_workflow):
 def test_concatenate_alignments_protein(run_workflow):
     w = run_workflow("results/supermatrix/supermatrix.protein.fa")
     w.assert_contains(">Avrainvillea_mazei_HV02664\n")
-    w.assert_contains("------MKIFEKLIYIVLILLIINL")
+    w.assert_contains("MAPRTETHAGAGFKAGVKDYRLTYYTP")
 
 
 def test_concatenate_alignments_cds(run_workflow):
     w = run_workflow("results/supermatrix/supermatrix.cds.fa", "--config", "infer_tree_with_protein_seqs=0")
     w.assert_contains(">Avrainvillea_mazei_HV02664\n")
-    w.assert_contains("------------------ATGAAAATTTTTGAAAAACTCATTT")
+    w.assert_contains("ATGGCTCCAAGAACTGAAACACACGCAGGTGCAGGGTTTAAAG")
 
 
 def test_iqtree_protein(run_workflow):

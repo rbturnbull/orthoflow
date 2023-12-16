@@ -1,16 +1,16 @@
 
 General Characteristics
 =======================
-5	Number of taxa
-2385	Alignment length
-306	Parsimony informative sites
-306	Variable sites
-2055	Constant sites
+6	Number of taxa
+2388	Alignment length
+496	Parsimony informative sites
+496	Variable sites
+1882	Constant sites
 
 Character Frequencies
 =====================
-T	3746
-G	2296
-C	1878
-A	3864
--	141
+T	4524
+G	2766
+C	2251
+A	4643
+-	144

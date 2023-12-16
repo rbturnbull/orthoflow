@@ -1,8 +1,8 @@
-Orthogroup	KX808498-truncated.protein	KY509313-truncated.protein	KY819064-truncated-cds.protein	MH591083-truncated.protein	MH591084-truncated.protein	MH591085-truncated.protein	NC_026795-truncated.protein	Total
-OG0000000	1	2	1	0	0	1	1	6
-OG0000001	1	1	1	0	1	0	1	5
-OG0000002	1	1	1	0	1	0	1	5
-OG0000003	1	1	1	1	0	0	1	5
-OG0000004	1	1	1	1	0	0	1	5
-OG0000005	1	1	1	1	0	0	1	5
-OG0000006	2	1	1	0	0	0	1	5
+Orthogroup	KX808497-truncated.translated	KX808498-truncated.translated	KY509313-truncated.translated	KY819064-truncated-cds.translated	MH591083-truncated.translated	MH591084-truncated.translated	MH591085-truncated.translated	NC_026795-truncated.translated	Total
+OG0000000	1	1	1	1	0	1	0	1	6
+OG0000001	1	1	1	1	0	1	0	1	6
+OG0000002	1	1	1	1	1	0	0	1	6
+OG0000003	1	1	1	1	1	0	0	1	6
+OG0000004	1	1	1	1	1	0	0	1	6
+OG0000005	1	2	1	1	0	0	0	1	6
+OG0000006	1	1	1	1	0	0	0	1	5

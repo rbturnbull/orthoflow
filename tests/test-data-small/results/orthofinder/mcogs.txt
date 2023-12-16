@@ -1,1 +1,1 @@
-results/orthofinder/output/Orthogroup_Sequences/OG0000000.fa
+results/orthofinder/output/Orthogroup_Sequences/OG0000005.fa

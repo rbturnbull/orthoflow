@@ -9,8 +9,17 @@ TEST_DATA = Path(__file__).parent/"test-data"
 def test_input_csv_test_data_small():
     input_dictionary = intake_utils.create_input_dictionary(TEST_DATA_SMALL/"input_sources.csv", ignore_non_valid_files=False)
     assert isinstance(input_dictionary, intake_utils.OrthoflowInputDictionary)
-    assert len(input_dictionary) == 7
-    assert list(input_dictionary.keys()) == ['KX808498-truncated', 'KY509313-truncated', 'MH591083-truncated', 'MH591084-truncated', 'MH591085-truncated', 'NC_026795-truncated', 'KY819064-truncated-cds']
+    assert len(input_dictionary) == 8
+    assert list(input_dictionary.keys()) == [
+        'KX808498-truncated', 
+        'KY509313-truncated', 
+        'MH591083-truncated', 
+        'MH591084-truncated', 
+        'MH591085-truncated', 
+        'NC_026795-truncated', 
+        'KY819064-truncated-cds',
+        'KX808497-truncated',
+    ]
     
     for data in input_dictionary.values():
         data.translation_table == 11

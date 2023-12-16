@@ -108,16 +108,6 @@ FEATURES             Location/Qualifiers
                      /protein_id="ARQ82203.1"
                      /translation="MSGLTGERPFTDILTSIRYWVIHSITIPSLFIAGWLFISTGLAY
                      DIFGSPRPNEYFTENRQDTPLITDRLNAFEQIKTLSQ"
-     gene            complement(3532..3834)
-                     /gene="orf100"
-     CDS             complement(3532..3834)
-                     /gene="orf100"
-                     /codon_start=1
-                     /transl_table=11
-                     /product="hypothetical protein"
-                     /protein_id="ARQ82196.1"
-                     /translation="MSGLTGERPFTDILTSIRYWVIHSITIPSLFINPSLAYNFNPGL
-                     AYDIINFHQQRPFKTNKFSPKKIKISSKFRQLKHTRNRIFLDKAKSYYICDHKCLN"
 ORIGIN      
         1 gaagaaagtt cgaacatctc tgaaatgtct aaagatatct cggaagaacg tttggatata
        61 tgtctacaaa aatctctaga gatccaaaag gacgaaaagt tcacccgcac ttgcttaatt

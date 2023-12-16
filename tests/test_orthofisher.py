@@ -2,8 +2,8 @@ from pathlib import Path
 
 def test_orthofisher_input_generation(run_workflow):
     w = run_workflow("results/orthofisher/input_protein_files.tsv", expected_dir=Path(__file__).parent/"test-data")
-    w.assert_contains("results/intake/translated/KY509313.protein.fa")
-    w.assert_contains("results/intake/translated/MH591083.protein.fa")
+    w.assert_contains("results/intake/translated/KY509313.translated.fa")
+    w.assert_contains("results/intake/translated/MH591083.translated.fa")
 
 
 def test_orthofisher(run_workflow):
