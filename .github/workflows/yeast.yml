@@ -33,9 +33,10 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'poetry'
-    - run: |
-      poetry env use "${{ matrix.python-version }}"
-      poetry install
+    - name: Installation
+      run: |
+        poetry env use "${{ matrix.python-version }}"
+        poetry install
     - name: Regression test
       run: |
         poetry shell
