@@ -121,11 +121,11 @@
 <section id="data-intake-module">
 <h1>Data Intake Module<a class="headerlink" href="#data-intake-module" title="Permalink to this headline"></a></h1>
 <dl class="smk rule">
-<dt class="sig sig-object smk" id="rule-extract_cds">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">extract_cds</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L17"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-extract_cds" title="Permalink to this definition"></a></dt>
-<dd><p>Extracts CDS features from GenBank or fasta files.</p>
+<dt class="sig sig-object smk" id="rule-rename_sequences">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">rename_sequences</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L17"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-rename_sequences" title="Permalink to this definition"></a></dt>
+<dd><p>Renames the sequence IDs in the input file so that the ID includes the taxon name, the filename and that each ID is unique.</p>
 <blockquote>
-<div><p>It also adds the taxon name to the sequence ID.</p>
+<div><p>It also extracts CDS features from GenBank files if necessary.</p>
 </div></blockquote>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
@@ -168,15 +168,6 @@ It expects a number there which corresponds with the NCBI genetic codes:
 </div>
 </dd>
 </dl>
-</dd></dl>
-
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<dl class="smk rule">
-<dt class="sig sig-object smk" id="rule-get_protein_sequence">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">get_protein_sequence</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/intake.smk#L74"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-get_protein_sequence" title="Permalink to this definition"></a></dt>
-<dd><p>Gets protein Sequence from input files and copies them to intake files.</p>
 </dd></dl>
 
 <div class="line-block">
