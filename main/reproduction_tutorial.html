@@ -57,6 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-orthoflow">Running Orthoflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mini-test">Mini Test</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
@@ -178,6 +179,24 @@ wickerhamomyces_ciferrii.max.pep,Protein
 <p>The results will be saved in the <code class="docutils literal notranslate"><span class="pre">results</span></code> folder.</p>
 <p>For example, you should see a file called <code class="docutils literal notranslate"><span class="pre">results/supermatrix/supermatrix_tree_render.protein.png</span></code></p>
 <img alt="../_images/yeast24_supermatrix_tree_render.protein.png" src="../_images/yeast24_supermatrix_tree_render.protein.png" />
+</section>
+<section id="mini-test">
+<h2>Mini Test<a class="headerlink" href="#mini-test" title="Permalink to this headline"></a></h2>
+<p>The repository includes a mini version of the dataset that can be used for testing. It includes a handful of genes from these files:</p>
+<ul class="simple">
+<li><p>ambrosiozyma_kashinagacola.max.pep</p></li>
+<li><p>ambrosiozyma_monospora.max.pep</p></li>
+<li><p>ascoidea_asiatica.max.pep</p></li>
+<li><p>ascoidea_rubescens.max.pep</p></li>
+<li><p>candida_auris.max.pep</p></li>
+</ul>
+<p>To run this mini test, do the following from the root of the repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>tests/test-data-yeast/
+orthoflow<span class="w"> </span>--files<span class="w"> </span>yeast5.csv<span class="w"> </span>--config<span class="w"> </span><span class="nv">infer_tree_with_cds_seqs</span><span class="o">=</span>False
+</pre></div>
+</div>
+<p>This test is run as part of the continuous integration process. See the <code class="docutils literal notranslate"><span class="pre">.github/workflows/yeast.yml</span></code> file for details.</p>
+<p>The current status of this test is shown here: <a class="reference external" href="https://github.com/rbturnbull/orthoflow/actions/workflows/yeast.yml"><img alt="yeast badge" src="https://github.com/rbturnbull/orthoflow/actions/workflows/yeast.yml/badge.svg" /></a></p>
 </section>
 </section>
 
