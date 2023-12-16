@@ -29,15 +29,17 @@ rule orthofinder:
         "bench/orthofinder.benchmark.txt"
     shell:
         """
-        mkdir -p results/orthofinder &> {log}
+        # Set up input directory
+        mkdir -p results/orthofinder
         [[ -d {params.input_dir} ]] && rm -rf {params.input_dir}
-        mkdir -p {params.input_dir} &>> {log}
+        mkdir -p {params.input_dir}
         for FILE in {input} ; do
             cp $FILE {params.input_dir}/
         done
 
-        orthofinder -h
         orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X 2>> {log}
+
+        # Move outputs and clean up
         mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output} 2>> {log}
         rm -rf {params.input_dir}
         """
