@@ -1,0 +1,53 @@
+# Based on https://github.com/actions/starter-workflows/blob/main/ci/python-package.yml
+name: yeast
+
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.11]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install poetry
+      run: pipx install poetry
+    - name: Cache
+      id: cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-${{ matrix.python-version }}-mamba
+        path: |
+          /home/runner/mamba-cache
+    - name: Install Mamba
+      run: |
+          if [ ! -f /home/runner/mamba-cache/mamba/etc/profile.d/conda.sh ] ; then
+            wget -O Mambaforge.sh  "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+            bash Mambaforge.sh -b -p "/home/runner/mamba-cache/mamba"
+          fi
+          source "/home/runner/mamba-cache/mamba/etc/profile.d/conda.sh"
+          mamba --version
+    - name: Install dependencies for Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'poetry'
+    - run: |
+      poetry env use "${{ matrix.python-version }}"
+      poetry install
+    - name: Regression test
+      run: |
+        poetry shell
+        export ORTHOFLOW_CONDA_PREFIX=/home/runner/mamba-cache/orthoflow
+        cd tests/test-data-yeast
+        orthoflow --files yeast5.csv --config infer_tree_with_cds_seqs=False
+    - name: Check report
+      run: |
+        if [ -f results/results/report.protein.html ]; then
+          echo "Report exists."
+        else
+          echo "Report does not exist."
+          exit 1
+        fi
+
