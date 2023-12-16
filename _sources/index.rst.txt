@@ -22,8 +22,6 @@ Welcome to Orthoflow's documentation!
    main/reproduction_tutorial
    main/input
    main/workflow
-   .. main/workflow_dev
-   .. main/rules
    main/contributing
    main/citation
 
