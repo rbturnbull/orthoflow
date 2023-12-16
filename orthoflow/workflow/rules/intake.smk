@@ -14,16 +14,16 @@ rule input_sources_csv:
         input_dictionary.write_csv(output[0])
 
 
-rule extract_cds:
+rule rename_sequences:
     """
-    Extracts CDS features from GenBank or fasta files.
-
-    It also adds the taxon name to the sequence ID.
+    Renames the sequence IDs in the input file so that the ID includes the taxon name, the filename and that each ID is unique.
+    
+    It also extracts CDS features from GenBank files if necessary.
     """
     input:
         file=lambda wildcards: input_dictionary[wildcards.stub].file.resolve(),
     output:
-        "results/intake/cds/{stub}.cds.fa",
+        "results/intake/renamed/{stub}.renamed.fa",
     # bibs:
     #     "../bibs/biopython.bib"
     conda:
@@ -32,10 +32,10 @@ rule extract_cds:
         data_type=lambda wildcards: input_dictionary[wildcards.stub].data_type,
         taxon_string=lambda wildcards: input_dictionary[wildcards.stub].taxon_string,
     log:
-        LOG_DIR / "intake/extract_cds/{stub}.log"
+        LOG_DIR / "intake/renamed/{stub}.log"
     shell:
         """
-        python {SCRIPT_DIR}/extract_cds.py --debug {input.file} {output} --data-type {params.data_type} --taxon-string  {params.taxon_string} --warnings-dir {WARNINGS_DIR} &> {log}
+        python {SCRIPT_DIR}/rename_sequences.py --debug {input.file} {output} --data-type {params.data_type} --taxon-string  {params.taxon_string} --warnings-dir {WARNINGS_DIR} &> {log}
         """
 
 
@@ -51,10 +51,10 @@ rule translate:
 
     It also copies the translated files to the protein intake foler.
     """
-    output:
-        "results/intake/translated/{stub}.protein.fa",
     input:
-        rules.extract_cds.output
+        rules.rename_sequences.output
+    output:
+        "results/intake/translated/{stub}.translated.fa",
     # bibs:
     #     "../bibs/biokit.bib"
     conda:
@@ -65,22 +65,9 @@ rule translate:
         LOG_DIR / "intake/translate/{stub}.log"
     shell:
         """
-        if [ ! -d "results/intake/translated" ]; then mkdir -p results/intake/translated; fi
-        if [ ! -d "results/intake/protein" ]; then mkdir -p results/intake/protein; fi
         biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} &> {log}
-        cp {output} results/intake/protein
         """
 
-rule get_protein_sequence:
-    """
-    Gets protein Sequence from input files and copies them to intake files.
-    """
-    input:
-        file=lambda wildcards: input_dictionary[wildcards.stub].file.resolve(),
-    output:
-        "results/intake/protein/{stub}.protein.fa",
-    shell:
-        "cp {input} {output}"
 
 def protein_files(*args):
     check_configurations(input_dictionary, WARNINGS_DIR, ORTHOLOG_MIN_SEQS_DEFAULT, config)
@@ -89,8 +76,8 @@ def protein_files(*args):
 
     for key, value in input_dictionary.items():
         if value.data_type == 'Protein':
-            list_of_protein_sequences.append(f"results/intake/protein/{key}.protein.fa")
+            list_of_protein_sequences.append(f"results/intake/renamed/{key}.renamed.fa")
         else:
-            list_of_protein_sequences.append(f"results/intake/translated/{key}.protein.fa")
+            list_of_protein_sequences.append(f"results/intake/translated/{key}.translated.fa")
             
     return list_of_protein_sequences

@@ -6,11 +6,11 @@ import typer
 from Bio import SeqIO
 
 logging.basicConfig(level="INFO")
-logger = logging.getLogger("extract_cds")
+logger = logging.getLogger("rename_sequences")
 
 
 
-def extract_cds(
+def rename_sequences(
     infile: Path = typer.Argument(..., file_okay=True, dir_okay=False, exists=True),
     outfile: Path = typer.Argument(..., file_okay=True, dir_okay=False, exists=False),
     data_type: str = typer.Option(...),
@@ -25,9 +25,7 @@ def extract_cds(
 
     #Open warning file to read faulty sequences
     warning_file = warnings_dir/"non_valid_objects.txt"
-    wf = open(warning_file, "r")
-    wf_text = wf.read()
-
+    wf_text = warning_file.read_text()
 
     with outfile.open("w") as fout:
         def write_seq(sequence, counter, gene = ""):
@@ -77,4 +75,4 @@ def extract_cds(
 
 
 if __name__ == "__main__":
-    typer.run(extract_cds)
+    typer.run(rename_sequences)

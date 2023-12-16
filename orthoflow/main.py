@@ -28,7 +28,7 @@ def run(
     files: List[Path] = typer.Option(None, help="The input source files"),
     target: Optional[Path] = typer.Option(None, help="The target file to create"),
     directory: Optional[Path] = typer.Option(Path("."), file_okay=False, exists=True, dir_okay=True),
-    cores: Optional[int] = typer.Option(1, "--cores", "-c", help="Number of cores to request for the workflow"),
+    cores: Optional[int] = typer.Option(None, "--cores", "-c", help="Number of cores to request for the workflow. If not given then it will use all available available CPU cores."),
     conda_prefix:Path = typer.Option(
         None, 
         envvar="ORTHOFLOW_CONDA_PREFIX", 
@@ -67,7 +67,7 @@ def run(
     args = [
         f"--snakefile={snakefile}",
         "--use-conda",
-        f"--cores={cores}",
+        f"--cores={cores}" if cores else "--cores",
         f"--directory={directory}",
         f"--conda-prefix={conda_prefix}",
         f"--rerun-triggers=mtime", # hack for issue #69

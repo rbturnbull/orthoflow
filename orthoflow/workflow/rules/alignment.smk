@@ -37,7 +37,6 @@ rule mafft:
         {{ mafft --thread {threads} --auto {input} > {output} ; }} &> {log}
         """
 
-
 rule get_cds_seq:
     """
     This rule creates an unaligned mfasta file of the corresponding nucleotide sequences.
@@ -45,7 +44,7 @@ rule get_cds_seq:
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
     """
     input:
-        cds_dir=Path(rules.extract_cds.output[0]).parent,
+        cds_dir=Path(rules.rename_sequences.output[0]).parent,
         alignment=rules.mafft.output
     output:
         "results/alignment/seqs_cds/{og}.cds.seqs.fa"
@@ -218,7 +217,6 @@ rule report_taxa_presence:
         use_cds=config.get('infer_tree_with_cds_seqs', INFER_TREE_WITH_CDS_SEQS_DEFAULT),
     shell:
         """
-
         touch logs/warnings/missing_taxa.txt
 
         cut -d "," -f4 results/intake/input_sources.csv | tail -n +2 | sort | uniq | sort | cut -d '-' -f1 > results/alignment/taxa_in_input.txt
@@ -249,11 +247,12 @@ rule report_taxa_presence:
                 if [ "$no_cds_alignment_taxa" ]; then
                     if ! [ -s "logs/warnings/missing_taxa.txt" ]; then echo "Taxon/taxa is/are missing from phylogenetic tree.\n" >> logs/warnings/missing_taxa.txt; fi
                     echo "\nThe Following taxon/taxa is/are missing from CDS alignment after filtering:" >> logs/warnings/missing_taxa.txt
-                    for item in $no_cds_alignment_taxa; do echo $item >> logs/warnings/missing_taxa.txt; done
+                    for item in $no_cds_alignment_taxa; do 
+                        echo $item >> logs/warnings/missing_taxa.txt; 
+                    done
                 fi  
             fi
         fi
-
         """
 
             

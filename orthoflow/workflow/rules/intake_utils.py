@@ -188,16 +188,20 @@ class OrthoflowInputDictionary(dict):
 
         # Write warnings to warning files
         if warnings_dir:
-            non_valid_files_warning_file = warnings_dir/"non_valid_objects.txt"
-            non_valid_files_warning_file.write_text("\n".join(str(item) for item in list_of_faulty_lists))
-            default_trans_table_warning_file = warnings_dir/"missing_translation_table.txt"
-            default_trans_table_warning_file.write_text("\n".join(str(item) for item in list_of_default_trans_tables))
-            suffix_warning_file = warnings_dir/"warning_suffix.txt"
-            suffix_warning_file.write_text("\n".join(str(item) for item in list_of_unknown_suffix))
+            if list_of_faulty_lists:
+                non_valid_files_warning_file = warnings_dir/"non_valid_objects.txt"
+                non_valid_files_warning_file.write_text("\n".join(str(item) for item in list_of_faulty_lists))
 
-        if faulty_object_present:
-            if not ignore_non_valid_files:
-                raise ValueError(f"File(s) and/or sequence(s) not valid, check the warning folder to see the faulty objects")
+            if list_of_default_trans_tables:
+                default_trans_table_warning_file = warnings_dir/"missing_translation_table.txt"
+                default_trans_table_warning_file.write_text("\n".join(str(item) for item in list_of_default_trans_tables))
+
+            if list_of_unknown_suffix:
+                suffix_warning_file = warnings_dir/"warning_suffix.txt"
+                suffix_warning_file.write_text("\n".join(str(item) for item in list_of_unknown_suffix))
+
+        if faulty_object_present and not ignore_non_valid_files:
+            raise ValueError(f"File(s) and/or sequence(s) not valid, check the warning folder to see the faulty objects")
             
 
     def write_csv(self, csv):

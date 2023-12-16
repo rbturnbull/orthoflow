@@ -23,15 +23,23 @@ rule orthofinder:
     # bibs:
     #     "../bibs/orthofinder.ris",
     params:
-        input_dir="results/intake/protein",
+        input_dir="results/orthofinder/input/",
     threads: workflow.cores
     benchmark:
         "bench/orthofinder.benchmark.txt"
     shell:
         """
         mkdir -p results/orthofinder &> {log}
+        [[ -d {params.input_dir} ]] && rm -rf {params.input_dir}
+        mkdir -p {params.input_dir} &>> {log}
+        for FILE in {input} ; do
+            cp $FILE {params.input_dir}/
+        done
+
+        orthofinder -h
         orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X 2>> {log}
         mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output} 2>> {log}
+        rm -rf {params.input_dir}
         """
 
 
@@ -147,6 +155,7 @@ def list_snap_og_dirs(wildcards):
     for multi_copy_og_path in multi_copy_ogs:
         og = Path(multi_copy_og_path).name.split(".")[0]
         snap_og_dirs.append(f"results/orthofinder/orthosnap/{og}")
+
     return snap_og_dirs
 
 
@@ -164,6 +173,7 @@ rule write_snap_ogs_list:
         "bench/write_snap_ogs_list.benchmark.txt"
     shell:
         """
+        touch {output}
         for SNAPOG_DIR in {input} ; do 
             echo ${{SNAPOG_DIR}}
             find ${{SNAPOG_DIR}} -name '*.fa' >> {output}

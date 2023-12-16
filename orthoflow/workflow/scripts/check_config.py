@@ -39,5 +39,5 @@ def check_configurations(input_dictionary, WARNINGS_DIR, ORTHOLOG_MIN_SEQS_DEFAU
     # write the found warnings to the warning file
     if len(configuration_warnings) > 0:
         configuration_warnings.insert(0, "Configuration file has raised warnings due to uncommon configurations.\n")
-    config_warning_file = WARNINGS_DIR/"configuration_warnings.txt"
-    config_warning_file.write_text("\n".join(str(item) for item in configuration_warnings))
+        config_warning_file = WARNINGS_DIR/"configuration_warnings.txt"
+        config_warning_file.write_text("\n".join(str(item) for item in configuration_warnings))
