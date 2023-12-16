@@ -23,9 +23,9 @@ def rename_sequences(
     
     counter = 0
 
-    #Open warning file to read faulty sequences
+    # Get faulty sequences from warnings file
     warning_file = warnings_dir/"non_valid_objects.txt"
-    wf_text = warning_file.read_text()
+    wf_text = warning_file.read_text() if warning_file.exists() else ""
 
     with outfile.open("w") as fout:
         def write_seq(sequence, counter, gene = ""):
