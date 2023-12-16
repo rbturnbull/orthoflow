@@ -39,9 +39,9 @@ jobs:
         poetry install
     - name: Regression test
       run: |
-        poetry shell
         export ORTHOFLOW_CONDA_PREFIX=/home/runner/mamba-cache/orthoflow
         cd tests/test-data-yeast
+        source $(poetry env info --path)/bin/activate
         orthoflow --files yeast5.csv --config infer_tree_with_cds_seqs=False
     - name: Check report
       run: |
