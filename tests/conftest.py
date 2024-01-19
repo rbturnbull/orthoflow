@@ -72,8 +72,20 @@ class Workflow:
             for expected_string in strings:
                 if expected_string not in text:
                     raise SnakemakePytestException(
-                        f"The file '{generated_path}' does not contain the string '{expected_string}':\n" + 
-                        text
+                        f"The file '{generated_path}' does not contain the string '{expected_string}':\n{text}"
+                    )
+
+    def assert_not_contains(self, strings:Union[str, List[str]], *, expected_files: Optional[TargetsType] = None,):
+        if isinstance(strings, str):
+            strings = [strings]
+        
+        for expected_file in self.get_expected_paths(expected_files):
+            generated_path = self.work_dir / expected_file
+            text = generated_path.read_text()
+            for expected_string in strings:
+                if expected_string in text:
+                    raise SnakemakePytestException(
+                        f"The file '{generated_path}' contains the string '{expected_string}':\n{text}"
                     )
 
     def assert_line_count(self, expected_count=None, min=None, max=None, expected_files: Optional[TargetsType] = None) -> bool:

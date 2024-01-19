@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 from pathlib import Path
 from typing import List, Union, Dict
@@ -6,10 +7,13 @@ from Bio import GenBank, SeqIO
 import json
 import yaml
 from rich.console import Console
-console = Console()
 import toml
 from phytest.bio.sequence import Sequence
 from dataclasses import dataclass, field
+
+console = Console()
+error_console = Console(stderr=True, style="bold red")
+
 
 if "config" not in locals():
     config = {}
@@ -106,11 +110,11 @@ class OrthoflowInput():
             sequences = Sequence.parse(self.file, "genbank")
             for sequence in sequences:
                 try:
-                    sequence.assert_valid_alphabet()
+                    sequence.assert_valid_alphabet(alphabet='ATCGNatcgn-')
                     sequence.assert_length(min=1)
-                except:
+                except Exception as err:
                     self.valid_file = False
-                    self.faulty_list.append(f"Sequence in file {self.file} {self.taxon_string} is not valid")
+                    self.faulty_list.append(f"Sequence in file '{self.file}' for taxon '{self.taxon_string}' is not valid: {err}")
 
             #check whether file contains annotated genes 
             count = 0
@@ -120,7 +124,7 @@ class OrthoflowInput():
                         count += 1
             if count == 0:
                 self.valid_file = False
-                self.faulty_list.append(f"File {self.file} {self.taxon_string} does not contain any sequences")
+                self.faulty_list.append(f"File '{self.file}' for taxon '{self.taxon_string}' does not contain any sequences")
         
         if not self.is_genbank():
             sequences = Sequence.parse(self.file, "fasta")
@@ -128,20 +132,20 @@ class OrthoflowInput():
             for sequence in sequences:
                 try:
                     if self.data_type == "Protein":
-                        sequence.assert_valid_alphabet(alphabet = "ACDEFGHIKLMNPQRSTVWYX*")
+                        sequence.assert_valid_alphabet(alphabet="ACDEFGHIKLMNPQRSTVWYX*")
                     else:
-                        sequence.assert_valid_alphabet()
+                        sequence.assert_valid_alphabet(alphabet='ATCGNatcgn-')
                     sequence.assert_length(min=1)
-                except:
-                    self.faulty_list.append(f"Sequence {sequence.id} in file {self.file} {self.taxon_string} is not valid")
+                except Exception as err:
+                    self.faulty_list.append(f"Sequence '{sequence.id}' in file '{self.file}' for taxon '{self.taxon_string}' is not valid: {err}")
                 count += 1
             if count == 0:
                 self.valid_file = False
-                self.faulty_list.append(f"File {self.file} {self.taxon_string} does not contain any sequences")
+                self.faulty_list.append(f"File '{self.file}' for taxon '{self.taxon_string}' does not contain any sequences")
 
 
 class OrthoflowInputDictionary(dict):
-    def __init__(self, sources:List[OrthoflowInput], ignore_non_valid_files, warnings_dir=None):
+    def __init__(self, sources:List[OrthoflowInput], ignore_non_valid_files:bool, warnings_dir=None):
 
         faulty_object_present = False
 
@@ -201,7 +205,12 @@ class OrthoflowInputDictionary(dict):
                 suffix_warning_file.write_text("\n".join(str(item) for item in list_of_unknown_suffix))
 
         if faulty_object_present and not ignore_non_valid_files:
-            raise ValueError(f"File(s) and/or sequence(s) not valid, check the warning folder to see the faulty objects")
+            error_console.print("----------------")
+            error_console.print("File(s) and/or sequence(s) not valid, check the warning folder to see the faulty objects")
+            if warnings_dir:
+                error_console.print(f"See: {non_valid_files_warning_file}")
+            error_console.print("----------------")                
+            sys.exit(1)
             
 
     def write_csv(self, csv):
@@ -226,8 +235,8 @@ def read_input_source_dictionary(data:Dict, file_list, directory:Path=None):
     # Open file if name is not empty
     try:
         file = Path(data["file"])
-    except:
-        raise ValueError(f"File name is empty, please check your input file:\n{data}")
+    except Exception as err:
+        raise ValueError(f"File name is empty, please check your input file:\n{data}\n{err}")
     
     # Make relative to directory if given
     if directory:
@@ -258,8 +267,8 @@ def read_input_source_json(input_source:Path, file_list) -> List[OrthoflowInput]
     with open(input_source) as json_file:
         try:
             data = json.load(json_file)
-        except:
-            raise ValueError(f"{input_source} is invalid and cannot be read, please check the file.")
+        except Exception as err:
+            raise ValueError(f"{input_source} is invalid and cannot be read, please check the file:\n{err}")
         if not data:
             raise ValueError(f"{input_source} is empty, please check the file.")
         return read_input_source_dictionary(data, file_list, directory=input_source.parent)
@@ -270,8 +279,8 @@ def read_input_source_yaml(input_source:Path, file_list) -> List[OrthoflowInput]
     try:
         data = yaml.safe_load(input_source.read_text())
         data != {}
-    except:
-        raise ValueError(f"{input_source} is invalid and cannot be read, please check the file.")
+    except Exception as err:
+        raise ValueError(f"{input_source} is invalid and cannot be read, please check the file:\n{err}")
     if not data:
         raise ValueError(f"{input_source} is empty, please check the file.")
     return read_input_source_dictionary(data, file_list, directory=input_source.parent)
@@ -281,8 +290,8 @@ def read_input_source_toml(input_source:Path, file_list) -> List[OrthoflowInput]
     input_source = Path(input_source)
     try:
         data = toml.loads(input_source.read_text())
-    except:
-        raise ValueError(f"{input_source} is invalid and cannot be read, please check the file.")
+    except Exception as err:
+        raise ValueError(f"{input_source} is invalid and cannot be read, please check the file:\n{err}")
     if not data:
         raise ValueError(f"{input_source} is empty, please check the file.")
     return read_input_source_dictionary(data, file_list, directory=input_source.parent)
@@ -299,8 +308,8 @@ def read_input_source_pandas(input_csv:Path, file_list) -> List[OrthoflowInput]:
         if 'translation_table' not in df.columns:
             df["translation_table"] = TRANSLATION_TABLE_DEFAULT
         df.translation_table = df.translation_table.astype(int)
-    except:
-        raise IOError(f"File '{input_csv} is empty or not valid, please check the file and its formatting.")
+    except Exception as err:
+        raise IOError(f"File '{input_csv} is empty or not valid, please check the file and its formatting:\n{err}")
     
     if not "file" in df:
         raise ValueError(f"File '{input_csv}' does not contain the right attribute")
@@ -358,7 +367,7 @@ def read_input_source(input_source:Union[Path, str, List], file_list) -> List[Or
     return [OrthoflowInput(file=input_source, suffix_unknown=True)]
 
 
-def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files, warnings_dir=None) -> OrthoflowInputDictionary:
+def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files:bool, warnings_dir=None) -> OrthoflowInputDictionary:
     if len(str(input_source)) == 0:
         raise FileNotFoundError("No input source given, please check the config file.")
     input_list = read_input_source(input_source, [])

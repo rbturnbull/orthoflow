@@ -35,8 +35,7 @@ def test_ignore_faulty_file(run_workflow):
 
 def test_ignore_faulty_sequence(run_workflow):
     w = run_workflow("results/intake/renamed/codons.renamed.fa", "--files", "input_sources.csv", "--config", "ignore_non_valid_files=1", expected_dir=invalid_expected_dir)
-    with pytest.raises(Exception) as err:
-        w.assert_contains("emptysequence")
+    w.assert_not_contains("emptysequence")
 
 def test_protein_input_error(run_workflow):
     with pytest.raises(CalledProcessError):
