@@ -6,7 +6,7 @@ rescale = 1
 All-to-all alignment.
     0 / 5 (by thread   0) tbfast-pair (aa) Version 7.490
 alg=L, model=BLOSUM62, 2.00, -0.10, +0.10, noshift, amax=0.0
-1 thread(s)
+4 thread(s)
 
 outputhat23=16
 Loading 'hat3.seed' ... 
@@ -20,15 +20,15 @@ Constructing a UPGMA tree ...
 done.
 
 Progressive alignment ... 
-STEP     1 /4 (thread    0) STEP     2 /4 (thread    0) STEP     3 /4 (thread    0) STEP     4 /4 (thread    0) 
+STEP     1 /4 (thread    0) STEP     3 /4 (thread    1) STEP     2 /4 (thread    2) STEP     4 /4 (thread    3) 
 done.
 tbfast (aa) Version 7.490
 alg=A, model=BLOSUM62, 1.53, -0.00, -0.00, noshift, amax=0.0
-1 thread(s)
+4 thread(s)
 
 minimumweight = 0.000010
 autosubalignment = 0.000000
-nthread = 1
+nthread = 4
 randomseed = 0
 blosum 62 / kimura 200
 poffset = 0
@@ -40,12 +40,12 @@ rescale = 1
 
     0 / 5
 Segment   1/  1    1- 115
-001-0000-0 (thread    1) identical     001-0001-1 (thread    1) identical     001-0001-1 (thread    1) better     001-0002-0 (thread    1) identical     001-0003-1 (thread    1) identical     001-0003-1 (thread    1) better     001-0004-0 (thread    1) identical     001-0004-0 (thread    1) worse      001-0005-1 (thread    1) identical     001-0006-1 (thread    1) identical     002-0000-0 (thread    1) identical     002-0001-1 (thread    1) identical     002-0002-0 (thread    1) identical     002-0002-0 (thread    1) better     002-0003-1 (thread    1) identical     002-0004-0 (thread    1) identical     002-0004-0 (thread    1) worse      002-0005-1 (thread    1) identical     002-0006-1 (thread    1) identical     003-0000-0 (thread    1) identical     003-0001-1 (thread    1) identical     003-0002-0 (thread    1) identical     003-0003-1 (thread    1) identical     003-0004-0 (thread    1) identical     003-0004-0 (thread    1) worse      003-0005-1 (thread    1) identical     003-0006-1 (thread    1) identical     
+001-0000-1 (thread    3) identical     001-0000-1 (thread    3) better     001-0001-0 (thread    3) identical     001-0001-0 (thread    3) worse      001-0002-1 (thread    2) identical     001-0001-0 (thread    4) identical     001-0003-0 (thread    4) better     001-0004-1 (thread    2) identical     001-0005-1 (thread    3) identical     001-0006-0 (thread    1) identical     002-0000-0 (thread    4) identical     002-0001-0 (thread    2) identical     002-0002-1 (thread    3) identical     002-0002-1 (thread    1) identical     002-0004-0 (thread    4) identical     002-0004-0 (thread    4) worse      002-0005-1 (thread    3) identical     002-0006-1 (thread    2) identical     
 Converged.
 done
 dvtditr (aa) Version 7.490
 alg=A, model=BLOSUM62, 1.53, -0.00, -0.00, noshift, amax=0.0
-1 thread(s)
+4 thread(s)
 
 
 Strategy:

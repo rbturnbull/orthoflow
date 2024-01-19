@@ -1,3 +1,12 @@
 File(s) and/or sequence(s) not valid IGNORED
-Sequence in file 'alphabet.gb' for taxon 'Caulerpa_cliftonii' is not valid: Invalid pattern found in 'KX808498.1'.
+File 'invalid.gb' for taxon 'invalidgenbank' does not contain any sequences IGNORED
+
+Sequence in file 'alphabet.gb' for taxon 'alphabetgenbank' is not valid: Invalid pattern found in 'KX808498.1'.
 Character 'U' at position 2 found which is not in alphabet 'ATCGNatcgn-'. IGNORED
+
+File 'invalid.fa' for taxon 'invalidfasta' does not contain any sequences IGNORED
+
+Sequence 'emptysequence' in file 'codons.fa' for taxon 'codonsfasta' is not valid: Sequence length of 'emptysequence' (0) is less than the minimum 1. IGNORED
+
+Sequence 'fakesequence' in file 'fasta_alphabet.fa' for taxon 'alphabetfasta' is not valid: Invalid pattern found in 'fakesequence'.
+Character 'h' at position 2 found which is not in alphabet 'ATCGNatcgn-'. IGNORED

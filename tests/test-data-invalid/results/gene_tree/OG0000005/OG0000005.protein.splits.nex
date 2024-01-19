@@ -12,20 +12,21 @@ TAXLABELS
 END; [Taxa]
 
 BEGIN Splits;
-DIMENSIONS ntax=5 nsplits=11;
+DIMENSIONS ntax=5 nsplits=12;
 FORMAT labels=no weights=yes confidences=no intervals=no;
 MATRIX
 	100	 2,
 	100	 5,
-	99	 2 5,
+	98	 2 5,
 	100	 3,
+	12	 1 4,
 	100	 4,
-	89	 3 4,
 	100	 1,
-	10	 1 4,
-	1	 1 3,
-	1	 1 5,
+	87	 3 4,
+	2	 1 3,
 	0	 1 2,
+	2	 1 5,
+	0	 3 5,
 ;
 END; [Splits]
 
