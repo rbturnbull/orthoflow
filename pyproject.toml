@@ -31,6 +31,7 @@ joblib = ">=1.2.0"
 toml = ">=0.10.2"
 phytest = ">=1.4.1"
 rich = ">=13.3.3"
+pulp = "2.7.0"
 
 [tool.poetry.dev-dependencies]
 Sphinx = "^4.4.0"
