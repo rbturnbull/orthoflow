@@ -1,10 +1,1 @@
 stub,file,data_type,taxon_string,translation_table
-KX808498-truncated,KX808498-truncated.gb,GenBank,Caulerpa_cliftonii_HV03798,11
-KY509313-truncated,KY509313-truncated.gb,GenBank,Avrainvillea_mazei_HV02664,11
-KY819064-truncated-cds,KY819064-truncated.cds.fafafafa,CDS,Chlorodesmis_fastigiata_HV03865,11
-codons,codons.fa,CDS,codonsfasta,11
-fasta_alphabet,fasta_alphabet.fa,CDS,alphabetfasta,1
-NC_026795-truncated,NC_026795-truncated.txt,GenBank,Bryopsis_plumosa_WEST4718,11
-MH591083-truncated,MH591083-truncated.gb,GenBank,Flabellia_petiolata_HV01202,11
-MH591084-truncated,MH591084-truncated.gb,GenBank,Flabellia_petiolata_HV01202,11
-MH591085-truncated,MH591085-truncated.gb,GenBank,Flabellia_petiolata_HV01202,11

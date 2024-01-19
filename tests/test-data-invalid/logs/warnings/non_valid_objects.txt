@@ -1,10 +1,3 @@
-File(s) and/or sequence(s) not valid and is/are ignored
-File invalid.gb invalidgenbank does not contain any sequences and is/are ignored
-
-Sequence in file alphabet.gb alphabetgenbank is not valid and is/are ignored
-
-File invalid.fa invalidfasta does not contain any sequences and is/are ignored
-
-Sequence emptysequence in file codons.fa codonsfasta is not valid and is/are ignored
-
-Sequence fakesequence in file fasta_alphabet.fa alphabetfasta is not valid and is/are ignored
+File(s) and/or sequence(s) not valid IGNORED
+Sequence in file 'alphabet.gb' for taxon 'Caulerpa_cliftonii' is not valid: Invalid pattern found in 'KX808498.1'.
+Character 'U' at position 2 found which is not in alphabet 'ATCGNatcgn-'. IGNORED

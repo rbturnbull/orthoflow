@@ -65,8 +65,8 @@ def rename_sequences(
         else:
             # Assume that non-genbank files are Fasta format
             for seq in SeqIO.parse(infile, "fasta"):
-                #Only add sequence of not present in warning file
-                if not f"{seq.id} in file {infile.name}" in wf_text:
+                # Only add sequence of not present in warning file
+                if not f"'{seq.id}' in file '{infile.name}'" in wf_text:
                     write_seq(seq.seq, counter=counter, gene=seq.id)
                 counter += 1
 

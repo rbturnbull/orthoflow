@@ -153,7 +153,7 @@ class OrthoflowInputDictionary(dict):
         # Extra test for warning message if ignore_non_valid_files=True
         extra_text = ""
         if ignore_non_valid_files:
-            extra_text = " and is/are ignored"
+            extra_text = " IGNORED"
         
         # Create lists for warning messages per category
         list_of_faulty_lists = []
