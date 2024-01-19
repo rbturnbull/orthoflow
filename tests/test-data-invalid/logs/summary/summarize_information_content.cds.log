@@ -1,1 +1,16 @@
-Processing... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+/Users/rturnbull/Library/Caches/orthoflow/conda/2f8bfaf6ff59f1a9c63487777759da40_/lib/python3.9/site-packages/scipy/stats/_stats_py.py:4529: SpearmanRConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  warnings.warn(SpearmanRConstantInputWarning())
+/Users/rturnbull/Library/Caches/orthoflow/conda/2f8bfaf6ff59f1a9c63487777759da40_/lib/python3.9/site-packages/scipy/stats/_stats_py.py:4529: SpearmanRConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  warnings.warn(SpearmanRConstantInputWarning())
+/Users/rturnbull/Library/Caches/orthoflow/conda/2f8bfaf6ff59f1a9c63487777759da40_/lib/python3.9/site-packages/scipy/stats/_stats_py.py:4529: SpearmanRConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  warnings.warn(SpearmanRConstantInputWarning())
+/Users/rturnbull/Library/Caches/orthoflow/conda/2f8bfaf6ff59f1a9c63487777759da40_/lib/python3.9/site-packages/scipy/stats/_stats_py.py:4529: SpearmanRConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  warnings.warn(SpearmanRConstantInputWarning())
+/Users/rturnbull/Library/Caches/orthoflow/conda/2f8bfaf6ff59f1a9c63487777759da40_/lib/python3.9/site-packages/scipy/stats/_stats_py.py:4529: SpearmanRConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  warnings.warn(SpearmanRConstantInputWarning())
+/Users/rturnbull/Library/Caches/orthoflow/conda/2f8bfaf6ff59f1a9c63487777759da40_/lib/python3.9/site-packages/scipy/stats/_stats_py.py:4529: SpearmanRConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  warnings.warn(SpearmanRConstantInputWarning())
+/Users/rturnbull/Library/Caches/orthoflow/conda/2f8bfaf6ff59f1a9c63487777759da40_/lib/python3.9/site-packages/scipy/stats/_stats_py.py:4529: SpearmanRConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  warnings.warn(SpearmanRConstantInputWarning())
+/Users/rturnbull/Library/Caches/orthoflow/conda/2f8bfaf6ff59f1a9c63487777759da40_/lib/python3.9/site-packages/scipy/stats/_stats_py.py:4529: SpearmanRConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  warnings.warn(SpearmanRConstantInputWarning())

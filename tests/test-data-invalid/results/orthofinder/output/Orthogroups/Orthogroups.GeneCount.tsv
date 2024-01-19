@@ -1,4 +1,4 @@
-Orthogroup	KX808498-truncated.protein	KY509313-truncated.protein	KY819064-truncated-cds.protein	MH591083-truncated.protein	MH591084-truncated.protein	MH591085-truncated.protein	NC_026795-truncated.protein	codons.protein	fasta_alphabet.protein	Total
+Orthogroup	KX808498-truncated.translated	KY509313-truncated.translated	KY819064-truncated-cds.translated	MH591083-truncated.translated	MH591084-truncated.translated	MH591085-truncated.translated	NC_026795-truncated.translated	codons.translated	fasta_alphabet.translated	Total
 OG0000000	1	2	1	0	0	1	1	0	0	6
 OG0000001	1	1	1	0	1	0	1	0	0	5
 OG0000002	1	1	1	0	1	0	1	0	0	5

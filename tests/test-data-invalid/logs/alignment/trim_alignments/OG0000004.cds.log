@@ -6,7 +6,6 @@ Determining smart-gap threshold...
 -------------
 Input file: results/alignment/threaded_cds/OG0000004.cds.alignment.fa (format: fasta)
 Output file: results/alignment/trimmed_cds/OG0000004.trimmed.cds.alignment.fa (format: fasta)
-Sequence type: Nucleotides
 Gaps threshold: 1
 Trimming mode: smart-gap
 Create complementary output: False
@@ -17,7 +16,7 @@ Create log file: False
 | Processing Alignment |
 ------------------------
 
-  0%|          | 0/108 [00:00<?, ?it/s]100%|██████████| 108/108 [00:00<00:00, 57786.05it/s]
+  0%|          | 0/108 [00:00<?, ?it/s]100%|██████████| 108/108 [00:00<00:00, 71618.16it/s]
 
 
 ------------------------
@@ -36,5 +35,5 @@ Number of sites trimmed: 0
 
 Percentage of alignment trimmed: 0.0%
 
-Execution time: 0.026s
+Execution time: 0.024s
 

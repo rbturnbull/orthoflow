@@ -6,7 +6,6 @@ Determining smart-gap threshold...
 -------------
 Input file: results/alignment/taxon_only/OG0000002.taxon_only.protein.alignment.fa (format: fasta)
 Output file: results/alignment/trimmed_protein/OG0000002.trimmed.protein.alignment.fa (format: fasta)
-Sequence type: Protein
 Gaps threshold: 0.8
 Trimming mode: smart-gap
 Create complementary output: False
@@ -17,7 +16,7 @@ Create log file: False
 | Processing Alignment |
 ------------------------
 
-  0%|          | 0/331 [00:00<?, ?it/s]100%|██████████| 331/331 [00:00<00:00, 66015.91it/s]
+  0%|          | 0/331 [00:00<?, ?it/s]100%|██████████| 331/331 [00:00<00:00, 42693.73it/s]
 
 
 ------------------------
@@ -36,5 +35,5 @@ Number of sites trimmed: 11
 
 Percentage of alignment trimmed: 3.323%
 
-Execution time: 0.027s
+Execution time: 0.067s
 

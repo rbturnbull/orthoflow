@@ -1,4 +1,4 @@
-Orthogroup	KX808498-truncated.protein	KY509313-truncated.protein	KY819064-truncated-cds.protein	MH591083-truncated.protein	MH591084-truncated.protein	MH591085-truncated.protein	NC_026795-truncated.protein	codons.protein	fasta_alphabet.protein
+Orthogroup	KX808498-truncated.translated	KY509313-truncated.translated	KY819064-truncated-cds.translated	MH591083-truncated.translated	MH591084-truncated.translated	MH591085-truncated.translated	NC_026795-truncated.translated	codons.translated	fasta_alphabet.translated
 OG0000007	Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|0|rps9								
 OG0000008	Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|1|rpoC1								
 OG0000009	Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|2|rpoC2								
