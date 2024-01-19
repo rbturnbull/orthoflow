@@ -54,7 +54,7 @@ class OrthoflowInput():
         self.data_type = self.data_type or "Fasta"
         self.validate_taxon_string()
         self.validate_translation_table()
-        self.validate_sequence()
+        self.validate_sequences()
 
     def stub(self):
         suffix = self.file.suffix
@@ -104,7 +104,7 @@ class OrthoflowInput():
                 "See values here: https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes"
             )
         
-    def validate_sequence(self):
+    def validate_sequences(self):
         if self.is_genbank():
             #check whether file contains valid nucleotides only
             sequences = Sequence.parse(self.file, "genbank")
@@ -135,6 +135,7 @@ class OrthoflowInput():
                         sequence.assert_valid_alphabet(alphabet="ACDEFGHIKLMNPQRSTVWYX*")
                     else:
                         sequence.assert_valid_alphabet(alphabet='ATCGNatcgn-')
+                    
                     sequence.assert_length(min=1)
                 except Exception as err:
                     self.faulty_list.append(f"Sequence '{sequence.id}' in file '{self.file}' for taxon '{self.taxon_string}' is not valid: {err}")
