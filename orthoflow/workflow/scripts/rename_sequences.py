@@ -34,7 +34,7 @@ def rename_sequences(
                 seq_id += f"|{gene}"
 
             print(f">{seq_id}", file=fout)
-            print(sequence, file=fout)
+            print(sequence.upper(), file=fout)
 
         if data_type.lower() == "genbank":
             for seq in SeqIO.parse(infile, "genbank"):
