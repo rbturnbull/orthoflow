@@ -14,6 +14,9 @@ from dataclasses import dataclass, field
 console = Console()
 error_console = Console(stderr=True, style="bold red")
 
+DNA_ALPHABET = 'ATCGNatcgn-'
+PROTEIN_ALPHABET = "ACDEFGHIKLMNPQRSTVWYXacdefghiklmnpqrstvwyx*"
+
 
 if "config" not in locals():
     config = {}
@@ -110,7 +113,7 @@ class OrthoflowInput():
             sequences = Sequence.parse(self.file, "genbank")
             for sequence in sequences:
                 try:
-                    sequence.assert_valid_alphabet(alphabet='ATCGNatcgn-')
+                    sequence.assert_valid_alphabet(alphabet=DNA_ALPHABET)
                     sequence.assert_length(min=1)
                 except Exception as err:
                     self.valid_file = False
@@ -132,9 +135,9 @@ class OrthoflowInput():
             for sequence in sequences:
                 try:
                     if self.data_type == "Protein":
-                        sequence.assert_valid_alphabet(alphabet="ACDEFGHIKLMNPQRSTVWYX*")
+                        sequence.assert_valid_alphabet(alphabet=PROTEIN_ALPHABET)
                     else:
-                        sequence.assert_valid_alphabet(alphabet='ATCGNatcgn-')
+                        sequence.assert_valid_alphabet(alphabet=DNA_ALPHABET)
                     
                     sequence.assert_length(min=1)
                 except Exception as err:
@@ -193,16 +196,23 @@ class OrthoflowInputDictionary(dict):
 
         # Write warnings to warning files
         if warnings_dir:
+            non_valid_files_warning_file = warnings_dir/"non_valid_objects.txt"
+            default_trans_table_warning_file = warnings_dir/"missing_translation_table.txt"
+            suffix_warning_file = warnings_dir/"warning_suffix.txt"
+
+            # Delete warning files if they already exist from a previous run
+            non_valid_files_warning_file.unlink(missing_ok=True)
+            default_trans_table_warning_file.unlink(missing_ok=True)
+            suffix_warning_file.unlink(missing_ok=True)
+
+            # Write to warnings file if necessary
             if list_of_faulty_lists:
-                non_valid_files_warning_file = warnings_dir/"non_valid_objects.txt"
                 non_valid_files_warning_file.write_text("\n".join(str(item) for item in list_of_faulty_lists))
 
             if list_of_default_trans_tables:
-                default_trans_table_warning_file = warnings_dir/"missing_translation_table.txt"
                 default_trans_table_warning_file.write_text("\n".join(str(item) for item in list_of_default_trans_tables))
 
             if list_of_unknown_suffix:
-                suffix_warning_file = warnings_dir/"warning_suffix.txt"
                 suffix_warning_file.write_text("\n".join(str(item) for item in list_of_unknown_suffix))
 
         if faulty_object_present and not ignore_non_valid_files:

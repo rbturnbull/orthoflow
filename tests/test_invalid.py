@@ -44,6 +44,14 @@ def test_lowercase_ok(run_workflow):
     w.assert_contains("AGAGAGAGAGAGGAATGC")
 
 
+def test_protein_lowercase_ok(run_workflow):
+    w = run_workflow("results/intake/renamed/protein_intake_truncated_lowercase.renamed.fa", "--files", "protein_intake_truncated_lowercase.yml", expected_dir=invalid_expected_dir)
+    w.assert_not_contains("mklflifyfltflflpiiiviynvsqnsfdyfleraldpvaictyqtsislsliacifnt")
+    w.assert_contains("MKLFLIFYFLTFLFLPIIIVIYNVSQNSFDYFLERALDPVAICTYQTSISLSLIACIFNT")
+    w.assert_not_contains("iililvneiieqlkkltlfeaselvkqieqifgvetsnissvpiaiepsidqqietkqdt")
+    w.assert_contains("IILILVNEIIEQLKKLTLFEASELVKQIEQIFGVETSNISSVPIAIEPSIDQQIETKQDT")
+
+
 def test_ignore_faulty_sequence(run_workflow):
     w = run_workflow("results/intake/renamed/codons.renamed.fa", "--files", "input_sources.csv", "--config", "ignore_non_valid_files=1", expected_dir=invalid_expected_dir)
     w.assert_not_contains("emptysequence")
