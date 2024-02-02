@@ -6,7 +6,7 @@ This tutorial shows you how to run the 'One Thousand Plant Transcriptomes' (1KP)
 
 This is a dataset of more than 1000 plant transcriptomes for which phylogenomic analysis is presented in:
 
-    One Thousand Plant Transcriptomes Initiative. `One thousand plant transcriptomes and the phylogenomics of green plants.` *Nature* 574, 679–685 (2019). https://doi.org/10.1038/s41586-019-1693-2
+    One Thousand Plant Transcriptomes Initiative. 'One thousand plant transcriptomes and the phylogenomics of green plants.' *Nature* 574, 679–685 (2019). https://doi.org/10.1038/s41586-019-1693-2
 
 Downloading and Input File Creation
 ===================================
@@ -17,7 +17,7 @@ You can download the list of species from CyVerse:
 
     wget https://de.cyverse.org/anon-files/iplant/home/shared/commons_repo/curated/oneKP_capstone_2019/transcript_assemblies/onekp_SRA.csv
 
-That should download a file called `onekp_SRA.csv` to your current directory. The first few lines of the file should look like this:
+That should download a file called ``onekp_SRA.csv`` to your current directory. The first few lines of the file should look like this:
 
 .. code-block:: csv
 
@@ -46,7 +46,7 @@ To download the transcriptomes and create an input file for Orthoflow, you can u
         wget $URL && echo "$FILENAME,$SPECIES,Protein" >> input_sources_1kp.csv
     done
 
-This will download the available files to the current working directory and it will create an input file for Orthoflow called `input_sources_1kp.csv`. 
+This will download the available files to the current working directory and it will create an input file for Orthoflow called ``input_sources_1kp.csv``. 
 The first few lines of the file should look like this:
 
 .. code-block:: csv
@@ -60,7 +60,7 @@ The first few lines of the file should look like this:
     AEPI-SOAPdenovo-Trans-translated.tar.bz2,Linum_leonii,Protein
     AFLV-SOAPdenovo-Trans-translated.tar.bz2,Xerophyllum_asphodeloides,Protein
 
-We are downloading the protein sequences for the transcriptomes, so we set the `data_type` column to `Protein`.
+We are downloading the protein sequences for the transcriptomes, so we set the ``data_type`` column to ``Protein``.
 
 You can now run Orthoflow with this input file.
 
@@ -75,7 +75,7 @@ Now, let's set up the configuration file for Orthoflow. We only need to set the 
     infer_tree_with_cds_seqs: False # We are using protein sequences
     supermatrix: False  # We will only infer a tree using the supertree (ASTRAL) method
 
-Save this file to `config_1kp.yaml`.
+Save this file to ``config_1kp.yaml``.
 
 
 Running Orthoflow
