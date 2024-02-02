@@ -20,6 +20,7 @@ Welcome to Orthoflow's documentation!
    main/beginner_tutorial
    main/advanced_tutorial
    main/reproduction_tutorial
+   main/1kp_tutorial
    main/input
    main/workflow
    main/contributing
