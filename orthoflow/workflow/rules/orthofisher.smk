@@ -17,10 +17,11 @@ rule orthofisher_input_generation:
         LOG_DIR / "orthofisher/orthofisher_input_generation.log",
     shell:
         """
+        echo "Running orthofisher_input_generation" |& tee {log}
         for FILE in {params.hmm_list}; do
-        if [ -s "$FILE" ]; then
-        echo "$FILE" >> {output.hmm} ; |& tee {log}
-        fi
+            if [ -s "$FILE" ]; then
+                echo "$FILE" >> {output.hmm} |& tee -a {log}
+            fi
         done
         {{ echo {input} | tr " " "\n" > {output.tsv} ; }} |& tee -a {log}
         """
