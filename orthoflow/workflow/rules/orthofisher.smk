@@ -19,10 +19,10 @@ rule orthofisher_input_generation:
         """
         for FILE in {params.hmm_list}; do
         if [ -s "$FILE" ]; then
-        echo "$FILE" >> {output.hmm} ; &> {log}
+        echo "$FILE" >> {output.hmm} ; |& tee {log}
         fi
         done
-        {{ echo {input} | tr " " "\n" > {output.tsv} ; }} 2>> {log}
+        {{ echo {input} | tr " " "\n" > {output.tsv} ; }} |& tee -a {log}
         """
 
 
@@ -43,7 +43,7 @@ checkpoint orthofisher:
     #     "../bibs/orthofisher.nbib",
     shell:
         """
-        orthofisher -m {input.hmm} -f {input.tsv} -o {output} &> {log}
+        orthofisher -m {input.hmm} -f {input.tsv} -o {output} |& tee {log}
         """
 
 
@@ -72,15 +72,15 @@ checkpoint min_seq_filter_orthofisher:
         LOG_DIR / "orthofisher/min_seq_filter_orthofisher.log"
     shell:
         """
-        mkdir -p {output} &> {log}
+        mkdir -p {output} |& tee {log}
         for i in {input}; do
             nseq=$(grep ">" $i | wc -l)
 
             if [[ $nseq -ge {params.min_seqs} ]]; then
                 og=$(basename $i | sed 's/\..*//g')
                 path={output}/$og.fa
-                echo "Copying $i to $path and editing IDs" 2>> {log}
-                {{ cat $i | cut -f1,2,3,4 -d'|' > $path ; }} 2>> {log}
+                echo "Copying $i to $path and editing IDs" |& tee -a {log}
+                {{ cat $i | cut -f1,2,3,4 -d'|' > $path ; }} |& tee -a {log}
             fi
         done
         """

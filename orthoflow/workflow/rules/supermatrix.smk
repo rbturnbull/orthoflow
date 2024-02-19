@@ -17,7 +17,7 @@ rule concatenate_alignments:
     log:
         LOG_DIR / "supermatrix/supermatrix.{alignment_type}.log"
     shell:
-        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{wildcards.alignment_type} &> {log}"
+        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{wildcards.alignment_type} |& tee {log}"
 
 
 rule supermatrix_alignment_summary:
@@ -38,7 +38,7 @@ rule supermatrix_alignment_summary:
     log:
         LOG_DIR / "supermatrix/alignment_summary.{alignment_type}.log"
     shell:
-        "{{ biokit alignment_summary {input} > {output} ; }} &> {log}"
+        "{{ biokit alignment_summary {input} > {output} ; }} |& tee {log}"
 
 
 supermatrix_outgroup = config.get("supermatrix_outgroup", SUPERMATRIX_OUTGROUP_DEFAULT)
@@ -69,7 +69,7 @@ rule supermatrix_iqtree:
         model_string=config.get("model_string", MODEL_STRING_DEFAULT),
         supermatrix_outgroup_string=f"-o {supermatrix_outgroup}" if supermatrix_outgroup else "",
     shell:
-        "iqtree2 -s {input} {params.bootstrap_string} {params.model_string} {params.supermatrix_outgroup_string} -nt {threads} -redo &> {log}"
+        "iqtree2 -s {input} {params.bootstrap_string} {params.model_string} {params.supermatrix_outgroup_string} -nt {threads} -redo |& tee {log}"
 
 
 rule supermatrix_ascii:
@@ -87,7 +87,7 @@ rule supermatrix_ascii:
     log:
         LOG_DIR / "supermatrix/print_ascii_tree.{alignment_type}.log"
     shell:
-        "{{ phykit print_tree {input} > {output} ; }} &> {log}"
+        "{{ phykit print_tree {input} > {output} ; }} |& tee {log}"
 
 
 rule supermatrix_tree_render:
@@ -106,7 +106,7 @@ rule supermatrix_tree_render:
     log:
         LOG_DIR / "supermatrix/render_tree.{alignment_type}.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} |& tee {log}"
 
 
 rule supermatrix_consensus_tree_render:
@@ -125,6 +125,6 @@ rule supermatrix_consensus_tree_render:
     log:
         LOG_DIR / "supermatrix/render_tree.{alignment_type}.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} |& tee {log}"
 
 

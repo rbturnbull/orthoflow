@@ -26,5 +26,5 @@ rule summarize_information_content:
             {output.model_plot_html} \
             {output.model_plot_image} \
             {output.state_frequencies_plot_html} \
-            {output.state_frequencies_plot_image} &> {log}
+            {output.state_frequencies_plot_image} |& tee {log}
         """

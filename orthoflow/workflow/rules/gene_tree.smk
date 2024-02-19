@@ -25,8 +25,8 @@ rule gene_tree_iqtree:
         model_string=config.get("model_string", MODEL_STRING_DEFAULT),
     shell:
         """
-        mkdir -p results/gene_tree/{wildcards.og} &> {log}
-        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -nt {threads} -mset mrbayes -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{wildcards.alignment_type} -redo 2>> {log}
+        mkdir -p results/gene_tree/{wildcards.og} |& tee {log}
+        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -nt {threads} -mset mrbayes -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{wildcards.alignment_type} -redo |& tee -a {log}
         """
 
 
@@ -45,7 +45,7 @@ rule gene_tree_ascii:
     log:
         LOG_DIR / "gene_tree/print_ascii_tree-{og}.{alignment_type}.log"
     shell:
-        "{{ phykit print_tree {input} > {output} ; }} &> {log}"
+        "{{ phykit print_tree {input} > {output} ; }} |& tee {log}"
 
 
 rule gene_tree_render:
@@ -64,7 +64,7 @@ rule gene_tree_render:
     log:
         LOG_DIR / "gene_tree/gene_tree_render-{og}.{alignment_type}.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} |& tee {log}"
 
 
 rule gene_tree_consensus_render:
@@ -83,4 +83,4 @@ rule gene_tree_consensus_render:
     log:
         LOG_DIR / "gene_tree/gene_tree_consensus_render-{og}.{alignment_type}.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} |& tee {log}"

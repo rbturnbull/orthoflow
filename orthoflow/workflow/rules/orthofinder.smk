@@ -37,10 +37,10 @@ rule orthofinder:
             cp $FILE {params.input_dir}/
         done
 
-        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X 2>> {log}
+        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X |& tee -a {log}
 
         # Move outputs and clean up
-        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output} 2>> {log}
+        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output} |& tee -a {log}
         rm -rf {params.input_dir}
         """
 
@@ -70,7 +70,7 @@ checkpoint orthogroup_classification:
             --mcogs {output.mcogs} \
             --scogs {output.scogs} \
             --min-seqs {params.min_seqs} \
-            --min-taxa {params.min_taxa} &> {log}
+            --min-taxa {params.min_taxa} |& tee {log}
         """
 
 
@@ -129,7 +129,7 @@ rule orthofinder_report_components:
     benchmark:
         "bench/orthofinder_report_components.benchmark.txt"
     shell:
-        "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output} &> {log}"
+        "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output} |& tee {log}"
 
 
 def list_orthofinder_mcogs(wildcards):
@@ -208,7 +208,7 @@ checkpoint orthofinder_all:
         "bench/orthofinder_all.benchmark.txt"
     shell:
         """
-        mkdir -p {output} &> {log}
+        mkdir -p {output} |& tee {log}
         for LIST in {input}; do
             for i in $(cat $LIST); do
                 nseq=$(grep ">" $i | wc -l)
@@ -216,8 +216,8 @@ checkpoint orthofinder_all:
                 if [[ $nseq -ge {params.min_seqs} ]]; then
                     og=$(basename $i)
                     path={output}/$og
-                    echo "Symlinking $(pwd)/$i to $path" 2>> {log}
-                    ln -s ../../../$i $path 2>> {log}
+                    echo "Symlinking $(pwd)/$i to $path" |& tee -a {log}
+                    ln -s ../../../$i $path |& tee -a {log}
                 fi
             done
         done
