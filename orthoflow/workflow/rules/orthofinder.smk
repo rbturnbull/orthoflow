@@ -97,13 +97,19 @@ rule orthosnap:
         "bench/orthosnap.{og}.benchmark.txt"
     shell:
         """
-        {{ mafft {input} > {output.alignment} ; }} &> {log}
-        {{ fasttree {output.alignment} > {output.tree} ; }} 2>> {log}
-        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy} 2>> {log}
+        echo "Running mafft on {input}" |& tee {log}
+        {{ mafft {input} > {output.alignment} ; }} |& tee -a {log}
+
+        echo "Running fasttree on {output.alignment}" |& tee -a {log}
+        {{ fasttree {output.alignment} > {output.tree} ; }} |& tee -a {log}
+
+        echo "Running orthosnap on {output.alignment} and {output.tree}" |& tee -a {log}
+        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy} |& tee -a {log}
         
-        mkdir -p {output.snap_ogs} 2>> {log}
+        echo "Moving files to {output.snap_ogs}" |& tee -a {log}
+        mkdir -p {output.snap_ogs}
         for file in $(find results/orthofinder/tmp -name '{wildcards.og}.aln.orthosnap.*.fa') ; do
-            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g') 2>> {log}
+            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g')
         done
         """
 
