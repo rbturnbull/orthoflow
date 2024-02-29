@@ -37,13 +37,37 @@ To download the transcriptomes and create an input file for Orthoflow, you can u
 
 .. code-block:: bash
 
+    mkdir -p downloads
+    mkdir -p proteins
     echo "file,taxon_string,data_type" > input_sources_1kp.csv
     for DATA in $(tail -n +3 onekp_SRA.csv | sed 's/ /_/g'); do
         ID=$(echo $DATA | cut -d, -f1)
+        echo $ID
+
         SPECIES=$(echo $DATA | cut -d, -f3 )
-        FILENAME=${ID}-SOAPdenovo-Trans-translated.tar.bz2
-        URL=https://de.cyverse.org/anon-files/iplant/home/shared/commons_repo/curated/oneKP_capstone_2019/transcript_assemblies/${ID}-${SPECIES}/$FILENAME
-        wget $URL && echo "$FILENAME,$SPECIES,Protein" >> input_sources_1kp.csv
+        ARCHIVE_NAME=${ID}-SOAPdenovo-Trans-translated.tar.bz2
+        DOWNLOAD=downloads/$ARCHIVE_NAME
+        URL=https://de.cyverse.org/anon-files/iplant/home/shared/commons_repo/curated/oneKP_capstone_2019/transcript_assemblies/${ID}-${SPECIES}/$ARCHIVE_NAME
+        PROTEIN=proteins/$ID.prots.fasta
+
+        # Download if necessary
+        [[ -f $DOWNLOAD ]] || echo $URL
+
+        if [ -f $DOWNLOAD ] ; then
+            # Untar archive
+            TMP_DIR=tmp-$ID
+            mkdir -p $TMP_DIR
+            tar xjC $TMP_DIR -f $DOWNLOAD
+
+            # Extract the protein file
+            mv $TMP_DIR/*.prots.out  $PROTEIN
+
+            # Clean up the archive data directory
+            rm -rf $TMP_DIR
+            
+            # Save to input file
+            echo "$PROTEIN,$SPECIES,Protein" >> input_sources_1kp.csv
+        fi
     done
 
 This will download the available files to the current working directory and it will create an input file for Orthoflow called ``input_sources_1kp.csv``. 
@@ -52,15 +76,16 @@ The first few lines of the file should look like this:
 .. code-block:: csv
 
     file,taxon_string,data_type
-    AALA-SOAPdenovo-Trans-translated.tar.bz2,Meliosma_cuneifolia,Protein
-    ABCD-SOAPdenovo-Trans-translated.tar.bz2,Racomitrium_elongatum,Protein
-    ABEH-SOAPdenovo-Trans-translated.tar.bz2,Heliotropium_greggii,Protein
-    ABSS-SOAPdenovo-Trans-translated.tar.bz2,Sassafras_albidum,Protein
-    ACWS-SOAPdenovo-Trans-translated.tar.bz2,Agathis_macrophylla,Protein
-    AEPI-SOAPdenovo-Trans-translated.tar.bz2,Linum_leonii,Protein
-    AFLV-SOAPdenovo-Trans-translated.tar.bz2,Xerophyllum_asphodeloides,Protein
+    file,taxon_string,data_type
+    proteins/AALA.prots.fasta,Meliosma_cuneifolia,Protein
+    proteins/ABCD.prots.fasta,Racomitrium_elongatum,Protein
+    proteins/ABEH.prots.fasta,Heliotropium_greggii,Protein
+    proteins/ABSS.prots.fasta,Sassafras_albidum,Protein
+    proteins/ACWS.prots.fasta,Agathis_macrophylla,Protein
+    proteins/AEPI.prots.fasta,Linum_leonii,Protein
+    proteins/AFLV.prots.fasta,Xerophyllum_asphodeloides,Protein
 
-We are downloading the protein sequences for the transcriptomes, so we set the ``data_type`` column to ``Protein``.
+We are using the protein sequences for the transcriptomes, so we set the ``data_type`` column to ``Protein``.
 
 You can now run Orthoflow with this input file.
 
