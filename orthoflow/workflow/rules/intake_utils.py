@@ -1,3 +1,4 @@
+import re
 import sys
 import pandas as pd
 from pathlib import Path
@@ -10,6 +11,7 @@ from rich.console import Console
 import toml
 from phytest.bio.sequence import Sequence
 from dataclasses import dataclass, field
+import bz2, gzip
 
 console = Console()
 error_console = Console(stderr=True, style="bold red")
@@ -24,6 +26,20 @@ if "config" not in locals():
 if "TRANSLATION_TABLE_DEFAULT" not in locals():
     TRANSLATION_TABLE_DEFAULT = 1
 
+
+def orthoflow_open(file, mode="", *args, **kwargs):
+    file = Path(file)
+    suffix = file.suffix.lower()
+    if suffix == ".bz2":
+        mode = mode or "rt"
+        return bz2.open(file, mode=mode, *args, **kwargs)
+    if suffix == ".gz":
+        mode = mode or "rt"
+        return gzip.open(file, mode=mode, *args, **kwargs)
+    if mode:
+        kwargs['mode'] = mode
+    return open(file, *args, **kwargs)
+    
 
 @dataclass
 class OrthoflowInput():
@@ -76,7 +92,8 @@ class OrthoflowInput():
             else:
                 self.taxon_string = self.stub()
         
-        self.taxon_string = self.taxon_string.replace(" ", "_")
+        # Substitution invalid characters with underscore
+        self.taxon_string = re.sub(r"[\(\)\s]","_",self.taxon_string)
         
     def validate_translation_table(self):
         # Get the translation table from the CDS qualifiers and check that they are all the same
@@ -108,44 +125,42 @@ class OrthoflowInput():
             )
         
     def validate_sequences(self):
-        if self.is_genbank():
-            #check whether file contains valid nucleotides only
-            sequences = Sequence.parse(self.file, "genbank")
-            for sequence in sequences:
-                try:
-                    sequence.assert_valid_alphabet(alphabet=DNA_ALPHABET)
-                    sequence.assert_length(min=1)
-                except Exception as err:
-                    self.valid_file = False
-                    self.faulty_list.append(f"Sequence in file '{self.file}' for taxon '{self.taxon_string}' is not valid: {err}")
-
-            #check whether file contains annotated genes 
-            count = 0
-            for seq in SeqIO.parse(self.file, "genbank"):
-                for feat in seq.features:
-                    if feat.type == "CDS":
-                        count += 1
-            if count == 0:
-                self.valid_file = False
-                self.faulty_list.append(f"File '{self.file}' for taxon '{self.taxon_string}' does not contain any sequences")
-        
-        if not self.is_genbank():
-            sequences = Sequence.parse(self.file, "fasta")
-            count = 0
-            for sequence in sequences:
-                try:
-                    if self.data_type == "Protein":
-                        sequence.assert_valid_alphabet(alphabet=PROTEIN_ALPHABET)
-                    else:
+        with orthoflow_open(self.file) as fp:
+            if self.is_genbank():
+                #check whether file contains valid nucleotides only
+                sequences = Sequence.parse(fp, "genbank")
+                for sequence in sequences:
+                    try:
                         sequence.assert_valid_alphabet(alphabet=DNA_ALPHABET)
-                    
-                    sequence.assert_length(min=1)
-                except Exception as err:
-                    self.faulty_list.append(f"Sequence '{sequence.id}' in file '{self.file}' for taxon '{self.taxon_string}' is not valid: {err}")
-                count += 1
-            if count == 0:
-                self.valid_file = False
-                self.faulty_list.append(f"File '{self.file}' for taxon '{self.taxon_string}' does not contain any sequences")
+                        sequence.assert_length(min=1)
+                    except Exception as err:
+                        self.valid_file = False
+                        self.faulty_list.append(f"Sequence in file '{self.file}' for taxon '{self.taxon_string}' is not valid: {err}")
+
+                #check whether file contains annotated genes 
+                count = 0
+                for seq in SeqIO.parse(fp, "genbank"):
+                    for feat in seq.features:
+                        if feat.type == "CDS":
+                            count += 1
+                if count == 0:
+                    self.valid_file = False
+                    self.faulty_list.append(f"File '{self.file}' for taxon '{self.taxon_string}' does not contain any sequences")
+            
+            if not self.is_genbank():
+                sequences = Sequence.parse(fp, "fasta")
+                count = 0
+                for sequence in sequences:
+                    try:
+                        alphabet = PROTEIN_ALPHABET if self.data_type == "Protein" else DNA_ALPHABET
+                        sequence.assert_valid_alphabet(alphabet=alphabet)                    
+                        sequence.assert_length(min=1)
+                    except Exception as err:
+                        self.faulty_list.append(f"Sequence '{sequence.id}' in file '{self.file}' for taxon '{self.taxon_string}' is not valid: {err}")
+                    count += 1
+                if count == 0:
+                    self.valid_file = False
+                    self.faulty_list.append(f"File '{self.file}' for taxon '{self.taxon_string}' does not contain any sequences")
 
 
 class OrthoflowInputDictionary(dict):
