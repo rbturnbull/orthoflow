@@ -42,6 +42,8 @@ rule gene_tree_ascii:
         ENV_DIR / "phykit.yaml"
     # bibs:
     #     "../bibs/phykit.bib",
+    threads: 
+        1
     log:
         LOG_DIR / "gene_tree/print_ascii_tree-{og}.{alignment_type}.log"
     shell:
@@ -61,6 +63,8 @@ rule gene_tree_render:
         ENV_DIR / "toytree.yaml"
     # bibs:
     #     "../bibs/toytree.bib",
+    threads: 
+        1
     log:
         LOG_DIR / "gene_tree/gene_tree_render-{og}.{alignment_type}.log"
     shell:
@@ -80,6 +84,8 @@ rule gene_tree_consensus_render:
         ENV_DIR / "toytree.yaml"
     # bibs:
     #     "../bibs/toytree.bib",
+    threads: 
+        1
     log:
         LOG_DIR / "gene_tree/gene_tree_consensus_render-{og}.{alignment_type}.log"
     shell:
