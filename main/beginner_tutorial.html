@@ -234,6 +234,13 @@
 <section id="output-logs">
 <h3>Output logs<a class="headerlink" href="#output-logs" title="Permalink to this headline"></a></h3>
 <p>The output logs of all software used as part of the workflow can be found in the <code class="docutils literal notranslate"><span class="pre">logs</span></code> directory.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Orthoflow creates log files for most of the steps of the workflow.
+When there are many orthologs, this can generate hundreds of thousands of log and result files.
+On systems where there are limitations on the number of files then the workflow may fail.
+You can delete directories of log files after the steps have completed if you no longer need them.</p>
+</div>
 </section>
 </section>
 </section>

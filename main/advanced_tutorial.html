@@ -57,7 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#setting-working-directory-and-specifying-targets">Setting working directory and specifying targets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#controlling-the-flow-of-operations">Controlling the flow of operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gene-and-alignment-filtering-settings">Gene and alignment filtering settings</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#minimum-taxa">Minimum taxa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#minimum-taxa-sequences">Minimum taxa &amp; sequences</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-sc-ogs-and-or-snap-ogs">Using SC-OGs and/or SNAP-OGs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#alignment-trimming">Alignment trimming</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#removal-of-heavily-trimmed-alignments">Removal of heavily trimmed alignments</a></li>
@@ -177,9 +177,9 @@
 <section id="gene-and-alignment-filtering-settings">
 <h2>Gene and alignment filtering settings<a class="headerlink" href="#gene-and-alignment-filtering-settings" title="Permalink to this headline"></a></h2>
 <p>There are several steps in the workflow that filter out genes not meeting particular criteria.</p>
-<section id="minimum-taxa">
-<h3>Minimum taxa<a class="headerlink" href="#minimum-taxa" title="Permalink to this headline"></a></h3>
-<p>One important setting is the minimum number of taxa that need to be in a gene dataset in order for it to be retained. This can be set with the <code class="docutils literal notranslate"><span class="pre">ortholog_min_seqs</span></code> setting in the configuration file. The default value is 5. The value should not be set to less than 3. The occupancy setting for OrthoSNAP can be changed with <code class="docutils literal notranslate"><span class="pre">orthosnap_occupancy</span></code>; by default we use the same value as that for <code class="docutils literal notranslate"><span class="pre">ortholog_min_seqs</span></code>.</p>
+<section id="minimum-taxa-sequences">
+<h3>Minimum taxa &amp; sequences<a class="headerlink" href="#minimum-taxa-sequences" title="Permalink to this headline"></a></h3>
+<p>The minimum number of taxa and sequences that need to be in a gene dataset in order for it to be retained is one of the most important settings that users need to specify. These should be set with the <code class="docutils literal notranslate"><span class="pre">ortholog_min_seqs</span></code> and <code class="docutils literal notranslate"><span class="pre">ortholog_min_taxa</span></code> settings in the configuration file. The default value is 5, and the value should not be set to less than 3. The default settings are very permissive, and this can lead to huge numbers of files (hundreds of thousands) being produced when analysing eukaryotic genome datasets, which can lead to problems especially on HPC systems that limit the number of files you can create. We recommend increasing these values depending on the number of taxa in your dataset. We typically set it to 30-50% of the total number of taxa being analysed, but it is recommended to experiment with these settings, as it will be highly dataset-dependent. The occupancy setting for OrthoSNAP can be changed with <code class="docutils literal notranslate"><span class="pre">orthosnap_occupancy</span></code>; by default we use the same value as that for <code class="docutils literal notranslate"><span class="pre">ortholog_min_seqs</span></code>.</p>
 </section>
 <section id="using-sc-ogs-and-or-snap-ogs">
 <h3>Using SC-OGs and/or SNAP-OGs<a class="headerlink" href="#using-sc-ogs-and-or-snap-ogs" title="Permalink to this headline"></a></h3>
