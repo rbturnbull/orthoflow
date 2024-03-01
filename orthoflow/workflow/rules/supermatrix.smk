@@ -62,14 +62,12 @@ rule supermatrix_iqtree:
     #     "../bibs/iqtree2.bib",
     #     "../bibs/ultrafast-bootstrap.bib",
     #     "../bibs/modelfinder.ris",
-    log:
-        LOG_DIR / "supermatrix/iqtree.{alignment_type}.log"
     params:
         bootstrap_string=config.get("bootstrap_string", BOOTSTRAP_STRING_DEFAULT),
         model_string=config.get("model_string", MODEL_STRING_DEFAULT),
         supermatrix_outgroup_string=f"-o {supermatrix_outgroup}" if supermatrix_outgroup else "",
     shell:
-        "iqtree2 -s {input} {params.bootstrap_string} {params.model_string} {params.supermatrix_outgroup_string} -nt AUTO -redo |& tee {log}"
+        "iqtree2 -s {input} {params.bootstrap_string} {params.model_string} {params.supermatrix_outgroup_string} -nt AUTO -redo"
 
 
 rule supermatrix_ascii:
@@ -84,10 +82,8 @@ rule supermatrix_ascii:
         ENV_DIR / "phykit.yaml"
     # bibs:
     #     "../bibs/phykit.bib",
-    log:
-        LOG_DIR / "supermatrix/print_ascii_tree.{alignment_type}.log"
     shell:
-        "{{ phykit print_tree {input} > {output} ; }} |& tee {log}"
+        "phykit print_tree {input} > {output}"
 
 
 rule supermatrix_tree_render:
@@ -103,10 +99,8 @@ rule supermatrix_tree_render:
         ENV_DIR / "toytree.yaml"
     # bibs:
     #     "../bibs/toytree.bib",
-    log:
-        LOG_DIR / "supermatrix/render_tree.{alignment_type}.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} |& tee {log}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
 
 
 rule supermatrix_consensus_tree_render:
@@ -122,9 +116,7 @@ rule supermatrix_consensus_tree_render:
         ENV_DIR / "toytree.yaml"
     # bibs:
     #     "../bibs/toytree.bib",
-    log:
-        LOG_DIR / "supermatrix/render_tree.{alignment_type}.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} |& tee {log}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png}"
 
 

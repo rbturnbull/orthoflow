@@ -133,6 +133,12 @@ Output logs
 -----------
 The output logs of all software used as part of the workflow can be found in the ``logs`` directory.
 
+.. warning::
+    Orthoflow creates log files for most of the steps of the workflow. 
+    When there are many orthologs, this can generate hundreds of thousands of log and result files.
+    On systems where there are limitations on the number of files then the workflow may fail.
+    You can delete directories of log files after the steps have completed if you no longer need them.
+
 .. end-beginner-tutorial
 
 
