@@ -50,10 +50,10 @@ rule supermatrix_iqtree:
     input:
         rules.concatenate_alignments.output.fasta
     output:
-        treefile="results/supermatrix/supermatrix.{alignment_type}.fa.treefile",
-        consensus_tree="results/supermatrix/supermatrix.{alignment_type}.fa.contree",
-        iqtree_report="results/supermatrix/supermatrix.{alignment_type}.fa.iqtree",
-        iqtree_log="results/supermatrix/supermatrix.{alignment_type}.fa.log",
+        treefile="results/supermatrix/supermatrix.{alignment_type}.treefile",
+        consensus_tree="results/supermatrix/supermatrix.{alignment_type}.contree",
+        iqtree_report="results/supermatrix/supermatrix.{alignment_type}.iqtree",
+        iqtree_log="results/supermatrix/supermatrix.{alignment_type}.log",
     threads: 
         workflow.cores
     conda:
@@ -67,8 +67,15 @@ rule supermatrix_iqtree:
         model_string=config.get("model_string", MODEL_STRING_DEFAULT),
         supermatrix_outgroup_string=f"-o {supermatrix_outgroup}" if supermatrix_outgroup else "",
     shell:
-        "iqtree2 -s {input} {params.bootstrap_string} {params.model_string} {params.supermatrix_outgroup_string} -nt AUTO -redo"
-
+        """
+        iqtree2 -s {input} \
+            {params.bootstrap_string} \
+            {params.model_string} \
+            {params.supermatrix_outgroup_string} \
+            -nt AUTO \
+            -redo \
+            -pre "results/supermatrix/supermatrix.{wildcards.alignment_type}
+        """
 
 rule supermatrix_ascii:
     """
