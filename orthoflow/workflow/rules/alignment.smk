@@ -34,7 +34,7 @@ rule mafft:
         ENV_DIR / "mafft.yaml"
     shell:
         """
-        {{ mafft --thread {threads} --auto {input} > {output} ; }} |& tee {log}
+        {{ mafft --thread {threads} --auto {input} > {output} ; }} 2>&1 | tee {log}
         """
 
 rule get_cds_seq:
@@ -56,7 +56,7 @@ rule get_cds_seq:
         """
         python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output}
         """
-        # "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} |& tee {log}"
+        # "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} 2>&1 | tee {log}"
 
 
 rule taxon_only:
@@ -97,7 +97,7 @@ rule thread_dna:
         LOG_DIR / "alignment/thread_dna/{og}.log"
     shell:
         """
-        {{ phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output} ; }} |& tee {log}
+        {{ phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output} ; }} 2>&1 | tee {log}
         """
 
 
@@ -126,7 +126,7 @@ rule trim_alignments:
         LOG_DIR / "alignment/trim_alignments/{og}.{alignment_type}.log"
     shell:
         """
-        clipkit {input} -m smart-gap -o {output} |& tee {log}
+        clipkit {input} -m smart-gap -o {output} 2>&1 | tee {log}
         """
 
 

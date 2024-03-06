@@ -139,6 +139,7 @@ class OrthoflowInput():
 
                 #check whether file contains annotated genes 
                 count = 0
+                fp.seek(0) #reset file pointer to beginning of file
                 for seq in SeqIO.parse(fp, "genbank"):
                     for feat in seq.features:
                         if feat.type == "CDS":

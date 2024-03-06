@@ -17,7 +17,7 @@ rule concatenate_alignments:
     log:
         LOG_DIR / "supermatrix/supermatrix.{alignment_type}.log"
     shell:
-        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{wildcards.alignment_type} |& tee {log}"
+        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{wildcards.alignment_type} 2>&1 | tee {log}"
 
 
 rule supermatrix_alignment_summary:
@@ -38,7 +38,7 @@ rule supermatrix_alignment_summary:
     log:
         LOG_DIR / "supermatrix/alignment_summary.{alignment_type}.log"
     shell:
-        "{{ biokit alignment_summary {input} > {output} ; }} |& tee {log}"
+        "{{ biokit alignment_summary {input} > {output} ; }} 2>&1 | tee {log}"
 
 
 supermatrix_outgroup = config.get("supermatrix_outgroup", SUPERMATRIX_OUTGROUP_DEFAULT)
