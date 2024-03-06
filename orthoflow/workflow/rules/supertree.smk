@@ -44,7 +44,7 @@ rule astral:
     input:
         rules.create_astral_input.output
     output:
-        "results/supertree/supertree.{alignment_type}.tre"
+        "results/supertree/supertree.{alignment_type}.treefile"
     conda:
         ENV_DIR / "astral.yaml"
     # bibs:

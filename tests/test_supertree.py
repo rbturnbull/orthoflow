@@ -12,12 +12,12 @@ def test_create_astral_input_cds(run_workflow):
 
 
 def test_astral_protein(run_workflow):
-    w = run_workflow("results/supertree/supertree.protein.tre")
+    w = run_workflow("results/supertree/supertree.protein.treefile")
     w.assert_contains("Caulerpa_cliftonii_HV03798")
 
     
 def test_astral_cds(run_workflow):
-    w = run_workflow("results/supertree/supertree.cds.tre", "--config", "infer_tree_with_protein_seqs=0")
+    w = run_workflow("results/supertree/supertree.cds.treefile", "--config", "infer_tree_with_protein_seqs=0")
     w.assert_contains("Caulerpa_cliftonii_HV03798")
 
     
