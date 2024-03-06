@@ -52,7 +52,7 @@ def get_cds_seq(
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
     """
 
-    # HACK This should be done once per directory and saved
+    # TODO This should be done once per directory and saved
     multifastaindex = MultiFastaIndex(cds_dir.glob("*.fa"))
 
     with open(output_file, 'w') as f:
@@ -63,6 +63,7 @@ def get_cds_seq(
             if row_id not in multifastaindex:
                 raise Exception(f"cannot find {row_id} in multifastaindex")
             f.write(f">{row.id}\n{multifastaindex[row_id]}\n")
+
 
 if __name__ == "__main__":
     typer.run(get_cds_seq)
