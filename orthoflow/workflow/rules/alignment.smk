@@ -117,7 +117,8 @@ rule trim_alignments:
     input:
         get_alignments_to_trim
     output:
-        temp("results/alignment/trimmed_{alignment_type}/{og}.trimmed.{alignment_type}.alignment.fa")
+        # These cannot be marked as 'temp' because they are used in later rules which refer to them in the alignments list file.
+        "results/alignment/trimmed_{alignment_type}/{og}.trimmed.{alignment_type}.alignment.fa"
     # bibs:
     #     "../bibs/clipkit.bib"
     conda:
