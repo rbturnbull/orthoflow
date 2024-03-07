@@ -181,6 +181,7 @@ rule write_snap_ogs_list:
         "bench/write_snap_ogs_list.benchmark.txt"
     shell:
         """
+        # Create the output file first in case there are no SNAP OGs to be found.
         touch {output}
         for SNAPOG_DIR in {input} ; do 
             echo ${{SNAPOG_DIR}}
