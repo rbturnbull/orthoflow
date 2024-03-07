@@ -5,4 +5,4 @@ dependencies:
   - python=3.9
   - pip
   - pip:
-    - phykit==1.11.10
+    - phykit==1.16.0
