@@ -25,13 +25,13 @@ def test_concatenate_alignments_cds(run_workflow):
 
 
 def test_iqtree_protein(run_workflow):
-    w = run_workflow("results/supermatrix/supermatrix.protein.fa.treefile")
+    w = run_workflow("results/supermatrix/supermatrix.protein.treefile")
     w.assert_re(r"Avrainvillea_mazei_HV02664:0\.")
     w.assert_re(r"Bryopsis_plumosa_WEST4718:0\.")
     
 
 def test_iqtree_cds(run_workflow):
-    w = run_workflow("results/supermatrix/supermatrix.cds.fa.treefile", "--config", "infer_tree_with_protein_seqs=0")
+    w = run_workflow("results/supermatrix/supermatrix.cds.treefile", "--config", "infer_tree_with_protein_seqs=0")
     w.assert_re(r"Avrainvillea_mazei_HV02664:0\.")
     w.assert_re(r"Bryopsis_plumosa_WEST4718:0\.")
     

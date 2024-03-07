@@ -37,10 +37,10 @@ rule orthofinder:
             cp $FILE {params.input_dir}/
         done
 
-        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X 2>> {log}
+        orthofinder -f {params.input_dir} -t {threads} -n orthoflow -og -X 2>&1 | tee -a {log}
 
         # Move outputs and clean up
-        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output} 2>> {log}
+        mv {params.input_dir}/OrthoFinder/Results_orthoflow/ {output} 2>&1 | tee -a {log}
         rm -rf {params.input_dir}
         """
 
@@ -70,7 +70,7 @@ checkpoint orthogroup_classification:
             --mcogs {output.mcogs} \
             --scogs {output.scogs} \
             --min-seqs {params.min_seqs} \
-            --min-taxa {params.min_taxa} &> {log}
+            --min-taxa {params.min_taxa} 2>&1 | tee {log}
         """
 
 
@@ -97,13 +97,19 @@ rule orthosnap:
         "bench/orthosnap.{og}.benchmark.txt"
     shell:
         """
-        {{ mafft {input} > {output.alignment} ; }} &> {log}
-        {{ fasttree {output.alignment} > {output.tree} ; }} 2>> {log}
-        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy} 2>> {log}
+        echo "Running mafft on {input}" 2>&1 | tee {log}
+        {{ mafft {input} > {output.alignment} ; }} 2>&1 | tee -a {log}
+
+        echo "Running fasttree on {output.alignment}" 2>&1 | tee -a {log}
+        {{ fasttree {output.alignment} > {output.tree} ; }} 2>&1 | tee -a {log}
+
+        echo "Running orthosnap on {output.alignment} and {output.tree}" 2>&1 | tee -a {log}
+        orthosnap -f {output.alignment} -t {output.tree} --occupancy {params.occupancy} 2>&1 | tee -a {log}
         
-        mkdir -p {output.snap_ogs} 2>> {log}
+        echo "Moving files to {output.snap_ogs}" 2>&1 | tee -a {log}
+        mkdir -p {output.snap_ogs}
         for file in $(find results/orthofinder/tmp -name '{wildcards.og}.aln.orthosnap.*.fa') ; do
-            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g') 2>> {log}
+            mv $file {output.snap_ogs}/$(basename $file | sed 's/\.aln\.orthosnap\./_orthosnap_/g')
         done
         """
 
@@ -123,7 +129,7 @@ rule orthofinder_report_components:
     benchmark:
         "bench/orthofinder_report_components.benchmark.txt"
     shell:
-        "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output} &> {log}"
+        "python {SCRIPT_DIR}/orthofinder_report_components.py {input} {output} 2>&1 | tee {log}"
 
 
 def list_orthofinder_mcogs(wildcards):
@@ -175,6 +181,7 @@ rule write_snap_ogs_list:
         "bench/write_snap_ogs_list.benchmark.txt"
     shell:
         """
+        # Create the output file first in case there are no SNAP OGs to be found.
         touch {output}
         for SNAPOG_DIR in {input} ; do 
             echo ${{SNAPOG_DIR}}
@@ -202,7 +209,7 @@ checkpoint orthofinder_all:
         "bench/orthofinder_all.benchmark.txt"
     shell:
         """
-        mkdir -p {output} &> {log}
+        mkdir -p {output} 2>&1 | tee {log}
         for LIST in {input}; do
             for i in $(cat $LIST); do
                 nseq=$(grep ">" $i | wc -l)
@@ -210,8 +217,8 @@ checkpoint orthofinder_all:
                 if [[ $nseq -ge {params.min_seqs} ]]; then
                     og=$(basename $i)
                     path={output}/$og
-                    echo "Symlinking $(pwd)/$i to $path" 2>> {log}
-                    ln -s ../../../$i $path 2>> {log}
+                    echo "Symlinking $(pwd)/$i to $path" 2>&1 | tee -a {log}
+                    ln -s ../../../$i $path 2>&1 | tee -a {log}
                 fi
             done
         done

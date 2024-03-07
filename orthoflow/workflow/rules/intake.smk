@@ -35,7 +35,7 @@ rule rename_sequences:
         LOG_DIR / "intake/renamed/{stub}.log"
     shell:
         """
-        python {SCRIPT_DIR}/rename_sequences.py --debug {input.file} {output} --data-type {params.data_type} --taxon-string  {params.taxon_string} --warnings-dir {WARNINGS_DIR} &> {log}
+        python {SCRIPT_DIR}/rename_sequences.py --debug {input.file} {output} --data-type {params.data_type} --taxon-string  {params.taxon_string} --warnings-dir {WARNINGS_DIR} 2>&1 | tee {log}
         """
 
 
@@ -65,7 +65,7 @@ rule translate:
         LOG_DIR / "intake/translate/{stub}.log"
     shell:
         """
-        biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} &> {log}
+        biokit translate_sequence {input} --output {output} --translation_table {params.translation_table} 2>&1 | tee {log}
         """
 
 

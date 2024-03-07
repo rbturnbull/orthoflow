@@ -20,7 +20,7 @@ rule mafft:
     input:
         get_alignment_inputs
     output:
-        "results/alignment/aligned_proteins/{og}.protein.alignment.fa"
+        temp("results/alignment/aligned_proteins/{og}.protein.alignment.fa")
     # bibs:
     #     "../bibs/mafft7.bib"
     log:
@@ -34,7 +34,7 @@ rule mafft:
         ENV_DIR / "mafft.yaml"
     shell:
         """
-        {{ mafft --thread {threads} --auto {input} > {output} ; }} &> {log}
+        {{ mafft --thread {threads} --auto {input} > {output} ; }} 2>&1 | tee {log}
         """
 
 rule get_cds_seq:
@@ -47,18 +47,16 @@ rule get_cds_seq:
         cds_dir=Path(rules.rename_sequences.output[0]).parent,
         alignment=rules.mafft.output
     output:
-        "results/alignment/seqs_cds/{og}.cds.seqs.fa"
+        temp("results/alignment/seqs_cds/{og}.cds.seqs.fa")
     # bibs:
     #     "../bibs/biopython.bib"
     conda:
         ENV_DIR / "biopython.yaml"
-    log:
-        LOG_DIR / "alignment/get_cds_seq/{og}.log"
     shell:
         """
         python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output}
         """
-        # "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} &> {log}"
+        # "python {SCRIPT_DIR}/get_cds_seq.py --cds-dir {input.cds_dir} --alignment {input.alignment} --output-file {output} 2>&1 | tee {log}"
 
 
 rule taxon_only:
@@ -74,10 +72,8 @@ rule taxon_only:
         "results/alignment/taxon_only/{og}.taxon_only.protein.alignment.fa"
     conda:
         ENV_DIR / "typer.yaml"
-    log:
-        LOG_DIR / "alignment/taxon_only/{og}.log"
     shell:
-        "python {SCRIPT_DIR}/taxon_only.py {input} {output} &> {log}"
+        "python {SCRIPT_DIR}/taxon_only.py {input} {output}"
 
 
 rule thread_dna:
@@ -101,7 +97,7 @@ rule thread_dna:
         LOG_DIR / "alignment/thread_dna/{og}.log"
     shell:
         """
-        {{ phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output} ; }} &> {log}
+        {{ phykit thread_dna --protein {input.alignment} --nucleotide {input.cds} --stop > {output} ; }} 2>&1 | tee {log}
         """
 
 
@@ -121,6 +117,7 @@ rule trim_alignments:
     input:
         get_alignments_to_trim
     output:
+        # These cannot be marked as 'temp' because they are used in later rules which refer to them in the alignments list file.
         "results/alignment/trimmed_{alignment_type}/{og}.trimmed.{alignment_type}.alignment.fa"
     # bibs:
     #     "../bibs/clipkit.bib"
@@ -130,7 +127,7 @@ rule trim_alignments:
         LOG_DIR / "alignment/trim_alignments/{og}.{alignment_type}.log"
     shell:
         """
-        clipkit {input} -m smart-gap -o {output} &> {log}
+        clipkit {input} -m smart-gap -o {output} 2>&1 | tee {log}
         """
 
 
@@ -172,6 +169,7 @@ checkpoint list_alignments:
         LOG_DIR / "alignment/list_alignments.{alignment_type}.log"
     script:
         f"{SCRIPT_DIR}/filter_alignments.py"
+
 
 def list_filtered(wildcards):
     alignments_text_file = checkpoints.list_alignments.get(**wildcards).output[0]

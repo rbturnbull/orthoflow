@@ -52,8 +52,11 @@ def get_cds_seq(
     Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.
     """
 
-    # HACK This should be done once per directory and saved
+    # TODO This should be done once per directory and saved
     multifastaindex = MultiFastaIndex(cds_dir.glob("*.fa"))
+
+    # Make output directory if necessary
+    Path(output_file).parent.mkdir(parents=True, exist_ok=True)
 
     with open(output_file, 'w') as f:
         alignment = AlignIO.read(alignment, "fasta")
@@ -62,7 +65,11 @@ def get_cds_seq(
             row_id = "|".join(row.id.split("|")[0:3])
             if row_id not in multifastaindex:
                 raise Exception(f"cannot find {row_id} in multifastaindex")
-            f.write(f">{row.id}\n{multifastaindex[row_id]}\n")
+            
+            # Only include the taxon for the final output so that it works with later versions of PhyKIT
+            taxon_string = row_id.partition("|")[0]            
+            f.write(f">{taxon_string}\n{multifastaindex[row_id]}\n")
+
 
 if __name__ == "__main__":
     typer.run(get_cds_seq)

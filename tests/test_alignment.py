@@ -6,7 +6,7 @@ def test_mafft(run_workflow):
 
 def test_get_cds_seq(run_workflow):
     w = run_workflow("results/alignment/seqs_cds/OG0000001.cds.seqs.fa")
-    w.assert_contains(">Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|22|rpl23")
+    w.assert_contains(">Caulerpa_cliftonii_HV03798\n")
     w.assert_contains("ATGTTTGATTTTTTAAATAAACCATTAATAACAGAAAAAGCAACTCAACTTATTGAA")
 
 

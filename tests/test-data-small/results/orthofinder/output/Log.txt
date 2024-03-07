@@ -1,7 +1,7 @@
-2023-12-16 03:35:07 : Started OrthoFinder version 2.5.4
-Command Line: /home/ubuntu/.cache/orthoflow/conda/d5682eac4743eefee8124b5e7b2ec582/bin/orthofinder -f results/orthofinder/input/ -t 32 -n orthoflow -og -X
+2024-03-07 14:32:57 : Started OrthoFinder version 2.5.4
+Command Line: /Users/rturnbull/Library/Caches/orthoflow/conda/480214afa9cd0fde1f2e444dcbb98d02_/bin/orthofinder -f results/orthofinder/input/ -t 12 -n orthoflow -og -X
 
-WorkingDirectory_Base: /home/ubuntu/0_332yeast_genomes/orthoflow/tests/test-data-small/results/orthofinder/input/OrthoFinder/Results_orthoflow/WorkingDirectory/
+WorkingDirectory_Base: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data-small/results/orthofinder/input/OrthoFinder/Results_orthoflow/WorkingDirectory/
 
 Species used: 
 0: KX808497-truncated.translated.fa
@@ -13,5 +13,5 @@ Species used:
 6: MH591085-truncated.translated.fa
 7: NC_026795-truncated.translated.fa
 
-FN_Orthogroups: /home/ubuntu/0_332yeast_genomes/orthoflow/tests/test-data-small/results/orthofinder/input/OrthoFinder/Results_orthoflow/WorkingDirectory/clusters_OrthoFinder_I1.5.txt_id_pairs.txt
-2023-12-16 03:35:13 : OrthoFinder run completed
+FN_Orthogroups: /Users/rturnbull/MDAP/Birch/phylogenomic-workflow/tests/test-data-small/results/orthofinder/input/OrthoFinder/Results_orthoflow/WorkingDirectory/clusters_OrthoFinder_I1.5.txt_id_pairs.txt
+2024-03-07 14:33:07 : OrthoFinder run completed

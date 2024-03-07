@@ -82,9 +82,9 @@ Gene and alignment filtering settings
 
 There are several steps in the workflow that filter out genes not meeting particular criteria. 
 
-Minimum taxa
-------------
-One important setting is the minimum number of taxa that need to be in a gene dataset in order for it to be retained. This can be set with the ``ortholog_min_seqs`` setting in the configuration file. The default value is 5. The value should not be set to less than 3. The occupancy setting for OrthoSNAP can be changed with ``orthosnap_occupancy``; by default we use the same value as that for ``ortholog_min_seqs``.
+Minimum taxa & sequences
+------------------------
+The minimum number of taxa and sequences that need to be in a gene dataset in order for it to be retained is one of the most important settings that users need to specify. These should be set with the ``ortholog_min_seqs`` and ``ortholog_min_taxa`` settings in the configuration file. The default value is 5, and the value should not be set to less than 3. The default settings are very permissive, and this can lead to huge numbers of files (hundreds of thousands) being produced when analysing eukaryotic genome datasets, which can lead to problems especially on HPC systems that limit the number of files you can create. We recommend increasing these values depending on the number of taxa in your dataset. We typically set it to 30-50% of the total number of taxa being analysed, but it is recommended to experiment with these settings, as it will be highly dataset-dependent. The occupancy setting for OrthoSNAP can be changed with ``orthosnap_occupancy``; by default we use the same value as that for ``ortholog_min_seqs``.
 
 Using SC-OGs and/or SNAP-OGs
 ----------------------------

@@ -123,7 +123,7 @@ Examining the output
 
 Inferred tree and intermediate files
 ------------------------------------
-All output files are saved in the ``results`` directory. Output files are subdivided into the workflow modules, which each have their own subdirectory. For the demonstration analysis that we ran above, the inferred phylogeny will be in the ``supermatrix`` subdirectory and be called ``supermatrix.protein.fa.treefile``. Open this with a tree browser (e.g. `FigTree <https://github.com/rambaut/figtree>`_). Also take some time to browse the intermediary files, including the orthogroups, gene alignments and the supermatrix constructed from them.
+All output files are saved in the ``results`` directory. Output files are subdivided into the workflow modules, which each have their own subdirectory. For the demonstration analysis that we ran above, the inferred phylogeny will be in the ``supermatrix`` subdirectory and be called ``supermatrix.protein.treefile``. Open this with a tree browser (e.g. `FigTree <https://github.com/rambaut/figtree>`_). Also take some time to browse the intermediary files, including the orthogroups, gene alignments and the supermatrix constructed from them.
 
 Report and diagnostics
 ----------------------
@@ -132,6 +132,12 @@ The report provides an overview of the results, the analysis settings used and c
 Output logs
 -----------
 The output logs of all software used as part of the workflow can be found in the ``logs`` directory.
+
+.. warning::
+    Orthoflow creates log files for most of the steps of the workflow. 
+    When there are many orthologs, this can generate hundreds of thousands of log and result files.
+    On systems where there are limitations on the number of files then the workflow may fail.
+    You can delete directories of log files after the steps have completed if you no longer need them.
 
 .. end-beginner-tutorial
 

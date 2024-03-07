@@ -7,8 +7,8 @@ rule gene_tree_iqtree:
         rules.trim_alignments.output
     output:
         treefile="results/gene_tree/{og}/{og}.{alignment_type}.treefile",
-        consensus_tree="results/gene_tree/{og}/{og}.{alignment_type}.contree",
-        iqtree_report="results/gene_tree/{og}/{og}.{alignment_type}.iqtree",
+        consensus_tree=temp("results/gene_tree/{og}/{og}.{alignment_type}.contree"),
+        iqtree_report=temp("results/gene_tree/{og}/{og}.{alignment_type}.iqtree"),
         iqtree_log="results/gene_tree/{og}/{og}.{alignment_type}.log",
     threads: 
         1
@@ -18,15 +18,13 @@ rule gene_tree_iqtree:
     #     "../bibs/iqtree2.bib",
     #     "../bibs/ultrafast-bootstrap.bib",
     #     "../bibs/modelfinder.ris",
-    log:
-        LOG_DIR / "gene_tree/iqtree-{og}.{alignment_type}.log"
     params:
         bootstrap_string=config.get("bootstrap_string", BOOTSTRAP_STRING_DEFAULT),
         model_string=config.get("model_string", MODEL_STRING_DEFAULT),
     shell:
         """
-        mkdir -p results/gene_tree/{wildcards.og} &> {log}
-        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -nt {threads} -mset mrbayes -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{wildcards.alignment_type} -redo 2>> {log}
+        mkdir -p results/gene_tree/{wildcards.og}
+        iqtree2 -s {input} {params.bootstrap_string} {params.model_string} -nt {threads} -mset mrbayes -pre results/gene_tree/{wildcards.og}/{wildcards.og}.{wildcards.alignment_type} -redo
         """
 
 
@@ -42,10 +40,10 @@ rule gene_tree_ascii:
         ENV_DIR / "phykit.yaml"
     # bibs:
     #     "../bibs/phykit.bib",
-    log:
-        LOG_DIR / "gene_tree/print_ascii_tree-{og}.{alignment_type}.log"
+    threads: 
+        1
     shell:
-        "{{ phykit print_tree {input} > {output} ; }} &> {log}"
+        "phykit print_tree {input} > {output}"
 
 
 rule gene_tree_render:
@@ -56,15 +54,14 @@ rule gene_tree_render:
         rules.gene_tree_iqtree.output.treefile
     output:
         svg="results/gene_tree/{og}/{og}.{alignment_type}.tree.svg",
-        png="results/gene_tree/{og}/{og}.{alignment_type}.tree.png",
     conda:
         ENV_DIR / "toytree.yaml"
     # bibs:
     #     "../bibs/toytree.bib",
-    log:
-        LOG_DIR / "gene_tree/gene_tree_render-{og}.{alignment_type}.log"
+    threads: 
+        1
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg}"
 
 
 rule gene_tree_consensus_render:
@@ -75,12 +72,11 @@ rule gene_tree_consensus_render:
         rules.gene_tree_iqtree.output.consensus_tree
     output:
         svg="results/gene_tree/{og}/{og}.{alignment_type}.consensus-tree.svg",
-        png="results/gene_tree/{og}/{og}.{alignment_type}.consensus-tree.png",
     conda:
         ENV_DIR / "toytree.yaml"
     # bibs:
     #     "../bibs/toytree.bib",
-    log:
-        LOG_DIR / "gene_tree/gene_tree_consensus_render-{og}.{alignment_type}.log"
+    threads: 
+        1
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg}"

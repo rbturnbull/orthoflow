@@ -32,8 +32,8 @@ rule create_astral_input:
         LOG_DIR / "supertree/create_astral_input.{alignment_type}.log"
     shell:
         """
-        echo {input} &> {log}
-        {{ cat {input} > {output} ; }} &> {log}
+        echo {input} 2>&1 | tee {log}
+        {{ cat {input} > {output} ; }} 2>&1 | tee {log}
         """
 
 
@@ -44,7 +44,7 @@ rule astral:
     input:
         rules.create_astral_input.output
     output:
-        "results/supertree/supertree.{alignment_type}.tre"
+        "results/supertree/supertree.{alignment_type}.treefile"
     conda:
         ENV_DIR / "astral.yaml"
     # bibs:
@@ -53,7 +53,7 @@ rule astral:
         LOG_DIR / "supertree/astral.{alignment_type}.log"
     shell:
         """
-        java -jar $CONDA_PREFIX/share/astral-tree-5.7.8-0/astral.5.7.8.jar -i {input} -o {output} &> {log}
+        java -jar $CONDA_PREFIX/share/astral-tree-5.7.8-0/astral.5.7.8.jar -i {input} -o {output} 2>&1 | tee {log}
         """
 
 
@@ -72,7 +72,7 @@ rule supertree_ascii:
     log:
         LOG_DIR / "supertree/print_ascii_tree.{alignment_type}.log"
     shell:
-        "{{ phykit print_tree {input} > {output} ; }} &> {log}"
+        "{{ phykit print_tree {input} > {output} ; }} 2>&1 | tee {log}"
 
 
 rule supertree_render:
@@ -91,5 +91,5 @@ rule supertree_render:
     log:
         LOG_DIR / "supertree/supertree_render.{alignment_type}.log"
     shell:
-        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} &> {log}"
+        "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg} --png {output.png} 2>&1 | tee {log}"
 
