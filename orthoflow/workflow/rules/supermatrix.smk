@@ -17,7 +17,9 @@ rule concatenate_alignments:
     log:
         LOG_DIR / "supermatrix/supermatrix.{alignment_type}.log"
     shell:
-        "phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{wildcards.alignment_type} 2>&1 | tee {log}"
+        """
+        phykit create_concatenation_matrix --alignment {input} --prefix results/supermatrix/supermatrix.{wildcards.alignment_type} 2>&1 | tee {log}
+        """
 
 
 rule supermatrix_alignment_summary:
@@ -54,8 +56,6 @@ rule supermatrix_iqtree:
         consensus_tree="results/supermatrix/supermatrix.{alignment_type}.contree",
         iqtree_report="results/supermatrix/supermatrix.{alignment_type}.iqtree",
         iqtree_log="results/supermatrix/supermatrix.{alignment_type}.log",
-    threads: 
-        workflow.cores
     conda:
         ENV_DIR / "iqtree.yaml"
     # bibs:
@@ -72,9 +72,9 @@ rule supermatrix_iqtree:
             {params.bootstrap_string} \
             {params.model_string} \
             {params.supermatrix_outgroup_string} \
-            -nt AUTO \
+            -nt {threads} \
             -redo \
-            -pre "results/supermatrix/supermatrix.{wildcards.alignment_type}
+            -pre "results/supermatrix/supermatrix.{wildcards.alignment_type}"
         """
 
 rule supermatrix_ascii:
