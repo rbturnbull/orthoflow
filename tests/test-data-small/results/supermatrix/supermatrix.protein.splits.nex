@@ -13,7 +13,7 @@ TAXLABELS
 END; [Taxa]
 
 BEGIN Splits;
-DIMENSIONS ntax=6 nsplits=13;
+DIMENSIONS ntax=6 nsplits=14;
 FORMAT labels=no weights=yes confidences=no intervals=no;
 MATRIX
 	100	 2,
@@ -22,13 +22,14 @@ MATRIX
 	100	 3,
 	100	 4,
 	100	 6,
-	92	 4 6,
+	90	 4 6,
 	100	 1 2 5,
 	100	 1,
-	6	 3 4,
-	2	 3 6,
-	0	 1 2,
+	8	 3 4,
+	3	 3 6,
 	2	 1 5,
+	1	 1 2,
+	0	 1 4 6,
 ;
 END; [Splits]
 
