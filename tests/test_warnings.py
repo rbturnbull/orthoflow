@@ -26,10 +26,12 @@ def test_warning_suffix(run_workflow):
     w.assert_exists(expected_files="logs/warnings/warning_suffix.txt")
     w.assert_contains("Suffix from file 'KY819064-truncated.cds.fafafafa' is not Fasta or Genbank. File is assumed to be in Fasta format.", expected_files="logs/warnings/warning_suffix.txt")
 
+
 def test_warning_trans_table(run_workflow):
     w = run_workflow("results/intake/input_sources.csv", "--config", "ignore_non_valid_files=1", expected_dir=warnings_expected_dir)
     w.assert_exists(expected_files="logs/warnings/missing_translation_table.txt")
     w.assert_contains("Translation table for file fasta_alphabet.fa alphabetfasta is missing", expected_files="logs/warnings/missing_translation_table.txt")
+
 
 def test_warning_configuration_file(run_workflow):
     w = run_workflow("orthofinder", "-R", "--files", "input_sources.csv", "--config", "ortholog_min_seqs=1", "supertree=0", "supermatrix=0", "ignore_non_valid_files=1", expected_dir=warnings_expected_dir)
