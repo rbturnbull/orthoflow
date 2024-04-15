@@ -48,7 +48,6 @@ include: "rules/alignment.smk"
 include: "rules/supermatrix.smk"
 include: "rules/gene_tree.smk"
 include: "rules/supertree.smk"
-include: "rules/summary.smk"
 include: "rules/report.smk"
 
 

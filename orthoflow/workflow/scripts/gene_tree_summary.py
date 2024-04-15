@@ -2,14 +2,16 @@
 import re
 from pathlib import Path
 from typing import List
-import plotly.express as px
-
 import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
 import seaborn as sns
 import pandas as pd
 import typer
 from rich.progress import track
+import plotly.express as px
+import plotly.io as pio   
+
+pio.kaleido.scope.mathjax = None
 
 
 def format_fig(fig):
@@ -35,8 +37,8 @@ def format_fig(fig):
     return fig
 
 
-def summarize_information_content(
-    genetree_iqtree_reports:List[Path], 
+def gene_tree_summary(
+    genetree_iqtree_reports_list:Path, 
     output_csv:Path, 
     output_plot:Path,
     model_plot_html:Path,    
@@ -44,6 +46,8 @@ def summarize_information_content(
     state_frequencies_plot_html:Path,
     state_frequencies_plot_image:Path,
 ):
+    genetree_iqtree_reports = genetree_iqtree_reports_list.read_text().strip().split()
+
     # initialize arrays to hold summary information content
     alignment_array = []
     model_array = []
@@ -198,4 +202,4 @@ def corrfunc(
 
 
 if __name__ == '__main__':
-    typer.run(summarize_information_content)
+    typer.run(gene_tree_summary)

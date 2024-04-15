@@ -80,3 +80,55 @@ rule gene_tree_consensus_render:
         1
     shell:
         "python {SCRIPT_DIR}/render_tree.py {input} --svg {output.svg}"
+
+
+def list_gene_tree_files(wildcards, extension):
+    alignments_text_file = checkpoints.check_presence_after_filtering.get(**wildcards).output[0]
+    alignments = Path(alignments_text_file).read_text().strip().split("\n")
+
+    gene_trees = []
+    for alignment in alignments:
+        alignment = Path(alignment)
+        og = alignment.name.split(".")[0]
+        gene_trees.append(f"results/gene_tree/{og}/{og}.{wildcards.alignment_type}.{extension}")
+
+    return gene_trees
+
+
+def list_gene_trees(wildcards):
+    """
+    Returns a list of the treefiles for all the genes.
+    """
+    return list_gene_tree_files(wildcards, extension="treefile")
+
+
+rule gene_tree_summary:
+    """
+    Creates plots of Gene Tree results
+    """
+    input:
+        genetree_iqtree_reports=partial(list_gene_tree_files, extension="iqtree"),
+    output:
+        genetree_iqtree_reports_list="results/gene_tree/summary/gene_tree_reports.{alignment_type}.txt",
+        csv="results/gene_tree/summary/gene_tree_summary.{alignment_type}.csv",
+        plot=report("results/gene_tree/summary/gene_tree_summary.{alignment_type}.svg", category="Summary"),
+        model_plot_html=report("results/gene_tree/summary/model.{alignment_type}.html", category="Summary"),
+        model_plot_image=report("results/gene_tree/summary/model.{alignment_type}.pdf", category="Summary"),
+        state_frequencies_plot_html=report("results/gene_tree/summary/state_frequencies.{alignment_type}.html", category="Summary"),
+        state_frequencies_plot_image=report("results/gene_tree/summary/state_frequencies.{alignment_type}.pdf", category="Summary"),
+    conda:
+        "../envs/summary.yaml"
+    log:
+        LOG_DIR / "results/gene_tree/gene_tree_summary.{alignment_type}.log",
+    shell:
+        """
+        echo {input.genetree_iqtree_reports} > {output.genetree_iqtree_reports_list} 
+        python {SCRIPT_DIR}/gene_tree_summary.py \
+            {output.genetree_iqtree_reports_list} \
+            {output.csv} \
+            {output.plot} \
+            {output.model_plot_html} \
+            {output.model_plot_image} \
+            {output.state_frequencies_plot_html} \
+            {output.state_frequencies_plot_image} 2>&1 | tee {log}
+        """

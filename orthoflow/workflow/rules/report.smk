@@ -8,7 +8,7 @@ import pydot
 use_supermatrix = config.get("supermatrix", True)
 use_supertree = config.get("supertree", False)
 use_orthofisher = config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT)
-summarize_information_content = config.get('summarize_information_content', True)
+gene_tree_summary = config.get('gene_tree_summary', True)
 
 rule report:
     """
@@ -33,12 +33,14 @@ rule report:
         supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
         supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
         genetree_iqtree_reports=partial(list_gene_tree_files, extension="iqtree") if use_supertree else ".",
-        summary_plot=rules.summarize_information_content.output.plot if use_supertree else ".",
-        model_plot_html=rules.summarize_information_content.output.model_plot_html if use_supertree else ".",
-        state_frequencies_plot_html=rules.summarize_information_content.output.state_frequencies_plot_html if use_supertree else ".",
+        summary_plot=rules.gene_tree_summary.output.plot if use_supertree else ".",
+        model_plot_html=rules.gene_tree_summary.output.model_plot_html if use_supertree else ".",
+        state_frequencies_plot_html=rules.gene_tree_summary.output.state_frequencies_plot_html if use_supertree else ".",
         genetree_iqtree_logs=partial(list_gene_tree_files, extension="log") if use_supertree else ".",
         genetree_svgs=partial(list_gene_tree_files, extension="tree.svg") if use_supertree else ".",
         genetree_consensus_svgs=partial(list_gene_tree_files, extension="consensus-tree.svg") if use_supertree else ".",
+        # Warnings
+        missing_taxa=rules.missing_taxa.output,
     output:
         "results/report.{alignment_type}.html"
     run:
