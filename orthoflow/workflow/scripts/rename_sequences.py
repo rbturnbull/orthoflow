@@ -4,10 +4,21 @@ from pathlib import Path
 from typing import Optional
 import typer
 from Bio import SeqIO
+import gzip
+import bz2
 
 logging.basicConfig(level="INFO")
 logger = logging.getLogger("rename_sequences")
 
+
+def open_path(path:Path, writeable:bool=False):
+    path = Path(path)
+    mode = "wt" if writeable else "rt"
+    if path.suffix.lower() == ".gz":
+        return gzip.open(path, mode)
+    if path.suffix.lower() == ".bz2":
+        return bz2.open(path, mode)
+    return open(path, mode)
 
 
 def rename_sequences(
@@ -27,7 +38,7 @@ def rename_sequences(
     warning_file = warnings_dir/"non_valid_objects.txt"
     wf_text = warning_file.read_text() if warning_file.exists() else ""
 
-    with outfile.open("w") as fout:
+    with outfile.open("w") as fout, open_path(infile) as f_in:
         def write_seq(sequence, counter, gene = ""):
             seq_id = f"{taxon_string}|{infile.name}|{counter}"
             if gene:
@@ -37,7 +48,7 @@ def rename_sequences(
             print(sequence.upper(), file=fout)
 
         if data_type.lower() == "genbank":
-            for seq in SeqIO.parse(infile, "genbank"):
+            for seq in SeqIO.parse(f_in, "genbank"):
                 for feat in seq.features:
                     if feat.type == "CDS":
                         feat_seq = feat.extract(seq)
@@ -64,7 +75,7 @@ def rename_sequences(
                         counter += 1
         else:
             # Assume that non-genbank files are Fasta format
-            for seq in SeqIO.parse(infile, "fasta"):
+            for seq in SeqIO.parse(f_in, "fasta"):
                 # Only add sequence of not present in warning file
                 if not f"'{seq.id}' in file '{infile.name}'" in wf_text:
                     write_seq(seq.seq, counter=counter, gene=seq.id)
