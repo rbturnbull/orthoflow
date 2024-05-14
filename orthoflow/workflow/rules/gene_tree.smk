@@ -10,8 +10,8 @@ rule gene_tree_iqtree:
         consensus_tree=temp("results/gene_tree/{og}/{og}.{alignment_type}.contree"),
         iqtree_report=temp("results/gene_tree/{og}/{og}.{alignment_type}.iqtree"),
         iqtree_log="results/gene_tree/{og}/{og}.{alignment_type}.log",
-    threads: 
-        1
+    threads:
+        calculate_filesize_threads
     conda:
         ENV_DIR / "iqtree.yaml"
     # bibs:
@@ -117,7 +117,7 @@ rule gene_tree_summary:
         state_frequencies_plot_html=report("results/gene_tree/summary/state_frequencies.{alignment_type}.html", category="Summary"),
         state_frequencies_plot_image=report("results/gene_tree/summary/state_frequencies.{alignment_type}.pdf", category="Summary"),
     conda:
-        "../envs/summary.yaml"
+        ENV_DIR / "summary.yaml"
     log:
         LOG_DIR / "results/gene_tree/gene_tree_summary.{alignment_type}.log",
     shell:

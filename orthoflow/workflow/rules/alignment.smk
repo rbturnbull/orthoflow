@@ -25,11 +25,8 @@ rule mafft:
     #     "../bibs/mafft7.bib"
     log:
         LOG_DIR / "alignment/mafft/mafft-{og}.log"
-    threads: 4
-    resources:
-        time="00:10:00",
-        mem="8G",
-        cpus=4,
+    threads:
+        calculate_filesize_threads
     conda:
         ENV_DIR / "mafft.yaml"
     shell:
