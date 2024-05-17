@@ -52,8 +52,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reproduction_tutorial.html">Reproduction Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1kp_tutorial.html">One Thousand Plant Transcriptomes Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yeast.html">Yeast Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plant.html">Plant Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="workflow.html">Workflow</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
@@ -123,7 +123,7 @@
 <h1>Orthofinder Module<a class="headerlink" href="#orthofinder-module" title="Permalink to this headline"></a></h1>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-orthofinder">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L9"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L10"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder" title="Permalink to this definition"></a></dt>
 <dd><p>Runs <a class="reference external" href="https://github.com/davidemms/OrthoFinder">OrthoFinder</a> on fasta files from the intake rule.</p>
 <blockquote>
 <div><p>OrthoFinder runs to the point of orthogroup inference.</p>
@@ -147,18 +147,27 @@
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-orthogroup_classification">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthogroup_classification</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L48"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthogroup_classification" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthogroup_classification</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L49"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthogroup_classification" title="Permalink to this definition"></a></dt>
 <dd><p>Classifies orthogroups as single-copy or multi-copy or rejects them for not having enough sequences or taxa.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
 <dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
 <span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seaborn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">open-fonts</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joblib==1.1.1</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy==1.8.1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas==1.4.3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib==3.5.2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">plotly==5.15.0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kaleido==0.2.1</span>
 </pre></div>
 </div>
 </dd>
@@ -170,7 +179,7 @@
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-orthofinder_report_components">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder_report_components</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L117"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_report_components" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthofinder_report_components</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L145"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_report_components" title="Permalink to this definition"></a></dt>
 <dd><p>Converts the orthofinder output to HTML components that will be used in the Orthoflow report.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
@@ -182,11 +191,12 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seaborn</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">open-fonts</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joblib==1.1.1</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy==1.8.1</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas==1.4.3</span>
-<span class="w">    </span><span class="c1"># - seaborn==0.11.2</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib==3.5.2</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">plotly==5.15.0</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kaleido==0.2.1</span>
@@ -201,8 +211,8 @@
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-orthosnap">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthosnap</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L77"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthosnap" title="Permalink to this definition"></a></dt>
-<dd><p>Run Orthosnap to retrieve single-copy orthologs.</p>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">orthosnap</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L103"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthosnap" title="Permalink to this definition"></a></dt>
+<dd><p>Run OrthoSNAP to retrieve single-copy orthologs.</p>
 <blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">output</dt>
@@ -238,7 +248,7 @@
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-orthofinder_all">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthofinder_all</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L193"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_all" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">orthofinder_all</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/orthofinder.smk#L221"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-orthofinder_all" title="Permalink to this definition"></a></dt>
 <dd><p>Collects all the SC-OGs and the SNAP OGs and creates symlinks for each in a single directory.</p>
 <blockquote>
 <div><dl class="field-list simple">

@@ -52,8 +52,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reproduction_tutorial.html">Reproduction Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1kp_tutorial.html">One Thousand Plant Transcriptomes Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yeast.html">Yeast Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plant.html">Plant Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="workflow.html">Workflow</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
@@ -144,7 +144,7 @@
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-get_cds_seq">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">get_cds_seq</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L40"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-get_cds_seq" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">get_cds_seq</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L38"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-get_cds_seq" title="Permalink to this definition"></a></dt>
 <dd><p>This rule creates an unaligned mfasta file of the corresponding nucleotide sequences.</p>
 <blockquote>
 <div><p>Locates the original CDSs so that the aligned (amino acid) sequences can be translated back.</p>
@@ -167,7 +167,7 @@
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-taxon_only">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">taxon_only</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L62"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-taxon_only" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">taxon_only</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L60"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-taxon_only" title="Permalink to this definition"></a></dt>
 <dd><p>Trim sequence IDs to taxon.</p>
 <blockquote>
 <div><p>At the end, the sequence IDs need to be trimmed down to contain just the taxon identifier
@@ -193,7 +193,7 @@ and produce clean output for the next stages.</p>
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-thread_dna">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">thread_dna</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L79"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-thread_dna" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">thread_dna</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L77"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-thread_dna" title="Permalink to this definition"></a></dt>
 <dd><p>Back-translates the alignment to codons based on the CDS sequences, yielding a correspond alignment of nucleotide sequences.</p>
 <blockquote>
 <div><p><a class="reference external" href="https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment">https://jlsteenwyk.com/PhyKIT/usage/index.html#protein-to-nucleotide-alignment</a></p>
@@ -220,7 +220,7 @@ and produce clean output for the next stages.</p>
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-trim_alignments">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">trim_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L111"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-trim_alignments" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">trim_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L109"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-trim_alignments" title="Permalink to this definition"></a></dt>
 <dd><p>Trim multiple-sequence alignments using ClipKIT.</p>
 <blockquote>
 <div><p><a class="reference external" href="https://jlsteenwyk.com/ClipKIT">https://jlsteenwyk.com/ClipKIT</a></p>
@@ -246,7 +246,7 @@ and produce clean output for the next stages.</p>
 </div>
 <dl class="smk checkpoint">
 <dt class="sig sig-object smk" id="rule-list_alignments">
-<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">list_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L155"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-list_alignments" title="Permalink to this definition"></a></dt>
+<span class="pre">Checkpoint</span> <span class="sig-name descname"><span class="pre">list_alignments</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L153"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-list_alignments" title="Permalink to this definition"></a></dt>
 <dd><p>List path to alignment files into a single text file for use in PhyKIT.</p>
 </dd></dl>
 
@@ -254,9 +254,22 @@ and produce clean output for the next stages.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="smk rule">
-<dt class="sig sig-object smk" id="rule-report_taxa_presence">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">report_taxa_presence</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L207"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-report_taxa_presence" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object smk" id="rule-missing_taxa">
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">missing_taxa</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/alignment.smk#L206"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-missing_taxa" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Conda</dt>
+<dd class="field-odd"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coreutils</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rich==12.4.1</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.9</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">typer</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
 
 <div class="line-block">
 <div class="line"><br /></div>

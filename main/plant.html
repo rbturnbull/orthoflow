@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plant Tutorial &mdash; orthoflow 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Input" href="input.html" />
+    <link rel="prev" title="Yeast Tutorial" href="yeast.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            orthoflow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yeast.html">Yeast Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Plant Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preparation">Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-orthoflow">Running Orthoflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation and Attribution</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">orthoflow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Plant Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/main/plant.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="plant-tutorial">
+<h1>Plant Tutorial<a class="headerlink" href="#plant-tutorial" title="Permalink to this headline"></a></h1>
+<p>This tutorial shows you how to run the ‘1KP Pilot’ study in Orthoflow.
+The dataset contains 103 plant transcriptomes (<a class="reference external" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB4921/">PRJEB4921</a>):</p>
+<blockquote>
+<div><p>Matasci, N., Hung, LH., Yan, Z. et al. Data access for the 1,000 Plants (1KP) project. GigaSci 3, 17 (2014). <a class="reference external" href="https://doi.org/10.1186/2047-217X-3-17">https://doi.org/10.1186/2047-217X-3-17</a></p>
+</div></blockquote>
+<p>Phylogenomic analysis of this dataset was presented in:</p>
+<blockquote>
+<div><p>Wickett, Norman J., Siavash Mirarab, Nam Nguyen, Tandy Warnow, et al.
+A phylotranscriptomic analysis of the origin and early diversification of land plants.
+Proceedings of the National Academy of Sciences (PNAS), 111, no. 45 (2014): E4859–4868. doi:10.1073/pnas.1323926111.</p>
+</div></blockquote>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline"></a></h2>
+<p>Download the input file for the dataset from our documentation at <a class="reference external" href="https://rbturnbull.github.io/orthoflow/_data/onekp_pilot.csv">https://rbturnbull.github.io/orthoflow/_data/onekp_pilot.csv</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://rbturnbull.github.io/orthoflow/_data/onekp_pilot.csv
+</pre></div>
+</div>
+<p>This contains a CSV file that looks like this:</p>
+<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>taxon_string,iPlant ID,file,url,data_type
+Arabidopsis_thaliana,,Arabidopsis_thaliana.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/735/GCF_000001735.4_TAIR10.1/GCF_000001735.4_TAIR10.1_protein.faa.gz,Protein
+Brachypodium_distachyon,,Brachypodium_distachyon.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/505/GCF_000005505.3_Brachypodium_distachyon_v3.0/GCF_000005505.3_Brachypodium_distachyon_v3.0_protein.faa.gz,Protein
+Carica_papaya,,Carica_papaya.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/150/535/GCF_000150535.2_Papaya1.0/GCF_000150535.2_Papaya1.0_protein.faa.gz,Protein
+Medicago_truncatula,,Medicago_truncatula.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/473/485/GCF_003473485.1_MtrunA17r5.0-ANR/GCF_003473485.1_MtrunA17r5.0-ANR_protein.faa.gz,Protein
+Oryza_sativa,,Oryza_sativa.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/001/433/935/GCF_001433935.1_IRGSP-1.0/GCF_001433935.1_IRGSP-1.0_protein.faa.gz,Protein
+Physcomitrella_patens,,Physcomitrella_patens.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/425/GCF_000002425.4_Phypa_V3/GCF_000002425.4_Phypa_V3_protein.faa.gz,Protein
+Populus_trichocarpa,,Populus_trichocarpa.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/775/GCF_000002775.5_P.trichocarpa_v4.1/GCF_000002775.5_P.trichocarpa_v4.1_protein.faa.gz,Protein
+Selaginella_moellendorffii,,Selaginella_moellendorffii.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/143/415/GCF_000143415.4_v1.0/GCF_000143415.4_v1.0_protein.faa.gz,Protein
+Sorghum_bicolor,,Sorghum_bicolor.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/003/195/GCF_000003195.3_Sorghum_bicolor_NCBIv3/GCF_000003195.3_Sorghum_bicolor_NCBIv3_protein.faa.gz,Protein
+Vitis_vinifera,,Vitis_vinifera.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/030/704/535/GCF_030704535.1_ASM3070453v1/GCF_030704535.1_ASM3070453v1_protein.faa.gz,Protein
+Zea_mays,,Zea_mays.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_protein.faa.gz,Protein
+ACFP-Boehmeria_nivea,ACFP,ACFP.faa,https://de.cyverse.org/anon-files/iplant/home/shared/onekp_pilot/taxa/ACFP-Boehmeria_nivea/translations/ACFP.faa,Protein
+ACOR-Acorus_americanus,ACOR,ACOR.faa,https://de.cyverse.org/anon-files/iplant/home/shared/onekp_pilot/taxa/ACOR-Acorus_americanus/translations/ACOR.faa,Protein
+AEKF-Penium_margaritaceum,AEKF,AEKF.faa,https://de.cyverse.org/anon-files/iplant/home/shared/onekp_pilot/taxa/AEKF-Penium_margaritaceum/translations/AEKF.faa,Protein
+AFQQ-Inula_helenium,AFQQ,AFQQ.faa,https://de.cyverse.org/anon-files/iplant/home/shared/onekp_pilot/taxa/AFQQ-Inula_helenium/translations/AFQQ.faa,Protein
+AMBO-Amborella_trichopoda,AMBO,AMBO.faa,https://de.cyverse.org/anon-files/iplant/home/shared/onekp_pilot/taxa/AMBO-Amborella_trichopoda/translations/AMBO.faa,Protein
+AQUI-Aquilegia_formosa,AQUI,AQUI.faa,https://de.cyverse.org/anon-files/iplant/home/shared/onekp_pilot/taxa/AQUI-Aquilegia_formosa/translations/AQUI.faa,Protein
+AZZW-Chlorokybus_atmophyticus,AZZW,AZZW.faa,https://de.cyverse.org/anon-files/iplant/home/shared/onekp_pilot/taxa/AZZW-Chlorokybus_atmophyticus/translations/AZZW.faa,Protein
+BFIK-Entransia_fimbriata,BFIK,BFIK.faa,https://de.cyverse.org/anon-files/iplant/home/shared/onekp_pilot/taxa/BFIK-Entransia_fimbriata/translations/BFIK.faa,Protein
+</pre></div>
+</div>
+<p>That CSV file contains a column with the URLs to the transcriptomes.</p>
+<p>Use a bash script to download the files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="k">for</span><span class="w"> </span>ROW<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>tail<span class="w"> </span>-n<span class="w"> </span>+2<span class="w"> </span>onekp_pilot.csv<span class="sb">`</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nv">URL</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$ROW</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f4<span class="w"> </span>-d,<span class="k">)</span>
+<span class="w">    </span><span class="nv">FILE</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$ROW</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f3<span class="w"> </span>-d,<span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$FILE</span>
+<span class="w">    </span><span class="o">[[</span><span class="w"> </span>-f<span class="w"> </span><span class="nv">$FILE</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>wget<span class="w"> </span><span class="nv">$URL</span><span class="w"> </span>-O<span class="w"> </span><span class="nv">$FILE</span>
+</pre></div>
+</div>
+<p>Now, let’s set up the configuration file for Orthoflow. We only need to set the parameters which are different from the default values.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">input_sources</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;onekp_pilot.csv&quot;</span><span class="w"> </span><span class="c1"># Alternatively this can be specified on the command line with --files onekp_pilot.csv</span>
+<span class="nt">infer_tree_with_cds_seqs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w"> </span><span class="c1"># We are using protein sequences</span>
+<span class="nt">supermatrix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="nt">supertree</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="nt">ortholog_min_seqs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w">  </span><span class="c1"># Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis.</span>
+<span class="nt">ortholog_min_taxa</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w">  </span><span class="c1"># Minimum number of taxa that needs to be in an orthogroup.</span>
+</pre></div>
+</div>
+<p>Save this file to <code class="docutils literal notranslate"><span class="pre">config_onekp_pilot.yaml</span></code>.</p>
+</section>
+<section id="running-orthoflow">
+<h2>Running Orthoflow<a class="headerlink" href="#running-orthoflow" title="Permalink to this headline"></a></h2>
+<p>Phylogenomic analysis of this dataset can then be run with the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow<span class="w"> </span>--configfile<span class="w"> </span>config_onekp_pilot.yaml
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="yeast.html" class="btn btn-neutral float-left" title="Yeast Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="input.html" class="btn btn-neutral float-right" title="Input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 University of Melbourne.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

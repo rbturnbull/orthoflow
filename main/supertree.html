@@ -52,8 +52,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reproduction_tutorial.html">Reproduction Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1kp_tutorial.html">One Thousand Plant Transcriptomes Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yeast.html">Yeast Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plant.html">Plant Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input.html">Input</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="workflow.html">Workflow</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intake.html">Data Intake Module</a></li>
@@ -123,7 +123,7 @@
 <h1>Supertree Module<a class="headerlink" href="#supertree-module" title="Permalink to this headline"></a></h1>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-create_astral_input">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">create_astral_input</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supertree.smk#L23"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-create_astral_input" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">create_astral_input</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supertree.smk#L4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-create_astral_input" title="Permalink to this definition"></a></dt>
 <dd><p>Concatenate single-gene trees into one file.</p>
 </dd></dl>
 
@@ -132,7 +132,7 @@
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-astral">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">astral</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supertree.smk#L40"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-astral" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">astral</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supertree.smk#L21"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-astral" title="Permalink to this definition"></a></dt>
 <dd><p>Use ASTRAL to infer a coalescence-based tree.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
@@ -152,7 +152,7 @@
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-supertree_ascii">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">supertree_ascii</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supertree.smk#L60"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-supertree_ascii" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">supertree_ascii</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supertree.smk#L41"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-supertree_ascii" title="Permalink to this definition"></a></dt>
 <dd><p>Displays the supertree in ASCII format.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>
@@ -175,7 +175,7 @@
 </div>
 <dl class="smk rule">
 <dt class="sig sig-object smk" id="rule-supertree_render">
-<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">supertree_render</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supertree.smk#L78"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-supertree_render" title="Permalink to this definition"></a></dt>
+<span class="pre">Rule</span> <span class="sig-name descname"><span class="pre">supertree_render</span></span><a class="reference external" href="https://github.com/rbturnbull/orthoflow/blob/master/orthoflow/workflow/rules/supertree.smk#L59"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rule-supertree_render" title="Permalink to this definition"></a></dt>
 <dd><p>Renders the supertree in SVG and PNG formats.</p>
 <dl class="field-list">
 <dt class="field-odd">Conda</dt>

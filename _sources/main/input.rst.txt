@@ -57,7 +57,7 @@ The ``input_sources`` can also be a list of files. For example, this command wil
 
 If some of the input files are in Fasta format and so the translation table is not easily inferred, then you can create an individal TOML/YAML/JSON or CSV file for that input source like this:
 
-.. literalinclude :: ../../../tests/test-data-small/tests/test-data-small/KY819064-truncated.cds.toml
+.. literalinclude :: ../../../tests/test-data-small/KY819064-truncated.cds.toml
    :language: toml
 
 Then these files can be included as part of the list of Orthoflow input sources:

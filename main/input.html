@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Workflow" href="workflow.html" />
-    <link rel="prev" title="One Thousand Plant Transcriptomes Tutorial" href="1kp_tutorial.html" /> 
+    <link rel="prev" title="Plant Tutorial" href="plant.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,8 +52,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="beginner_tutorial.html">Beginner Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_tutorial.html">Advanced Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reproduction_tutorial.html">Reproduction Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1kp_tutorial.html">One Thousand Plant Transcriptomes Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yeast.html">Yeast Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plant.html">Plant Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Input</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow.html">Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
@@ -446,6 +446,11 @@ This default filename can be set in the config:</p>
 </pre></div>
 </div>
 <p>If some of the input files are in Fasta format and so the translation table is not easily inferred, then you can create an individal TOML/YAML/JSON or CSV file for that input source like this:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;KY819064-truncated.cds.fasta&quot;</span>
+<span class="n">translation_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span>
+<span class="n">taxon_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Chlorodesmis_fastigiata_HV03865&quot;</span>
+</pre></div>
+</div>
 <p>Then these files can be included as part of the list of Orthoflow input sources:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow<span class="w"> </span>--files<span class="w"> </span>*.gb<span class="w"> </span>*.toml
 </pre></div>
@@ -457,7 +462,7 @@ This default filename can be set in the config:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="1kp_tutorial.html" class="btn btn-neutral float-left" title="One Thousand Plant Transcriptomes Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plant.html" class="btn btn-neutral float-left" title="Plant Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="workflow.html" class="btn btn-neutral float-right" title="Workflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
