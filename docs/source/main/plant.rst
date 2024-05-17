@@ -51,7 +51,6 @@ Now, let's set up the configuration file for Orthoflow. We only need to set the 
     infer_tree_with_cds_seqs: False # We are using protein sequences
     supermatrix: True
     supertree: True
-    ignore_non_valid_files: True # this should be ignore_empty_seqs
     ortholog_min_seqs: 15  # Minimum number of sequences that needs to be in an alignment for it to proceed to phylogenetic analysis.
     ortholog_min_taxa: 15  # Minimum number of taxa that needs to be in an orthogroup.
 

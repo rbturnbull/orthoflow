@@ -63,7 +63,7 @@ class OrthoflowInput():
             self.is_genbank() == other.is_genbank(),
         ])
 
-    def validate(self):
+    def validate(self, ignore_empty_seqs:bool=True):
         self.file = Path(self.file)
         if not self.file.exists():
             self.faulty_list(f"Cannot find input file {self.file}")
@@ -73,7 +73,7 @@ class OrthoflowInput():
         self.data_type = self.data_type or "Fasta"
         self.validate_taxon_string()
         self.validate_translation_table()
-        self.validate_sequences()
+        self.validate_sequences(ignore_empty_seqs=ignore_empty_seqs)
 
     def stub(self):
         suffix = self.file.suffix
@@ -124,7 +124,7 @@ class OrthoflowInput():
                 "See values here: https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes"
             )
         
-    def validate_sequences(self):
+    def validate_sequences(self, ignore_empty_seqs:bool=True):
         with orthoflow_open(self.file) as fp:
             if self.is_genbank():
                 #check whether file contains valid nucleotides only
@@ -144,7 +144,7 @@ class OrthoflowInput():
                     for feat in seq.features:
                         if feat.type == "CDS":
                             count += 1
-                if count == 0:
+                if count == 0 and not ignore_empty_seqs:
                     self.valid_file = False
                     self.faulty_list.append(f"File '{self.file}' for taxon '{self.taxon_string}' does not contain any sequences")
             
@@ -165,7 +165,7 @@ class OrthoflowInput():
 
 
 class OrthoflowInputDictionary(dict):
-    def __init__(self, sources:List[OrthoflowInput], ignore_non_valid_files:bool, warnings_dir=None):
+    def __init__(self, sources:List[OrthoflowInput], ignore_non_valid_files:bool=False, ignore_empty_seqs:bool=True, warnings_dir=None):
 
         faulty_object_present = False
 
@@ -185,7 +185,7 @@ class OrthoflowInputDictionary(dict):
             if stub in self:
                 raise ValueError(f"Multiple input sources with same stub '{stub}': {self[stub].file} and {source.file}")
             
-            source.validate()
+            source.validate(ignore_empty_seqs=ignore_empty_seqs)
 
             # add file to dict if valid
             if source.valid_file:
@@ -394,9 +394,14 @@ def read_input_source(input_source:Union[Path, str, List], file_list) -> List[Or
     return [OrthoflowInput(file=input_source, suffix_unknown=True)]
 
 
-def create_input_dictionary(input_source:Union[Path, str, List], ignore_non_valid_files:bool, warnings_dir=None) -> OrthoflowInputDictionary:
+def create_input_dictionary(
+    input_source:Union[Path, str, List], 
+    ignore_non_valid_files:bool=False, 
+    ignore_empty_seqs:bool=True, 
+    warnings_dir=None,
+) -> OrthoflowInputDictionary:
     if len(str(input_source)) == 0:
         raise FileNotFoundError("No input source given, please check the config file.")
     input_list = read_input_source(input_source, [])
-    return OrthoflowInputDictionary(input_list, ignore_non_valid_files, warnings_dir)
+    return OrthoflowInputDictionary(input_list, ignore_non_valid_files, ignore_empty_seqs, warnings_dir)
   
