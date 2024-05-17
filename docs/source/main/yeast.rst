@@ -1,6 +1,6 @@
-===========================
-Reproduction Tutorial
-===========================
+===============================
+Yeast Tutorial
+===============================
 
 This tutorial is a step-by-step guide to reproduce the results of the `paper <https://www.researchsquare.com/article/rs-3699210>`_.
 
