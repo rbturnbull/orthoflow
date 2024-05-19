@@ -11,6 +11,7 @@ from rich.console import Console
 import toml
 from phytest.bio.sequence import Sequence
 from dataclasses import dataclass, field
+import hashlib
 import bz2, gzip
 
 console = Console()
@@ -132,7 +133,8 @@ class OrthoflowInput():
                 for sequence in sequences:
                     try:
                         sequence.assert_valid_alphabet(alphabet=DNA_ALPHABET)
-                        sequence.assert_length(min=1)
+                        if not ignore_empty_seqs:
+                            sequence.assert_length(min=1)
                     except Exception as err:
                         self.valid_file = False
                         self.faulty_list.append(f"Sequence in file '{self.file}' for taxon '{self.taxon_string}' is not valid: {err}")
@@ -144,18 +146,19 @@ class OrthoflowInput():
                     for feat in seq.features:
                         if feat.type == "CDS":
                             count += 1
-                if count == 0 and not ignore_empty_seqs:
+                if count == 0:
                     self.valid_file = False
                     self.faulty_list.append(f"File '{self.file}' for taxon '{self.taxon_string}' does not contain any sequences")
             
-            if not self.is_genbank():
+            else:
                 sequences = Sequence.parse(fp, "fasta")
                 count = 0
                 for sequence in sequences:
                     try:
                         alphabet = PROTEIN_ALPHABET if self.data_type == "Protein" else DNA_ALPHABET
-                        sequence.assert_valid_alphabet(alphabet=alphabet)                    
-                        sequence.assert_length(min=1)
+                        sequence.assert_valid_alphabet(alphabet=alphabet)      
+                        if not ignore_empty_seqs:
+                            sequence.assert_length(min=1)
                     except Exception as err:
                         self.faulty_list.append(f"Sequence '{sequence.id}' in file '{self.file}' for taxon '{self.taxon_string}' is not valid: {err}")
                     count += 1
@@ -182,8 +185,15 @@ class OrthoflowInputDictionary(dict):
         for source in sources:
             stub = source.stub()
 
+            # Make sure stub is unique
             if stub in self:
-                raise ValueError(f"Multiple input sources with same stub '{stub}': {self[stub].file} and {source.file}")
+                suffix_index = 2
+                while True:
+                    possible_stub = f"{stub}{suffix_index}"
+                    if not possible_stub in self:
+                        stub = possible_stub
+                        break
+                    suffix_index += 1
             
             source.validate(ignore_empty_seqs=ignore_empty_seqs)
 
@@ -235,7 +245,9 @@ class OrthoflowInputDictionary(dict):
             error_console.print("----------------")
             error_console.print("File(s) and/or sequence(s) not valid, check the warning folder to see the faulty objects")
             if warnings_dir:
-                error_console.print(f"See: {non_valid_files_warning_file}")
+                error_console.print(f"See: {non_valid_files_warning_file}:")
+                warnings_text = non_valid_files_warning_file.read_text()
+                error_console.print(warnings_text[:2000])
             error_console.print("----------------")                
             sys.exit(1)
             

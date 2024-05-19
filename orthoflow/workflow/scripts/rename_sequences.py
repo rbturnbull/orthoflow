@@ -33,13 +33,17 @@ def rename_sequences(
         logger.setLevel("DEBUG")
     
     counter = 0
-
+    
     # Get faulty sequences from warnings file
     warning_file = warnings_dir/"non_valid_objects.txt"
     wf_text = warning_file.read_text() if warning_file.exists() else ""
 
     with outfile.open("w") as fout, open_path(infile) as f_in:
         def write_seq(sequence, counter, gene = ""):
+            # ignore sequences of length zero
+            # If the user sets ignore_empty_seqs to False then these items will raise an error
+            if len(sequence) == 0:
+                return
             seq_id = f"{taxon_string}|{infile.name}|{counter}"
             if gene:
                 seq_id += f"|{gene}"

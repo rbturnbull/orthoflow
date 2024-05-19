@@ -71,9 +71,9 @@ class Workflow:
             text = generated_path.read_text()
             for expected_string in strings:
                 if expected_string not in text:
-                    raise SnakemakePytestException(
-                        f"The file '{generated_path}' does not contain the string '{expected_string}':\n{text}"
-                    )
+                    error_text = f"The file '{expected_file}' does not contain the string '{expected_string}':\n{text}"
+                    print(error_text)
+                    raise SnakemakePytestException(error_text)
 
     def assert_not_contains(self, strings:Union[str, List[str]], *, expected_files: Optional[TargetsType] = None,):
         if isinstance(strings, str):
@@ -179,6 +179,12 @@ class Workflow:
 @pytest.fixture
 def run_workflow(tmpdir: Path):
     def _run_workflow(targets: TargetsType, *args, expected_dir=None) -> Workflow:
+        if isinstance(targets, str) and " " in targets:
+            assert len(args) == 0
+            components = targets.split(" ")
+            targets = components[0]
+            args = components[1:]
+
         targets = _targets_to_pathlist(targets)
         work_dir = Path(tmpdir) / "work_dir"
         tests_dir = Path(__file__).parent.resolve()
