@@ -34,7 +34,8 @@ rule astral:
         LOG_DIR / "supertree/astral.{alignment_type}.log"
     shell:
         """
-        java -jar $CONDA_PREFIX/share/astral-tree-5.7.8-0/astral.5.7.8.jar -i {input} -o {output} 2>&1 | tee {log}
+        ASTRAL=$(find $CONDA_PREFIX -name 'astral.*.jar')
+        java -jar $ASTRAL -i {input} -o {output} 2>&1 | tee {log}
         """
 
 

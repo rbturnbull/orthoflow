@@ -75,7 +75,7 @@ checkpoint orthogroup_classification:
             --csv {output.csv} \
             --histogram {output.histogram} \
             --min-seqs {params.min_seqs} \
-            --min-taxa {params.min_taxa} # 2>&1 | tee {log}
+            --min-taxa {params.min_taxa} 2>&1 | tee {log}
         """
 
 
