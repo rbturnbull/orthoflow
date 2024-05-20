@@ -5,6 +5,7 @@
     <button class="nav-link active" id="orthogroups-tab" data-bs-toggle="tab" data-bs-target="#orthogroups" type="button" role="tab" aria-controls="orthogroups" aria-selected="true">Orthogroups</button>
     <button class="nav-link" id="Per-Species-tab" data-bs-toggle="tab" data-bs-target="#Per-Species" type="button" role="tab" aria-controls="Per-Species" aria-selected="false">Per Species</button>
     <button class="nav-link" id="Species-Overlaps-tab" data-bs-toggle="tab" data-bs-target="#Species-Overlaps" type="button" role="tab" aria-controls="Species-Overlaps" aria-selected="false">Species Overlaps</button>
+    <button class="nav-link" id="Classification-tab" data-bs-toggle="tab" data-bs-target="#Classification" type="button" role="tab" aria-controls="Classification" aria-selected="false">Classification</button>
     <button class="nav-link" id="SCOGs-tab" data-bs-toggle="tab" data-bs-target="#SCOGs" type="button" role="tab" aria-controls="SCOGs" aria-selected="false">SCOGs</button>
     <button class="nav-link" id="SNAP-OGs-tab" data-bs-toggle="tab" data-bs-target="#SNAP-OGs" type="button" role="tab" aria-controls="SNAP-OGs" aria-selected="false">SNAP OGs</button>
   </div>
@@ -26,6 +27,9 @@
   </div>
   <div class="tab-pane fade" id="Species-Overlaps" role="tabpanel" aria-labelledby="Species-Overlaps-tab">
     {{ include_file(input.orthofinder_report_components, "species_overlaps.html")|safe }}
+  </div>
+  <div class="tab-pane fade" id="Classification" role="tabpanel" aria-labelledby="Classification-tab">
+    {{ include_file(input.orthogroup_classification_histogram)|safe }}
   </div>
   <div class="tab-pane fade" id="SCOGs" role="tabpanel" aria-labelledby="SCOGs-tab">
     <pre>{{ include_file(input.orthofinder_scogs)|safe }}</pre>    

@@ -119,7 +119,7 @@ def classify_all_orthogroups(
     fig = px.ecdf(df, x='taxa_count', color='single', ecdfnorm=None, ecdfmode="complementary")
     fig.add_shape(type="line",
         xref="x", yref="paper",
-        x0=15, y0=0, x1=15, y1="1",
+        x0=min_taxa, y0=0, x1=min_taxa, y1="1",
         line=dict(
             color="LightSeaGreen",
             width=3,
@@ -127,7 +127,7 @@ def classify_all_orthogroups(
     )
     fig.add_annotation(
         xref="x", yref="paper",
-        x=15, 
+        x=min_taxa, 
         yanchor="bottom",
         y="1",
                 text="Min Taxa",
@@ -142,7 +142,7 @@ def classify_all_orthogroups(
         legend_title="OG Type",
     )
     if Path(histogram).suffix == ".html":
-        fig.write_html(histogram)
+        fig.write_html(histogram, full_html=False, include_plotlyjs=False)
     else:
         fig.write_image(histogram)
 

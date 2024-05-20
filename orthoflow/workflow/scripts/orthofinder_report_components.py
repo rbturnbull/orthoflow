@@ -59,14 +59,14 @@ def orthofinder_report_components(
         genes_per_species = pd.read_csv(StringIO(components[1]), sep="\t")
         pandas_to_bootstrap(genes_per_species, report_dir/"genes_per_species.html")
         fig = format_fig(px.bar(genes_per_species, x="Average number of genes per-species in orthogroup", y="Number of orthogroups"))
-        fig.write_html(report_dir/"genes_per_species_og_fig.html")
+        fig.write_html(report_dir/"genes_per_species_og_fig.html", full_html=False, include_plotlyjs=False)
         fig = format_fig(px.bar(genes_per_species, x="Average number of genes per-species in orthogroup", y="Number of genes"))
-        fig.write_html(report_dir/"genes_per_species_genes_fig.html")
+        fig.write_html(report_dir/"genes_per_species_genes_fig.html", full_html=False, include_plotlyjs=False)
 
     if len(components) > 2:
         number_of_species = pd.read_csv(StringIO(components[2]), sep="\t")
         fig = format_fig(px.bar(number_of_species, x="Number of species in orthogroup", y="Number of orthogroups"))
-        fig.write_html(report_dir/"og_count_vs_species_count.html")
+        fig.write_html(report_dir/"og_count_vs_species_count.html", full_html=False, include_plotlyjs=False)
 
 
     # Statistics_PerSpecies
@@ -84,7 +84,7 @@ def orthofinder_report_components(
         number_of_ogs_per_species_melted = number_of_ogs_per_species.transpose().melt(var_name="Number of genes per-species in orthogroup", value_name="Number of orthogroups")
         fig = px.box(number_of_ogs_per_species_melted, x='Number of genes per-species in orthogroup', y='Number of orthogroups')
         format_fig(fig)
-        fig.write_html(report_dir/"og_count_vs_number_of_genes_per_species.html")
+        fig.write_html(report_dir/"og_count_vs_number_of_genes_per_species.html", full_html=False, include_plotlyjs=False)
 
     if len(per_species_components) > 3:
         number_of_ogs_per_species = pd.read_csv(StringIO(per_species_components[3]), sep="\t", index_col=0)
@@ -92,7 +92,7 @@ def orthofinder_report_components(
         number_of_ogs_per_species_melted = number_of_ogs_per_species.transpose().melt(var_name="Number of genes per-species in orthogroup", value_name="Number of genes")
         fig = px.box(number_of_ogs_per_species_melted, x='Number of genes per-species in orthogroup', y='Number of genes')
         format_fig(fig)
-        fig.write_html(report_dir/"gene_count_vs_number_of_genes_per_species.html")
+        fig.write_html(report_dir/"gene_count_vs_number_of_genes_per_species.html", full_html=False, include_plotlyjs=False)
 
     # Orthogroups_SpeciesOverlaps
     overlaps = pd.read_csv(orthofinder_dir/"Comparative_Genomics_Statistics/Orthogroups_SpeciesOverlaps.tsv", sep="\t", index_col=0)
@@ -100,7 +100,7 @@ def orthofinder_report_components(
     fig = px.imshow(overlaps, labels=dict(color="Overlap"), x=columns, y=columns)
     format_fig(fig)
     fig.update_layout(width=1200, height=1200)
-    fig.write_html(report_dir/"species_overlaps.html")
+    fig.write_html(report_dir/"species_overlaps.html", full_html=False, include_plotlyjs=False)
 
 
 if __name__ == '__main__':

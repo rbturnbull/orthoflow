@@ -19,9 +19,10 @@ rule report:
     input:
         input_sources_csv=rules.input_sources_csv.output[0],
         # Orthofinder
-        orthofinder_scogs=rules.orthogroup_classification.output.scogs,
+        orthofinder_scogs=rules.orthogroup_classification.output.scogs if not use_orthofisher else ".",
         orthofinder_report_components=rules.orthofinder_report_components.output if not use_orthofisher else ".",
-        orthosnap_snap_ogs=rules.write_snap_ogs_list.output.snap_ogs,
+        orthosnap_snap_ogs=rules.write_snap_ogs_list.output.snap_ogs if not use_orthofisher else ".",
+        orthogroup_classification_histogram=rules.orthogroup_classification.output.histogram if not use_orthofisher else ".",
         # Alignment
         list_alignments=rules.list_alignments.output,
         # Gene Tree
@@ -29,6 +30,7 @@ rule report:
         model_plot_html=rules.gene_tree_summary.output.model_plot_html if use_supertree else ".",
         state_frequencies_plot_html=rules.gene_tree_summary.output.state_frequencies_plot_html if use_supertree else ".",
         # Supertree
+        supertree=rules.astral.output if use_supertree else ".",
         supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
         supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
         # Supermatrix

@@ -70,7 +70,7 @@ def run(
         f"--cores={cores}" if cores else "--cores",
         f"--directory={directory}",
         f"--conda-prefix={conda_prefix}",
-        f"--rerun-triggers=mtime", # hack for issue #69
+        # f"--rerun-triggers=mtime", # hack for issue #69
     ]
     if not mamba_found:
         args.append("--conda-frontend=conda")

@@ -195,6 +195,10 @@ H2 {
 }
 
 </style>
+  <!-- include plotly -->
+  <script>
+    {% include "assets/vendor/plotly-2.32.0.min.js" %}
+  </script>
 </head>
 
 <body>
@@ -249,14 +253,6 @@ H2 {
                 Alignment
               </a>
             </li>
-            {% if use_supermatrix %}
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="supermatrix-tab" data-bs-toggle="pill" data-bs-target="#supermatrix" type="button" role="tab" aria-controls="supermatrix" aria-selected="false">
-                <span data-feather="file"></span>
-                Supermatrix
-              </a>
-            </li>
-            {%endif%}
             {% if use_supertree %}
             <li class="nav-item">
               <a class="nav-link" href="#" id="genetree-tab" data-bs-toggle="pill" data-bs-target="#genetree" type="button" role="tab" aria-controls="genetree" aria-selected="false">
@@ -268,6 +264,14 @@ H2 {
               <a class="nav-link" href="#" id="supertree-tab" data-bs-toggle="pill" data-bs-target="#supertree" type="button" role="tab" aria-controls="supertree" aria-selected="false">
                 <span data-feather="file"></span>
                 Supertree
+              </a>
+            </li>
+            {%endif%}
+            {% if use_supermatrix %}
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="supermatrix-tab" data-bs-toggle="pill" data-bs-target="#supermatrix" type="button" role="tab" aria-controls="supermatrix" aria-selected="false">
+                <span data-feather="file"></span>
+                Supermatrix
               </a>
             </li>
             {%endif%}
