@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 from pathlib import Path
 from Bio import AlignIO
 from joblib import Parallel, delayed
@@ -79,6 +80,17 @@ def filter_alignments(
 
     if output_txt:
         output_txt = Path(output_txt)
+
+        if len(trimmed_to_keep) == 0:
+            alignment_type = output_txt.name.split(".")[-2]
+            print(
+                f"No {alignment_type} alignments present after filtering.\n"
+                "Check input or change minimum_trimmed_alignment_length_{alignment_type} or max_trimmed_proportion.\n"
+                "Also check the results from the orthofinder or orthofisher.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
         output_txt.write_text("\n".join([str(file) for file in trimmed_to_keep]) + "\n")
 
     return trimmed_to_keep

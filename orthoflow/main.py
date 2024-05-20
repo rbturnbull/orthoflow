@@ -84,8 +84,6 @@ def run(
         else:
             args.append(f"--profile={Path(__file__).parent.resolve()/'profiles/local'}")
 
-    # breakpoint()
-
     if ctx.args:
         args.extend(ctx.args)
 

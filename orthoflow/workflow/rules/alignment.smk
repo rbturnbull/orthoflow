@@ -169,30 +169,6 @@ checkpoint list_alignments:
         f"{SCRIPT_DIR}/filter_alignments.py"
 
 
-def list_filtered(wildcards):
-    alignments_text_file = checkpoints.list_alignments.get(**wildcards).output[0]
-    alignments = Path(alignments_text_file).read_text().strip().split("\n")
-
-
-    if len(alignments[0]) == 0:
-        if config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT):
-            raise EOFError(f"No {wildcards.alignment_type} alignments present after filtering.\nCheck input or change minimum_trimmed_alignment_length_{wildcards.alignment_type} or max_trimmed_proportion.\nAlso check the hmm files and the orthofisher logs.")
-        raise EOFError(f"No {wildcards.alignment_type} alignments present after filtering.\nCheck input or change minimum_trimmed_alignment_length_{wildcards.alignment_type} or max_trimmed_proportion.")
-
-    return alignments_text_file
-
-
-checkpoint check_presence_after_filtering:
-    input:
-        list_filtered
-    output:
-        "results/alignment/alignments_list_present.{alignment_type}.txt",
-    shell:
-        """
-        cat {input} > {output} && [[ -s {output} ]]
-        """
-
-
 def get_alignment_files(wildcards):
     files = []
     if config.get('infer_tree_with_protein_seqs', INFER_TREE_WITH_PROTEIN_SEQS_DEFAULT):

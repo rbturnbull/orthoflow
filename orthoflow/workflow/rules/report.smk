@@ -18,27 +18,25 @@ rule report:
     """
     input:
         input_sources_csv=rules.input_sources_csv.output[0],
+        # Orthofinder
         orthofinder_scogs=rules.orthogroup_classification.output.scogs,
         orthofinder_report_components=rules.orthofinder_report_components.output if not use_orthofisher else ".",
         orthosnap_snap_ogs=rules.write_snap_ogs_list.output.snap_ogs,
         # Alignment
         list_alignments=rules.list_alignments.output,
+        # Gene Tree
+        summary_plot=rules.gene_tree_summary.output.plot if use_supertree else ".",
+        model_plot_html=rules.gene_tree_summary.output.model_plot_html if use_supertree else ".",
+        state_frequencies_plot_html=rules.gene_tree_summary.output.state_frequencies_plot_html if use_supertree else ".",
+        # Supertree
+        supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
+        supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
         # Supermatrix
         supermatrix_tree_svg=rules.supermatrix_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_consensus_tree_svg=rules.supermatrix_consensus_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_alignment_summary=rules.supermatrix_alignment_summary.output  if use_supermatrix else ".",
         supermatrix_iqtree_report=rules.supermatrix_iqtree.output.iqtree_report  if use_supermatrix else ".",
         supermatrix_iqtree_log=rules.supermatrix_iqtree.output.iqtree_log  if use_supermatrix else ".",
-        # Supertree
-        supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
-        supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
-        genetree_iqtree_reports=partial(list_gene_tree_files, extension="iqtree") if use_supertree else ".",
-        summary_plot=rules.gene_tree_summary.output.plot if use_supertree else ".",
-        model_plot_html=rules.gene_tree_summary.output.model_plot_html if use_supertree else ".",
-        state_frequencies_plot_html=rules.gene_tree_summary.output.state_frequencies_plot_html if use_supertree else ".",
-        genetree_iqtree_logs=partial(list_gene_tree_files, extension="log") if use_supertree else ".",
-        genetree_svgs=partial(list_gene_tree_files, extension="tree.svg") if use_supertree else ".",
-        genetree_consensus_svgs=partial(list_gene_tree_files, extension="consensus-tree.svg") if use_supertree else ".",
         # Warnings
         missing_taxa=rules.missing_taxa.output,
     output:

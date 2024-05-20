@@ -83,7 +83,7 @@ rule gene_tree_consensus_render:
 
 
 def list_gene_tree_files(wildcards, extension):
-    alignments_text_file = checkpoints.check_presence_after_filtering.get(**wildcards).output[0]
+    alignments_text_file = checkpoints.list_alignments.get(**wildcards).output[0]
     alignments = Path(alignments_text_file).read_text().strip().split("\n")
 
     gene_trees = []

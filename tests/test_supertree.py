@@ -39,5 +39,5 @@ def test_supertree_render_protein(run_workflow):
 
 
 def test_supertree_render(run_workflow):
-    w = run_workflow("results/supertree/supertree_render.cds.svg", "--config", "infer_tree_with_protein_seqs=0")
+    w = run_workflow("results/supertree/supertree_render.cds.svg --config infer_tree_with_protein_seqs=0")
     w.assert_contains('<svg class="toyplot-canvas-Canvas"')
