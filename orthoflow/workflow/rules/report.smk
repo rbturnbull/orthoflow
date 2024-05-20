@@ -34,7 +34,9 @@ rule report:
         supertree_render_svg=rules.supertree_render.output.svg if use_supertree else ".",
         supertree_ascii=rules.supertree_ascii.output if use_supertree else ".",
         # Supermatrix
+        supermatrix_tree=rules.supermatrix_iqtree.output.treefile if use_supermatrix else ".",
         supermatrix_tree_svg=rules.supermatrix_tree_render.output.svg if use_supermatrix else ".",
+        supermatrix_consensus_tree=rules.supermatrix_iqtree.output.consensus_tree if use_supermatrix else ".",
         supermatrix_consensus_tree_svg=rules.supermatrix_consensus_tree_render.output.svg if use_supermatrix else ".",
         supermatrix_alignment_summary=rules.supermatrix_alignment_summary.output  if use_supermatrix else ".",
         supermatrix_iqtree_report=rules.supermatrix_iqtree.output.iqtree_report  if use_supermatrix else ".",

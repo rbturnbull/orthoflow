@@ -14,9 +14,13 @@
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="supermatrix_tree_svg" role="tabpanel" aria-labelledby="supermatrix_tree_svg-tab">
     {{ include_file(input.supermatrix_tree_svg)|safe }}
+    <h2>Newick Format</h2>
+    <div class="copy">{{ include_file(input.supermatrix_tree).strip()|safe }}</div>    
   </div>
   <div class="tab-pane fade" id="supermatrix_consensus_tree_svg" role="tabpanel" aria-labelledby="supermatrix_consensus_tree_svg-tab">
     {{ include_file(input.supermatrix_consensus_tree_svg)|safe }}
+    <h2>Newick Format</h2>
+    <div class="copy">{{ include_file(input.supermatrix_consensus_tree)|safe }}</div>    
   </div>
   {% if input.supermatrix_alignment_summary %}
     <div class="tab-pane fade" id="supermatrix_alignment_summary" role="tabpanel" aria-labelledby="supermatrix_alignment_summary-tab">
