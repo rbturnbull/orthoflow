@@ -58,7 +58,7 @@ checkpoint orthogroup_classification:
         csv="results/orthofinder/og_classification.csv",
         histogram="results/orthofinder/og_classification_histogram.html",
     conda:
-        ENV_DIR / "summary.yaml"
+        ENV_DIR / "orthogroup_classification.yaml"
     params:
         min_seqs=max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
         min_taxa=config.get("ortholog_min_taxa", ORTHOLOG_MIN_TAXA_DEFAULT),
@@ -75,7 +75,7 @@ checkpoint orthogroup_classification:
             --csv {output.csv} \
             --histogram {output.histogram} \
             --min-seqs {params.min_seqs} \
-            --min-taxa {params.min_taxa} 2>&1 | tee {log}
+            --min-taxa {params.min_taxa} # 2>&1 | tee {log}
         """
 
 
