@@ -31,6 +31,7 @@ MODEL_STRING_DEFAULT = "-m TEST"
 SUPERMATRIX_OUTGROUP_DEFAULT = ""
 TRANSLATION_TABLE_DEFAULT = "1"
 IGNORE_NON_VALID_FILES_DEFAULT = False
+IGNORE_EMPTY_SEQS_DEFAULT = True
 PROTEIN_INPUT_DEFAULT = False
 
 # Get the path to the default config file.
@@ -48,7 +49,6 @@ include: "rules/alignment.smk"
 include: "rules/supermatrix.smk"
 include: "rules/gene_tree.smk"
 include: "rules/supertree.smk"
-include: "rules/summary.smk"
 include: "rules/report.smk"
 
 

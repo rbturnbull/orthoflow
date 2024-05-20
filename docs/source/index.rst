@@ -19,8 +19,8 @@ Welcome to Orthoflow's documentation!
    main/installation
    main/beginner_tutorial
    main/advanced_tutorial
-   main/reproduction_tutorial
-   main/1kp_tutorial
+   main/yeast
+   main/plant
    main/input
    main/workflow
    main/contributing

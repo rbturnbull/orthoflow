@@ -1,6 +1,7 @@
 from pathlib import Path
 from collections import namedtuple
 import re
+import os
 
 use_orthofisher = config.get('use_orthofisher', USE_ORTHOFISHER_DEFAULT)
 orthofinder_use_scogs = config.get('orthofinder_use_scogs', True)
@@ -54,8 +55,10 @@ checkpoint orthogroup_classification:
     output:
         mcogs="results/orthofinder/mcogs.txt",
         scogs="results/orthofinder/scogs.txt",
+        csv="results/orthofinder/og_classification.csv",
+        histogram="results/orthofinder/og_classification_histogram.html",
     conda:
-        ENV_DIR / "joblib.yaml"
+        ENV_DIR / "orthogroup_classification.yaml"
     params:
         min_seqs=max(3,config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)),
         min_taxa=config.get("ortholog_min_taxa", ORTHOLOG_MIN_TAXA_DEFAULT),
@@ -69,14 +72,37 @@ checkpoint orthogroup_classification:
             {input}/Orthogroup_Sequences/ \
             --mcogs {output.mcogs} \
             --scogs {output.scogs} \
+            --csv {output.csv} \
+            --histogram {output.histogram} \
             --min-seqs {params.min_seqs} \
             --min-taxa {params.min_taxa} 2>&1 | tee {log}
         """
 
 
+def calculate_filesize_threads(wildcards, input) -> int:
+    """ 
+    Dynamically choose the number of threads for MAFFT 
+    
+    Most will be small and can run in parallel with each on a single thread for maximal efficiency.
+
+    Large ones can have up to 8 threads.
+    """
+    assert len(input) == 1
+    filesize = os.path.getsize(input[0])
+    
+    # Linear scaling of filesize
+    threads = filesize // 1_000_000
+
+    # Clamp between 1 and 8
+    threads = max(1,threads)
+    threads = min(8,threads)
+
+    return threads
+
+
 rule orthosnap:
     """
-    Run Orthosnap to retrieve single-copy orthologs.
+    Run OrthoSNAP to retrieve single-copy orthologs.
 
     :output: A directory with an unknown number of fasta files.
     :config orthosnap_occupancy: by default it uses ortholog_min_seqs
@@ -95,10 +121,12 @@ rule orthosnap:
         LOG_DIR / "orthofinder/orthosnap/{og}.log"
     benchmark:
         "bench/orthosnap.{og}.benchmark.txt"
+    threads:
+        calculate_filesize_threads
     shell:
         """
         echo "Running mafft on {input}" 2>&1 | tee {log}
-        {{ mafft {input} > {output.alignment} ; }} 2>&1 | tee -a {log}
+        {{ mafft --thread {threads} {input} > {output.alignment} ; }} 2>&1 | tee -a {log}
 
         echo "Running fasttree on {output.alignment}" 2>&1 | tee -a {log}
         {{ fasttree {output.alignment} > {output.tree} ; }} 2>&1 | tee -a {log}

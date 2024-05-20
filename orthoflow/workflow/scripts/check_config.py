@@ -22,7 +22,7 @@ def check_configurations(input_dictionary, WARNINGS_DIR, ORTHOLOG_MIN_SEQS_DEFAU
 
     min_seqs = config.get("ortholog_min_seqs", ORTHOLOG_MIN_SEQS_DEFAULT)
     if min_seqs < 3:
-        configuration_warnings.append(f"The variable ortholog_min_seqs is {min_seqs} and should be 3 or larger. It has been automatically set to 3.")
+        configuration_warnings.append(f"The variable `ortholog_min_seqs` is {min_seqs} and should be 3 or larger. It has been automatically set to 3.")
 
     # raise error when amino acid sequence present in input and infer_tree_with_protein_seqs is TRUE
     if config["infer_tree_with_cds_seqs"]:

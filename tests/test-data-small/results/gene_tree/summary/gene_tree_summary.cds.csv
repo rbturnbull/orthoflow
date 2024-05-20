@@ -1,0 +1,11 @@
+metric,value,alignment
+number_of_sequences,6,OG0000000.cds
+alignment_length,963,OG0000000.cds
+constant_sites,455,OG0000000.cds
+parsimony_informative_sites,249,OG0000000.cds
+distinct_site_patterns,334,OG0000000.cds
+number_of_sequences,6,OG0000004.cds
+alignment_length,1425,OG0000004.cds
+constant_sites,945,OG0000004.cds
+parsimony_informative_sites,247,OG0000004.cds
+distinct_site_patterns,273,OG0000004.cds

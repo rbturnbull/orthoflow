@@ -1,24 +1,5 @@
 
 
-def list_gene_tree_files(wildcards, extension):
-    alignments_text_file = checkpoints.check_presence_after_filtering.get(**wildcards).output[0]
-    alignments = Path(alignments_text_file).read_text().strip().split("\n")
-
-    gene_trees = []
-    for alignment in alignments:
-        alignment = Path(alignment)
-        og = alignment.name.split(".")[0]
-        gene_trees.append(f"results/gene_tree/{og}/{og}.{wildcards.alignment_type}.{extension}")
-
-    return gene_trees
-
-
-def list_gene_trees(wildcards):
-    """
-    Returns a list of the treefiles for all the genes.
-    """
-    return list_gene_tree_files(wildcards, extension="treefile")
-
 
 rule create_astral_input:
     """
@@ -33,7 +14,7 @@ rule create_astral_input:
     shell:
         """
         echo {input} 2>&1 | tee {log}
-        {{ cat {input} > {output} ; }} 2>&1 | tee {log}
+        {{ echo {input} | xargs cat > {output} ; }} 2>&1 | tee {log}
         """
 
 
@@ -53,7 +34,8 @@ rule astral:
         LOG_DIR / "supertree/astral.{alignment_type}.log"
     shell:
         """
-        java -jar $CONDA_PREFIX/share/astral-tree-5.7.8-0/astral.5.7.8.jar -i {input} -o {output} 2>&1 | tee {log}
+        ASTRAL=$(find $CONDA_PREFIX -name 'astral.*.jar')
+        java -jar $ASTRAL -i {input} -o {output} 2>&1 | tee {log}
         """
 
 

@@ -5,7 +5,7 @@
 Link to original on [diagrams.net](https://app.diagrams.net/#G1feeWJLnqI-_EN4x8zY2V9GChWosKFZg3)
 
 
-![](../_static/orthoflow-workflow-diagram.svg)
+![](../_static/images/orthoflow-workflow-diagram.svg)
 
 
 ## User input

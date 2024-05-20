@@ -1,0 +1,11 @@
+metric,value,alignment
+number_of_sequences,6,OG0000000.protein
+alignment_length,321,OG0000000.protein
+constant_sites,157,OG0000000.protein
+parsimony_informative_sites,59,OG0000000.protein
+distinct_site_patterns,180,OG0000000.protein
+number_of_sequences,6,OG0000004.protein
+alignment_length,475,OG0000004.protein
+constant_sites,396,OG0000004.protein
+parsimony_informative_sites,41,OG0000004.protein
+distinct_site_patterns,96,OG0000004.protein

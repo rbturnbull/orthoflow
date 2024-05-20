@@ -3,24 +3,33 @@
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <button class="nav-link active" id="orthogroups-tab" data-bs-toggle="tab" data-bs-target="#orthogroups" type="button" role="tab" aria-controls="orthogroups" aria-selected="true">Orthogroups</button>
-    <button class="nav-link" id="Unassigned-Genes-tab" data-bs-toggle="tab" data-bs-target="#Unassigned-Genes" type="button" role="tab" aria-controls="Unassigned-Genes" aria-selected="false">Unassigned Genes</button>
+    <button class="nav-link" id="Per-Species-tab" data-bs-toggle="tab" data-bs-target="#Per-Species" type="button" role="tab" aria-controls="Per-Species" aria-selected="false">Per Species</button>
     <button class="nav-link" id="Species-Overlaps-tab" data-bs-toggle="tab" data-bs-target="#Species-Overlaps" type="button" role="tab" aria-controls="Species-Overlaps" aria-selected="false">Species Overlaps</button>
-    <!--
-    <button class="nav-link" id="Totals-tab" data-bs-toggle="tab" data-bs-target="#Totals" type="button" role="tab" aria-controls="Totals" aria-selected="false">Totals</button>
-    -->
+    <button class="nav-link" id="Classification-tab" data-bs-toggle="tab" data-bs-target="#Classification" type="button" role="tab" aria-controls="Classification" aria-selected="false">Classification</button>
     <button class="nav-link" id="SCOGs-tab" data-bs-toggle="tab" data-bs-target="#SCOGs" type="button" role="tab" aria-controls="SCOGs" aria-selected="false">SCOGs</button>
     <button class="nav-link" id="SNAP-OGs-tab" data-bs-toggle="tab" data-bs-target="#SNAP-OGs" type="button" role="tab" aria-controls="SNAP-OGs" aria-selected="false">SNAP OGs</button>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="orthogroups" role="tabpanel" aria-labelledby="orthogroups-tab">
-      {{ include_file(input.orthofinder_report_components, "Orthogroups.html")|safe }}
+    {{ include_file(input.orthofinder_report_components, "overall.html")|safe }}
+    <h2>Average number of genes per-species in orthogroup</h2>
+    {{ include_file(input.orthofinder_report_components, "genes_per_species.html")|safe }}
+    {{ include_file(input.orthofinder_report_components, "genes_per_species_og_fig.html")|safe }}
+    {{ include_file(input.orthofinder_report_components, "genes_per_species_genes_fig.html")|safe }}
+    <h2>Number of Orthogroups vs. Number of OGs</h2>
+    {{ include_file(input.orthofinder_report_components, "og_count_vs_species_count.html")|safe }}    
   </div>
-  <div class="tab-pane fade" id="Unassigned-Genes" role="tabpanel" aria-labelledby="Unassigned-Genes-tab">
-    {{ include_file(input.orthofinder_report_components, "Orthogroups_UnassignedGenes.html")|safe }}
+  <div class="tab-pane fade" id="Per-Species" role="tabpanel" aria-labelledby="Per-Species-tab">
+    {{ include_file(input.orthofinder_report_components, "per_species_stats.html")|safe }}
+    {{ include_file(input.orthofinder_report_components, "og_count_vs_number_of_genes_per_species.html")|safe }}
+    {{ include_file(input.orthofinder_report_components, "gene_count_vs_number_of_genes_per_species.html")|safe }}    
   </div>
   <div class="tab-pane fade" id="Species-Overlaps" role="tabpanel" aria-labelledby="Species-Overlaps-tab">
-    {{ include_file(input.orthofinder_report_components, "Orthogroups_SpeciesOverlaps.html")|safe }}
+    {{ include_file(input.orthofinder_report_components, "species_overlaps.html")|safe }}
+  </div>
+  <div class="tab-pane fade" id="Classification" role="tabpanel" aria-labelledby="Classification-tab">
+    {{ include_file(input.orthogroup_classification_histogram)|safe }}
   </div>
   <div class="tab-pane fade" id="SCOGs" role="tabpanel" aria-labelledby="SCOGs-tab">
     <pre>{{ include_file(input.orthofinder_scogs)|safe }}</pre>    

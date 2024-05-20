@@ -1,6 +1,7 @@
 # input
 input_sources: "input_sources.csv" # Specify the CSV file containing the input sources
-ignore_non_valid_files: False # Ignore file from workflow if no valid sequence present in the file, instead of error message
+ignore_non_valid_files: False # Ignore file from workflow if no valid sequence present in the file instead of raising an error
+ignore_empty_seqs: True # Ignore empty sequences in files instead of raising an error
 amino_acid_input: False # Set to True if any of your input files contains protein sequences instead of nucleotide sequences.
 # If amino_acid_input = True, set infer_tree_with_cds_seqs to False
 

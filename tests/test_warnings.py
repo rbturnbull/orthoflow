@@ -18,7 +18,7 @@ def test_warning_missing_taxa(run_workflow):
     w.assert_exists(expected_files="logs/warnings/missing_taxa.txt")
     w.assert_contains("alphabetfasta", expected_files="logs/warnings/missing_taxa.txt")
     w.assert_contains("codonsfasta", expected_files="logs/warnings/missing_taxa.txt")
-    w.assert_contains("The following taxon/taxa has/have no orthougroups with current configurations:", expected_files="logs/warnings/missing_taxa.txt")
+    w.assert_contains("2 taxa are missing in all orthogroups with the current Orthoflow configuration:\n\tcodonsfasta\n\talphabetfasta\n", expected_files="logs/warnings/missing_taxa.txt")
 
 
 def test_warning_suffix(run_workflow):
@@ -34,7 +34,7 @@ def test_warning_trans_table(run_workflow):
 
 
 def test_warning_configuration_file(run_workflow):
-    w = run_workflow("orthofinder", "-R", "--files", "input_sources.csv", "--config", "ortholog_min_seqs=1", "supertree=0", "supermatrix=0", "ignore_non_valid_files=1", expected_dir=warnings_expected_dir)
+    w = run_workflow("orthofinder -R --files input_sources.csv --config ortholog_min_seqs=1 supertree=0 supermatrix=0 ignore_non_valid_files=1", expected_dir=warnings_expected_dir)
     w.assert_exists(expected_files="logs/warnings/configuration_warnings.txt")
-    w.assert_contains("The variable ortholog_min_seqs is 1 and should be 3 or larger.", expected_files="logs/warnings/configuration_warnings.txt")
+    w.assert_contains("The variable `ortholog_min_seqs` is 1 and should be 3 or larger.", expected_files="logs/warnings/configuration_warnings.txt")
     w.assert_contains("Both the 'supermatrix' and 'supertree' variable are False in the configuration file.", expected_files="logs/warnings/configuration_warnings.txt")

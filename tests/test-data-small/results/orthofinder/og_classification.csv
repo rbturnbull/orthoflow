@@ -1,0 +1,32 @@
+,file,single,classification,taxa_count,seq_count
+0,results/orthofinder/output/Orthogroup_Sequences/OG0000000.fa,SCOG,SCOG,6,6
+1,results/orthofinder/output/Orthogroup_Sequences/OG0000001.fa,SCOG,SCOG,6,6
+2,results/orthofinder/output/Orthogroup_Sequences/OG0000002.fa,SCOG,SCOG,6,6
+3,results/orthofinder/output/Orthogroup_Sequences/OG0000003.fa,SCOG,SCOG,6,6
+4,results/orthofinder/output/Orthogroup_Sequences/OG0000004.fa,SCOG,SCOG,6,6
+5,results/orthofinder/output/Orthogroup_Sequences/OG0000005.fa,MCOG,MCOG,5,6
+6,results/orthofinder/output/Orthogroup_Sequences/OG0000006.fa,SCOG,SCOG,5,5
+7,results/orthofinder/output/Orthogroup_Sequences/OG0000007.fa,SCOG,BELOW MIN TAXA,1,1
+8,results/orthofinder/output/Orthogroup_Sequences/OG0000008.fa,SCOG,BELOW MIN TAXA,1,1
+9,results/orthofinder/output/Orthogroup_Sequences/OG0000009.fa,SCOG,BELOW MIN TAXA,1,1
+10,results/orthofinder/output/Orthogroup_Sequences/OG0000010.fa,SCOG,BELOW MIN TAXA,1,1
+11,results/orthofinder/output/Orthogroup_Sequences/OG0000011.fa,SCOG,BELOW MIN TAXA,1,1
+12,results/orthofinder/output/Orthogroup_Sequences/OG0000012.fa,SCOG,BELOW MIN TAXA,1,1
+13,results/orthofinder/output/Orthogroup_Sequences/OG0000013.fa,SCOG,BELOW MIN TAXA,1,1
+14,results/orthofinder/output/Orthogroup_Sequences/OG0000014.fa,SCOG,BELOW MIN TAXA,1,1
+15,results/orthofinder/output/Orthogroup_Sequences/OG0000015.fa,SCOG,BELOW MIN TAXA,1,1
+16,results/orthofinder/output/Orthogroup_Sequences/OG0000016.fa,SCOG,BELOW MIN TAXA,1,1
+17,results/orthofinder/output/Orthogroup_Sequences/OG0000017.fa,SCOG,BELOW MIN TAXA,1,1
+18,results/orthofinder/output/Orthogroup_Sequences/OG0000018.fa,SCOG,BELOW MIN TAXA,1,1
+19,results/orthofinder/output/Orthogroup_Sequences/OG0000019.fa,SCOG,BELOW MIN TAXA,1,1
+20,results/orthofinder/output/Orthogroup_Sequences/OG0000020.fa,SCOG,BELOW MIN TAXA,1,1
+21,results/orthofinder/output/Orthogroup_Sequences/OG0000021.fa,SCOG,BELOW MIN TAXA,1,1
+22,results/orthofinder/output/Orthogroup_Sequences/OG0000022.fa,SCOG,BELOW MIN TAXA,1,1
+23,results/orthofinder/output/Orthogroup_Sequences/OG0000023.fa,SCOG,BELOW MIN TAXA,1,1
+24,results/orthofinder/output/Orthogroup_Sequences/OG0000024.fa,SCOG,BELOW MIN TAXA,1,1
+25,results/orthofinder/output/Orthogroup_Sequences/OG0000025.fa,SCOG,BELOW MIN TAXA,1,1
+26,results/orthofinder/output/Orthogroup_Sequences/OG0000026.fa,SCOG,BELOW MIN TAXA,1,1
+27,results/orthofinder/output/Orthogroup_Sequences/OG0000027.fa,SCOG,BELOW MIN TAXA,1,1
+28,results/orthofinder/output/Orthogroup_Sequences/OG0000028.fa,SCOG,BELOW MIN TAXA,1,1
+29,results/orthofinder/output/Orthogroup_Sequences/OG0000029.fa,SCOG,BELOW MIN TAXA,1,1
+30,results/orthofinder/output/Orthogroup_Sequences/OG0000030.fa,SCOG,BELOW MIN TAXA,1,1

@@ -1,8 +1,8 @@
-IQ-TREE 2.2.0.3 COVID-edition built Sep  5 2022
+IQ-TREE 2.2.0.3 COVID-edition built Aug  2 2022
 
 Input file name: results/supermatrix/supermatrix.cds.fa
 Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
-Random seed number: 971247
+Random seed number: 792646
 
 REFERENCES
 ----------
@@ -84,13 +84,13 @@ TVMe+I           -10112.050   20252.100 - 1.08e-69   20252.277 - 1.16e-69   2033
 SYM+G4           -10109.264   20248.529 - 6.47e-69   20248.731 - 6.83e-69   20335.202 - 6.85e-65
 SYM+I+G4         -10105.978   20243.957 - 6.36e-68   20244.186 - 6.63e-68   20336.408 - 3.75e-65
 TVMe+G4          -10115.760   20259.521 - 2.65e-71   20259.698 - 2.84e-71   20340.416 - 5.06e-66
-TVMe+I+G4        -10112.238   20254.477 - 3.31e-70   20254.679 - 3.49e-70   20341.150 -  3.5e-66
+TVMe+I+G4        -10112.239   20254.478 -  3.3e-70   20254.680 - 3.49e-70   20341.151 -  3.5e-66
 TIM2e+I          -10159.736   20345.473 - 5.75e-90   20345.626 - 6.22e-90   20420.589 - 1.97e-83
 TPM2+I           -10164.413   20352.827 - 1.45e-91   20352.958 - 1.59e-91   20422.165 - 8.96e-84
 TIM2e+I+G4       -10162.604   20353.209 -  1.2e-91   20353.386 - 1.29e-91   20434.104 - 2.29e-86
 TIM2e+G4         -10166.496   20358.992 - 6.67e-93   20359.145 - 7.22e-93   20434.109 - 2.28e-86
 TPM2+I+G4        -10167.174   20360.347 - 3.39e-93   20360.500 - 3.67e-93   20435.464 - 1.16e-86
-TPM2+G4          -10171.099   20366.199 - 1.82e-94   20366.330 - 1.99e-94   20435.537 - 1.12e-86
+TPM2+G4          -10171.100   20366.199 - 1.82e-94   20366.330 - 1.99e-94   20435.538 - 1.12e-86
 TIMe+I           -10187.704   20401.408 - 4.11e-102   20401.562 - 4.44e-102   20476.525 - 1.41e-95
 K3P+I            -10193.175   20410.349 - 4.7e-104   20410.480 - 5.14e-104   20479.688 - 2.89e-96
 TIMe+G4          -10195.091   20416.182 - 2.54e-105   20416.335 - 2.75e-105   20491.298 - 8.71e-99
@@ -189,7 +189,7 @@ Numbers in parentheses are  ultrafast bootstrap support (%)
 
 Tree in newick format:
 
-(Avrainvillea_mazei_HV02664:0.2083414814,(Bryopsis_plumosa_WEST4718:0.1431662355,Derbesia_sp_WEST4838:0.1843593424)100:0.0749149837,(Caulerpa_cliftonii_HV03798:0.1700808743,(Chlorodesmis_fastigiata_HV03865:0.0968424549,Flabellia_petiolata_HV01202:0.0777150205)98:0.0437232892)100:0.0864126875);
+(Avrainvillea_mazei_HV02664:0.2083418034,(Bryopsis_plumosa_WEST4718:0.1431663088,Derbesia_sp_WEST4838:0.1843595331)100:0.0749149964,(Caulerpa_cliftonii_HV03798:0.1700810595,(Chlorodesmis_fastigiata_HV03865:0.0968430593,Flabellia_petiolata_HV01202:0.0777149909)98:0.0437234131)100:0.0864127447);
 
 CONSENSUS TREE
 --------------
@@ -217,12 +217,12 @@ Numbers in parentheses are bootstrap supports (%)
 
 Consensus tree in newick format: 
 
-(Avrainvillea_mazei_HV02664:0.2083451843,(Bryopsis_plumosa_WEST4718:0.1431632239,Derbesia_sp_WEST4838:0.1843631022)100:0.0749217465,(Caulerpa_cliftonii_HV03798:0.1701007133,(Chlorodesmis_fastigiata_HV03865:0.0968536505,Flabellia_petiolata_HV01202:0.0777184196)98:0.0437063664)100:0.0864044150);
+(Avrainvillea_mazei_HV02664:0.2083451972,(Bryopsis_plumosa_WEST4718:0.1431632303,Derbesia_sp_WEST4838:0.1843631128)100:0.0749217509,(Caulerpa_cliftonii_HV03798:0.1701007233,(Chlorodesmis_fastigiata_HV03865:0.0968536535,Flabellia_petiolata_HV01202:0.0777184225)98:0.0437063654)100:0.0864044195);
 
 TIME STAMP
 ----------
 
-Date and time: Thu Mar  7 15:44:23 2024
-Total CPU time used: 1.19749 seconds (0h:0m:1s)
-Total wall-clock time used: 1.290712833 seconds (0h:0m:1s)
+Date and time: Mon May 20 06:53:14 2024
+Total CPU time used: 0.713534 seconds (0h:0m:0s)
+Total wall-clock time used: 0.7210692549 seconds (0h:0m:0s)
 
