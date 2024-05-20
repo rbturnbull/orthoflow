@@ -25,8 +25,8 @@ def test_orthosnap(run_workflow):
 
 def test_orthofinder_report_components(run_workflow):
     workflow = run_workflow("results/orthofinder/report")
-    workflow.assert_contains('<div class="table-responsive"><table class="table table-sm table-striped table-hover table-sm align-middle"><', expected_files="results/orthofinder/report/Orthogroups.html")
-    workflow.assert_contains('<th class="header" scope="col">Input</th><th class="header" scope="col">', expected_files="results/orthofinder/report/Orthogroups_SpeciesOverlaps.html")
-    workflow.assert_contains('Caulerpa_cliftonii_HV03798|KX808498-truncated.gb|3|psaB', expected_files="results/orthofinder/report/Orthogroups_UnassignedGenes.html")
+    workflow.assert_contains('<div class="table-responsive"><table class="table table-sm table-striped table-hover table-sm align-middle"><', expected_files="results/orthofinder/report/overall.html")
+    workflow.assert_exists(expected_files="results/orthofinder/report/genes_per_species_genes_fig.html")
+    workflow.assert_exists(expected_files="results/orthofinder/report/per_species_stats.html")
 
     
