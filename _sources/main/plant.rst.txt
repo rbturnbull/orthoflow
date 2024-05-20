@@ -11,16 +11,16 @@ Phylogenomic analysis of this dataset was presented in:
 
     Wickett, Norman J., Siavash Mirarab, Nam Nguyen, Tandy Warnow, et al. 
     A phylotranscriptomic analysis of the origin and early diversification of land plants. 
-    Proceedings of the National Academy of Sciences (PNAS), 111, no. 45 (2014): E4859–4868. doi:10.1073/pnas.1323926111.
+    Proceedings of the National Academy of Sciences (PNAS), 111, no. 45 (2014): E4859–4868. https://doi.org/10.1073/pnas.1323926111
 
 Preparation
 ===================================
 
-Download the input file for the dataset from our documentation at https://rbturnbull.github.io/orthoflow/_data/onekp_pilot.csv
+Download the input file for the dataset from our documentation at https://rbturnbull.github.io/orthoflow/_static/data/onekp_pilot.csv
 
 .. code-block:: bash
 
-    wget https://rbturnbull.github.io/orthoflow/_data/onekp_pilot.csv
+    wget https://rbturnbull.github.io/orthoflow/_static/data/onekp_pilot.csv
 
 This contains a CSV file that looks like this:
 
