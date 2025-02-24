@@ -82,5 +82,5 @@ Phylogenomic analysis of this dataset can then be run with the command:
 
 .. code-block:: bash
 
-    orthoflow --configfile config_onekp_pilot.yaml
+    orthoflow run --configfile config_onekp_pilot.yaml
 

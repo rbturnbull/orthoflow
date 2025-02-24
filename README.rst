@@ -111,7 +111,7 @@ Go into the directory containing the ``input_sources.csv`` file and run orthoflo
 .. code-block::
 
     cd tests/test-data
-    orthoflow
+    orthoflow run
 
 By default, Orthoflow will extract the CDSs from the input files, run OrthoFinder followed by OrthoSNAP to determine orthologous genes, align them and infer a concatenated tree from the protein sequences. You can follow progress on the screen as the workflow executes and outputs are produced.
 
