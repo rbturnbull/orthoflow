@@ -10,6 +10,7 @@ tagline: "--- Phylogenomic analysis and diagnostics with one command ---"
 conda: True
 skip_missing: False
 symlink_resources: False
+version: "0.4.0"
 cli:
   inputs:
     type: Path
