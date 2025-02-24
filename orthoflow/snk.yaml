@@ -1,10 +1,15 @@
 logo: "Orthoflow"
 font: "tarty7"  
-tagline: "\n\n--- Phylogenomic analysis and diagnostics with one command ---"
+art: |
+  ██████████████████████████████████████████████████████████████                                                                                
+  █─▄▄─██▄─▄▄▀██─▄─▄─██─█─██─▄▄─██▄─▄▄─██▄─▄████─▄▄─██▄─█▀▀▀█─▄█                                                                                
+  █─██─███─▄─▄████─████─▄─██─██─███─▄█████─██▀██─██─███─█─█─█─██                                                                                
+  █▄▄▄▄██▄▄█▄▄███▄▄▄███▄█▄██▄▄▄▄██▄▄▄████▄▄▄▄▄██▄▄▄▄███▄▄▄█▄▄▄██                                                                                
+  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                                                                
+tagline: "--- Phylogenomic analysis and diagnostics with one command ---"
 conda: True
 skip_missing: False
 symlink_resources: False
-
 cli:
   inputs:
     type: Path
