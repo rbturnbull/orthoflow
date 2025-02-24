@@ -1,0 +1,12 @@
+name: orthohmm
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - coreutils
+  - python=3.11
+  - hmmer=3.3.2
+  - mcl=22.282
+  - pip
+  - pip:
+    - orthohmm>=0.1.0
