@@ -3,7 +3,7 @@ from orthoflow.workflow.scripts.check_config import check_configurations
 
 ignore_non_valid_files = config.get('ignore_non_valid_files', IGNORE_NON_VALID_FILES_DEFAULT)
 ignore_empty_seqs = config.get('ignore_empty_seqs', IGNORE_EMPTY_SEQS_DEFAULT)
-input_dictionary = create_input_dictionary(config["input_sources"], ignore_non_valid_files, ignore_empty_seqs, warnings_dir=WARNINGS_DIR)
+input_dictionary = create_input_dictionary(config["inputs"], ignore_non_valid_files, ignore_empty_seqs, warnings_dir=WARNINGS_DIR)
 
 rule input_sources_csv:
     """

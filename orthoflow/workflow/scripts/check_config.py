@@ -30,12 +30,6 @@ def check_configurations(input_dictionary, WARNINGS_DIR, ORTHOLOG_MIN_SEQS_DEFAU
             if value.data_type == 'Protein':
                 raise ValueError("Amino acid input found while configuration variable infer_tree_with_cds_seqs is True.\nPlease change infer_tree_with_cds_seqs to False or remove the amino acid / protein files from the analysis.")
 
-    # check hmm files in configuration file
-    if config["use_orthofisher"] == True:
-        for file in config["orthofisher_hmmer_files"]:
-            if not os.path.isfile(file):
-                configuration_warnings.append(f"hmm file {file} does not exist and is not used as an hmm profile.")
-
     # write the found warnings to the warning file
     if len(configuration_warnings) > 0:
         configuration_warnings.insert(0, "Configuration file has raised warnings due to uncommon configurations.\n")

@@ -11,7 +11,6 @@ min_version("6.0")
 SNAKE_DIR = Path(workflow.basedir)
 SCRIPT_DIR = SNAKE_DIR/ "scripts"
 ENV_DIR = SNAKE_DIR / "envs"
-CONFIG_DIR = SNAKE_DIR.parent / "config"
 LOG_DIR = Path("logs")
 WARNINGS_DIR = LOG_DIR/"warnings"
 WARNINGS_DIR.mkdir(parents=True, exist_ok=True)
@@ -34,10 +33,6 @@ IGNORE_NON_VALID_FILES_DEFAULT = False
 IGNORE_EMPTY_SEQS_DEFAULT = True
 PROTEIN_INPUT_DEFAULT = False
 
-# Get the path to the default config file.
-# This can be overridden on the command line
-configfile: CONFIG_DIR / "config.yml"
-
 report: "report/workflow.rst"
 
 
@@ -58,7 +53,6 @@ onstart:
     path_vars = (
         'SNAKE_DIR',
         'SCRIPT_DIR',
-        'CONFIG_DIR',
         'LOG_DIR',
     )
     for name in path_vars:

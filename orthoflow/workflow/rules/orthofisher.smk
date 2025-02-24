@@ -1,5 +1,24 @@
 import pandas as pd
 
+
+def get_hmmer_files():
+    hmm_files = []
+    default_hmm_dir = Path(__file__).parent / "data"/"hmms"
+    config_list = config.get("orthofisher_hmmer_files", default_hmm_dir)
+
+    for item in config_list:
+        item = Path(item)
+        if not item.exists():
+            configuration_warnings.append(f"HMM file {item} does not exist and is not used as an HMM profile.")
+            continue
+        if item.is_dir():
+            for file in item.glob("*.hmm"):
+                hmm_files.append(file)
+        else:
+            hmm_files.append(item)
+    return hmm_files
+
+
 rule orthofisher_input_generation:
     """
     Runs `orthofisher <https://github.com/JLSteenwyk/orthofisher>`_ on input files of FASTA file and pHMM paths the intake rule.

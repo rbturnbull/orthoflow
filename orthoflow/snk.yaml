@@ -6,9 +6,10 @@ skip_missing: False
 symlink_resources: False
 
 cli:
-  input_sources:
+  inputs:
     type: Path
     help: "Specify the CSV file containing the input sources"
+    short: "i"
     default: "input_sources.csv"
   ignore_non_valid_files:
     type: bool
