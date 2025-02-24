@@ -62,7 +62,7 @@ The following command will run Orthoflow:
 
 .. code-block:: bash
 
-    orthoflow --files yeast24.csv --config infer_tree_with_cds_seqs=False
+    orthoflow run --inputs yeast24.csv --no-infer-tree-with-cds-seqs
 
 .. note ::
 
@@ -93,7 +93,7 @@ To run this mini test, do the following from the root of the repository:
 .. code-block:: bash
 
     cd tests/test-data-yeast/
-    orthoflow --files yeast5.csv --config infer_tree_with_cds_seqs=False
+    orthoflow run --inputs yeast5.csv --no-infer-tree-with-cds-seqs
 
 This test is run as part of the continuous integration process. See the ``.github/workflows/yeast.yml`` file for details. 
 

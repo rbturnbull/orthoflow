@@ -66,7 +66,7 @@ Now, let's set up the configuration file for Orthoflow. We only need to set the 
 
 .. code-block:: yaml
 
-    input_sources: "onekp_pilot.csv" # Alternatively this can be specified on the command line with --files onekp_pilot.csv
+    inputs: "onekp_pilot.csv" # Alternatively this can be specified on the command line with --inputs onekp_pilot.csv
     infer_tree_with_cds_seqs: False # We are using protein sequences
     supermatrix: True
     supertree: True

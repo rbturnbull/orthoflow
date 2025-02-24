@@ -11,7 +11,7 @@ def test_report_protein(run_workflow):
 
 
 def test_report_cds(run_workflow):
-    w = run_workflow("results/report.cds.html", "--config", "infer_tree_with_protein_seqs=0")
+    w = run_workflow("results/report.cds.html", "--no-infer-tree-with-protein-seqs")
     w.assert_contains('id="orthofinder-tab"')
     w.assert_contains('id="alignment-tab"')
     w.assert_contains('id="supermatrix-tab"')

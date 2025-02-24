@@ -14,7 +14,9 @@ It includes a handful of genes from these files:
 
 To run, use this command:
 
-    orthoflow --files yeast5.csv --config infer_tree_with_cds_seqs=False
+.. code-block:: bash
+    
+    orthoflow run --inputs yeast5.csv --no-infer-tree-with-cds-seqs
 
 Original data from here:
 

@@ -42,7 +42,7 @@ jobs:
         export ORTHOFLOW_CONDA_PREFIX=/home/runner/mamba-cache/orthoflow
         cd tests/test-data-yeast
         source $(poetry env info --path)/bin/activate
-        orthoflow --files yeast5.csv --config infer_tree_with_cds_seqs=False
+        orthoflow run --inputs yeast5.csv --no-infer-tree-with-cds-seqs
         if [ -s results/report.protein.html ]; then
           echo "Report exists."
         else

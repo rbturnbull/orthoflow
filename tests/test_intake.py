@@ -18,6 +18,6 @@ def test_translate(run_workflow):
 def test_protein(run_workflow):
     expected_dir = Path(__file__).parent/"test-data-yeast"
 
-    w = run_workflow("results/intake/renamed/ascoidea_rubescens-max.renamed.fa", "--files", "yeast5.csv", "--config", "infer_tree_with_cds_seqs=0", expected_dir=expected_dir)
+    w = run_workflow("results/intake/renamed/ascoidea_rubescens-max.renamed.fa", "--inputs", "yeast5.csv", "--no-infer-tree-with-cds-seqs", expected_dir=expected_dir)
     w.assert_contains(">ascoidea_rubescens-max|ascoidea_rubescens.max.pep|0|genemark-scaffold_4-processed-gene-8.23-mRNA-1_1")
     w.assert_contains("MSFDEQTPVSLLLSPGSIFIGANRQPQCSDYSSTLNIVAFGSQNLVSLFNPLSPDNVGVFKTLKGHKDEVIC")
