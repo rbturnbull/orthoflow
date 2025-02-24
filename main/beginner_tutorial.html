@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beginner Tutorial &mdash; orthoflow 0.1.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=36ff256a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -94,34 +95,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="beginner-tutorial">
-<h1>Beginner Tutorial<a class="headerlink" href="#beginner-tutorial" title="Permalink to this headline"></a></h1>
+  <section id="beginner-tutorial">
+<h1>Beginner Tutorial<a class="headerlink" href="#beginner-tutorial" title="Link to this heading"></a></h1>
 <section id="input-data">
-<h2>Input data<a class="headerlink" href="#input-data" title="Permalink to this headline"></a></h2>
+<h2>Input data<a class="headerlink" href="#input-data" title="Link to this heading"></a></h2>
 <p>Orthoflow works from an input CSV file with information about the data sources  to be used. Preparing this file is central to setting up your run. The default filename for this is <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code>.</p>
 <p>It needs the columns <code class="docutils literal notranslate"><span class="pre">file</span></code>, <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code>, <code class="docutils literal notranslate"><span class="pre">data_type</span></code> and <code class="docutils literal notranslate"><span class="pre">translation_table</span></code>.</p>
 <ul class="simple">
@@ -132,12 +109,6 @@
 </ul>
 <p>Let’s look at the demonstration dataset distributed with the code: <code class="docutils literal notranslate"><span class="pre">tests/test-data/input_sources.csv</span></code>.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 24%" />
-<col style="width: 43%" />
-<col style="width: 13%" />
-<col style="width: 21%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>file</p></th>
 <th class="head"><p>taxon_string</p></th>
@@ -212,28 +183,28 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code> column is perhaps the most important one, as these will be the names to appear in the output tree and this determines how input data gets grouped (e.g. all CDSs in the final four GenBank files will be grouped into a single taxon). In this case, we have included specimen numbers as part of the taxon string but that is optional.</p>
 </section>
 <section id="simple-run">
-<h2>Simple run<a class="headerlink" href="#simple-run" title="Permalink to this headline"></a></h2>
+<h2>Simple run<a class="headerlink" href="#simple-run" title="Link to this heading"></a></h2>
 <p>We are using the small demonstration dataset distributed with the Orthoflow in the <code class="docutils literal notranslate"><span class="pre">tests/test-data</span></code> subdirectory.</p>
 <p>Go into the directory containing the <code class="docutils literal notranslate"><span class="pre">input_sources.csv</span></code> file and run orthoflow with default settings with these commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tests</span><span class="o">/</span><span class="n">test</span><span class="o">-</span><span class="n">data</span>
-<span class="n">orthoflow</span>
+<span class="n">orthoflow</span> <span class="n">run</span>
 </pre></div>
 </div>
 <p>By default, Orthoflow will extract the CDSs from the input files, run OrthoFinder followed by OrthoSNAP to determine orthologous genes, align them and infer a concatenated tree from the protein sequences. You can follow progress on the screen as the workflow executes and outputs are produced.</p>
 <p>Note that the first time you run the workflow, it will be slow because it needs to download and install the software it depends on. This is a one-time thing and runs should get going much faster after.</p>
 </section>
 <section id="examining-the-output">
-<h2>Examining the output<a class="headerlink" href="#examining-the-output" title="Permalink to this headline"></a></h2>
+<h2>Examining the output<a class="headerlink" href="#examining-the-output" title="Link to this heading"></a></h2>
 <section id="inferred-tree-and-intermediate-files">
-<h3>Inferred tree and intermediate files<a class="headerlink" href="#inferred-tree-and-intermediate-files" title="Permalink to this headline"></a></h3>
+<h3>Inferred tree and intermediate files<a class="headerlink" href="#inferred-tree-and-intermediate-files" title="Link to this heading"></a></h3>
 <p>All output files are saved in the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory. Output files are subdivided into the workflow modules, which each have their own subdirectory. For the demonstration analysis that we ran above, the inferred phylogeny will be in the <code class="docutils literal notranslate"><span class="pre">supermatrix</span></code> subdirectory and be called <code class="docutils literal notranslate"><span class="pre">supermatrix.protein.treefile</span></code>. Open this with a tree browser (e.g. <a class="reference external" href="https://github.com/rambaut/figtree">FigTree</a>). Also take some time to browse the intermediary files, including the orthogroups, gene alignments and the supermatrix constructed from them.</p>
 </section>
 <section id="report-and-diagnostics">
-<h3>Report and diagnostics<a class="headerlink" href="#report-and-diagnostics" title="Permalink to this headline"></a></h3>
+<h3>Report and diagnostics<a class="headerlink" href="#report-and-diagnostics" title="Link to this heading"></a></h3>
 <p>The report provides an overview of the results, the analysis settings used and citations of the software used to produce the results. This report is found in the <code class="docutils literal notranslate"><span class="pre">results/report.cds.html</span></code> and/or <code class="docutils literal notranslate"><span class="pre">results/report.protein.html</span></code>, depending on the method used to infer the phylogeny.</p>
 </section>
 <section id="output-logs">
-<h3>Output logs<a class="headerlink" href="#output-logs" title="Permalink to this headline"></a></h3>
+<h3>Output logs<a class="headerlink" href="#output-logs" title="Link to this heading"></a></h3>
 <p>The output logs of all software used as part of the workflow can be found in the <code class="docutils literal notranslate"><span class="pre">logs</span></code> directory.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -257,7 +228,7 @@ You can delete directories of log files after the steps have completed if you no
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 University of Melbourne.</p>
+    <p>&#169; Copyright 2022–2025 University of Melbourne.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

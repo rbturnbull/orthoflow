@@ -7,13 +7,13 @@ This default filename can be set in the config:
 
 .. code-block:: yaml
 
-    input_sources: "input_sources2.csv"
+    inputs: "input_sources2.csv"
 
 This default can be overridden in the command line arguments for orthoflow:
 
 .. code-block:: bash
 
-    orthoflow --files input_sources3.csv
+    orthoflow run --inputs input_sources3.csv
 
 For the analysis to work, Orthoflow requires the following information for each input source:
 
@@ -53,7 +53,7 @@ The ``input_sources`` can also be a list of files. For example, this command wil
 
 .. code-block:: bash
 
-    orthoflow --files *.gb
+    orthoflow run --inputs *.gb
 
 If some of the input files are in Fasta format and so the translation table is not easily inferred, then you can create an individal TOML/YAML/JSON or CSV file for that input source like this:
 
@@ -64,6 +64,6 @@ Then these files can be included as part of the list of Orthoflow input sources:
 
 .. code-block:: bash
 
-    orthoflow --files *.gb *.toml
+    orthoflow run --inputs *.gb *.toml
 
 It is possible to ignore files that are not valid. The default setting is to stop the workflow when a file does not meet the program requirements. When it is desired that the program ignores these non-valid files and analysises the other files ``ignore_non_valid_files`` can be set to ``True``. A warning will be displayed in the report stating which files have been ignored.

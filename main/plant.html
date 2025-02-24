@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plant Tutorial &mdash; orthoflow 0.1.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=36ff256a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -88,32 +89,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="plant-tutorial">
-<h1>Plant Tutorial<a class="headerlink" href="#plant-tutorial" title="Permalink to this headline"></a></h1>
+  <section id="plant-tutorial">
+<h1>Plant Tutorial<a class="headerlink" href="#plant-tutorial" title="Link to this heading"></a></h1>
 <p>This tutorial shows you how to run the ‘1KP Pilot’ study in Orthoflow.
 The dataset contains 103 plant transcriptomes (<a class="reference external" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB4921/">PRJEB4921</a>):</p>
 <blockquote>
@@ -126,12 +103,12 @@ A phylotranscriptomic analysis of the origin and early diversification of land p
 Proceedings of the National Academy of Sciences (PNAS), 111, no. 45 (2014): E4859–4868. <a class="reference external" href="https://doi.org/10.1073/pnas.1323926111">https://doi.org/10.1073/pnas.1323926111</a></p>
 </div></blockquote>
 <section id="preparation">
-<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline"></a></h2>
+<h2>Preparation<a class="headerlink" href="#preparation" title="Link to this heading"></a></h2>
 <p>Download the input file for the dataset from our documentation at <a class="reference external" href="https://rbturnbull.github.io/orthoflow/_static/data/onekp_pilot.csv">https://rbturnbull.github.io/orthoflow/_static/data/onekp_pilot.csv</a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://rbturnbull.github.io/orthoflow/_static/data/onekp_pilot.csv
 </pre></div>
 </div>
-<p>This contains a CSV file that looks like this:</p>
+<p>This contains a CSV file where the first 20 lines looks like this:</p>
 <div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>taxon_string,iPlant ID,file,url,data_type
 Arabidopsis_thaliana,,Arabidopsis_thaliana.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/735/GCF_000001735.4_TAIR10.1/GCF_000001735.4_TAIR10.1_protein.faa.gz,Protein
 Brachypodium_distachyon,,Brachypodium_distachyon.faa.gz,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/505/GCF_000005505.3_Brachypodium_distachyon_v3.0/GCF_000005505.3_Brachypodium_distachyon_v3.0_protein.faa.gz,Protein
@@ -166,7 +143,7 @@ BFIK-Entransia_fimbriata,BFIK,BFIK.faa,https://de.cyverse.org/anon-files/iplant/
 </pre></div>
 </div>
 <p>Now, let’s set up the configuration file for Orthoflow. We only need to set the parameters which are different from the default values.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">input_sources</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;onekp_pilot.csv&quot;</span><span class="w"> </span><span class="c1"># Alternatively this can be specified on the command line with --files onekp_pilot.csv</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">inputs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;onekp_pilot.csv&quot;</span><span class="w"> </span><span class="c1"># Alternatively this can be specified on the command line with --inputs onekp_pilot.csv</span>
 <span class="nt">infer_tree_with_cds_seqs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w"> </span><span class="c1"># We are using protein sequences</span>
 <span class="nt">supermatrix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 <span class="nt">supertree</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
@@ -177,9 +154,9 @@ BFIK-Entransia_fimbriata,BFIK,BFIK.faa,https://de.cyverse.org/anon-files/iplant/
 <p>Save this file to <code class="docutils literal notranslate"><span class="pre">config_onekp_pilot.yaml</span></code>.</p>
 </section>
 <section id="running-orthoflow">
-<h2>Running Orthoflow<a class="headerlink" href="#running-orthoflow" title="Permalink to this headline"></a></h2>
+<h2>Running Orthoflow<a class="headerlink" href="#running-orthoflow" title="Link to this heading"></a></h2>
 <p>Phylogenomic analysis of this dataset can then be run with the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow<span class="w"> </span>--configfile<span class="w"> </span>config_onekp_pilot.yaml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>orthoflow<span class="w"> </span>run<span class="w"> </span>--configfile<span class="w"> </span>config_onekp_pilot.yaml
 </pre></div>
 </div>
 </section>
@@ -196,7 +173,7 @@ BFIK-Entransia_fimbriata,BFIK,BFIK.faa,https://de.cyverse.org/anon-files/iplant/
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 University of Melbourne.</p>
+    <p>&#169; Copyright 2022–2025 University of Melbourne.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

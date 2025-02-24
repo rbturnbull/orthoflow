@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Advanced Tutorial &mdash; orthoflow 0.1.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=36ff256a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -64,6 +65,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tree-inference-settings">Tree inference settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-command-line-tools">Other Command Line Tools</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="yeast.html">Yeast Tutorial</a></li>
@@ -98,68 +100,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="advanced-tutorial">
-<h1>Advanced Tutorial<a class="headerlink" href="#advanced-tutorial" title="Permalink to this headline"></a></h1>
+  <section id="advanced-tutorial">
+<h1>Advanced Tutorial<a class="headerlink" href="#advanced-tutorial" title="Link to this heading"></a></h1>
 <section id="changing-workflow-settings">
-<h2>Changing workflow settings<a class="headerlink" href="#changing-workflow-settings" title="Permalink to this headline"></a></h2>
+<h2>Changing workflow settings<a class="headerlink" href="#changing-workflow-settings" title="Link to this heading"></a></h2>
 <p>Some workflow settings can be changed by passing arguments to the command-line tool (<code class="docutils literal notranslate"><span class="pre">orthoflow</span></code>).</p>
 <p>To see a complete list of command-line arguments, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">help</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="n">run</span> <span class="o">--</span><span class="n">help</span>
 </pre></div>
 </div>
-<p>You can pass any snakemake arguments to orthoflow. To list these, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">help</span><span class="o">-</span><span class="n">snakemake</span>
+<p>You can pass any Snakemake arguments to orthoflow. To list these, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="n">run</span> <span class="o">--</span><span class="n">help</span><span class="o">-</span><span class="n">snakemake</span>
 </pre></div>
 </div>
 <p>Most settings to operate and tune aspects of the workflow can be changed by editing the standard configuration file (<code class="docutils literal notranslate"><span class="pre">orthoflow/config/config.yml</span></code>) or writing a custom configuration file that can be passed to the workflow. You will see examples of changes to the configuration file throughout this tutorial.</p>
 </section>
 <section id="cores">
-<h2>Cores<a class="headerlink" href="#cores" title="Permalink to this headline"></a></h2>
+<h2>Cores<a class="headerlink" href="#cores" title="Link to this heading"></a></h2>
 <p>To manually set the number of cores, set the <code class="docutils literal notranslate"><span class="pre">--cores</span></code> flag. For example, to use 24 cores:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">cores</span> <span class="mi">24</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="n">run</span> <span class="o">--</span><span class="n">cores</span> <span class="mi">24</span>
 </pre></div>
 </div>
 <p>If <code class="docutils literal notranslate"><span class="pre">--cores</span></code> is not set, then it will use all available CPU cores.</p>
 </section>
 <section id="setting-working-directory-and-specifying-targets">
-<h2>Setting working directory and specifying targets<a class="headerlink" href="#setting-working-directory-and-specifying-targets" title="Permalink to this headline"></a></h2>
+<h2>Setting working directory and specifying targets<a class="headerlink" href="#setting-working-directory-and-specifying-targets" title="Link to this heading"></a></h2>
 <p>To set a working directory different to the current directory, use the <cite>–directory</cite> flag:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">directory</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">working</span><span class="o">/</span><span class="nb">dir</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="n">run</span> <span class="o">--</span><span class="n">directory</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">working</span><span class="o">/</span><span class="nb">dir</span>
 </pre></div>
 </div>
 <p>To use a specific target, give that as an argument. For instance to produce the list of protein alignments, run as follows</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="n">results</span><span class="o">/</span><span class="n">alignment</span><span class="o">/</span><span class="n">alignments_list</span><span class="o">.</span><span class="n">protein</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="n">run</span> <span class="n">results</span><span class="o">/</span><span class="n">alignment</span><span class="o">/</span><span class="n">alignments_list</span><span class="o">.</span><span class="n">protein</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </section>
 <section id="controlling-the-flow-of-operations">
-<h2>Controlling the flow of operations<a class="headerlink" href="#controlling-the-flow-of-operations" title="Permalink to this headline"></a></h2>
+<h2>Controlling the flow of operations<a class="headerlink" href="#controlling-the-flow-of-operations" title="Link to this heading"></a></h2>
 <p>By default, Orthoflow uses the <em>de novo</em> orthology inference module (OrthoFinder and OrthoSNAP) and supermatrix-based tree inference (supermatrix module).</p>
-<img alt="../_images/orthoflow-workflow-diagram.svg" src="../_images/orthoflow-workflow-diagram.svg" /><p>This can be changed in the configuration file. Setting the <code class="docutils literal notranslate"><span class="pre">use_orthofisher</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> will enable the ortholog fishing module instead of the <em>de novo</em> orthology inference module. This also requires you to specify a set of HMM profiles listed under <code class="docutils literal notranslate"><span class="pre">orthofisher_hmmer_files</span></code>. For example:</p>
+<img alt="../_images/orthoflow-workflow-diagram.svg" src="../_images/orthoflow-workflow-diagram.svg" />
+<p>This can be changed in the configuration file. Setting the <code class="docutils literal notranslate"><span class="pre">use_orthofisher</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> will enable the ortholog fishing module instead of the <em>de novo</em> orthology inference module. This also requires you to specify a set of HMM profiles listed under <code class="docutils literal notranslate"><span class="pre">orthofisher_hmmer_files</span></code>. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use_orthofisher</span><span class="p">:</span> <span class="kc">True</span>
 <span class="n">orthofisher_hmmer_files</span><span class="p">:</span>
 <span class="o">-</span> <span class="n">hmms</span><span class="o">/</span><span class="mi">1080</span><span class="n">at3041</span><span class="o">.</span><span class="n">hmm</span>
@@ -176,14 +155,14 @@
 <p>You can also run the workflow up to any given point by specifying the rule with the snakemake <cite>–until`</cite> flag, specifying the rule where you’d like to stop. An example might be where you want to produce the CDS nucleotide alignments for all orthogroups but no trees. In that case you could set the <cite>infer_tree_with_protein_seqs: False</cite> to indicate that you wish nucleotide alignments to be produced, activate supermatrix inference (<cite>supermatrix: True</cite>) but keep snakemake from actually producing the supermatrix using <cite>–until concatenate_alignments</cite>. Snakemake will run everything up until the start of this rule (which concatenates the single-gene alignments into the supermatrix), so the output will include the DNA alignments.</p>
 </section>
 <section id="gene-and-alignment-filtering-settings">
-<h2>Gene and alignment filtering settings<a class="headerlink" href="#gene-and-alignment-filtering-settings" title="Permalink to this headline"></a></h2>
+<h2>Gene and alignment filtering settings<a class="headerlink" href="#gene-and-alignment-filtering-settings" title="Link to this heading"></a></h2>
 <p>There are several steps in the workflow that filter out genes not meeting particular criteria.</p>
 <section id="minimum-taxa-sequences">
-<h3>Minimum taxa &amp; sequences<a class="headerlink" href="#minimum-taxa-sequences" title="Permalink to this headline"></a></h3>
+<h3>Minimum taxa &amp; sequences<a class="headerlink" href="#minimum-taxa-sequences" title="Link to this heading"></a></h3>
 <p>The minimum number of taxa and sequences that need to be in a gene dataset in order for it to be retained is one of the most important settings that users need to specify. These should be set with the <code class="docutils literal notranslate"><span class="pre">ortholog_min_seqs</span></code> and <code class="docutils literal notranslate"><span class="pre">ortholog_min_taxa</span></code> settings in the configuration file. The default value is 5, and the value should not be set to less than 3. The default settings are very permissive, and this can lead to huge numbers of files (hundreds of thousands) being produced when analysing eukaryotic genome datasets, which can lead to problems especially on HPC systems that limit the number of files you can create. We recommend increasing these values depending on the number of taxa in your dataset. We typically set it to 30-50% of the total number of taxa being analysed, but it is recommended to experiment with these settings, as it will be highly dataset-dependent. The occupancy setting for OrthoSNAP can be changed with <code class="docutils literal notranslate"><span class="pre">orthosnap_occupancy</span></code>; by default we use the same value as that for <code class="docutils literal notranslate"><span class="pre">ortholog_min_seqs</span></code>.</p>
 </section>
 <section id="using-sc-ogs-and-or-snap-ogs">
-<h3>Using SC-OGs and/or SNAP-OGs<a class="headerlink" href="#using-sc-ogs-and-or-snap-ogs" title="Permalink to this headline"></a></h3>
+<h3>Using SC-OGs and/or SNAP-OGs<a class="headerlink" href="#using-sc-ogs-and-or-snap-ogs" title="Link to this heading"></a></h3>
 <p>The traditional approach towards inferring species trees from genome data is to select single-copy orthogroups (SC-OGs). One of the innovations we’ve implemented in this workflow is the use of SNAP-OGs, sets of orthologous sequences derived from multi-copy gene families, which can yield orders of magnitude more data. You can set whether you want to build a phylogeny from just the SC-OGs, just the SNAP-OGs or both combined by setting the <code class="docutils literal notranslate"><span class="pre">orthofinder_use_scogs</span></code> and <code class="docutils literal notranslate"><span class="pre">orthofinder_use_snap_ogs</span></code> in the configuration file. In this example both SC-OGs and SNAP-OGs are combined for phylogenetic inference:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use_scogs</span><span class="p">:</span> <span class="kc">True</span>
 <span class="n">use_snap_ogs</span><span class="p">:</span> <span class="kc">True</span>
@@ -192,20 +171,27 @@
 <p>SNAP-OGs are currently only implemented in the <em>de novo</em> ortholog analysis path. When using the ortholog fishing path, only SC-OGs will be used for downstream analyses.</p>
 </section>
 <section id="alignment-trimming">
-<h3>Alignment trimming<a class="headerlink" href="#alignment-trimming" title="Permalink to this headline"></a></h3>
+<h3>Alignment trimming<a class="headerlink" href="#alignment-trimming" title="Link to this heading"></a></h3>
 <p>Alignments are trimmed for quality with the smart gap method implemented in <a class="reference external" href="https://doi.org/10.1371/journal.pbio.3001007">ClipKit</a>.</p>
 </section>
 <section id="removal-of-heavily-trimmed-alignments">
-<h3>Removal of heavily trimmed alignments<a class="headerlink" href="#removal-of-heavily-trimmed-alignments" title="Permalink to this headline"></a></h3>
+<h3>Removal of heavily trimmed alignments<a class="headerlink" href="#removal-of-heavily-trimmed-alignments" title="Link to this heading"></a></h3>
 <p>In some cases, it may make more sense to remove genes that have been decimated by the alignment trimming proceduce, particularly if they are going to be used individually to infer gene trees. There are two ways to achieve his. First, any alignments that fall below a given number of amino acid positions after trimming will be removed (default: 167 amino acid positions or 501 corresponding nucleotide positions, can be changed with <code class="docutils literal notranslate"><span class="pre">minimum_trimmed_alignment_length_cds</span></code> and <code class="docutils literal notranslate"><span class="pre">minimum_trimmed_alignment_length_proteins</span></code> parameters in the config file). Second, the workflow also allows removing alignments from which a large proportion was removed in the trimming step. By default, alignments that lose half of their length in trimming get removed (change by setting the <code class="docutils literal notranslate"><span class="pre">max_trimmed_proportion</span></code> parameter in the config file).</p>
 </section>
 </section>
 <section id="tree-inference-settings">
-<h2>Tree inference settings<a class="headerlink" href="#tree-inference-settings" title="Permalink to this headline"></a></h2>
+<h2>Tree inference settings<a class="headerlink" href="#tree-inference-settings" title="Link to this heading"></a></h2>
 <p>The phylogenetic analysis can be run on protein and/or nucleotide sequences. This can be set in the config file with <code class="docutils literal notranslate"><span class="pre">infer_tree_with_cds_seqs</span></code> and <code class="docutils literal notranslate"><span class="pre">infer_tree_with_protein_seqs</span></code>. The default setting is to do 2 different analyses with protein and nucleotide sequences. <code class="docutils literal notranslate"><span class="pre">infer_tree_with_cds_seqs</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">False</span></code> when 1 or more amino acid input files are used in the input.</p>
 <p>To use an outgroup in the phylogenetic analysis, specify an outgroup taxon (using its value in the <code class="docutils literal notranslate"><span class="pre">taxon_string</span></code> column in the input sources file). For example, for the demonstration dataset <code class="docutils literal notranslate"><span class="pre">outgroup:</span> <span class="pre">&quot;Derbesia_sp_WEST4838&quot;</span></code>. The outgroup will only be used in the supermatrix path. We are not including this functionality for the gene tree path as the outgroup might not be present in each alignment.</p>
 <p>To specify a model of sequence evolution, the config file has a <code class="docutils literal notranslate"><span class="pre">model_string</span></code> setting where you can specify a model following the IQ-tree syntax. The default setting <code class="docutils literal notranslate"><span class="pre">model_string:</span> <span class="pre">&quot;-m</span> <span class="pre">TEST&quot;</span></code> will perform model testing to determine a suitable model. but any model implemented in IQ-tree can be specified here. For instance “-m GTR+F+G” for a nucleotide General Time Reversible (GTR) model with empirical base frequencies (+F) and a discrete gamma model (+G) for rate heterogeneity. For further information on the model options and their specification, see the <a class="reference external" href="https://www.iqtree.org/doc/Command-Reference#specifying-substitution-models">IQ-tree documentation</a></p>
 <p>For bootstrapping, you can specify the <code class="docutils literal notranslate"><span class="pre">bootstrap_string</span></code> variable in the config file. By default, this is set to <code class="docutils literal notranslate"><span class="pre">bootstrap_string:</span> <span class="pre">&quot;-bb</span> <span class="pre">1000&quot;</span></code> to carry out 1000 ultrafast bootstrap replicates. To change this to 100 standard (nonparametric) bootstraps, for instance, use <code class="docutils literal notranslate"><span class="pre">bootstrap_string:</span> <span class="pre">&quot;-b</span> <span class="pre">100&quot;</span></code>. See the <a class="reference external" href="http://www.iqtree.org/doc/Tutorial#assessing-branch-supports-with-ultrafast-bootstrap-approximation">IQ-tree documentation</a> for further information on how to specify bootstrapping.</p>
+</section>
+<section id="other-command-line-tools">
+<h2>Other Command Line Tools<a class="headerlink" href="#other-command-line-tools" title="Link to this heading"></a></h2>
+<p>To see all the command line tools for Orthoflow, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">orthoflow</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -220,7 +206,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 University of Melbourne.</p>
+    <p>&#169; Copyright 2022–2025 University of Melbourne.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contributing &mdash; orthoflow 0.1.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=36ff256a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -105,32 +106,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="contributing">
-<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline"></a></h1>
+  <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h1>
 <p>Code in this repository will be formatted with Snakefmt (<a class="reference external" href="https://github.com/snakemake/snakefmt">https://github.com/snakemake/snakefmt</a>).</p>
 <p>These practices are subject to change based on the decisions of the team.</p>
 <ul class="simple">
@@ -143,7 +120,7 @@
 <li><p>Place the <code class="docutils literal notranslate"><span class="pre">output</span></code> of a rule above the <code class="docutils literal notranslate"><span class="pre">input</span></code> because snakemake goes from output to input when creating the DAG.</p></li>
 </ul>
 <section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h2>
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Tests must be added for any new rules before merging to the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p></li>
 <li><p>All tests must be passing before merging with the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p></li>
@@ -154,7 +131,7 @@
 </ul>
 </section>
 <section id="git-commits">
-<h2>Git Commits<a class="headerlink" href="#git-commits" title="Permalink to this headline"></a></h2>
+<h2>Git Commits<a class="headerlink" href="#git-commits" title="Link to this heading"></a></h2>
 <p>We use the <a class="reference external" href="https://robinpokorny.github.io/git3moji/">git3moji</a> standard for expressive git commit messages.
 Use one of the following five short emojis at the start of your of your git commit messages:</p>
 <ul class="simple">
@@ -168,7 +145,7 @@ Use one of the following five short emojis at the start of your of your git comm
 Please cite an the number of a Github issue if it relates to your commit.</p>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Docstrings for Python functions should use the Google docstring convention (<a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings</a>)</p></li>
 <li><p>Add docstrings should be added to each rule (conventions are still to be decided).</p></li>
@@ -202,9 +179,9 @@ Please cite an the number of a Github issue if it relates to your commit.</p>
 <p>Other information for using reStructuredText in Sphinx can be found here: <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-primer">https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#rst-primer</a> and <a class="reference external" href="https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html">https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html</a>.</p>
 </section>
 <section id="code-of-conduct">
-<h2>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Permalink to this headline"></a></h2>
+<h2>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Link to this heading"></a></h2>
 <section id="our-pledge">
-<h3>Our Pledge<a class="headerlink" href="#our-pledge" title="Permalink to this headline"></a></h3>
+<h3>Our Pledge<a class="headerlink" href="#our-pledge" title="Link to this heading"></a></h3>
 <p>We as members, contributors, and leaders pledge to make participation in our
 community a harassment-free experience for everyone, regardless of age, body
 size, visible or invisible disability, ethnicity, sex characteristics, gender
@@ -215,7 +192,7 @@ identity and orientation.</p>
 diverse, inclusive, and healthy community.</p>
 </section>
 <section id="our-standards">
-<h3>Our Standards<a class="headerlink" href="#our-standards" title="Permalink to this headline"></a></h3>
+<h3>Our Standards<a class="headerlink" href="#our-standards" title="Link to this heading"></a></h3>
 <p>Examples of behavior that contributes to a positive environment for our
 community include:</p>
 <ul class="simple">
@@ -240,7 +217,7 @@ professional setting</p></li>
 </ul>
 </section>
 <section id="enforcement-responsibilities">
-<h3>Enforcement Responsibilities<a class="headerlink" href="#enforcement-responsibilities" title="Permalink to this headline"></a></h3>
+<h3>Enforcement Responsibilities<a class="headerlink" href="#enforcement-responsibilities" title="Link to this heading"></a></h3>
 <p>Community leaders are responsible for clarifying and enforcing our standards of
 acceptable behavior and will take appropriate and fair corrective action in
 response to any behavior that they deem inappropriate, threatening, offensive,
@@ -251,7 +228,7 @@ not aligned to this Code of Conduct, and will communicate reasons for moderation
 decisions when appropriate.</p>
 </section>
 <section id="scope">
-<h3>Scope<a class="headerlink" href="#scope" title="Permalink to this headline"></a></h3>
+<h3>Scope<a class="headerlink" href="#scope" title="Link to this heading"></a></h3>
 <p>This Code of Conduct applies within all community spaces, and also applies when
 an individual is officially representing the community in public spaces.
 Examples of representing our community include using an official e-mail address,
@@ -259,7 +236,7 @@ posting via an official social media account, or acting as an appointed
 representative at an online or offline event.</p>
 </section>
 <section id="enforcement">
-<h3>Enforcement<a class="headerlink" href="#enforcement" title="Permalink to this headline"></a></h3>
+<h3>Enforcement<a class="headerlink" href="#enforcement" title="Link to this heading"></a></h3>
 <p>Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement by email.
 All complaints will be reviewed and investigated promptly and fairly.</p>
@@ -267,11 +244,11 @@ All complaints will be reviewed and investigated promptly and fairly.</p>
 reporter of any incident.</p>
 </section>
 <section id="enforcement-guidelines">
-<h3>Enforcement Guidelines<a class="headerlink" href="#enforcement-guidelines" title="Permalink to this headline"></a></h3>
+<h3>Enforcement Guidelines<a class="headerlink" href="#enforcement-guidelines" title="Link to this heading"></a></h3>
 <p>Community leaders will follow these Community Impact Guidelines in determining
 the consequences for any action they deem in violation of this Code of Conduct:</p>
 <section id="correction">
-<h4>1. Correction<a class="headerlink" href="#correction" title="Permalink to this headline"></a></h4>
+<h4>1. Correction<a class="headerlink" href="#correction" title="Link to this heading"></a></h4>
 <p><strong>Community Impact</strong>: Use of inappropriate language or other behavior deemed
 unprofessional or unwelcome in the community.</p>
 <p><strong>Consequence</strong>: A private, written warning from community leaders, providing
@@ -279,7 +256,7 @@ clarity around the nature of the violation and an explanation of why the
 behavior was inappropriate. A public apology may be requested.</p>
 </section>
 <section id="warning">
-<h4>2. Warning<a class="headerlink" href="#warning" title="Permalink to this headline"></a></h4>
+<h4>2. Warning<a class="headerlink" href="#warning" title="Link to this heading"></a></h4>
 <p><strong>Community Impact</strong>: A violation through a single incident or series of
 actions.</p>
 <p><strong>Consequence</strong>: A warning with consequences for continued behavior. No
@@ -290,7 +267,7 @@ like social media. Violating these terms may lead to a temporary or permanent
 ban.</p>
 </section>
 <section id="temporary-ban">
-<h4>3. Temporary Ban<a class="headerlink" href="#temporary-ban" title="Permalink to this headline"></a></h4>
+<h4>3. Temporary Ban<a class="headerlink" href="#temporary-ban" title="Link to this heading"></a></h4>
 <p><strong>Community Impact</strong>: A serious violation of community standards, including
 sustained inappropriate behavior.</p>
 <p><strong>Consequence</strong>: A temporary ban from any sort of interaction or public
@@ -300,7 +277,7 @@ with those enforcing the Code of Conduct, is allowed during this period.
 Violating these terms may lead to a permanent ban.</p>
 </section>
 <section id="permanent-ban">
-<h4>4. Permanent Ban<a class="headerlink" href="#permanent-ban" title="Permalink to this headline"></a></h4>
+<h4>4. Permanent Ban<a class="headerlink" href="#permanent-ban" title="Link to this heading"></a></h4>
 <p><strong>Community Impact</strong>: Demonstrating a pattern of violation of community
 standards, including sustained inappropriate behavior, harassment of an
 individual, or aggression toward or disparagement of classes of individuals.</p>
@@ -309,7 +286,7 @@ community.</p>
 </section>
 </section>
 <section id="attribution">
-<h3>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline"></a></h3>
+<h3>Attribution<a class="headerlink" href="#attribution" title="Link to this heading"></a></h3>
 <p>This Code of Conduct is adapted from the <a class="reference external" href="https://www.contributor-covenant.org">Contributor Covenant</a>,
 version <a class="reference external" href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html">2.1</a>.</p>
 </section>
@@ -327,7 +304,7 @@ version <a class="reference external" href="https://www.contributor-covenant.org
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 University of Melbourne.</p>
+    <p>&#169; Copyright 2022–2025 University of Melbourne.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

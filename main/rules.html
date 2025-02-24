@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rules &mdash; orthoflow 0.1.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=36ff256a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -82,32 +83,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="rules">
-<h1>Rules<a class="headerlink" href="#rules" title="Permalink to this headline"></a></h1>
+  <section id="rules">
+<h1>Rules<a class="headerlink" href="#rules" title="Link to this heading"></a></h1>
 <p>This is an automatically generated list of all supported rules, their docstrings, and command. At the start of each
 workflow run a list is printed of which rules will be run. And while the workflow is running it prints which rules are
 being started and finished. This page is here to give an explanation to the user about what each rule does, and for
@@ -115,7 +92,7 @@ developers to find what is, and isn’t yet supported. Not all Metaphor rules ar
 <code class="docutils literal notranslate"><span class="pre">shell</span></code> directive. Rules with <code class="docutils literal notranslate"><span class="pre">script</span></code> or <code class="docutils literal notranslate"><span class="pre">wrapper</span></code> directives are not included. To see all rules in Metaphor,
 please refer to the <a class="reference external" href="https://github.com/vinisalazar/metaphor/tree/main/workflow">workflow source code</a>.</p>
 <section id="intake-smk">
-<h2>intake.smk<a class="headerlink" href="#intake-smk" title="Permalink to this headline"></a></h2>
+<h2>intake.smk<a class="headerlink" href="#intake-smk" title="Link to this heading"></a></h2>
 <p><strong>gbseqextractor</strong></p>
 <p>Extracts CDS features from GenBank files with gbseqextractor.</p>
 <p>Not used if input files already at in fasta format.
@@ -139,7 +116,7 @@ https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes</p>
 <p>BioKIT is found here: https://github.com/JLSteenwyk/BioKIT</p>
 </section>
 <section id="orthologs-smk">
-<h2>orthologs.smk<a class="headerlink" href="#orthologs-smk" title="Permalink to this headline"></a></h2>
+<h2>orthologs.smk<a class="headerlink" href="#orthologs-smk" title="Link to this heading"></a></h2>
 <p><strong>orthofinder</strong></p>
 <p>Runs <code class="docutils literal notranslate"><span class="pre">OrthoFinder</span> <span class="pre">&lt;https://github.com/davidemms/OrthoFinder&gt;</span></code>_ on fasta files from the intake rule.</p>
 <p><strong>filter_orthofinder</strong></p>
@@ -147,14 +124,14 @@ https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes</p>
 <p>:config filter_orthofinder:</p>
 </section>
 <section id="alignment-smk">
-<h2>alignment.smk<a class="headerlink" href="#alignment-smk" title="Permalink to this headline"></a></h2>
+<h2>alignment.smk<a class="headerlink" href="#alignment-smk" title="Link to this heading"></a></h2>
 <p><strong>mafft_aa</strong></p>
 <p>Mafft AA</p>
 <p><strong>trim_seqIDs_to_taxon</strong></p>
 <p>Trim sequence IDs to taxon.</p>
 </section>
 <section id="supermatrix-smk">
-<h2>supermatrix.smk<a class="headerlink" href="#supermatrix-smk" title="Permalink to this headline"></a></h2>
+<h2>supermatrix.smk<a class="headerlink" href="#supermatrix-smk" title="Link to this heading"></a></h2>
 <p><strong>list_alignments</strong></p>
 <p>List alignments.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Concatenate</span> <span class="n">alignments</span><span class="o">.</span>
@@ -183,7 +160,7 @@ https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?chapter=tgencodes</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 University of Melbourne.</p>
+    <p>&#169; Copyright 2022–2025 University of Melbourne.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
