@@ -201,20 +201,17 @@ def run_workflow(tmpdir: Path):
             symlinks=True,
         )
 
-        sp.check_output(
-            [
-                "orthoflow",
-                "--target",
-                *targets,
-                "--force",
-                "-j1",
-                "--directory",
-                work_dir,
-                "--keep-target-files",
-                *args,
-            ]
-        )
-
+        orthoflow_args = [
+            "orthoflow",
+            "run",
+            "--force",
+            "-j1",
+            "--keep-target-files",
+            f"--directory={work_dir}",
+            *args,
+            *targets,
+        ]
+        sp.check_output(orthoflow_args)
         return Workflow(targets, work_dir, expected_dir)
 
     return _run_workflow
