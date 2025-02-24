@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.12"
+python = ">=3.10,<3.12"
 snakemake = ">=7.0.0"
 pandas = ">=1.2.5"
 typer = ">=0.4.1"
@@ -32,23 +32,25 @@ toml = ">=0.10.2"
 phytest = ">=1.4.1"
 rich = ">=13.3.3"
 pulp = "2.7.0"
+snk-cli = ">=0.7.2"
 
-[tool.poetry.dev-dependencies]
-Sphinx = "^4.4.0"
-nbsphinx = "^0.8.7"
-sphinx-rtd-theme = "^1.0.0"
-sphinx-autobuild = "^2021.3.14"
-sphinx-copybutton = "^0.4.0"
-sphinxcontrib-mermaid = "^0.7.1"
-myst-parser = "^0.17.0"
-pytest = "^7.1.1"
-black = "^22.3.0"
-isort = "^5.10.1"
-pre-commit = "^2.17.0"
-sphinxcontrib-bibtex = "^2.4.1"
-ipdb = "^0.13.9"
-phytest = "^1.0.0"
+[tool.poetry.group.dev.dependencies]
+Sphinx = ">=4.4.0"
+nbsphinx = ">=0.8.7"
+sphinx-rtd-theme = ">=1.0.0"
+sphinx-autobuild = ">=2021.3.14"
+sphinx-copybutton = ">=0.4.0"
+sphinxcontrib-mermaid = ">=0.7.1"
+myst-parser = ">=0.17.0"
+pytest = ">=7.1.1"
+black = ">=22.3.0"
+isort = ">=5.10.1"
+pre-commit = ">=2.17.0"
+sphinxcontrib-bibtex = ">=2.4.1"
+ipdb = ">=0.13.9"
+phytest = ">=1.0.0"
 snakedoc = { git = "https://github.com/smutch/snakedoc.git", branch = "deps/smk-bibtex" }
+
 
 [build-system]
 requires = ["setuptools", "poetry-core>=1.0.0"]
@@ -72,4 +74,4 @@ line_length = 120
 include = '\.smk$|^Snakefile$'
 
 [tool.poetry.scripts]
-orthoflow = 'orthoflow.main:app'
+orthoflow = 'orthoflow.cli:orthoflow'
