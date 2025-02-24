@@ -18,7 +18,7 @@ from pathlib import Path
 # -- Project information -----------------------------------------------------
 
 project = 'orthoflow'
-copyright = '2022 University of Melbourne'
+copyright = '2022–2025 University of Melbourne'
 author = 'University of Melbourne'
 
 # The full version, including alpha/beta/rc tags
@@ -42,7 +42,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx.ext.graphviz",
     'sphinxcontrib.bibtex',
-    'snakedoc'
+    # 'snakedoc'
     # 'sphinxcontrib.mermaid',
 ]
 

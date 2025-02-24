@@ -1,6 +1,110 @@
 logo: "Orthoflow"
-font: "tarty7"
+font: "tarty7"  
 tagline: "\n\n--- Phylogenomic analysis and diagnostics with one command ---"
 conda: True
 skip_missing: False
 symlink_resources: False
+
+cli:
+  input_sources:
+    type: Path
+    help: "Specify the CSV file containing the input sources"
+    default: "input_sources.csv"
+  ignore_non_valid_files:
+    type: bool
+    help: "Ignore files from workflow if no valid sequence present instead of raising an error"
+    default: false
+  ignore_empty_seqs:
+    type: bool
+    help: "Ignore empty sequences in files instead of raising an error"
+    default: true
+  amino_acid_input:
+    type: bool
+    help: "Set to true if any input files contain protein sequences instead of nucleotide sequences"
+    default: false
+  use_orthofisher:
+    type: bool
+    help: "Set to true to use OrthoFisher analysis path; otherwise if uses OrthoFinder and OrthoSNAP"
+    default: false
+  supermatrix:
+    type: bool
+    help: "Infer a tree using the supermatrix method"
+    default: true
+  supertree:
+    type: bool
+    help: "Infer a tree using the supertree (ASTRAL) method"
+    default: true
+  orthofinder_use_scogs:
+    type: bool
+    help: "Use single-copy orthogroups when using de novo ortholog analysis path"
+    default: true
+  orthofinder_use_snap_ogs:
+    type: bool
+    help: "Use SNAP orthogroups when using de novo ortholog analysis path"
+    default: true
+  ortholog_min_seqs:
+    type: int
+    help: "Minimum number of sequences required in an alignment for phylogenetic analysis (must be 3 or larger)"
+    default: 5
+  ortholog_min_taxa:
+    type: int
+    help: "Minimum number of taxa required in an orthogroup"
+    default: 5
+  minimum_trimmed_alignment_length_cds:
+    type: int
+    help: "Minimum length for CDS alignments to be used in phylogeny inference"
+    default: 501
+  minimum_trimmed_alignment_length_proteins:
+    type: int
+    help: "Minimum length for protein alignments to be used in phylogeny inference"
+    default: 167
+  max_trimmed_proportion:
+    type: float
+    help: "Maximum fraction of sites that can be removed during alignment trimming for use in phylogeny inference"
+    default: 0.5
+  infer_tree_with_protein_seqs:
+    type: bool
+    help: "Infer trees from protein alignments if true"
+    default: true
+  infer_tree_with_cds_seqs:
+    type: bool
+    help: "Infer trees from nucleotide alignments if true"
+    default: true
+  bootstrap_string:
+    type: str
+    help: "IQ-tree syntax for bootstrap settings (e.g., '-bb 1000' for 1000 ultrafast bootstraps)"
+    default: "-bb 1000"
+  model_string:
+    type: str
+    help: "IQ-tree syntax for model settings (e.g., '-m TEST' for ModelFinder)"
+    default: "-m TEST"
+  orthofisher_hmmer_files:
+    type: list
+    help: "List of HMMER files for OrthoFisher analysis"
+    default:
+      - "hmms/1080at3041.hmm"
+      - "hmms/1103at3041.hmm"
+      - "hmms/1271at3041.hmm"
+      - "hmms/1379at3041.hmm"
+      - "hmms/1518at3041.hmm"
+      - "hmms/1569at3041.hmm"
+      - "hmms/1610at3041.hmm"
+      - "hmms/171at3041.hmm"
+      - "hmms/1738at3041.hmm"
+      - "hmms/3239at3041.hmm"
+      - "hmms/336at3041.hmm"
+      - "hmms/3380at3041.hmm"
+      - "hmms/345at3041.hmm"
+      - "hmms/3499at3041.hmm"
+      - "hmms/3624at3041.hmm"
+      - "hmms/4242at3041.hmm"
+      - "hmms/4605at3041.hmm"
+      - "hmms/4751at3041.hmm"
+      - "hmms/4759at3041.hmm"
+      - "hmms/5839at3041.hmm"
+      - "hmms/6145at3041.hmm"
+      - "hmms/6593at3041.hmm"
+      - "hmms/6989at3041.hmm"
+      - "hmms/911at3041.hmm"
+      - "hmms/9903at3041.hmm"
+      - "hmms/992at3041.hmm"
