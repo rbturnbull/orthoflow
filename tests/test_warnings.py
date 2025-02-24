@@ -16,11 +16,9 @@ def test_warning_ignore_files(run_workflow):
 def test_warning_missing_taxa(run_workflow):
     w = run_workflow("logs/warnings/missing_taxa.txt", "--inputs", "input_sources.csv", "--ignore-non-valid-files", expected_dir=warnings_expected_dir)
     w.assert_exists(expected_files="logs/warnings/missing_taxa.txt")
-    w.assert_contains("alphabetfasta", expected_files="logs/warnings/missing_taxa.txt")
-    w.assert_contains("codonsfasta", expected_files="logs/warnings/missing_taxa.txt")
     w.assert_contains("2 taxa are missing in all orthogroups with the current Orthoflow configuration:\n", expected_files="logs/warnings/missing_taxa.txt")
     w.assert_contains("\talphabetfasta\n", expected_files="logs/warnings/missing_taxa.txt")
-    w.assert_contains("ptcodonsfasta\n", expected_files="logs/warnings/missing_taxa.txt")
+    w.assert_contains("\tcodonsfasta\n", expected_files="logs/warnings/missing_taxa.txt")
 
 
 def test_warning_suffix(run_workflow):

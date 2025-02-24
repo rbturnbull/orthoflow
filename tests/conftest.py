@@ -211,6 +211,7 @@ def run_workflow(tmpdir: Path):
             *args,
             *targets,
         ]
+
         sp.check_output(orthoflow_args)
         return Workflow(targets, work_dir, expected_dir)
 
