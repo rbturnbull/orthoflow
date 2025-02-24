@@ -1,21 +1,23 @@
 import pandas as pd
 
 
-def get_hmmer_files():
+def hmmer_config_setup():
     hmm_files = []
-    default_hmm_dir = Path(__file__).parent / "data"/"hmms"
-    config_list = config.get("orthofisher_hmmer_files", default_hmm_dir)
+    config_list = config.get("orthofisher_hmmer_files", None)
+    if not config_list:
+        default_hmm_dir = RESOURCES_DIR/"hmms"
+        config_list = [default_hmm_dir]
 
     for item in config_list:
         item = Path(item)
         if not item.exists():
-            configuration_warnings.append(f"HMM file {item} does not exist and is not used as an HMM profile.")
-            continue
-        if item.is_dir():
+            print(f"HMM file {item} does not exist and is not used as an HMM profile.")
+        elif item.is_dir():
             for file in item.glob("*.hmm"):
                 hmm_files.append(file)
         else:
             hmm_files.append(item)
+
     return hmm_files
 
 
@@ -31,13 +33,16 @@ rule orthofisher_input_generation:
         tsv="results/orthofisher/input_protein_files.tsv",
         hmm="results/orthofisher/hmms.txt",
     params:
-        hmm_list=config["orthofisher_hmmer_files"],
+        hmm_list=hmmer_config_setup(),
     log:
         LOG_DIR / "orthofisher/orthofisher_input_generation.log",
     shell:
         """
         echo "Running orthofisher_input_generation" 2>&1 | tee {log}
+        mkdir -p results/orthofisher 2>&1 | tee -a {log}
+        echo HHMs: {params.hmm_list}
         for FILE in {params.hmm_list}; do
+            echo $FILE
             if [ -s "$FILE" ]; then
                 echo "$FILE" >> {output.hmm} 2>&1 | tee -a {log}
             fi

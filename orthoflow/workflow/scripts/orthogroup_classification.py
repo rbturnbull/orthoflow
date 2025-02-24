@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import re
-from enum import Enum
 from pathlib import Path
 from collections import Counter
 import typer

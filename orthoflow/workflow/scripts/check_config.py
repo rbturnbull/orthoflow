@@ -1,4 +1,3 @@
-import os
 
 def check_configurations(input_dictionary, WARNINGS_DIR, ORTHOLOG_MIN_SEQS_DEFAULT, config ):
     configuration_warnings = []
@@ -35,3 +34,5 @@ def check_configurations(input_dictionary, WARNINGS_DIR, ORTHOLOG_MIN_SEQS_DEFAU
         configuration_warnings.insert(0, "Configuration file has raised warnings due to uncommon configurations.\n")
         config_warning_file = WARNINGS_DIR/"configuration_warnings.txt"
         config_warning_file.write_text("\n".join(str(item) for item in configuration_warnings))
+
+

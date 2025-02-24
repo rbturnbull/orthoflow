@@ -11,6 +11,7 @@ min_version("6.0")
 SNAKE_DIR = Path(workflow.basedir)
 SCRIPT_DIR = SNAKE_DIR/ "scripts"
 ENV_DIR = SNAKE_DIR / "envs"
+RESOURCES_DIR = SNAKE_DIR.parent / "resources"
 LOG_DIR = Path("logs")
 WARNINGS_DIR = LOG_DIR/"warnings"
 WARNINGS_DIR.mkdir(parents=True, exist_ok=True)
