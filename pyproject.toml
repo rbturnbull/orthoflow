@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "orthoflow"
 version = "0.3.4"
-description = "A phylogenomic workflow"
+description = "Phylogenomic analysis and diagnostics with one command"
 authors = ["Robert Turnbull", "Jacob Steenwyk", "Simon Mutch", "Vinícius Salazar", "Pelle Scholten", "Heroen Verbruggen"]
 license = "Apache-2.0"
 readme = "README.rst"
@@ -33,9 +33,10 @@ phytest = ">=1.4.1"
 rich = ">=13.3.3"
 pulp = "2.7.0"
 snk-cli = ">=0.7.2"
+setuptools = "^75.8.0"
 
 [tool.poetry.group.dev.dependencies]
-Sphinx = ">=4.4.0"
+Sphinx = ">5.0.0"
 nbsphinx = ">=0.8.7"
 sphinx-rtd-theme = ">=1.0.0"
 sphinx-autobuild = ">=2021.3.14"
@@ -49,7 +50,7 @@ pre-commit = ">=2.17.0"
 sphinxcontrib-bibtex = ">=2.4.1"
 ipdb = ">=0.13.9"
 phytest = ">=1.0.0"
-snakedoc = { git = "https://github.com/smutch/snakedoc.git", branch = "deps/smk-bibtex" }
+snakedoc = { git = "https://github.com/smutch/snakedoc.git", branch = "main" }
 
 
 [build-system]
