@@ -9,7 +9,7 @@ orthoflow = CLI(Path(__file__).parent)
 def bibtex():
     """ Print the BibTeX file for Orthoflow. """
     bibfile = Path(__file__).parent / "workflow" / "bibs" / "orthoflow.bib"
-    print(bibfile.read_text())
+    print(bibfile.read_text().strip())
 
 
 @orthoflow.app.command()
